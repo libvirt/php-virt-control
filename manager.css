@@ -1,3 +1,19 @@
+#header {
+	margin: 0px;
+	height: 104px;
+	width: 100%;
+	background: url(graphics/php-virt-control-bg.png);
+	border: 0px;
+}
+
+#headerLogo {
+	position: absolute;
+	left: 0px;
+	height: 104px;
+	width: 400px;
+	background: url(graphics/php-virt-control.png);
+}
+
 #vm-name {
 	padding-left: 10px;
 }

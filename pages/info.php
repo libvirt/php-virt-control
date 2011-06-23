@@ -43,6 +43,12 @@
         <div class="nl">
 </div>
 
+<div class="item">
+        <div class="label">Website</div>
+        <div class="value"><a target="_blank" href="<?= PHPVIRTCONTROL_WEBSITE ?>"><?= PHPVIRTCONTROL_WEBSITE ?></a></div>
+        <div class="nl">
+</div>
+
 <div class="section">Connection details</div>
 
 <?php

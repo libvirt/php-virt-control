@@ -1,5 +1,6 @@
 <?php
   define('PHPVIRTCONTROL_VERSION', '0.0.1');
+  define('PHPVIRTCONTROL_WEBSITE', 'http://minovotn.fedorapeople.org/php-virt-control');
 
   session_start();
   require('libvirt.php');
@@ -27,15 +28,16 @@
 ?>
 <html>
 <head>
- <title>phpVirtControl - Virtual machine controller</title>
+ <title>php-virt-control - Virtual machine controller</title>
  <link rel="STYLESHEET" type="text/css" href="manager.css"> 
 </head>
 <body>
-  <h1>PHP Virtual machine controller</h1>
-
-  <?php include('main-menu.php'); ?>
+  <div id="header">
+    <div id="headerLogo"></div>
+  </div>
 
   <?php
+	include('main-menu.php');
 	if ($name):
   ?>
 	<h2 id="vm-name">Virtual machine <?= $name ?></h2>
