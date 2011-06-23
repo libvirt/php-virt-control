@@ -1,0 +1,106 @@
+#vm-name {
+	padding-left: 10px;
+}
+
+#msg {
+	margin-top: 20px;
+	padding: 5px 5px 5px 20px;
+	font-size: 18px;
+	background-color: lightgreen;
+	color: gray;
+	font-style: italic;
+}
+
+#menu {
+	background-color: lightblue;
+	padding: 10px;
+}
+
+#menu a {
+	font-size: 20px;
+	padding: 10px;
+	color: blue;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+#main-menu {
+        background-color: lightgreen;
+        padding: 10px;
+	margin-bottom: 10px;
+}
+
+#main-menu a {
+        font-size: 20px;
+        padding: 10px;
+        color: blue;
+        text-decoration: none;
+        font-weight: bold;
+}
+
+#content {
+	font-size: 16px;
+}
+
+#content #domain-list {
+	padding-left: 30px;
+}
+
+#content #domain-list th {
+	padding-left: 30px;
+}
+
+#content #domain-list td {
+	padding-left: 30px;
+	text-align: center;
+}
+
+#content #domain-list .name {
+	text-align: left;
+}
+
+#content #domain-list td a {
+	text-decoration: none;
+	color: blue;
+	font-weight: bold;
+}
+
+#content #form-table input {
+	width: 200px;
+}
+
+#content #form-table select {
+	width: 200px;
+}
+
+#content .section {
+	padding: 10px;
+	padding-left: 20px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	font-size: 20px;
+	font-weight: bold;
+	font-style: italic;
+	background-color: lightgray;
+}
+
+#content .screenshot {
+	padding: 25px;
+	text-align: center;
+}
+
+#content .item .label {
+	width: 150px;
+	padding-right: 10px;
+	text-align: right;
+	float: left;
+	font-weight: bold;
+}
+
+#content .item .value {
+	float: left;
+}
+
+#content .item .nl {
+	clear: both;
+}
