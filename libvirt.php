@@ -260,6 +260,7 @@
 
 			$buses =  $this->get_xpath($dom, '//domain/devices/disk[@device="cdrom"]/target/@bus', false);
 			$disks =  $this->get_xpath($dom, '//domain/devices/disk[@device="cdrom"]/target/@dev', false);
+			$files =  $this->get_xpath($dom, '//domain/devices/disk[@device="cdrom"]/source/@file', false);
 
 			$ret = array();
 			for ($i = 0; $i < $disks['num']; $i++) {
@@ -268,8 +269,19 @@
 					$tmp['bus'] = $buses[$i];
 					$ret[] = $tmp;
 				}
-				else
+				else {
 					$this->_set_last_error();
+
+					$ret[] = array(
+							'device' => $disks[$i],
+							'file'   => $files[$i],
+							'type'   => '-',
+							'capacity' => '-',
+							'allocation' => '-',
+							'physical' => '-',
+							'bus' => $buses[$i]
+                                                        );
+				}
 			}
 
 			if ($sort) {
@@ -286,6 +298,7 @@
 
 			unset($buses);
 			unset($disks);
+			unset($files);
 
 			return $ret;
 		}
@@ -295,6 +308,7 @@
 
 			$buses =  $this->get_xpath($dom, '//domain/devices/disk[@device="disk"]/target/@bus', false);
 			$disks =  $this->get_xpath($dom, '//domain/devices/disk[@device="disk"]/target/@dev', false);
+			$files =  $this->get_xpath($dom, '//domain/devices/disk[@device="disk"]/source/@file', false);
 			// create image as: qemu-img create -f qcow2 -o backing_file=RAW_IMG OUT_QCOW_IMG SIZE[K,M,G suffixed]
 
 			$ret = array();
@@ -304,8 +318,19 @@
 					$tmp['bus'] = $buses[$i];
 					$ret[] = $tmp;
 				}
-				else
+				else {
 					$this->_set_last_error();
+
+					$ret[] = array(
+							'device' => $disks[$i],
+							'file'   => $files[$i],
+							'type'   => '-',
+							'capacity' => '-',
+							'allocation' => '-',
+							'physical' => '-',
+							'bus' => $buses[$i]
+							);
+				}
 			}
 
 			if ($sort) {
@@ -322,6 +347,7 @@
 
 			unset($buses);
 			unset($disks);
+			unset($files);
 
 			return $ret;
 		}
@@ -329,7 +355,7 @@
                 function get_nic_info($domain) {
                         $dom = $this->get_domain_object($domain);
 
-                        $macs =  $this->get_xpath($dom, '//domain/devices/interface[@type="network"]/mac/@address', false);
+                        $macs =  $this->get_xpath($dom, '//domain/devices/interface/mac/@address', false);
 			if (!$macs)
 				return $this->_set_last_error();
 
@@ -338,8 +364,15 @@
 				$tmp = libvirt_domain_get_network_info($dom, $macs[$i]);
 				if ($tmp)
 					$ret[] = $tmp;
-				else
+				else {
 					$this->_set_last_error();
+
+					$ret[] = array(
+							'mac' => $macs[$i],
+							'network' => '-',
+							'nic_type' => '-'
+							);
+				}
 			}
 
                         return $ret;
@@ -408,6 +441,9 @@
 		}
 
 		function format_size($value, $decimals, $unit='?') {
+			if ($value == '-')
+				return 'unknown';
+
 			/* Autodetect unit that's appropriate */
 			if ($unit == '?') {
 				/* (1 << 40) is not working correctly on i386 systems */
@@ -814,6 +850,9 @@
 		}
 
 		function domain_get_info($name = false, $name_override = false) {
+			if (!$name)
+				return false;
+
 			if (!$this->allow_cached)
 				return $this->domain_get_info_call($name, $name_override);
 

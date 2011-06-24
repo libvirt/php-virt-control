@@ -1,0 +1,1090 @@
+[2011-06-24 16:16:14 libvirt-php/core]: libvirt_connect: Connection to xen+ssh://root@lws established, returning 0xb33ebc38
+[2011-06-24 16:16:14 libvirt-php/core]: libvirt_list_domains: Found 3 domains
+[2011-06-24 16:16:14 libvirt-php/core]: libvirt_list_domains: virConnectListDomains returned 3 domains
+[2011-06-24 16:16:14 libvirt-php/core]: libvirt_list_domains: Found running domain Domain-0 with ID = 0
+[2011-06-24 16:16:14 libvirt-php/core]: libvirt_list_domains: Found running domain hvm_6x64 with ID = 103
+[2011-06-24 16:16:14 libvirt-php/core]: libvirt_list_domains: Found running domain rhel55-64fv with ID = 106
+[2011-06-24 16:16:14 libvirt-php/core]: libvirt_list_domains: virConnectNumOfDefinedDomains returned 15 domains
+[2011-06-24 16:16:14 libvirt-php/core]: libvirt_list_domains: virConnectListDefinedDomains returned 12 domains
+[2011-06-24 16:16:14 libvirt-php/core]: libvirt_list_domains: Found inactive domain cdrom
+[2011-06-24 16:16:14 libvirt-php/core]: libvirt_list_domains: Found inactive domain rhel49
+[2011-06-24 16:16:14 libvirt-php/core]: libvirt_list_domains: Found inactive domain rhel6.1-hvm32
+[2011-06-24 16:16:14 libvirt-php/core]: libvirt_list_domains: Found inactive domain rhel55-32pv
+[2011-06-24 16:16:14 libvirt-php/core]: libvirt_list_domains: Found inactive domain RHEL6
+[2011-06-24 16:16:14 libvirt-php/core]: libvirt_list_domains: Found inactive domain rhel60-64pv
+[2011-06-24 16:16:14 libvirt-php/core]: libvirt_list_domains: Found inactive domain rhel55-64pv
+[2011-06-24 16:16:14 libvirt-php/core]: libvirt_list_domains: Found inactive domain winxp-32fv
+[2011-06-24 16:16:14 libvirt-php/core]: libvirt_list_domains: Found inactive domain rhel56s5-64fv
+[2011-06-24 16:16:14 libvirt-php/core]: libvirt_list_domains: Found inactive domain rhel55-32fv
+[2011-06-24 16:16:14 libvirt-php/core]: libvirt_list_domains: Found inactive domain rhel6.1-pv64
+[2011-06-24 16:16:14 libvirt-php/core]: libvirt_list_domains: Found inactive domain pv_6x64
+[2011-06-24 16:16:14 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'Domain-0', returning 0xb33ebc08
+[2011-06-24 16:16:14 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb33ebc08) returned 0 (00000000-0000-0000-0000-000000000000)
+[2011-06-24 16:16:14 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb33ebc08) returned 0
+[2011-06-24 16:16:14 libvirt-php/core]: libvirt_domain_get_id: virDomainGetID(0xb33ebc08) returned 0
+[2011-06-24 16:16:14 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'RHEL6', returning 0xb34866c0
+[2011-06-24 16:16:14 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb33ebc08 (conn 0xb33ebc38) is allocated
+[2011-06-24 16:16:14 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb33ebc08) completed successfully
+[2011-06-24 16:16:14 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb34866c0) returned 0 (ea0a3a0e-6bdf-f0cf-a9f9-8f6db3ee11ec)
+[2011-06-24 16:16:14 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb34866c0) returned 0
+[2011-06-24 16:16:14 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'cdrom', returning 0xb33eb698
+[2011-06-24 16:16:14 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb34866c0 (conn 0xb33ebc38) is allocated
+[2011-06-24 16:16:14 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb34866c0) completed successfully
+[2011-06-24 16:16:14 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb33eb698) returned 0 (b36e6e3e-00dd-0b55-0955-cb4527b6376c)
+[2011-06-24 16:16:14 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb33eb698) returned 0
+[2011-06-24 16:16:14 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'hvm_6x64', returning 0xb33ebc08
+[2011-06-24 16:16:14 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb33eb698 (conn 0xb33ebc38) is allocated
+[2011-06-24 16:16:14 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb33eb698) completed successfully
+[2011-06-24 16:16:14 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb33ebc08) returned 0 (51729ef4-0287-afea-842d-43281247eb63)
+[2011-06-24 16:16:14 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb33ebc08) returned 0
+[2011-06-24 16:16:14 libvirt-php/core]: libvirt_domain_get_id: virDomainGetID(0xb33ebc08) returned 103
+[2011-06-24 16:16:15 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'pv_6x64', returning 0xb34b9a00
+[2011-06-24 16:16:15 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb33ebc08 (conn 0xb33ebc38) is allocated
+[2011-06-24 16:16:15 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb33ebc08) completed successfully
+[2011-06-24 16:16:15 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb34b9a00) returned 0 (4a1ddec5-e413-06fd-ff3f-abc37bd34919)
+[2011-06-24 16:16:15 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb34b9a00) returned 0
+[2011-06-24 16:16:15 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel49', returning 0xb34c0c80
+[2011-06-24 16:16:15 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb34b9a00 (conn 0xb33ebc38) is allocated
+[2011-06-24 16:16:15 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb34b9a00) completed successfully
+[2011-06-24 16:16:15 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb34c0c80) returned 0 (65535883-9d0d-72f2-de3f-1951ad6315e4)
+[2011-06-24 16:16:15 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb34c0c80) returned 0
+[2011-06-24 16:16:15 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel55-32fv', returning 0xb34ce558
+[2011-06-24 16:16:15 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb34c0c80 (conn 0xb33ebc38) is allocated
+[2011-06-24 16:16:15 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb34c0c80) completed successfully
+[2011-06-24 16:16:15 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb34ce558) returned 0 (bf18b8a4-e558-d97d-a3c2-06c983d212db)
+[2011-06-24 16:16:15 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb34ce558) returned 0
+[2011-06-24 16:16:15 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel55-32pv', returning 0xb34dc5d0
+[2011-06-24 16:16:15 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb34ce558 (conn 0xb33ebc38) is allocated
+[2011-06-24 16:16:15 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb34ce558) completed successfully
+[2011-06-24 16:16:15 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb34dc5d0) returned 0 (775fcf96-2dee-ab1c-c4f1-5d5b65bf7108)
+[2011-06-24 16:16:15 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb34dc5d0) returned 0
+[2011-06-24 16:16:15 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel55-64fv', returning 0xb3253fb0
+[2011-06-24 16:16:15 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb34dc5d0 (conn 0xb33ebc38) is allocated
+[2011-06-24 16:16:15 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb34dc5d0) completed successfully
+[2011-06-24 16:16:15 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb3253fb0) returned 0 (492b8007-f045-1a3f-3146-82b4d4f9a09f)
+[2011-06-24 16:16:15 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb3253fb0) returned 0
+[2011-06-24 16:16:15 libvirt-php/core]: libvirt_domain_get_id: virDomainGetID(0xb3253fb0) returned 106
+[2011-06-24 16:16:15 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel55-64pv', returning 0xb32673d0
+[2011-06-24 16:16:15 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb3253fb0 (conn 0xb33ebc38) is allocated
+[2011-06-24 16:16:15 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb3253fb0) completed successfully
+[2011-06-24 16:16:15 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb32673d0) returned 0 (24aced0c-debc-2812-b2c1-2db112314761)
+[2011-06-24 16:16:15 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb32673d0) returned 0
+[2011-06-24 16:16:15 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel56s5-64fv', returning 0xb3269080
+[2011-06-24 16:16:15 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb32673d0 (conn 0xb33ebc38) is allocated
+[2011-06-24 16:16:15 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb32673d0) completed successfully
+[2011-06-24 16:16:15 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb3269080) returned 0 (5764e7d5-bd17-0cdc-fda3-f60af4e0e0bb)
+[2011-06-24 16:16:15 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb3269080) returned 0
+[2011-06-24 16:16:15 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel6.1-hvm32', returning 0xb327f978
+[2011-06-24 16:16:15 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb3269080 (conn 0xb33ebc38) is allocated
+[2011-06-24 16:16:15 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb3269080) completed successfully
+[2011-06-24 16:16:15 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb327f978) returned 0 (28fa2db6-3b6d-cefd-f194-a788e3d854fa)
+[2011-06-24 16:16:15 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb327f978) returned 0
+[2011-06-24 16:16:15 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel6.1-pv64', returning 0xb3294830
+[2011-06-24 16:16:15 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb327f978 (conn 0xb33ebc38) is allocated
+[2011-06-24 16:16:15 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb327f978) completed successfully
+[2011-06-24 16:16:15 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb3294830) returned 0 (97d94a27-410f-83b6-0907-118cc693c953)
+[2011-06-24 16:16:15 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb3294830) returned 0
+[2011-06-24 16:16:15 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel60-64pv', returning 0xb3281aa8
+[2011-06-24 16:16:15 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb3294830 (conn 0xb33ebc38) is allocated
+[2011-06-24 16:16:15 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb3294830) completed successfully
+[2011-06-24 16:16:15 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb3281aa8) returned 0 (79c9a4f6-9b20-fe27-fecc-f007b5549a5b)
+[2011-06-24 16:16:15 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb3281aa8) returned 0
+[2011-06-24 16:16:15 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'winxp-32fv', returning 0xb32a46c0
+[2011-06-24 16:16:15 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb3281aa8 (conn 0xb33ebc38) is allocated
+[2011-06-24 16:16:15 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb3281aa8) completed successfully
+[2011-06-24 16:16:15 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb32a46c0) returned 0 (3edc8680-e319-5f63-4408-8433247107fe)
+[2011-06-24 16:16:15 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb32a46c0) returned 0
+[2011-06-24 16:16:15 libvirt-php/core]: free_resource: Freeing libvirt domain resource at 0xb32a46c0
+[2011-06-24 16:16:15 libvirt-php/core]: free_resource: virDomainFree(0xb32a46c0) completed successfully
+[2011-06-24 16:16:15 libvirt-php/core]: php_libvirt_connection_dtor: virConnectClose(0xb33ebc38) completed successfully
+[2011-06-24 16:16:15 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb32a46c0 (conn 0x2a202d0) is not allocated
+[2011-06-24 16:17:07 libvirt-php/core]: libvirt_connect: Connection to xen+ssh://root@lws established, returning 0xb33ebc38
+[2011-06-24 16:17:07 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'RHEL6', returning 0xb33ebd78
+[2011-06-24 16:17:07 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb33ebd78) returned 0
+[2011-06-24 16:17:07 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb33ebd78) returned 0 (ea0a3a0e-6bdf-f0cf-a9f9-8f6db3ee11ec)
+[2011-06-24 16:17:07 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'RHEL6', returning 0xb33ec0f8
+[2011-06-24 16:17:07 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb33ec0f8) returned 0
+[2011-06-24 16:17:07 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb33ec0f8 (conn 0xb33ebc38) is allocated
+[2011-06-24 16:17:07 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb33ec0f8) completed successfully
+[2011-06-24 16:17:07 libvirt-php/core]: free_resource: Freeing libvirt domain resource at 0xb33ebd78
+[2011-06-24 16:17:07 libvirt-php/core]: free_resource: virDomainFree(0xb33ebd78) completed successfully
+[2011-06-24 16:17:07 libvirt-php/core]: php_libvirt_connection_dtor: virConnectClose(0xb33ebc38) completed successfully
+[2011-06-24 16:17:07 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb33ebd78 (conn 0x2a25380) is not allocated
+[2011-06-24 16:17:09 libvirt-php/core]: libvirt_connect: Connection to xen+ssh://root@lws established, returning 0xb33ebc38
+[2011-06-24 16:17:09 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'RHEL6', returning 0xb33ebd78
+[2011-06-24 16:17:09 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb33ebd78) returned 0
+[2011-06-24 16:17:09 libvirt-php/core]: libvirt_connect_get_information: Got connection URI of xen+ssh://root@lws...
+[2011-06-24 16:17:09 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'RHEL6', returning 0xb3488698
+[2011-06-24 16:17:09 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb3488698) returned 0
+[2011-06-24 16:17:09 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb3488698 (conn 0xb33ebc38) is allocated
+[2011-06-24 16:17:09 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb3488698) completed successfully
+[2011-06-24 16:17:09 libvirt-php/core]: libvirt_node_get_info: virNodeGetInfo returned 0
+[2011-06-24 16:17:09 libvirt-php/core]: free_resource: Freeing libvirt domain resource at 0xb33ebd78
+[2011-06-24 16:17:09 libvirt-php/core]: free_resource: virDomainFree(0xb33ebd78) completed successfully
+[2011-06-24 16:17:09 libvirt-php/core]: php_libvirt_connection_dtor: virConnectClose(0xb33ebc38) completed successfully
+[2011-06-24 16:17:09 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb33ebd78 (conn 0x2a1f7f8) is not allocated
+[2011-06-24 16:17:12 libvirt-php/core]: libvirt_connect: Connection to xen+ssh://root@lws established, returning 0xb33ebc38
+[2011-06-24 16:17:12 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'RHEL6', returning 0xb33ebd78
+[2011-06-24 16:17:12 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb33ebd78) returned 0
+[2011-06-24 16:17:12 libvirt-php/core]: libvirt_node_get_info: virNodeGetInfo returned 0
+[2011-06-24 16:17:12 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'RHEL6', returning 0xb3488538
+[2011-06-24 16:17:12 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb3488538) returned 0
+[2011-06-24 16:17:12 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb3488538 (conn 0xb33ebc38) is allocated
+[2011-06-24 16:17:12 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb3488538) completed successfully
+[2011-06-24 16:17:12 libvirt-php/core]: free_resource: Freeing libvirt domain resource at 0xb33ebd78
+[2011-06-24 16:17:12 libvirt-php/core]: free_resource: virDomainFree(0xb33ebd78) completed successfully
+[2011-06-24 16:17:12 libvirt-php/core]: php_libvirt_connection_dtor: virConnectClose(0xb33ebc38) completed successfully
+[2011-06-24 16:17:12 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb33ebd78 (conn 0x2a1f2e4) is not allocated
+[2011-06-24 16:17:15 libvirt-php/core]: libvirt_connect: Connection to xen+ssh://root@lws established, returning 0xb33ebe00
+[2011-06-24 16:17:15 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'RHEL6', returning 0xb33ebed0
+[2011-06-24 16:17:15 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb33ebed0) returned 0
+[2011-06-24 16:17:15 libvirt-php/core]: free_resource: Freeing libvirt domain resource at 0xb33ebed0
+[2011-06-24 16:17:15 libvirt-php/core]: free_resource: virDomainFree(0xb33ebed0) completed successfully
+[2011-06-24 16:17:15 libvirt-php/core]: php_libvirt_connection_dtor: virConnectClose(0xb33ebe00) completed successfully
+[2011-06-24 16:17:15 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb33ebed0 (conn 0x2a1fb70) is not allocated
+[2011-06-24 16:17:16 libvirt-php/core]: libvirt_connect: Connection to xen+ssh://root@lws established, returning 0xb33ebc38
+[2011-06-24 16:17:16 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'RHEL6', returning 0xb33ebd78
+[2011-06-24 16:17:16 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb33ebd78) returned 0
+[2011-06-24 16:17:16 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'RHEL6', returning 0xb33ec128
+[2011-06-24 16:17:16 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb33ec128 (conn 0xb33ebc38) is allocated
+[2011-06-24 16:17:16 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb33ec128) completed successfully
+[2011-06-24 16:17:16 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'RHEL6', returning 0xb348d170
+[2011-06-24 16:17:16 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb348d170 (conn 0xb33ebc38) is allocated
+[2011-06-24 16:17:16 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb348d170) completed successfully
+[2011-06-24 16:17:16 libvirt-php/core]: free_resource: Freeing libvirt domain resource at 0xb33ebd78
+[2011-06-24 16:17:16 libvirt-php/core]: free_resource: virDomainFree(0xb33ebd78) completed successfully
+[2011-06-24 16:17:16 libvirt-php/core]: php_libvirt_connection_dtor: virConnectClose(0xb33ebc38) completed successfully
+[2011-06-24 16:17:16 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb33ebd78 (conn 0x2a33a80) is not allocated
+[2011-06-24 16:17:17 libvirt-php/core]: libvirt_connect: Connection to xen+ssh://root@lws established, returning 0xb33ebc38
+[2011-06-24 16:17:17 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'RHEL6', returning 0xb33ebd78
+[2011-06-24 16:17:17 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb33ebd78) returned 0
+[2011-06-24 16:17:17 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'RHEL6', returning 0xb3488388
+[2011-06-24 16:17:17 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb3488388 (conn 0xb33ebc38) is allocated
+[2011-06-24 16:17:17 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb3488388) completed successfully
+[2011-06-24 16:17:17 libvirt-php/core]: free_resource: Freeing libvirt domain resource at 0xb33ebd78
+[2011-06-24 16:17:17 libvirt-php/core]: free_resource: virDomainFree(0xb33ebd78) completed successfully
+[2011-06-24 16:17:17 libvirt-php/core]: php_libvirt_connection_dtor: virConnectClose(0xb33ebc38) completed successfully
+[2011-06-24 16:17:17 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb33ebd78 (conn 0x2a20080) is not allocated
+[2011-06-24 16:17:20 libvirt-php/core]: libvirt_connect: Connection to xen+ssh://root@lws established, returning 0xb33ebc38
+[2011-06-24 16:17:20 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'RHEL6', returning 0xb33ebd78
+[2011-06-24 16:17:20 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb33ebd78) returned 0
+[2011-06-24 16:17:20 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'RHEL6', returning 0xb33ebb88
+[2011-06-24 16:17:20 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb33ebb88 (conn 0xb33ebc38) is allocated
+[2011-06-24 16:17:20 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb33ebb88) completed successfully
+[2011-06-24 16:17:20 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'RHEL6', returning 0xb348b808
+[2011-06-24 16:17:20 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb348b808 (conn 0xb33ebc38) is allocated
+[2011-06-24 16:17:20 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb348b808) completed successfully
+[2011-06-24 16:17:20 libvirt-php/core]: free_resource: Freeing libvirt domain resource at 0xb33ebd78
+[2011-06-24 16:17:20 libvirt-php/core]: free_resource: virDomainFree(0xb33ebd78) completed successfully
+[2011-06-24 16:17:20 libvirt-php/core]: php_libvirt_connection_dtor: virConnectClose(0xb33ebc38) completed successfully
+[2011-06-24 16:17:20 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb33ebd78 (conn 0x2a1f158) is not allocated
+[2011-06-24 16:17:21 libvirt-php/core]: libvirt_connect: Connection to xen+ssh://root@lws established, returning 0xb33eb7d8
+[2011-06-24 16:17:21 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'RHEL6', returning 0xb32bfc68
+[2011-06-24 16:17:21 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb32bfc68) returned 0
+[2011-06-24 16:17:21 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'RHEL6', returning 0xb33eb9a0
+[2011-06-24 16:17:21 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb33eb9a0 (conn 0xb33eb7d8) is allocated
+[2011-06-24 16:17:21 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb33eb9a0) completed successfully
+[2011-06-24 16:17:21 libvirt-php/core]: free_resource: Freeing libvirt domain resource at 0xb32bfc68
+[2011-06-24 16:17:21 libvirt-php/core]: free_resource: virDomainFree(0xb32bfc68) completed successfully
+[2011-06-24 16:17:21 libvirt-php/core]: php_libvirt_connection_dtor: virConnectClose(0xb33eb7d8) completed successfully
+[2011-06-24 16:17:21 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb32bfc68 (conn 0x2a1f2d8) is not allocated
+[2011-06-24 16:17:22 libvirt-php/core]: libvirt_connect: Connection to xen+ssh://root@lws established, returning 0xb3495e60
+[2011-06-24 16:17:22 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'RHEL6', returning 0xb3495f88
+[2011-06-24 16:17:22 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb3495f88) returned 0
+[2011-06-24 16:17:22 libvirt-php/core]: free_resource: Freeing libvirt domain resource at 0xb3495f88
+[2011-06-24 16:17:22 libvirt-php/core]: free_resource: virDomainFree(0xb3495f88) completed successfully
+[2011-06-24 16:17:22 libvirt-php/core]: php_libvirt_connection_dtor: virConnectClose(0xb3495e60) completed successfully
+[2011-06-24 16:17:22 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb3495f88 (conn 0x2a20958) is not allocated
+[2011-06-24 16:17:23 libvirt-php/core]: libvirt_connect: Connection to xen+ssh://root@lws established, returning 0xb33eb900
+[2011-06-24 16:17:23 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'RHEL6', returning 0xb33eb708
+[2011-06-24 16:17:23 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb33eb708) returned 0
+[2011-06-24 16:17:23 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'RHEL6', returning 0xb34ca858
+[2011-06-24 16:17:23 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb34ca858 (conn 0xb33eb900) is allocated
+[2011-06-24 16:17:23 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb34ca858) completed successfully
+[2011-06-24 16:17:23 libvirt-php/core]: free_resource: Freeing libvirt domain resource at 0xb33eb708
+[2011-06-24 16:17:23 libvirt-php/core]: free_resource: virDomainFree(0xb33eb708) completed successfully
+[2011-06-24 16:17:23 libvirt-php/core]: php_libvirt_connection_dtor: virConnectClose(0xb33eb900) completed successfully
+[2011-06-24 16:17:23 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb33eb708 (conn 0x2a1f3d4) is not allocated
+[2011-06-24 16:17:25 libvirt-php/core]: libvirt_connect: Connection to xen+ssh://root@lws established, returning 0xb33eb708
+[2011-06-24 16:17:25 libvirt-php/core]: libvirt_list_domains: Found 3 domains
+[2011-06-24 16:17:25 libvirt-php/core]: libvirt_list_domains: virConnectListDomains returned 3 domains
+[2011-06-24 16:17:25 libvirt-php/core]: libvirt_list_domains: Found running domain Domain-0 with ID = 0
+[2011-06-24 16:17:25 libvirt-php/core]: libvirt_list_domains: Found running domain hvm_6x64 with ID = 103
+[2011-06-24 16:17:25 libvirt-php/core]: libvirt_list_domains: Found running domain rhel55-64fv with ID = 106
+[2011-06-24 16:17:25 libvirt-php/core]: libvirt_list_domains: virConnectNumOfDefinedDomains returned 15 domains
+[2011-06-24 16:17:25 libvirt-php/core]: libvirt_list_domains: virConnectListDefinedDomains returned 12 domains
+[2011-06-24 16:17:25 libvirt-php/core]: libvirt_list_domains: Found inactive domain cdrom
+[2011-06-24 16:17:25 libvirt-php/core]: libvirt_list_domains: Found inactive domain rhel49
+[2011-06-24 16:17:25 libvirt-php/core]: libvirt_list_domains: Found inactive domain rhel6.1-hvm32
+[2011-06-24 16:17:25 libvirt-php/core]: libvirt_list_domains: Found inactive domain rhel55-32pv
+[2011-06-24 16:17:25 libvirt-php/core]: libvirt_list_domains: Found inactive domain RHEL6
+[2011-06-24 16:17:25 libvirt-php/core]: libvirt_list_domains: Found inactive domain rhel60-64pv
+[2011-06-24 16:17:25 libvirt-php/core]: libvirt_list_domains: Found inactive domain rhel55-64pv
+[2011-06-24 16:17:25 libvirt-php/core]: libvirt_list_domains: Found inactive domain winxp-32fv
+[2011-06-24 16:17:25 libvirt-php/core]: libvirt_list_domains: Found inactive domain rhel56s5-64fv
+[2011-06-24 16:17:25 libvirt-php/core]: libvirt_list_domains: Found inactive domain rhel55-32fv
+[2011-06-24 16:17:25 libvirt-php/core]: libvirt_list_domains: Found inactive domain rhel6.1-pv64
+[2011-06-24 16:17:25 libvirt-php/core]: libvirt_list_domains: Found inactive domain pv_6x64
+[2011-06-24 16:17:25 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'Domain-0', returning 0xb33eb4a8
+[2011-06-24 16:17:25 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb33eb4a8) returned 0 (00000000-0000-0000-0000-000000000000)
+[2011-06-24 16:17:25 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb33eb4a8) returned 0
+[2011-06-24 16:17:25 libvirt-php/core]: libvirt_domain_get_id: virDomainGetID(0xb33eb4a8) returned 0
+[2011-06-24 16:17:25 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'RHEL6', returning 0xb34d2ca8
+[2011-06-24 16:17:25 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb33eb4a8 (conn 0xb33eb708) is allocated
+[2011-06-24 16:17:25 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb33eb4a8) completed successfully
+[2011-06-24 16:17:25 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb34d2ca8) returned 0 (ea0a3a0e-6bdf-f0cf-a9f9-8f6db3ee11ec)
+[2011-06-24 16:17:25 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb34d2ca8) returned 0
+[2011-06-24 16:17:25 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'cdrom', returning 0xb33eb330
+[2011-06-24 16:17:25 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb34d2ca8 (conn 0xb33eb708) is allocated
+[2011-06-24 16:17:25 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb34d2ca8) completed successfully
+[2011-06-24 16:17:25 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb33eb330) returned 0 (b36e6e3e-00dd-0b55-0955-cb4527b6376c)
+[2011-06-24 16:17:25 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb33eb330) returned 0
+[2011-06-24 16:17:25 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'hvm_6x64', returning 0xb3455680
+[2011-06-24 16:17:25 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb33eb330 (conn 0xb33eb708) is allocated
+[2011-06-24 16:17:25 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb33eb330) completed successfully
+[2011-06-24 16:17:25 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb3455680) returned 0 (51729ef4-0287-afea-842d-43281247eb63)
+[2011-06-24 16:17:25 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb3455680) returned 0
+[2011-06-24 16:17:25 libvirt-php/core]: libvirt_domain_get_id: virDomainGetID(0xb3455680) returned 103
+[2011-06-24 16:17:25 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'pv_6x64', returning 0xb34ca728
+[2011-06-24 16:17:25 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb3455680 (conn 0xb33eb708) is allocated
+[2011-06-24 16:17:25 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb3455680) completed successfully
+[2011-06-24 16:17:25 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb34ca728) returned 0 (4a1ddec5-e413-06fd-ff3f-abc37bd34919)
+[2011-06-24 16:17:25 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb34ca728) returned 0
+[2011-06-24 16:17:26 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel49', returning 0xb346d9b0
+[2011-06-24 16:17:26 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb34ca728 (conn 0xb33eb708) is allocated
+[2011-06-24 16:17:26 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb34ca728) completed successfully
+[2011-06-24 16:17:26 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb346d9b0) returned 0 (65535883-9d0d-72f2-de3f-1951ad6315e4)
+[2011-06-24 16:17:26 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb346d9b0) returned 0
+[2011-06-24 16:17:26 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel55-32fv', returning 0xb34ca728
+[2011-06-24 16:17:26 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb346d9b0 (conn 0xb33eb708) is allocated
+[2011-06-24 16:17:26 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb346d9b0) completed successfully
+[2011-06-24 16:17:26 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb34ca728) returned 0 (bf18b8a4-e558-d97d-a3c2-06c983d212db)
+[2011-06-24 16:17:26 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb34ca728) returned 0
+[2011-06-24 16:17:26 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel55-32pv', returning 0xb34857c8
+[2011-06-24 16:17:26 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb34ca728 (conn 0xb33eb708) is allocated
+[2011-06-24 16:17:26 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb34ca728) completed successfully
+[2011-06-24 16:17:26 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb34857c8) returned 0 (775fcf96-2dee-ab1c-c4f1-5d5b65bf7108)
+[2011-06-24 16:17:26 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb34857c8) returned 0
+[2011-06-24 16:17:26 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel55-64fv', returning 0xb3257918
+[2011-06-24 16:17:26 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb34857c8 (conn 0xb33eb708) is allocated
+[2011-06-24 16:17:26 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb34857c8) completed successfully
+[2011-06-24 16:17:26 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb3257918) returned 0 (492b8007-f045-1a3f-3146-82b4d4f9a09f)
+[2011-06-24 16:17:26 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb3257918) returned 0
+[2011-06-24 16:17:26 libvirt-php/core]: libvirt_domain_get_id: virDomainGetID(0xb3257918) returned 106
+[2011-06-24 16:17:26 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel55-64pv', returning 0xb3267838
+[2011-06-24 16:17:26 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb3257918 (conn 0xb33eb708) is allocated
+[2011-06-24 16:17:26 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb3257918) completed successfully
+[2011-06-24 16:17:26 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb3267838) returned 0 (24aced0c-debc-2812-b2c1-2db112314761)
+[2011-06-24 16:17:26 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb3267838) returned 0
+[2011-06-24 16:17:26 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel56s5-64fv', returning 0xb32694e8
+[2011-06-24 16:17:26 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb3267838 (conn 0xb33eb708) is allocated
+[2011-06-24 16:17:26 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb3267838) completed successfully
+[2011-06-24 16:17:26 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb32694e8) returned 0 (5764e7d5-bd17-0cdc-fda3-f60af4e0e0bb)
+[2011-06-24 16:17:26 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb32694e8) returned 0
+[2011-06-24 16:17:26 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel6.1-hvm32', returning 0xb327fde0
+[2011-06-24 16:17:26 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb32694e8 (conn 0xb33eb708) is allocated
+[2011-06-24 16:17:26 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb32694e8) completed successfully
+[2011-06-24 16:17:26 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb327fde0) returned 0 (28fa2db6-3b6d-cefd-f194-a788e3d854fa)
+[2011-06-24 16:17:26 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb327fde0) returned 0
+[2011-06-24 16:17:26 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel6.1-pv64', returning 0xb3294c98
+[2011-06-24 16:17:26 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb327fde0 (conn 0xb33eb708) is allocated
+[2011-06-24 16:17:26 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb327fde0) completed successfully
+[2011-06-24 16:17:26 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb3294c98) returned 0 (97d94a27-410f-83b6-0907-118cc693c953)
+[2011-06-24 16:17:26 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb3294c98) returned 0
+[2011-06-24 16:17:26 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel60-64pv', returning 0xb3281f10
+[2011-06-24 16:17:26 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb3294c98 (conn 0xb33eb708) is allocated
+[2011-06-24 16:17:26 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb3294c98) completed successfully
+[2011-06-24 16:17:26 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb3281f10) returned 0 (79c9a4f6-9b20-fe27-fecc-f007b5549a5b)
+[2011-06-24 16:17:26 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb3281f10) returned 0
+[2011-06-24 16:17:26 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'winxp-32fv', returning 0xb32a4b28
+[2011-06-24 16:17:26 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb3281f10 (conn 0xb33eb708) is allocated
+[2011-06-24 16:17:26 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb3281f10) completed successfully
+[2011-06-24 16:17:26 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb32a4b28) returned 0 (3edc8680-e319-5f63-4408-8433247107fe)
+[2011-06-24 16:17:26 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb32a4b28) returned 0
+[2011-06-24 16:17:26 libvirt-php/core]: free_resource: Freeing libvirt domain resource at 0xb32a4b28
+[2011-06-24 16:17:26 libvirt-php/core]: free_resource: virDomainFree(0xb32a4b28) completed successfully
+[2011-06-24 16:17:26 libvirt-php/core]: php_libvirt_connection_dtor: virConnectClose(0xb33eb708) completed successfully
+[2011-06-24 16:17:26 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb32a4b28 (conn 0x2a20228) is not allocated
+[2011-06-24 16:17:28 libvirt-php/core]: libvirt_connect: Connection to xen+ssh://root@lws established, returning 0xb34de1a8
+[2011-06-24 16:17:28 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'RHEL6', returning 0xb354abd0
+[2011-06-24 16:17:28 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'RHEL6', returning 0xb3341210
+[2011-06-24 16:17:28 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb3341210) returned 0
+[2011-06-24 16:17:28 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb3341210 (conn 0xb34de1a8) is allocated
+[2011-06-24 16:17:28 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb3341210) completed successfully
+[2011-06-24 16:17:28 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb354abd0 (conn 0xb34de1a8) is allocated
+[2011-06-24 16:17:28 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb354abd0) completed successfully
+[2011-06-24 16:17:28 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'RHEL6', returning 0xb3341950
+[2011-06-24 16:17:28 libvirt-php/core]: libvirt_domain_get_xml_desc: Getting the XML for domain 0xb3341950 (xPath = 2)
+[2011-06-24 16:17:28 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb3341950 (conn 0xb34de1a8) is allocated
+[2011-06-24 16:17:28 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb3341950) completed successfully
+[2011-06-24 16:17:28 libvirt-php/core]: libvirt_list_domains: Found 3 domains
+[2011-06-24 16:17:28 libvirt-php/core]: libvirt_list_domains: virConnectListDomains returned 3 domains
+[2011-06-24 16:17:28 libvirt-php/core]: libvirt_list_domains: Found running domain Domain-0 with ID = 0
+[2011-06-24 16:17:28 libvirt-php/core]: libvirt_list_domains: Found running domain hvm_6x64 with ID = 103
+[2011-06-24 16:17:28 libvirt-php/core]: libvirt_list_domains: Found running domain rhel55-64fv with ID = 106
+[2011-06-24 16:17:28 libvirt-php/core]: libvirt_list_domains: virConnectNumOfDefinedDomains returned 15 domains
+[2011-06-24 16:17:28 libvirt-php/core]: libvirt_list_domains: virConnectListDefinedDomains returned 12 domains
+[2011-06-24 16:17:28 libvirt-php/core]: libvirt_list_domains: Found inactive domain cdrom
+[2011-06-24 16:17:28 libvirt-php/core]: libvirt_list_domains: Found inactive domain rhel49
+[2011-06-24 16:17:28 libvirt-php/core]: libvirt_list_domains: Found inactive domain rhel6.1-hvm32
+[2011-06-24 16:17:28 libvirt-php/core]: libvirt_list_domains: Found inactive domain rhel55-32pv
+[2011-06-24 16:17:28 libvirt-php/core]: libvirt_list_domains: Found inactive domain RHEL6
+[2011-06-24 16:17:28 libvirt-php/core]: libvirt_list_domains: Found inactive domain rhel60-64pv
+[2011-06-24 16:17:28 libvirt-php/core]: libvirt_list_domains: Found inactive domain rhel55-64pv
+[2011-06-24 16:17:28 libvirt-php/core]: libvirt_list_domains: Found inactive domain winxp-32fv
+[2011-06-24 16:17:28 libvirt-php/core]: libvirt_list_domains: Found inactive domain rhel56s5-64fv
+[2011-06-24 16:17:28 libvirt-php/core]: libvirt_list_domains: Found inactive domain rhel55-32fv
+[2011-06-24 16:17:28 libvirt-php/core]: libvirt_list_domains: Found inactive domain rhel6.1-pv64
+[2011-06-24 16:17:28 libvirt-php/core]: libvirt_list_domains: Found inactive domain pv_6x64
+[2011-06-24 16:17:28 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'Domain-0', returning 0xb333f740
+[2011-06-24 16:17:28 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb333f740) returned 0 (00000000-0000-0000-0000-000000000000)
+[2011-06-24 16:17:28 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb333f740) returned 0
+[2011-06-24 16:17:28 libvirt-php/core]: libvirt_domain_get_id: virDomainGetID(0xb333f740) returned 0
+[2011-06-24 16:17:28 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'RHEL6', returning 0xb3343298
+[2011-06-24 16:17:28 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb333f740 (conn 0xb34de1a8) is allocated
+[2011-06-24 16:17:28 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb333f740) completed successfully
+[2011-06-24 16:17:28 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb3343298) returned 0 (ea0a3a0e-6bdf-f0cf-a9f9-8f6db3ee11ec)
+[2011-06-24 16:17:28 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb3343298) returned 0
+[2011-06-24 16:17:28 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'cdrom', returning 0xb3452ee8
+[2011-06-24 16:17:28 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb3343298 (conn 0xb34de1a8) is allocated
+[2011-06-24 16:17:28 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb3343298) completed successfully
+[2011-06-24 16:17:28 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb3452ee8) returned 0 (b36e6e3e-00dd-0b55-0955-cb4527b6376c)
+[2011-06-24 16:17:28 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb3452ee8) returned 0
+[2011-06-24 16:17:28 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'hvm_6x64', returning 0xb34603b0
+[2011-06-24 16:17:28 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb3452ee8 (conn 0xb34de1a8) is allocated
+[2011-06-24 16:17:28 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb3452ee8) completed successfully
+[2011-06-24 16:17:28 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb34603b0) returned 0 (51729ef4-0287-afea-842d-43281247eb63)
+[2011-06-24 16:17:28 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb34603b0) returned 0
+[2011-06-24 16:17:28 libvirt-php/core]: libvirt_domain_get_id: virDomainGetID(0xb34603b0) returned 103
+[2011-06-24 16:17:28 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'pv_6x64', returning 0xb333f1b8
+[2011-06-24 16:17:28 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb34603b0 (conn 0xb34de1a8) is allocated
+[2011-06-24 16:17:28 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb34603b0) completed successfully
+[2011-06-24 16:17:28 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb333f1b8) returned 0 (4a1ddec5-e413-06fd-ff3f-abc37bd34919)
+[2011-06-24 16:17:28 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb333f1b8) returned 0
+[2011-06-24 16:17:28 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel49', returning 0xb34740f0
+[2011-06-24 16:17:28 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb333f1b8 (conn 0xb34de1a8) is allocated
+[2011-06-24 16:17:28 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb333f1b8) completed successfully
+[2011-06-24 16:17:28 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb34740f0) returned 0 (65535883-9d0d-72f2-de3f-1951ad6315e4)
+[2011-06-24 16:17:28 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb34740f0) returned 0
+[2011-06-24 16:17:28 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel55-32fv', returning 0xb3479eb8
+[2011-06-24 16:17:28 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb34740f0 (conn 0xb34de1a8) is allocated
+[2011-06-24 16:17:28 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb34740f0) completed successfully
+[2011-06-24 16:17:28 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb3479eb8) returned 0 (bf18b8a4-e558-d97d-a3c2-06c983d212db)
+[2011-06-24 16:17:28 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb3479eb8) returned 0
+[2011-06-24 16:17:28 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel55-32pv', returning 0xb348fb68
+[2011-06-24 16:17:28 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb3479eb8 (conn 0xb34de1a8) is allocated
+[2011-06-24 16:17:28 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb3479eb8) completed successfully
+[2011-06-24 16:17:28 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb348fb68) returned 0 (775fcf96-2dee-ab1c-c4f1-5d5b65bf7108)
+[2011-06-24 16:17:28 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb348fb68) returned 0
+[2011-06-24 16:17:28 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel55-64fv', returning 0xb349abb0
+[2011-06-24 16:17:28 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb348fb68 (conn 0xb34de1a8) is allocated
+[2011-06-24 16:17:28 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb348fb68) completed successfully
+[2011-06-24 16:17:28 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb349abb0) returned 0 (492b8007-f045-1a3f-3146-82b4d4f9a09f)
+[2011-06-24 16:17:28 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb349abb0) returned 0
+[2011-06-24 16:17:28 libvirt-php/core]: libvirt_domain_get_id: virDomainGetID(0xb349abb0) returned 106
+[2011-06-24 16:17:28 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel55-64pv', returning 0xb3479eb8
+[2011-06-24 16:17:28 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb349abb0 (conn 0xb34de1a8) is allocated
+[2011-06-24 16:17:28 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb349abb0) completed successfully
+[2011-06-24 16:17:28 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb3479eb8) returned 0 (24aced0c-debc-2812-b2c1-2db112314761)
+[2011-06-24 16:17:29 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb3479eb8) returned 0
+[2011-06-24 16:17:29 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel56s5-64fv', returning 0xb349f550
+[2011-06-24 16:17:29 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb3479eb8 (conn 0xb34de1a8) is allocated
+[2011-06-24 16:17:29 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb3479eb8) completed successfully
+[2011-06-24 16:17:29 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb349f550) returned 0 (5764e7d5-bd17-0cdc-fda3-f60af4e0e0bb)
+[2011-06-24 16:17:29 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb349f550) returned 0
+[2011-06-24 16:17:29 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel6.1-hvm32', returning 0xb34c5108
+[2011-06-24 16:17:29 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb349f550 (conn 0xb34de1a8) is allocated
+[2011-06-24 16:17:29 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb349f550) completed successfully
+[2011-06-24 16:17:29 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb34c5108) returned 0 (28fa2db6-3b6d-cefd-f194-a788e3d854fa)
+[2011-06-24 16:17:29 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb34c5108) returned 0
+[2011-06-24 16:17:29 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel6.1-pv64', returning 0xb315f228
+[2011-06-24 16:17:29 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb34c5108 (conn 0xb34de1a8) is allocated
+[2011-06-24 16:17:29 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb34c5108) completed successfully
+[2011-06-24 16:17:29 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb315f228) returned 0 (97d94a27-410f-83b6-0907-118cc693c953)
+[2011-06-24 16:17:29 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb315f228) returned 0
+[2011-06-24 16:17:29 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel60-64pv', returning 0xb34605c8
+[2011-06-24 16:17:29 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb315f228 (conn 0xb34de1a8) is allocated
+[2011-06-24 16:17:29 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb315f228) completed successfully
+[2011-06-24 16:17:29 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb34605c8) returned 0 (79c9a4f6-9b20-fe27-fecc-f007b5549a5b)
+[2011-06-24 16:17:29 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb34605c8) returned 0
+[2011-06-24 16:17:29 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'winxp-32fv', returning 0xb3154cb8
+[2011-06-24 16:17:29 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb34605c8 (conn 0xb34de1a8) is allocated
+[2011-06-24 16:17:29 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb34605c8) completed successfully
+[2011-06-24 16:17:29 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb3154cb8) returned 0 (3edc8680-e319-5f63-4408-8433247107fe)
+[2011-06-24 16:17:29 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb3154cb8) returned 0
+[2011-06-24 16:17:29 libvirt-php/core]: free_resource: Freeing libvirt domain resource at 0xb3154cb8
+[2011-06-24 16:17:29 libvirt-php/core]: free_resource: virDomainFree(0xb3154cb8) completed successfully
+[2011-06-24 16:17:29 libvirt-php/core]: php_libvirt_connection_dtor: virConnectClose(0xb34de1a8) completed successfully
+[2011-06-24 16:17:29 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb3154cb8 (conn 0xb3266630) is not allocated
+[2011-06-24 16:18:18 libvirt-php/core]: libvirt_connect: Connection to xen+ssh://root@lws established, returning 0xb33eb708
+[2011-06-24 16:18:18 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'RHEL6', returning 0xb3497dd8
+[2011-06-24 16:18:18 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'RHEL6', returning 0xb3497c88
+[2011-06-24 16:18:18 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb3497c88) returned 0
+[2011-06-24 16:18:18 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb3497c88 (conn 0xb33eb708) is allocated
+[2011-06-24 16:18:18 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb3497c88) completed successfully
+[2011-06-24 16:18:18 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb3497dd8 (conn 0xb33eb708) is allocated
+[2011-06-24 16:18:18 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb3497dd8) completed successfully
+[2011-06-24 16:18:18 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'RHEL6', returning 0xb3497d60
+[2011-06-24 16:18:18 libvirt-php/core]: libvirt_domain_get_xml_desc: Getting the XML for domain 0xb3497d60 (xPath = 2)
+[2011-06-24 16:18:18 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb3497d60 (conn 0xb33eb708) is allocated
+[2011-06-24 16:18:18 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb3497d60) completed successfully
+[2011-06-24 16:18:18 libvirt-php/core]: libvirt_list_domains: Found 3 domains
+[2011-06-24 16:18:18 libvirt-php/core]: libvirt_list_domains: virConnectListDomains returned 3 domains
+[2011-06-24 16:18:18 libvirt-php/core]: libvirt_list_domains: Found running domain Domain-0 with ID = 0
+[2011-06-24 16:18:18 libvirt-php/core]: libvirt_list_domains: Found running domain hvm_6x64 with ID = 103
+[2011-06-24 16:18:18 libvirt-php/core]: libvirt_list_domains: Found running domain rhel55-64fv with ID = 106
+[2011-06-24 16:18:18 libvirt-php/core]: libvirt_list_domains: virConnectNumOfDefinedDomains returned 15 domains
+[2011-06-24 16:18:18 libvirt-php/core]: libvirt_list_domains: virConnectListDefinedDomains returned 12 domains
+[2011-06-24 16:18:18 libvirt-php/core]: libvirt_list_domains: Found inactive domain cdrom
+[2011-06-24 16:18:18 libvirt-php/core]: libvirt_list_domains: Found inactive domain rhel49
+[2011-06-24 16:18:18 libvirt-php/core]: libvirt_list_domains: Found inactive domain rhel6.1-hvm32
+[2011-06-24 16:18:18 libvirt-php/core]: libvirt_list_domains: Found inactive domain rhel55-32pv
+[2011-06-24 16:18:18 libvirt-php/core]: libvirt_list_domains: Found inactive domain RHEL6
+[2011-06-24 16:18:18 libvirt-php/core]: libvirt_list_domains: Found inactive domain rhel60-64pv
+[2011-06-24 16:18:18 libvirt-php/core]: libvirt_list_domains: Found inactive domain rhel55-64pv
+[2011-06-24 16:18:18 libvirt-php/core]: libvirt_list_domains: Found inactive domain winxp-32fv
+[2011-06-24 16:18:18 libvirt-php/core]: libvirt_list_domains: Found inactive domain rhel56s5-64fv
+[2011-06-24 16:18:18 libvirt-php/core]: libvirt_list_domains: Found inactive domain rhel55-32fv
+[2011-06-24 16:18:18 libvirt-php/core]: libvirt_list_domains: Found inactive domain rhel6.1-pv64
+[2011-06-24 16:18:18 libvirt-php/core]: libvirt_list_domains: Found inactive domain pv_6x64
+[2011-06-24 16:18:18 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'Domain-0', returning 0xb33eb4f0
+[2011-06-24 16:18:18 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb33eb4f0) returned 0 (00000000-0000-0000-0000-000000000000)
+[2011-06-24 16:18:18 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb33eb4f0) returned 0
+[2011-06-24 16:18:18 libvirt-php/core]: libvirt_domain_get_id: virDomainGetID(0xb33eb4f0) returned 0
+[2011-06-24 16:18:18 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'RHEL6', returning 0xb3498e78
+[2011-06-24 16:18:18 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb33eb4f0 (conn 0xb33eb708) is allocated
+[2011-06-24 16:18:18 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb33eb4f0) completed successfully
+[2011-06-24 16:18:18 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb3498e78) returned 0 (ea0a3a0e-6bdf-f0cf-a9f9-8f6db3ee11ec)
+[2011-06-24 16:18:18 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb3498e78) returned 0
+[2011-06-24 16:18:18 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'cdrom', returning 0xb344cd60
+[2011-06-24 16:18:18 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb3498e78 (conn 0xb33eb708) is allocated
+[2011-06-24 16:18:18 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb3498e78) completed successfully
+[2011-06-24 16:18:18 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb344cd60) returned 0 (b36e6e3e-00dd-0b55-0955-cb4527b6376c)
+[2011-06-24 16:18:18 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb344cd60) returned 0
+[2011-06-24 16:18:18 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'hvm_6x64', returning 0xb3497dd8
+[2011-06-24 16:18:18 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb344cd60 (conn 0xb33eb708) is allocated
+[2011-06-24 16:18:18 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb344cd60) completed successfully
+[2011-06-24 16:18:18 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb3497dd8) returned 0 (51729ef4-0287-afea-842d-43281247eb63)
+[2011-06-24 16:18:18 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb3497dd8) returned 0
+[2011-06-24 16:18:18 libvirt-php/core]: libvirt_domain_get_id: virDomainGetID(0xb3497dd8) returned 103
+[2011-06-24 16:18:18 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'pv_6x64', returning 0xb3473be0
+[2011-06-24 16:18:18 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb3497dd8 (conn 0xb33eb708) is allocated
+[2011-06-24 16:18:18 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb3497dd8) completed successfully
+[2011-06-24 16:18:18 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb3473be0) returned 0 (4a1ddec5-e413-06fd-ff3f-abc37bd34919)
+[2011-06-24 16:18:18 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb3473be0) returned 0
+[2011-06-24 16:18:18 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel49', returning 0xb3481790
+[2011-06-24 16:18:18 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb3473be0 (conn 0xb33eb708) is allocated
+[2011-06-24 16:18:18 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb3473be0) completed successfully
+[2011-06-24 16:18:18 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb3481790) returned 0 (65535883-9d0d-72f2-de3f-1951ad6315e4)
+[2011-06-24 16:18:18 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb3481790) returned 0
+[2011-06-24 16:18:18 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel55-32fv', returning 0xb320e138
+[2011-06-24 16:18:18 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb3481790 (conn 0xb33eb708) is allocated
+[2011-06-24 16:18:18 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb3481790) completed successfully
+[2011-06-24 16:18:18 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb320e138) returned 0 (bf18b8a4-e558-d97d-a3c2-06c983d212db)
+[2011-06-24 16:18:18 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb320e138) returned 0
+[2011-06-24 16:18:18 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel55-32pv', returning 0xb321a788
+[2011-06-24 16:18:18 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb320e138 (conn 0xb33eb708) is allocated
+[2011-06-24 16:18:18 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb320e138) completed successfully
+[2011-06-24 16:18:18 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb321a788) returned 0 (775fcf96-2dee-ab1c-c4f1-5d5b65bf7108)
+[2011-06-24 16:18:18 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb321a788) returned 0
+[2011-06-24 16:18:18 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel55-64fv', returning 0xb3221b78
+[2011-06-24 16:18:18 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb321a788 (conn 0xb33eb708) is allocated
+[2011-06-24 16:18:18 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb321a788) completed successfully
+[2011-06-24 16:18:18 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb3221b78) returned 0 (492b8007-f045-1a3f-3146-82b4d4f9a09f)
+[2011-06-24 16:18:18 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb3221b78) returned 0
+[2011-06-24 16:18:18 libvirt-php/core]: libvirt_domain_get_id: virDomainGetID(0xb3221b78) returned 106
+[2011-06-24 16:18:18 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel55-64pv', returning 0xb3498e78
+[2011-06-24 16:18:18 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb3221b78 (conn 0xb33eb708) is allocated
+[2011-06-24 16:18:18 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb3221b78) completed successfully
+[2011-06-24 16:18:18 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb3498e78) returned 0 (24aced0c-debc-2812-b2c1-2db112314761)
+[2011-06-24 16:18:18 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb3498e78) returned 0
+[2011-06-24 16:18:18 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel56s5-64fv', returning 0xb3220310
+[2011-06-24 16:18:18 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb3498e78 (conn 0xb33eb708) is allocated
+[2011-06-24 16:18:18 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb3498e78) completed successfully
+[2011-06-24 16:18:18 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb3220310) returned 0 (5764e7d5-bd17-0cdc-fda3-f60af4e0e0bb)
+[2011-06-24 16:18:18 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb3220310) returned 0
+[2011-06-24 16:18:18 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel6.1-hvm32', returning 0xb3257da8
+[2011-06-24 16:18:18 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb3220310 (conn 0xb33eb708) is allocated
+[2011-06-24 16:18:18 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb3220310) completed successfully
+[2011-06-24 16:18:18 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb3257da8) returned 0 (28fa2db6-3b6d-cefd-f194-a788e3d854fa)
+[2011-06-24 16:18:18 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb3257da8) returned 0
+[2011-06-24 16:18:18 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel6.1-pv64', returning 0xb325dbe0
+[2011-06-24 16:18:18 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb3257da8 (conn 0xb33eb708) is allocated
+[2011-06-24 16:18:18 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb3257da8) completed successfully
+[2011-06-24 16:18:18 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb325dbe0) returned 0 (97d94a27-410f-83b6-0907-118cc693c953)
+[2011-06-24 16:18:18 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb325dbe0) returned 0
+[2011-06-24 16:18:18 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel60-64pv', returning 0xb3220310
+[2011-06-24 16:18:18 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb325dbe0 (conn 0xb33eb708) is allocated
+[2011-06-24 16:18:18 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb325dbe0) completed successfully
+[2011-06-24 16:18:18 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb3220310) returned 0 (79c9a4f6-9b20-fe27-fecc-f007b5549a5b)
+[2011-06-24 16:18:18 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb3220310) returned 0
+[2011-06-24 16:18:18 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'winxp-32fv', returning 0xb32684c8
+[2011-06-24 16:18:18 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb3220310 (conn 0xb33eb708) is allocated
+[2011-06-24 16:18:18 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb3220310) completed successfully
+[2011-06-24 16:18:18 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb32684c8) returned 0 (3edc8680-e319-5f63-4408-8433247107fe)
+[2011-06-24 16:18:18 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb32684c8) returned 0
+[2011-06-24 16:18:18 libvirt-php/core]: free_resource: Freeing libvirt domain resource at 0xb32684c8
+[2011-06-24 16:18:18 libvirt-php/core]: free_resource: virDomainFree(0xb32684c8) completed successfully
+[2011-06-24 16:18:18 libvirt-php/core]: php_libvirt_connection_dtor: virConnectClose(0xb33eb708) completed successfully
+[2011-06-24 16:18:18 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb32684c8 (conn 0xb34d3684) is not allocated
+[2011-06-24 16:18:47 libvirt-php/core]: libvirt_connect: Connection to xen+ssh://root@lws established, returning 0xb33ebc38
+[2011-06-24 16:18:47 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'RHEL6', returning 0xb345a6b8
+[2011-06-24 16:18:47 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'RHEL6', returning 0xb33ebec8
+[2011-06-24 16:18:47 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb33ebec8) returned 0
+[2011-06-24 16:18:47 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb33ebec8 (conn 0xb33ebc38) is allocated
+[2011-06-24 16:18:47 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb33ebec8) completed successfully
+[2011-06-24 16:18:47 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb345a6b8 (conn 0xb33ebc38) is allocated
+[2011-06-24 16:18:47 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb345a6b8) completed successfully
+[2011-06-24 16:18:47 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'RHEL6', returning 0xb349af58
+[2011-06-24 16:18:47 libvirt-php/core]: libvirt_domain_get_xml_desc: Getting the XML for domain 0xb349af58 (xPath = 2)
+[2011-06-24 16:18:47 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb349af58 (conn 0xb33ebc38) is allocated
+[2011-06-24 16:18:47 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb349af58) completed successfully
+[2011-06-24 16:18:47 libvirt-php/core]: libvirt_list_domains: Found 3 domains
+[2011-06-24 16:18:47 libvirt-php/core]: libvirt_list_domains: virConnectListDomains returned 3 domains
+[2011-06-24 16:18:47 libvirt-php/core]: libvirt_list_domains: Found running domain Domain-0 with ID = 0
+[2011-06-24 16:18:47 libvirt-php/core]: libvirt_list_domains: Found running domain hvm_6x64 with ID = 103
+[2011-06-24 16:18:47 libvirt-php/core]: libvirt_list_domains: Found running domain rhel55-64fv with ID = 106
+[2011-06-24 16:18:47 libvirt-php/core]: libvirt_list_domains: virConnectNumOfDefinedDomains returned 15 domains
+[2011-06-24 16:18:47 libvirt-php/core]: libvirt_list_domains: virConnectListDefinedDomains returned 12 domains
+[2011-06-24 16:18:47 libvirt-php/core]: libvirt_list_domains: Found inactive domain cdrom
+[2011-06-24 16:18:47 libvirt-php/core]: libvirt_list_domains: Found inactive domain rhel49
+[2011-06-24 16:18:47 libvirt-php/core]: libvirt_list_domains: Found inactive domain rhel6.1-hvm32
+[2011-06-24 16:18:47 libvirt-php/core]: libvirt_list_domains: Found inactive domain rhel55-32pv
+[2011-06-24 16:18:47 libvirt-php/core]: libvirt_list_domains: Found inactive domain RHEL6
+[2011-06-24 16:18:47 libvirt-php/core]: libvirt_list_domains: Found inactive domain rhel60-64pv
+[2011-06-24 16:18:47 libvirt-php/core]: libvirt_list_domains: Found inactive domain rhel55-64pv
+[2011-06-24 16:18:47 libvirt-php/core]: libvirt_list_domains: Found inactive domain winxp-32fv
+[2011-06-24 16:18:47 libvirt-php/core]: libvirt_list_domains: Found inactive domain rhel56s5-64fv
+[2011-06-24 16:18:47 libvirt-php/core]: libvirt_list_domains: Found inactive domain rhel55-32fv
+[2011-06-24 16:18:47 libvirt-php/core]: libvirt_list_domains: Found inactive domain rhel6.1-pv64
+[2011-06-24 16:18:47 libvirt-php/core]: libvirt_list_domains: Found inactive domain pv_6x64
+[2011-06-24 16:18:47 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'Domain-0', returning 0xb349b228
+[2011-06-24 16:18:47 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb349b228) returned 0 (00000000-0000-0000-0000-000000000000)
+[2011-06-24 16:18:47 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb349b228) returned 0
+[2011-06-24 16:18:47 libvirt-php/core]: libvirt_domain_get_id: virDomainGetID(0xb349b228) returned 0
+[2011-06-24 16:18:48 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'RHEL6', returning 0xb34627a8
+[2011-06-24 16:18:48 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb349b228 (conn 0xb33ebc38) is allocated
+[2011-06-24 16:18:48 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb349b228) completed successfully
+[2011-06-24 16:18:48 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb34627a8) returned 0 (ea0a3a0e-6bdf-f0cf-a9f9-8f6db3ee11ec)
+[2011-06-24 16:18:48 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb34627a8) returned 0
+[2011-06-24 16:18:48 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'cdrom', returning 0xb3461ab8
+[2011-06-24 16:18:48 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb34627a8 (conn 0xb33ebc38) is allocated
+[2011-06-24 16:18:48 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb34627a8) completed successfully
+[2011-06-24 16:18:48 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb3461ab8) returned 0 (b36e6e3e-00dd-0b55-0955-cb4527b6376c)
+[2011-06-24 16:18:48 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb3461ab8) returned 0
+[2011-06-24 16:18:48 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'hvm_6x64', returning 0xb347bfd8
+[2011-06-24 16:18:48 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb3461ab8 (conn 0xb33ebc38) is allocated
+[2011-06-24 16:18:48 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb3461ab8) completed successfully
+[2011-06-24 16:18:48 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb347bfd8) returned 0 (51729ef4-0287-afea-842d-43281247eb63)
+[2011-06-24 16:18:48 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb347bfd8) returned 0
+[2011-06-24 16:18:48 libvirt-php/core]: libvirt_domain_get_id: virDomainGetID(0xb347bfd8) returned 103
+[2011-06-24 16:18:48 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'pv_6x64', returning 0xb32941d0
+[2011-06-24 16:18:48 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb347bfd8 (conn 0xb33ebc38) is allocated
+[2011-06-24 16:18:48 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb347bfd8) completed successfully
+[2011-06-24 16:18:48 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb32941d0) returned 0 (4a1ddec5-e413-06fd-ff3f-abc37bd34919)
+[2011-06-24 16:18:48 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb32941d0) returned 0
+[2011-06-24 16:18:48 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel49', returning 0xb329d168
+[2011-06-24 16:18:48 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb32941d0 (conn 0xb33ebc38) is allocated
+[2011-06-24 16:18:48 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb32941d0) completed successfully
+[2011-06-24 16:18:48 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb329d168) returned 0 (65535883-9d0d-72f2-de3f-1951ad6315e4)
+[2011-06-24 16:18:48 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb329d168) returned 0
+[2011-06-24 16:18:48 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel55-32fv', returning 0xb32ac500
+[2011-06-24 16:18:48 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb329d168 (conn 0xb33ebc38) is allocated
+[2011-06-24 16:18:48 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb329d168) completed successfully
+[2011-06-24 16:18:48 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb32ac500) returned 0 (bf18b8a4-e558-d97d-a3c2-06c983d212db)
+[2011-06-24 16:18:48 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb32ac500) returned 0
+[2011-06-24 16:18:48 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel55-32pv', returning 0xb32b7400
+[2011-06-24 16:18:48 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb32ac500 (conn 0xb33ebc38) is allocated
+[2011-06-24 16:18:48 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb32ac500) completed successfully
+[2011-06-24 16:18:48 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb32b7400) returned 0 (775fcf96-2dee-ab1c-c4f1-5d5b65bf7108)
+[2011-06-24 16:18:48 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb32b7400) returned 0
+[2011-06-24 16:18:48 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel55-64fv', returning 0xb32c3740
+[2011-06-24 16:18:48 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb32b7400 (conn 0xb33ebc38) is allocated
+[2011-06-24 16:18:48 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb32b7400) completed successfully
+[2011-06-24 16:18:48 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb32c3740) returned 0 (492b8007-f045-1a3f-3146-82b4d4f9a09f)
+[2011-06-24 16:18:48 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb32c3740) returned 0
+[2011-06-24 16:18:48 libvirt-php/core]: libvirt_domain_get_id: virDomainGetID(0xb32c3740) returned 106
+[2011-06-24 16:18:48 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel55-64pv', returning 0xb32c7400
+[2011-06-24 16:18:48 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb32c3740 (conn 0xb33ebc38) is allocated
+[2011-06-24 16:18:48 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb32c3740) completed successfully
+[2011-06-24 16:18:48 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb32c7400) returned 0 (24aced0c-debc-2812-b2c1-2db112314761)
+[2011-06-24 16:18:48 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb32c7400) returned 0
+[2011-06-24 16:18:48 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel56s5-64fv', returning 0xb32ddfb0
+[2011-06-24 16:18:48 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb32c7400 (conn 0xb33ebc38) is allocated
+[2011-06-24 16:18:48 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb32c7400) completed successfully
+[2011-06-24 16:18:48 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb32ddfb0) returned 0 (5764e7d5-bd17-0cdc-fda3-f60af4e0e0bb)
+[2011-06-24 16:18:48 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb32ddfb0) returned 0
+[2011-06-24 16:18:48 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel6.1-hvm32', returning 0xb32f5310
+[2011-06-24 16:18:48 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb32ddfb0 (conn 0xb33ebc38) is allocated
+[2011-06-24 16:18:48 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb32ddfb0) completed successfully
+[2011-06-24 16:18:48 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb32f5310) returned 0 (28fa2db6-3b6d-cefd-f194-a788e3d854fa)
+[2011-06-24 16:18:48 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb32f5310) returned 0
+[2011-06-24 16:18:48 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel6.1-pv64', returning 0xb32f95d0
+[2011-06-24 16:18:48 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb32f5310 (conn 0xb33ebc38) is allocated
+[2011-06-24 16:18:48 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb32f5310) completed successfully
+[2011-06-24 16:18:48 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb32f95d0) returned 0 (97d94a27-410f-83b6-0907-118cc693c953)
+[2011-06-24 16:18:48 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb32f95d0) returned 0
+[2011-06-24 16:18:48 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel60-64pv', returning 0xb32ecab0
+[2011-06-24 16:18:48 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb32f95d0 (conn 0xb33ebc38) is allocated
+[2011-06-24 16:18:48 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb32f95d0) completed successfully
+[2011-06-24 16:18:48 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb32ecab0) returned 0 (79c9a4f6-9b20-fe27-fecc-f007b5549a5b)
+[2011-06-24 16:18:48 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb32ecab0) returned 0
+[2011-06-24 16:18:48 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'winxp-32fv', returning 0xb3311798
+[2011-06-24 16:18:48 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb32ecab0 (conn 0xb33ebc38) is allocated
+[2011-06-24 16:18:48 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb32ecab0) completed successfully
+[2011-06-24 16:18:48 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb3311798) returned 0 (3edc8680-e319-5f63-4408-8433247107fe)
+[2011-06-24 16:18:48 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb3311798) returned 0
+[2011-06-24 16:18:48 libvirt-php/core]: free_resource: Freeing libvirt domain resource at 0xb3311798
+[2011-06-24 16:18:48 libvirt-php/core]: free_resource: virDomainFree(0xb3311798) completed successfully
+[2011-06-24 16:18:48 libvirt-php/core]: php_libvirt_connection_dtor: virConnectClose(0xb33ebc38) completed successfully
+[2011-06-24 16:18:48 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb3311798 (conn 0xb34d1c94) is not allocated
+[2011-06-24 16:19:03 libvirt-php/core]: libvirt_connect: Connection to xen+ssh://root@lws established, returning 0xb33ebc20
+[2011-06-24 16:19:03 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'RHEL6', returning 0xb33ebbc8
+[2011-06-24 16:19:03 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'RHEL6', returning 0xb34cc3e8
+[2011-06-24 16:19:03 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb34cc3e8) returned 0
+[2011-06-24 16:19:03 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb34cc3e8 (conn 0xb33ebc20) is allocated
+[2011-06-24 16:19:03 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb34cc3e8) completed successfully
+[2011-06-24 16:19:03 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb33ebbc8 (conn 0xb33ebc20) is allocated
+[2011-06-24 16:19:03 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb33ebbc8) completed successfully
+[2011-06-24 16:19:03 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'RHEL6', returning 0xb33ebcf8
+[2011-06-24 16:19:03 libvirt-php/core]: libvirt_domain_get_xml_desc: Getting the XML for domain 0xb33ebcf8 (xPath = 2)
+[2011-06-24 16:19:03 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb33ebcf8 (conn 0xb33ebc20) is allocated
+[2011-06-24 16:19:03 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb33ebcf8) completed successfully
+[2011-06-24 16:19:03 libvirt-php/core]: libvirt_list_domains: Found 3 domains
+[2011-06-24 16:19:03 libvirt-php/core]: libvirt_list_domains: virConnectListDomains returned 3 domains
+[2011-06-24 16:19:03 libvirt-php/core]: libvirt_list_domains: Found running domain Domain-0 with ID = 0
+[2011-06-24 16:19:03 libvirt-php/core]: libvirt_list_domains: Found running domain hvm_6x64 with ID = 103
+[2011-06-24 16:19:03 libvirt-php/core]: libvirt_list_domains: Found running domain rhel55-64fv with ID = 106
+[2011-06-24 16:19:03 libvirt-php/core]: libvirt_list_domains: virConnectNumOfDefinedDomains returned 15 domains
+[2011-06-24 16:19:03 libvirt-php/core]: libvirt_list_domains: virConnectListDefinedDomains returned 12 domains
+[2011-06-24 16:19:03 libvirt-php/core]: libvirt_list_domains: Found inactive domain cdrom
+[2011-06-24 16:19:03 libvirt-php/core]: libvirt_list_domains: Found inactive domain rhel49
+[2011-06-24 16:19:03 libvirt-php/core]: libvirt_list_domains: Found inactive domain rhel6.1-hvm32
+[2011-06-24 16:19:03 libvirt-php/core]: libvirt_list_domains: Found inactive domain rhel55-32pv
+[2011-06-24 16:19:03 libvirt-php/core]: libvirt_list_domains: Found inactive domain RHEL6
+[2011-06-24 16:19:03 libvirt-php/core]: libvirt_list_domains: Found inactive domain rhel60-64pv
+[2011-06-24 16:19:03 libvirt-php/core]: libvirt_list_domains: Found inactive domain rhel55-64pv
+[2011-06-24 16:19:03 libvirt-php/core]: libvirt_list_domains: Found inactive domain winxp-32fv
+[2011-06-24 16:19:03 libvirt-php/core]: libvirt_list_domains: Found inactive domain rhel56s5-64fv
+[2011-06-24 16:19:03 libvirt-php/core]: libvirt_list_domains: Found inactive domain rhel55-32fv
+[2011-06-24 16:19:03 libvirt-php/core]: libvirt_list_domains: Found inactive domain rhel6.1-pv64
+[2011-06-24 16:19:03 libvirt-php/core]: libvirt_list_domains: Found inactive domain pv_6x64
+[2011-06-24 16:19:03 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'Domain-0', returning 0xb34ccc88
+[2011-06-24 16:19:03 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb34ccc88) returned 0 (00000000-0000-0000-0000-000000000000)
+[2011-06-24 16:19:03 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb34ccc88) returned 0
+[2011-06-24 16:19:03 libvirt-php/core]: libvirt_domain_get_id: virDomainGetID(0xb34ccc88) returned 0
+[2011-06-24 16:19:03 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'RHEL6', returning 0xb34d4e30
+[2011-06-24 16:19:03 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb34ccc88 (conn 0xb33ebc20) is allocated
+[2011-06-24 16:19:03 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb34ccc88) completed successfully
+[2011-06-24 16:19:03 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb34d4e30) returned 0 (ea0a3a0e-6bdf-f0cf-a9f9-8f6db3ee11ec)
+[2011-06-24 16:19:03 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb34d4e30) returned 0
+[2011-06-24 16:19:03 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'cdrom', returning 0xb344ba18
+[2011-06-24 16:19:03 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb34d4e30 (conn 0xb33ebc20) is allocated
+[2011-06-24 16:19:03 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb34d4e30) completed successfully
+[2011-06-24 16:19:03 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb344ba18) returned 0 (b36e6e3e-00dd-0b55-0955-cb4527b6376c)
+[2011-06-24 16:19:03 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb344ba18) returned 0
+[2011-06-24 16:19:04 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'hvm_6x64', returning 0xb34d4e30
+[2011-06-24 16:19:04 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb344ba18 (conn 0xb33ebc20) is allocated
+[2011-06-24 16:19:04 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb344ba18) completed successfully
+[2011-06-24 16:19:04 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb34d4e30) returned 0 (51729ef4-0287-afea-842d-43281247eb63)
+[2011-06-24 16:19:04 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb34d4e30) returned 0
+[2011-06-24 16:19:04 libvirt-php/core]: libvirt_domain_get_id: virDomainGetID(0xb34d4e30) returned 103
+[2011-06-24 16:19:04 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'pv_6x64', returning 0xb346e090
+[2011-06-24 16:19:04 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb34d4e30 (conn 0xb33ebc20) is allocated
+[2011-06-24 16:19:04 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb34d4e30) completed successfully
+[2011-06-24 16:19:04 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb346e090) returned 0 (4a1ddec5-e413-06fd-ff3f-abc37bd34919)
+[2011-06-24 16:19:04 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb346e090) returned 0
+[2011-06-24 16:19:04 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel49', returning 0xb3473300
+[2011-06-24 16:19:04 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb346e090 (conn 0xb33ebc20) is allocated
+[2011-06-24 16:19:04 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb346e090) completed successfully
+[2011-06-24 16:19:04 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb3473300) returned 0 (65535883-9d0d-72f2-de3f-1951ad6315e4)
+[2011-06-24 16:19:04 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb3473300) returned 0
+[2011-06-24 16:19:04 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel55-32fv', returning 0xb3477f38
+[2011-06-24 16:19:04 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb3473300 (conn 0xb33ebc20) is allocated
+[2011-06-24 16:19:04 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb3473300) completed successfully
+[2011-06-24 16:19:04 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb3477f38) returned 0 (bf18b8a4-e558-d97d-a3c2-06c983d212db)
+[2011-06-24 16:19:04 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb3477f38) returned 0
+[2011-06-24 16:19:04 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel55-32pv', returning 0xb320cfc0
+[2011-06-24 16:19:04 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb3477f38 (conn 0xb33ebc20) is allocated
+[2011-06-24 16:19:04 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb3477f38) completed successfully
+[2011-06-24 16:19:04 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb320cfc0) returned 0 (775fcf96-2dee-ab1c-c4f1-5d5b65bf7108)
+[2011-06-24 16:19:04 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb320cfc0) returned 0
+[2011-06-24 16:19:04 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel55-64fv', returning 0xb3215650
+[2011-06-24 16:19:04 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb320cfc0 (conn 0xb33ebc20) is allocated
+[2011-06-24 16:19:04 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb320cfc0) completed successfully
+[2011-06-24 16:19:04 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb3215650) returned 0 (492b8007-f045-1a3f-3146-82b4d4f9a09f)
+[2011-06-24 16:19:04 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb3215650) returned 0
+[2011-06-24 16:19:04 libvirt-php/core]: libvirt_domain_get_id: virDomainGetID(0xb3215650) returned 106
+[2011-06-24 16:19:04 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel55-64pv', returning 0xb322a248
+[2011-06-24 16:19:04 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb3215650 (conn 0xb33ebc20) is allocated
+[2011-06-24 16:19:04 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb3215650) completed successfully
+[2011-06-24 16:19:04 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb322a248) returned 0 (24aced0c-debc-2812-b2c1-2db112314761)
+[2011-06-24 16:19:04 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb322a248) returned 0
+[2011-06-24 16:19:04 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel56s5-64fv', returning 0xb3235e10
+[2011-06-24 16:19:04 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb322a248 (conn 0xb33ebc20) is allocated
+[2011-06-24 16:19:04 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb322a248) completed successfully
+[2011-06-24 16:19:04 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb3235e10) returned 0 (5764e7d5-bd17-0cdc-fda3-f60af4e0e0bb)
+[2011-06-24 16:19:04 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb3235e10) returned 0
+[2011-06-24 16:19:04 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel6.1-hvm32', returning 0xb324ba20
+[2011-06-24 16:19:04 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb3235e10 (conn 0xb33ebc20) is allocated
+[2011-06-24 16:19:04 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb3235e10) completed successfully
+[2011-06-24 16:19:04 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb324ba20) returned 0 (28fa2db6-3b6d-cefd-f194-a788e3d854fa)
+[2011-06-24 16:19:04 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb324ba20) returned 0
+[2011-06-24 16:19:04 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel6.1-pv64', returning 0xb3256698
+[2011-06-24 16:19:04 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb324ba20 (conn 0xb33ebc20) is allocated
+[2011-06-24 16:19:04 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb324ba20) completed successfully
+[2011-06-24 16:19:04 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb3256698) returned 0 (97d94a27-410f-83b6-0907-118cc693c953)
+[2011-06-24 16:19:04 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb3256698) returned 0
+[2011-06-24 16:19:04 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel60-64pv', returning 0xb325ecf8
+[2011-06-24 16:19:04 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb3256698 (conn 0xb33ebc20) is allocated
+[2011-06-24 16:19:04 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb3256698) completed successfully
+[2011-06-24 16:19:04 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb325ecf8) returned 0 (79c9a4f6-9b20-fe27-fecc-f007b5549a5b)
+[2011-06-24 16:19:04 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb325ecf8) returned 0
+[2011-06-24 16:19:04 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'winxp-32fv', returning 0xb326e8f0
+[2011-06-24 16:19:04 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb325ecf8 (conn 0xb33ebc20) is allocated
+[2011-06-24 16:19:04 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb325ecf8) completed successfully
+[2011-06-24 16:19:04 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb326e8f0) returned 0 (3edc8680-e319-5f63-4408-8433247107fe)
+[2011-06-24 16:19:04 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb326e8f0) returned 0
+[2011-06-24 16:19:04 libvirt-php/core]: free_resource: Freeing libvirt domain resource at 0xb326e8f0
+[2011-06-24 16:19:04 libvirt-php/core]: free_resource: virDomainFree(0xb326e8f0) completed successfully
+[2011-06-24 16:19:04 libvirt-php/core]: php_libvirt_connection_dtor: virConnectClose(0xb33ebc20) completed successfully
+[2011-06-24 16:19:04 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb326e8f0 (conn 0xb34c1b0c) is not allocated
+[2011-06-24 16:19:36 libvirt-php/core]: libvirt_connect: Connection to xen+ssh://root@lws established, returning 0xb34df1a0
+[2011-06-24 16:19:36 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'RHEL6', returning 0xb33eb498
+[2011-06-24 16:19:36 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'RHEL6', returning 0xb33eb3a0
+[2011-06-24 16:19:36 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb33eb3a0) returned 0
+[2011-06-24 16:19:36 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb33eb3a0 (conn 0xb34df1a0) is allocated
+[2011-06-24 16:19:36 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb33eb3a0) completed successfully
+[2011-06-24 16:19:36 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb33eb498 (conn 0xb34df1a0) is allocated
+[2011-06-24 16:19:36 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb33eb498) completed successfully
+[2011-06-24 16:19:36 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'RHEL6', returning 0xb33eb3c8
+[2011-06-24 16:19:36 libvirt-php/core]: libvirt_domain_get_xml_desc: Getting the XML for domain 0xb33eb3c8 (xPath = 2)
+[2011-06-24 16:19:36 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb33eb3c8 (conn 0xb34df1a0) is allocated
+[2011-06-24 16:19:36 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb33eb3c8) completed successfully
+[2011-06-24 16:19:36 libvirt-php/core]: libvirt_list_domains: Found 3 domains
+[2011-06-24 16:19:36 libvirt-php/core]: libvirt_list_domains: virConnectListDomains returned 3 domains
+[2011-06-24 16:19:36 libvirt-php/core]: libvirt_list_domains: Found running domain Domain-0 with ID = 0
+[2011-06-24 16:19:36 libvirt-php/core]: libvirt_list_domains: Found running domain hvm_6x64 with ID = 103
+[2011-06-24 16:19:36 libvirt-php/core]: libvirt_list_domains: Found running domain rhel55-64fv with ID = 106
+[2011-06-24 16:19:36 libvirt-php/core]: libvirt_list_domains: virConnectNumOfDefinedDomains returned 15 domains
+[2011-06-24 16:19:36 libvirt-php/core]: libvirt_list_domains: virConnectListDefinedDomains returned 12 domains
+[2011-06-24 16:19:36 libvirt-php/core]: libvirt_list_domains: Found inactive domain cdrom
+[2011-06-24 16:19:36 libvirt-php/core]: libvirt_list_domains: Found inactive domain rhel49
+[2011-06-24 16:19:36 libvirt-php/core]: libvirt_list_domains: Found inactive domain rhel6.1-hvm32
+[2011-06-24 16:19:36 libvirt-php/core]: libvirt_list_domains: Found inactive domain rhel55-32pv
+[2011-06-24 16:19:36 libvirt-php/core]: libvirt_list_domains: Found inactive domain RHEL6
+[2011-06-24 16:19:36 libvirt-php/core]: libvirt_list_domains: Found inactive domain rhel60-64pv
+[2011-06-24 16:19:36 libvirt-php/core]: libvirt_list_domains: Found inactive domain rhel55-64pv
+[2011-06-24 16:19:36 libvirt-php/core]: libvirt_list_domains: Found inactive domain winxp-32fv
+[2011-06-24 16:19:36 libvirt-php/core]: libvirt_list_domains: Found inactive domain rhel56s5-64fv
+[2011-06-24 16:19:36 libvirt-php/core]: libvirt_list_domains: Found inactive domain rhel55-32fv
+[2011-06-24 16:19:36 libvirt-php/core]: libvirt_list_domains: Found inactive domain rhel6.1-pv64
+[2011-06-24 16:19:36 libvirt-php/core]: libvirt_list_domains: Found inactive domain pv_6x64
+[2011-06-24 16:19:36 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'Domain-0', returning 0xb34df350
+[2011-06-24 16:19:36 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb34df350) returned 0 (00000000-0000-0000-0000-000000000000)
+[2011-06-24 16:19:36 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb34df350) returned 0
+[2011-06-24 16:19:36 libvirt-php/core]: libvirt_domain_get_id: virDomainGetID(0xb34df350) returned 0
+[2011-06-24 16:19:36 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'RHEL6', returning 0xb344e888
+[2011-06-24 16:19:36 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb34df350 (conn 0xb34df1a0) is allocated
+[2011-06-24 16:19:36 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb34df350) completed successfully
+[2011-06-24 16:19:36 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb344e888) returned 0 (ea0a3a0e-6bdf-f0cf-a9f9-8f6db3ee11ec)
+[2011-06-24 16:19:36 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb344e888) returned 0
+[2011-06-24 16:19:36 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'cdrom', returning 0xb34df350
+[2011-06-24 16:19:36 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb344e888 (conn 0xb34df1a0) is allocated
+[2011-06-24 16:19:36 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb344e888) completed successfully
+[2011-06-24 16:19:36 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb34df350) returned 0 (b36e6e3e-00dd-0b55-0955-cb4527b6376c)
+[2011-06-24 16:19:36 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb34df350) returned 0
+[2011-06-24 16:19:36 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'hvm_6x64', returning 0xb346cde8
+[2011-06-24 16:19:36 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb34df350 (conn 0xb34df1a0) is allocated
+[2011-06-24 16:19:36 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb34df350) completed successfully
+[2011-06-24 16:19:36 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb346cde8) returned 0 (51729ef4-0287-afea-842d-43281247eb63)
+[2011-06-24 16:19:36 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb346cde8) returned 0
+[2011-06-24 16:19:36 libvirt-php/core]: libvirt_domain_get_id: virDomainGetID(0xb346cde8) returned 103
+[2011-06-24 16:19:36 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'pv_6x64', returning 0xb347a8c0
+[2011-06-24 16:19:36 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb346cde8 (conn 0xb34df1a0) is allocated
+[2011-06-24 16:19:36 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb346cde8) completed successfully
+[2011-06-24 16:19:36 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb347a8c0) returned 0 (4a1ddec5-e413-06fd-ff3f-abc37bd34919)
+[2011-06-24 16:19:36 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb347a8c0) returned 0
+[2011-06-24 16:19:36 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel49', returning 0xb3487d40
+[2011-06-24 16:19:36 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb347a8c0 (conn 0xb34df1a0) is allocated
+[2011-06-24 16:19:36 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb347a8c0) completed successfully
+[2011-06-24 16:19:36 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb3487d40) returned 0 (65535883-9d0d-72f2-de3f-1951ad6315e4)
+[2011-06-24 16:19:36 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb3487d40) returned 0
+[2011-06-24 16:19:36 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel55-32fv', returning 0xb34df350
+[2011-06-24 16:19:36 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb3487d40 (conn 0xb34df1a0) is allocated
+[2011-06-24 16:19:36 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb3487d40) completed successfully
+[2011-06-24 16:19:36 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb34df350) returned 0 (bf18b8a4-e558-d97d-a3c2-06c983d212db)
+[2011-06-24 16:19:36 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb34df350) returned 0
+[2011-06-24 16:19:36 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel55-32pv', returning 0xb32aa420
+[2011-06-24 16:19:36 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb34df350 (conn 0xb34df1a0) is allocated
+[2011-06-24 16:19:36 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb34df350) completed successfully
+[2011-06-24 16:19:36 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb32aa420) returned 0 (775fcf96-2dee-ab1c-c4f1-5d5b65bf7108)
+[2011-06-24 16:19:36 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb32aa420) returned 0
+[2011-06-24 16:19:36 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel55-64fv', returning 0xb32b46f8
+[2011-06-24 16:19:36 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb32aa420 (conn 0xb34df1a0) is allocated
+[2011-06-24 16:19:36 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb32aa420) completed successfully
+[2011-06-24 16:19:36 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb32b46f8) returned 0 (492b8007-f045-1a3f-3146-82b4d4f9a09f)
+[2011-06-24 16:19:36 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb32b46f8) returned 0
+[2011-06-24 16:19:36 libvirt-php/core]: libvirt_domain_get_id: virDomainGetID(0xb32b46f8) returned 106
+[2011-06-24 16:19:36 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel55-64pv', returning 0xb32b8300
+[2011-06-24 16:19:36 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb32b46f8 (conn 0xb34df1a0) is allocated
+[2011-06-24 16:19:36 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb32b46f8) completed successfully
+[2011-06-24 16:19:36 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb32b8300) returned 0 (24aced0c-debc-2812-b2c1-2db112314761)
+[2011-06-24 16:19:36 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb32b8300) returned 0
+[2011-06-24 16:19:36 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel56s5-64fv', returning 0xb34df350
+[2011-06-24 16:19:36 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb32b8300 (conn 0xb34df1a0) is allocated
+[2011-06-24 16:19:36 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb32b8300) completed successfully
+[2011-06-24 16:19:36 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb34df350) returned 0 (5764e7d5-bd17-0cdc-fda3-f60af4e0e0bb)
+[2011-06-24 16:19:36 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb34df350) returned 0
+[2011-06-24 16:19:36 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel6.1-hvm32', returning 0xb32e2f68
+[2011-06-24 16:19:36 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb34df350 (conn 0xb34df1a0) is allocated
+[2011-06-24 16:19:36 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb34df350) completed successfully
+[2011-06-24 16:19:36 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb32e2f68) returned 0 (28fa2db6-3b6d-cefd-f194-a788e3d854fa)
+[2011-06-24 16:19:36 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb32e2f68) returned 0
+[2011-06-24 16:19:36 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel6.1-pv64', returning 0xb32edce8
+[2011-06-24 16:19:36 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb32e2f68 (conn 0xb34df1a0) is allocated
+[2011-06-24 16:19:36 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb32e2f68) completed successfully
+[2011-06-24 16:19:36 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb32edce8) returned 0 (97d94a27-410f-83b6-0907-118cc693c953)
+[2011-06-24 16:19:36 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb32edce8) returned 0
+[2011-06-24 16:19:36 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel60-64pv', returning 0xb34df350
+[2011-06-24 16:19:36 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb32edce8 (conn 0xb34df1a0) is allocated
+[2011-06-24 16:19:36 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb32edce8) completed successfully
+[2011-06-24 16:19:36 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb34df350) returned 0 (79c9a4f6-9b20-fe27-fecc-f007b5549a5b)
+[2011-06-24 16:19:36 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb34df350) returned 0
+[2011-06-24 16:19:36 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'winxp-32fv', returning 0xb3301ff0
+[2011-06-24 16:19:36 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb34df350 (conn 0xb34df1a0) is allocated
+[2011-06-24 16:19:36 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb34df350) completed successfully
+[2011-06-24 16:19:36 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb3301ff0) returned 0 (3edc8680-e319-5f63-4408-8433247107fe)
+[2011-06-24 16:19:36 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb3301ff0) returned 0
+[2011-06-24 16:19:36 libvirt-php/core]: free_resource: Freeing libvirt domain resource at 0xb3301ff0
+[2011-06-24 16:19:36 libvirt-php/core]: free_resource: virDomainFree(0xb3301ff0) completed successfully
+[2011-06-24 16:19:36 libvirt-php/core]: php_libvirt_connection_dtor: virConnectClose(0xb34df1a0) completed successfully
+[2011-06-24 16:19:36 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb3301ff0 (conn 0xb34bf00c) is not allocated
+[2011-06-24 16:19:49 libvirt-php/core]: libvirt_connect: Connection to xen+ssh://root@lws established, returning 0xb3498b98
+[2011-06-24 16:19:49 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'RHEL6', returning 0xb33eb688
+[2011-06-24 16:19:49 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'RHEL6', returning 0xb33eb570
+[2011-06-24 16:19:49 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb33eb570) returned 0
+[2011-06-24 16:19:49 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb33eb570 (conn 0xb3498b98) is allocated
+[2011-06-24 16:19:49 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb33eb570) completed successfully
+[2011-06-24 16:19:49 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb33eb688 (conn 0xb3498b98) is allocated
+[2011-06-24 16:19:49 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb33eb688) completed successfully
+[2011-06-24 16:19:49 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'RHEL6', returning 0xb33eb598
+[2011-06-24 16:19:49 libvirt-php/core]: libvirt_domain_get_xml_desc: Getting the XML for domain 0xb33eb598 (xPath = 2)
+[2011-06-24 16:19:49 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb33eb598 (conn 0xb3498b98) is allocated
+[2011-06-24 16:19:49 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb33eb598) completed successfully
+[2011-06-24 16:19:49 libvirt-php/core]: libvirt_list_domains: Found 3 domains
+[2011-06-24 16:19:49 libvirt-php/core]: libvirt_list_domains: virConnectListDomains returned 3 domains
+[2011-06-24 16:19:49 libvirt-php/core]: libvirt_list_domains: Found running domain Domain-0 with ID = 0
+[2011-06-24 16:19:49 libvirt-php/core]: libvirt_list_domains: Found running domain hvm_6x64 with ID = 103
+[2011-06-24 16:19:49 libvirt-php/core]: libvirt_list_domains: Found running domain rhel55-64fv with ID = 106
+[2011-06-24 16:19:49 libvirt-php/core]: libvirt_list_domains: virConnectNumOfDefinedDomains returned 15 domains
+[2011-06-24 16:19:49 libvirt-php/core]: libvirt_list_domains: virConnectListDefinedDomains returned 12 domains
+[2011-06-24 16:19:49 libvirt-php/core]: libvirt_list_domains: Found inactive domain cdrom
+[2011-06-24 16:19:49 libvirt-php/core]: libvirt_list_domains: Found inactive domain rhel49
+[2011-06-24 16:19:49 libvirt-php/core]: libvirt_list_domains: Found inactive domain rhel6.1-hvm32
+[2011-06-24 16:19:49 libvirt-php/core]: libvirt_list_domains: Found inactive domain rhel55-32pv
+[2011-06-24 16:19:49 libvirt-php/core]: libvirt_list_domains: Found inactive domain RHEL6
+[2011-06-24 16:19:49 libvirt-php/core]: libvirt_list_domains: Found inactive domain rhel60-64pv
+[2011-06-24 16:19:49 libvirt-php/core]: libvirt_list_domains: Found inactive domain rhel55-64pv
+[2011-06-24 16:19:49 libvirt-php/core]: libvirt_list_domains: Found inactive domain winxp-32fv
+[2011-06-24 16:19:49 libvirt-php/core]: libvirt_list_domains: Found inactive domain rhel56s5-64fv
+[2011-06-24 16:19:49 libvirt-php/core]: libvirt_list_domains: Found inactive domain rhel55-32fv
+[2011-06-24 16:19:49 libvirt-php/core]: libvirt_list_domains: Found inactive domain rhel6.1-pv64
+[2011-06-24 16:19:49 libvirt-php/core]: libvirt_list_domains: Found inactive domain pv_6x64
+[2011-06-24 16:19:49 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'Domain-0', returning 0xb349ca18
+[2011-06-24 16:19:49 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb349ca18) returned 0 (00000000-0000-0000-0000-000000000000)
+[2011-06-24 16:19:49 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb349ca18) returned 0
+[2011-06-24 16:19:49 libvirt-php/core]: libvirt_domain_get_id: virDomainGetID(0xb349ca18) returned 0
+[2011-06-24 16:19:49 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'RHEL6', returning 0xb349c818
+[2011-06-24 16:19:49 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb349ca18 (conn 0xb3498b98) is allocated
+[2011-06-24 16:19:49 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb349ca18) completed successfully
+[2011-06-24 16:19:49 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb349c818) returned 0 (ea0a3a0e-6bdf-f0cf-a9f9-8f6db3ee11ec)
+[2011-06-24 16:19:49 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb349c818) returned 0
+[2011-06-24 16:19:49 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'cdrom', returning 0xb3451fd0
+[2011-06-24 16:19:49 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb349c818 (conn 0xb3498b98) is allocated
+[2011-06-24 16:19:49 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb349c818) completed successfully
+[2011-06-24 16:19:49 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb3451fd0) returned 0 (b36e6e3e-00dd-0b55-0955-cb4527b6376c)
+[2011-06-24 16:19:49 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb3451fd0) returned 0
+[2011-06-24 16:19:49 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'hvm_6x64', returning 0xb33eb688
+[2011-06-24 16:19:49 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb3451fd0 (conn 0xb3498b98) is allocated
+[2011-06-24 16:19:49 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb3451fd0) completed successfully
+[2011-06-24 16:19:49 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb33eb688) returned 0 (51729ef4-0287-afea-842d-43281247eb63)
+[2011-06-24 16:19:49 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb33eb688) returned 0
+[2011-06-24 16:19:49 libvirt-php/core]: libvirt_domain_get_id: virDomainGetID(0xb33eb688) returned 103
+[2011-06-24 16:19:49 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'pv_6x64', returning 0xb3472db0
+[2011-06-24 16:19:49 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb33eb688 (conn 0xb3498b98) is allocated
+[2011-06-24 16:19:49 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb33eb688) completed successfully
+[2011-06-24 16:19:49 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb3472db0) returned 0 (4a1ddec5-e413-06fd-ff3f-abc37bd34919)
+[2011-06-24 16:19:49 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb3472db0) returned 0
+[2011-06-24 16:19:49 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel49', returning 0xb347f3f8
+[2011-06-24 16:19:49 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb3472db0 (conn 0xb3498b98) is allocated
+[2011-06-24 16:19:49 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb3472db0) completed successfully
+[2011-06-24 16:19:49 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb347f3f8) returned 0 (65535883-9d0d-72f2-de3f-1951ad6315e4)
+[2011-06-24 16:19:49 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb347f3f8) returned 0
+[2011-06-24 16:19:49 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel55-32fv', returning 0xb320d680
+[2011-06-24 16:19:49 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb347f3f8 (conn 0xb3498b98) is allocated
+[2011-06-24 16:19:49 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb347f3f8) completed successfully
+[2011-06-24 16:19:49 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb320d680) returned 0 (bf18b8a4-e558-d97d-a3c2-06c983d212db)
+[2011-06-24 16:19:49 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb320d680) returned 0
+[2011-06-24 16:19:49 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel55-32pv', returning 0xb321c950
+[2011-06-24 16:19:49 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb320d680 (conn 0xb3498b98) is allocated
+[2011-06-24 16:19:49 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb320d680) completed successfully
+[2011-06-24 16:19:49 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb321c950) returned 0 (775fcf96-2dee-ab1c-c4f1-5d5b65bf7108)
+[2011-06-24 16:19:49 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb321c950) returned 0
+[2011-06-24 16:19:49 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel55-64fv', returning 0xb3221eb0
+[2011-06-24 16:19:49 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb321c950 (conn 0xb3498b98) is allocated
+[2011-06-24 16:19:49 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb321c950) completed successfully
+[2011-06-24 16:19:49 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb3221eb0) returned 0 (492b8007-f045-1a3f-3146-82b4d4f9a09f)
+[2011-06-24 16:19:49 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb3221eb0) returned 0
+[2011-06-24 16:19:49 libvirt-php/core]: libvirt_domain_get_id: virDomainGetID(0xb3221eb0) returned 106
+[2011-06-24 16:19:49 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel55-64pv', returning 0xb33eb688
+[2011-06-24 16:19:49 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb3221eb0 (conn 0xb3498b98) is allocated
+[2011-06-24 16:19:49 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb3221eb0) completed successfully
+[2011-06-24 16:19:49 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb33eb688) returned 0 (24aced0c-debc-2812-b2c1-2db112314761)
+[2011-06-24 16:19:49 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb33eb688) returned 0
+[2011-06-24 16:19:49 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel56s5-64fv', returning 0xb322d988
+[2011-06-24 16:19:49 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb33eb688 (conn 0xb3498b98) is allocated
+[2011-06-24 16:19:49 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb33eb688) completed successfully
+[2011-06-24 16:19:49 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb322d988) returned 0 (5764e7d5-bd17-0cdc-fda3-f60af4e0e0bb)
+[2011-06-24 16:19:49 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb322d988) returned 0
+[2011-06-24 16:19:49 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel6.1-hvm32', returning 0xb3258b20
+[2011-06-24 16:19:49 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb322d988 (conn 0xb3498b98) is allocated
+[2011-06-24 16:19:49 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb322d988) completed successfully
+[2011-06-24 16:19:49 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb3258b20) returned 0 (28fa2db6-3b6d-cefd-f194-a788e3d854fa)
+[2011-06-24 16:19:49 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb3258b20) returned 0
+[2011-06-24 16:19:49 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel6.1-pv64', returning 0xb3233bc8
+[2011-06-24 16:19:49 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb3258b20 (conn 0xb3498b98) is allocated
+[2011-06-24 16:19:49 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb3258b20) completed successfully
+[2011-06-24 16:19:49 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb3233bc8) returned 0 (97d94a27-410f-83b6-0907-118cc693c953)
+[2011-06-24 16:19:49 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb3233bc8) returned 0
+[2011-06-24 16:19:49 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel60-64pv', returning 0xb3270090
+[2011-06-24 16:19:49 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb3233bc8 (conn 0xb3498b98) is allocated
+[2011-06-24 16:19:49 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb3233bc8) completed successfully
+[2011-06-24 16:19:49 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb3270090) returned 0 (79c9a4f6-9b20-fe27-fecc-f007b5549a5b)
+[2011-06-24 16:19:49 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb3270090) returned 0
+[2011-06-24 16:19:49 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'winxp-32fv', returning 0xb3253f38
+[2011-06-24 16:19:49 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb3270090 (conn 0xb3498b98) is allocated
+[2011-06-24 16:19:49 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb3270090) completed successfully
+[2011-06-24 16:19:49 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb3253f38) returned 0 (3edc8680-e319-5f63-4408-8433247107fe)
+[2011-06-24 16:19:49 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb3253f38) returned 0
+[2011-06-24 16:19:49 libvirt-php/core]: free_resource: Freeing libvirt domain resource at 0xb3253f38
+[2011-06-24 16:19:49 libvirt-php/core]: free_resource: virDomainFree(0xb3253f38) completed successfully
+[2011-06-24 16:19:49 libvirt-php/core]: php_libvirt_connection_dtor: virConnectClose(0xb3498b98) completed successfully
+[2011-06-24 16:19:49 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb3253f38 (conn 0xb34d35dc) is not allocated
+[2011-06-24 16:20:17 libvirt-php/core]: libvirt_connect: Connection to xen+ssh://root@lws established, returning 0xb33eb770
+[2011-06-24 16:20:17 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'RHEL6', returning 0xb34884f8
+[2011-06-24 16:20:17 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'RHEL6', returning 0xb32c0080
+[2011-06-24 16:20:17 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb32c0080) returned 0
+[2011-06-24 16:20:17 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb32c0080 (conn 0xb33eb770) is allocated
+[2011-06-24 16:20:17 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb32c0080) completed successfully
+[2011-06-24 16:20:17 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb34884f8 (conn 0xb33eb770) is allocated
+[2011-06-24 16:20:17 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb34884f8) completed successfully
+[2011-06-24 16:20:17 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'RHEL6', returning 0xb3488408
+[2011-06-24 16:20:17 libvirt-php/core]: libvirt_domain_get_xml_desc: Getting the XML for domain 0xb3488408 (xPath = 2)
+[2011-06-24 16:20:17 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb3488408 (conn 0xb33eb770) is allocated
+[2011-06-24 16:20:17 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb3488408) completed successfully
+[2011-06-24 16:20:17 libvirt-php/core]: libvirt_list_domains: Found 3 domains
+[2011-06-24 16:20:17 libvirt-php/core]: libvirt_list_domains: virConnectListDomains returned 3 domains
+[2011-06-24 16:20:17 libvirt-php/core]: libvirt_list_domains: Found running domain Domain-0 with ID = 0
+[2011-06-24 16:20:17 libvirt-php/core]: libvirt_list_domains: Found running domain hvm_6x64 with ID = 103
+[2011-06-24 16:20:17 libvirt-php/core]: libvirt_list_domains: Found running domain rhel55-64fv with ID = 106
+[2011-06-24 16:20:18 libvirt-php/core]: libvirt_list_domains: virConnectNumOfDefinedDomains returned 15 domains
+[2011-06-24 16:20:18 libvirt-php/core]: libvirt_list_domains: virConnectListDefinedDomains returned 12 domains
+[2011-06-24 16:20:18 libvirt-php/core]: libvirt_list_domains: Found inactive domain cdrom
+[2011-06-24 16:20:18 libvirt-php/core]: libvirt_list_domains: Found inactive domain rhel49
+[2011-06-24 16:20:18 libvirt-php/core]: libvirt_list_domains: Found inactive domain rhel6.1-hvm32
+[2011-06-24 16:20:18 libvirt-php/core]: libvirt_list_domains: Found inactive domain rhel55-32pv
+[2011-06-24 16:20:18 libvirt-php/core]: libvirt_list_domains: Found inactive domain RHEL6
+[2011-06-24 16:20:18 libvirt-php/core]: libvirt_list_domains: Found inactive domain rhel60-64pv
+[2011-06-24 16:20:18 libvirt-php/core]: libvirt_list_domains: Found inactive domain rhel55-64pv
+[2011-06-24 16:20:18 libvirt-php/core]: libvirt_list_domains: Found inactive domain winxp-32fv
+[2011-06-24 16:20:18 libvirt-php/core]: libvirt_list_domains: Found inactive domain rhel56s5-64fv
+[2011-06-24 16:20:18 libvirt-php/core]: libvirt_list_domains: Found inactive domain rhel55-32fv
+[2011-06-24 16:20:18 libvirt-php/core]: libvirt_list_domains: Found inactive domain rhel6.1-pv64
+[2011-06-24 16:20:18 libvirt-php/core]: libvirt_list_domains: Found inactive domain pv_6x64
+[2011-06-24 16:20:18 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'Domain-0', returning 0xb32bff78
+[2011-06-24 16:20:18 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb32bff78) returned 0 (00000000-0000-0000-0000-000000000000)
+[2011-06-24 16:20:18 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb32bff78) returned 0
+[2011-06-24 16:20:18 libvirt-php/core]: libvirt_domain_get_id: virDomainGetID(0xb32bff78) returned 0
+[2011-06-24 16:20:18 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'RHEL6', returning 0xb32bfd90
+[2011-06-24 16:20:18 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb32bff78 (conn 0xb33eb770) is allocated
+[2011-06-24 16:20:18 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb32bff78) completed successfully
+[2011-06-24 16:20:18 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb32bfd90) returned 0 (ea0a3a0e-6bdf-f0cf-a9f9-8f6db3ee11ec)
+[2011-06-24 16:20:18 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb32bfd90) returned 0
+[2011-06-24 16:20:18 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'cdrom', returning 0xb33143e0
+[2011-06-24 16:20:18 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb32bfd90 (conn 0xb33eb770) is allocated
+[2011-06-24 16:20:18 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb32bfd90) completed successfully
+[2011-06-24 16:20:18 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb33143e0) returned 0 (b36e6e3e-00dd-0b55-0955-cb4527b6376c)
+[2011-06-24 16:20:18 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb33143e0) returned 0
+[2011-06-24 16:20:18 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'hvm_6x64', returning 0xb32bfd90
+[2011-06-24 16:20:18 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb33143e0 (conn 0xb33eb770) is allocated
+[2011-06-24 16:20:18 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb33143e0) completed successfully
+[2011-06-24 16:20:18 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb32bfd90) returned 0 (51729ef4-0287-afea-842d-43281247eb63)
+[2011-06-24 16:20:18 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb32bfd90) returned 0
+[2011-06-24 16:20:18 libvirt-php/core]: libvirt_domain_get_id: virDomainGetID(0xb32bfd90) returned 103
+[2011-06-24 16:20:18 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'pv_6x64', returning 0xb3319750
+[2011-06-24 16:20:18 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb32bfd90 (conn 0xb33eb770) is allocated
+[2011-06-24 16:20:18 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb32bfd90) completed successfully
+[2011-06-24 16:20:18 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb3319750) returned 0 (4a1ddec5-e413-06fd-ff3f-abc37bd34919)
+[2011-06-24 16:20:18 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb3319750) returned 0
+[2011-06-24 16:20:18 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel49', returning 0xb33367e8
+[2011-06-24 16:20:18 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb3319750 (conn 0xb33eb770) is allocated
+[2011-06-24 16:20:18 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb3319750) completed successfully
+[2011-06-24 16:20:18 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb33367e8) returned 0 (65535883-9d0d-72f2-de3f-1951ad6315e4)
+[2011-06-24 16:20:18 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb33367e8) returned 0
+[2011-06-24 16:20:18 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel55-32fv', returning 0xb3340708
+[2011-06-24 16:20:18 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb33367e8 (conn 0xb33eb770) is allocated
+[2011-06-24 16:20:18 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb33367e8) completed successfully
+[2011-06-24 16:20:18 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb3340708) returned 0 (bf18b8a4-e558-d97d-a3c2-06c983d212db)
+[2011-06-24 16:20:18 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb3340708) returned 0
+[2011-06-24 16:20:18 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel55-32pv', returning 0xb3152a28
+[2011-06-24 16:20:18 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb3340708 (conn 0xb33eb770) is allocated
+[2011-06-24 16:20:18 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb3340708) completed successfully
+[2011-06-24 16:20:18 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb3152a28) returned 0 (775fcf96-2dee-ab1c-c4f1-5d5b65bf7108)
+[2011-06-24 16:20:18 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb3152a28) returned 0
+[2011-06-24 16:20:19 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel55-64fv', returning 0xb315eb98
+[2011-06-24 16:20:19 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb3152a28 (conn 0xb33eb770) is allocated
+[2011-06-24 16:20:19 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb3152a28) completed successfully
+[2011-06-24 16:20:19 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb315eb98) returned 0 (492b8007-f045-1a3f-3146-82b4d4f9a09f)
+[2011-06-24 16:20:19 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb315eb98) returned 0
+[2011-06-24 16:20:19 libvirt-php/core]: libvirt_domain_get_id: virDomainGetID(0xb315eb98) returned 106
+[2011-06-24 16:20:19 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel55-64pv', returning 0xb316cb88
+[2011-06-24 16:20:19 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb315eb98 (conn 0xb33eb770) is allocated
+[2011-06-24 16:20:19 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb315eb98) completed successfully
+[2011-06-24 16:20:19 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb316cb88) returned 0 (24aced0c-debc-2812-b2c1-2db112314761)
+[2011-06-24 16:20:19 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb316cb88) returned 0
+[2011-06-24 16:20:19 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel56s5-64fv', returning 0xb3180820
+[2011-06-24 16:20:19 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb316cb88 (conn 0xb33eb770) is allocated
+[2011-06-24 16:20:19 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb316cb88) completed successfully
+[2011-06-24 16:20:19 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb3180820) returned 0 (5764e7d5-bd17-0cdc-fda3-f60af4e0e0bb)
+[2011-06-24 16:20:19 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb3180820) returned 0
+[2011-06-24 16:20:19 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel6.1-hvm32', returning 0xb31910f0
+[2011-06-24 16:20:19 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb3180820 (conn 0xb33eb770) is allocated
+[2011-06-24 16:20:19 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb3180820) completed successfully
+[2011-06-24 16:20:19 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb31910f0) returned 0 (28fa2db6-3b6d-cefd-f194-a788e3d854fa)
+[2011-06-24 16:20:19 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb31910f0) returned 0
+[2011-06-24 16:20:19 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel6.1-pv64', returning 0xb319b988
+[2011-06-24 16:20:19 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb31910f0 (conn 0xb33eb770) is allocated
+[2011-06-24 16:20:19 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb31910f0) completed successfully
+[2011-06-24 16:20:19 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb319b988) returned 0 (97d94a27-410f-83b6-0907-118cc693c953)
+[2011-06-24 16:20:19 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb319b988) returned 0
+[2011-06-24 16:20:19 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'rhel60-64pv', returning 0xb31a2a10
+[2011-06-24 16:20:19 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb319b988 (conn 0xb33eb770) is allocated
+[2011-06-24 16:20:19 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb319b988) completed successfully
+[2011-06-24 16:20:19 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb31a2a10) returned 0 (79c9a4f6-9b20-fe27-fecc-f007b5549a5b)
+[2011-06-24 16:20:19 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb31a2a10) returned 0
+[2011-06-24 16:20:19 libvirt-php/core]: libvirt_domain_lookup_by_name: domain name = 'winxp-32fv', returning 0xb31b2548
+[2011-06-24 16:20:19 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb31a2a10 (conn 0xb33eb770) is allocated
+[2011-06-24 16:20:19 libvirt-php/core]: php_libvirt_domain_dtor: virDomainFree(0xb31a2a10) completed successfully
+[2011-06-24 16:20:19 libvirt-php/core]: libvirt_domain_get_uuid_string: virDomainGetUUIDString(0xb31b2548) returned 0 (3edc8680-e319-5f63-4408-8433247107fe)
+[2011-06-24 16:20:19 libvirt-php/core]: libvirt_domain_get_info: virDomainGetInfo(0xb31b2548) returned 0
+[2011-06-24 16:20:19 libvirt-php/core]: free_resource: Freeing libvirt domain resource at 0xb31b2548
+[2011-06-24 16:20:19 libvirt-php/core]: free_resource: virDomainFree(0xb31b2548) completed successfully
+[2011-06-24 16:20:19 libvirt-php/core]: php_libvirt_connection_dtor: virConnectClose(0xb33eb770) completed successfully
+[2011-06-24 16:20:19 libvirt-php/core]: check_resource_allocation: libvirt domain resource 0xb31b2548 (conn 0xb34bf128) is not allocated
+[2011-06-24 16:20:30 libvirt-php/core]: libvirt_connect: Connection to xen+ssh://root@lws established, returning 0xb32bfa40
+[2011-06-24 16:20:30 libvirt-php/core]: php_libvirt_connection_dtor: virConnectClose(0xb32bfa40) completed successfully
+[2011-06-24 16:20:35 libvirt-php/core]: libvirt_connect: Connection to xen+ssh://root@lws established, returning 0xb33ebed0
+[2011-06-24 16:20:35 libvirt-php/core]: libvirt_connect: Connection to qemu:///system established, returning 0xb33ebc20
+[2011-06-24 16:20:35 libvirt-php/core]: php_libvirt_connection_dtor: virConnectClose(0xb33ebc20) completed successfully
+[2011-06-24 16:20:35 libvirt-php/core]: php_libvirt_connection_dtor: virConnectClose(0xb33ebed0) completed successfully

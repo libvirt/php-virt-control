@@ -82,55 +82,57 @@
   </tr>
 <?php
 		$doms = $lv->get_domains();
-		sort($doms);
-		for ($i = 0; $i < sizeof($doms); $i++) {
-			$name = $doms[$i];
-			$res = $lv->get_domain_object($name);
-			$uuid = libvirt_domain_get_uuid_string($res);
-			$dom = $lv->domain_get_info($res, $name);
-			$mem = number_format($dom['memory'] / 1024, 2, '.', ' ').' MiB';
-			$cpu = $dom['nrVirtCpu'];
-			$id = $lv->domain_get_id($res, $name);
-			$arch = $lv->domain_get_arch($res);
-			if (!$id)
-				$id = '-';
-			$state = $lv->domain_state_translate($dom['state']);
-			$nics = $lv->get_network_cards($res);
-			if (($diskcnt = $lv->get_disk_count($res)) > 0) {
-				$disks = $diskcnt.' / '.$lv->get_disk_capacity($res);
-				$diskdesc = 'Current physical size: '.$lv->get_disk_capacity($res, true);
-			}
-			else {
-				$disks = 'diskless';
-				$diskdesc = '';
-			}
+		$num = 0;
+		if ($doms) {
+			sort($doms);
+			for ($i = 0; $i < sizeof($doms); $i++) {
+				$name = $doms[$i];
+				$res = $lv->get_domain_object($name);
+				$uuid = libvirt_domain_get_uuid_string($res);
+				$dom = $lv->domain_get_info($res, $name);
+				$mem = number_format($dom['memory'] / 1024, 2, '.', ' ').' MiB';
+				$cpu = $dom['nrVirtCpu'];
+				$id = $lv->domain_get_id($res, $name);
+				$arch = $lv->domain_get_arch($res);
+				if (!$id)
+					$id = '-';
+				$state = $lv->domain_state_translate($dom['state']);
+				$nics = $lv->get_network_cards($res);
+				if (($diskcnt = $lv->get_disk_count($res)) > 0) {
+					$disks = $diskcnt.' / '.$lv->get_disk_capacity($res);
+					$diskdesc = 'Current physical size: '.$lv->get_disk_capacity($res, true);
+				}
+				else {
+					$disks = 'diskless';
+					$diskdesc = '';
+				}
 
-			$running = $lv->domain_is_running($res, $name);
-			if (!$running) {
-				$actions  = '<a href="?page='.$page.'&amp;action=domain-start&amp;dom='.$name.'">Start domain</a> | ';
-				$actions .= '<a href="?page='.$page.'&amp;action=domain-dump&amp;dom='.$name.'">Dump domain XML</a> | ';
-				$actions .= '<a href="?page='.$page.'&amp;action=domain-edit&amp;dom='.$name.'">Edit domain XML</a> | ';
+				$running = $lv->domain_is_running($res, $name);
+				if (!$running) {
+					$actions  = '<a href="?page='.$page.'&amp;action=domain-start&amp;dom='.$name.'">Start domain</a> | ';
+					$actions .= '<a href="?page='.$page.'&amp;action=domain-dump&amp;dom='.$name.'">Dump domain XML</a> | ';
+					$actions .= '<a href="?page='.$page.'&amp;action=domain-edit&amp;dom='.$name.'">Edit domain XML</a> | ';
 
-				$actions[ strlen($actions) - 2 ] = ' ';
-				$actions = Trim($actions);
-			}
-			else {
-				$actions  = '<a href="?page='.$page.'&amp;action=domain-stop&amp;dom='.$name.'">Stop domain</a> | ';
-				$actions .= '<a href="?page='.$page.'&amp;action=domain-destroy&amp;dom='.$name.'">Destroy domain</a> | ';
-				$actions .= '<a href="?page='.$page.'&amp;action=domain-dump&amp;dom='.$name.'">Dump domain XML</a> | ';
+					$actions[ strlen($actions) - 2 ] = ' ';
+					$actions = Trim($actions);
+				}
+				else {
+					$actions  = '<a href="?page='.$page.'&amp;action=domain-stop&amp;dom='.$name.'">Stop domain</a> | ';
+					$actions .= '<a href="?page='.$page.'&amp;action=domain-destroy&amp;dom='.$name.'">Destroy domain</a> | ';
+					$actions .= '<a href="?page='.$page.'&amp;action=domain-dump&amp;dom='.$name.'">Dump domain XML</a> | ';
 
-				if ($lv->supports('screenshot'))
-					$actions .= '<a href="?name='.$name.'&amp;page=screenshot">Get screenshot</a> | ';
+					if ($lv->supports('screenshot'))
+						$actions .= '<a href="?name='.$name.'&amp;page=screenshot">Get screenshot</a> | ';
 
-				$actions[ strlen($actions) - 2 ] = ' ';
-				$actions = Trim($actions);
-			}
+					$actions[ strlen($actions) - 2 ] = ' ';
+					$actions = Trim($actions);
+				}
 
-			echo "<tr>
-                                        <td class=\"name\">
-                                            <a href=\"?name=$name\">$name</a>
-                                        </td>
-                                        <td>$arch</td>
+				echo "<tr>
+        	                                <td class=\"name\">
+                	                            <a href=\"?name=$name\">$name</a>
+                        	                </td>
+                                	        <td>$arch</td>
                                         <td>$cpu</td>
                                         <td>$mem</td>
                                         <td align=\"center\" title='$diskdesc'>$disks</td>
@@ -141,7 +143,12 @@
                                            $actions
                                         </td>
                                   </tr>";
-                }
+				$num++;
+	                }
+		}
+
+		if ($num == 0)
+			echo "<tr><td colspan=\"9\">No valid domain found</td></tr>";
 	?>
 </table>
 

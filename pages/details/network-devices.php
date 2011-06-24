@@ -57,6 +57,8 @@
 
   $tmp = $lv->get_nic_info($name);
   $numDisks = sizeof($tmp);
+  if (!$tmp)
+    $numDisks = 0;
 ?>
   <!-- CONTENTS -->
   <div id="content">
