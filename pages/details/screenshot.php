@@ -55,8 +55,8 @@
 <?php
     if ($msg):
 ?>
-    <div class="section">Domain screenshot</div>
-    <div id="msg"><b>Message: </b><?= $msg ?></div>
+    <div class="section"><?= $lang->get('dom_screenshot') ?></div>
+    <div id="msg"><b><?= $lang->get('msg') ?>: </b><?= $msg ?></div>
 <?php
     else:
 	$dims = $lv->domain_get_screen_dimensions($name);
@@ -206,17 +206,17 @@
 
     <!-- SETTINGS SECTION -->
     <form class="table-form" method="POST">
-    <div class="section">Settings</div>
+    <div class="section"><?= $lang->get('settings') ?></div>
     <div class="item">
-      <div class="label">Interval (sec):</div>
+      <div class="label"><?= $lang->get('interval_sec') ?>:</div>
       <div class="value">
 	<input type="text" name="interval" value="<?= $interval ?>" id="interval">
-	<input type="button" value=" Change " onclick="change_interval()">
+	<input type="button" value=" <?= $lang->get('change') ?> " onclick="change_interval()">
       </div>
       <div class="nl" />
     </div>
 
-    <div class="section">Domain screenshot</div>
+    <div class="section"><?= $lang->get('dom_screenshot') ?></div>
 
     <div class="screenshot"><img id="screenshot" src="<?= $_SERVER['REQUEST_URI'] ?>&amp;data=png" onclick="screenshotClick()"><br />
     <form class="table-form" method="POST">

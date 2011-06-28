@@ -6,7 +6,7 @@
 
     <form action="#" method="POST">
 
-    <div class="section">Machine host devices</div>
+    <div class="section"><?= $lang->get('host_devices_title') ?></div>
 
 <?php
     for ($i = 0; $i < sizeof($devs['pci']); $i++):
@@ -36,8 +36,8 @@
     if (sizeof($devs['usb']) + sizeof($devs['pci']) == 0):
 ?>
     <div class="item">
-      <div class="label">Host devices:</div>
-      <div class="value">None</div>
+      <div class="label"><?= $lang->get('host_devices') ?>:</div>
+      <div class="value"><?= $lang->get('hostdev_none') ?></div>
       <div class="nl" />
     </div>
 <?
@@ -45,11 +45,11 @@
 ?>
 
     <!-- ACTIONS SECTION -->
-    <div class="section">Actions</div>
+    <div class="section"><?= $lang->get('actions') ?></div>
     <div class="item">
-      <div class="label">Changes:</div>
+      <div class="label"><?= $lang->get('changes') ?>:</div>
       <div class="value">
-        None (this page is currently read-only)
+        <?= $lang->get('details_readonly') ?>
       </div>
       <div class="nl" />
     </div>

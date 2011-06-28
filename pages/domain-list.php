@@ -27,8 +27,8 @@
     $inactive = (!$lv->domain_is_running($name)) ? true : false;
 
     $xml = $lv->domain_get_xml($name, $inactive);
-    $frm = '<div class="section">Domain XML description for domain <i>'.$name.'</i></div><form method="POST">
-            <table id="form-table"><tr><td>Domain XML description: </td>
+    $frm = '<div class="section">'.$lang->get('dom_xmldesc').' - <i>'.$name.'</i></div><form method="POST">
+            <table id="form-table"><tr><td>'.$lang->get('dom_xmldesc').': </td>
             <td><textarea readonly="readonly" name="xmldesc" rows="25" cols="90%">'.$xml.'</textarea></td></tr><tr align="center"><td colspan="2">
             </tr></form></table>';
   }
@@ -45,9 +45,9 @@
     }
     else {
         $xml = $lv->domain_get_xml($name, $inactive);
-        $frm = '<div class="section">Edit domain XML description for domain <i>'.$name.'</i></div><form method="POST"><table id="form-table"><tr><td>Domain XML description: </td>
+        $frm = '<div class="section">'.$lang->get('dom_editxml').' - <i>'.$name.'</i></div><form method="POST"><table id="form-table"><tr><td>'.$lang->get('dom_xmldesc').': </td>
              <td><textarea name="xmldesc" rows="25" cols="90%">'.$xml.'</textarea></td></tr><tr align="center"><td colspan="2">
-             <input type="submit" value=" Edit domain XML description "></tr></form></table>';
+             <input type="submit" value=" '.$lang->get('dom_editxml').' "></tr></form></table>';
     }
   }
 ?>
@@ -56,7 +56,7 @@
 <?php
     if ($msg):
 ?>
-    <div id="msg"><b>Message: </b><?= $msg ?></div>
+    <div id="msg"><b><?= $lang->get('msg') ?>: </b><?= $msg ?></div>
 <?php
     endif;
 ?>
@@ -66,19 +66,19 @@
 	echo $frm;
 ?>
 
-<div class="section">Domain list</div>
+<div class="section"><?= $lang->get('domain_list') ?></div>
 
 <table id="domain-list">
   <tr>
-    <th>Name</th>
-    <th>Architecture</th>
-    <th>vCPUs</th>
-    <th>Memory</th>
-    <th>Disk(s)</th>
-    <th>NICs</th>
-    <th>State</th>
-    <th>ID</th>
-    <th>Action</th>
+    <th><?= $lang->get('name') ?></th>
+    <th><?= $lang->get('arch') ?></th>
+    <th><?= $lang->get('vcpus') ?></th>
+    <th><?= $lang->get('mem') ?></th>
+    <th><?= $lang->get('disk/s') ?></th>
+    <th><?= $lang->get('nics') ?></th>
+    <th><?= $lang->get('state') ?></th>
+    <th><?= $lang->get('id') ?></th>
+    <th><?= $lang->get('actions') ?></th>
   </tr>
 <?php
 		$doms = $lv->get_domains();
@@ -100,29 +100,29 @@
 				$nics = $lv->get_network_cards($res);
 				if (($diskcnt = $lv->get_disk_count($res)) > 0) {
 					$disks = $diskcnt.' / '.$lv->get_disk_capacity($res);
-					$diskdesc = 'Current physical size: '.$lv->get_disk_capacity($res, true);
+					$diskdesc = $lang->get('cur_phys_size').': '.$lv->get_disk_capacity($res, true);
 				}
 				else {
-					$disks = 'diskless';
+					$disks = $lang->get('diskless');
 					$diskdesc = '';
 				}
 
 				$running = $lv->domain_is_running($res, $name);
 				if (!$running) {
-					$actions  = '<a href="?page='.$page.'&amp;action=domain-start&amp;dom='.$name.'">Start domain</a> | ';
-					$actions .= '<a href="?page='.$page.'&amp;action=domain-dump&amp;dom='.$name.'">Dump domain XML</a> | ';
-					$actions .= '<a href="?page='.$page.'&amp;action=domain-edit&amp;dom='.$name.'">Edit domain XML</a> | ';
+					$actions  = '<a href="?page='.$page.'&amp;action=domain-start&amp;dom='.$name.'">'.$lang->get('dom_start').'</a> | ';
+					$actions .= '<a href="?page='.$page.'&amp;action=domain-dump&amp;dom='.$name.'">'.$lang->get('dom_dumpxml').'</a> | ';
+					$actions .= '<a href="?page='.$page.'&amp;action=domain-edit&amp;dom='.$name.'">'.$lang->get('dom_editxml').'</a> | ';
 
 					$actions[ strlen($actions) - 2 ] = ' ';
 					$actions = Trim($actions);
 				}
 				else {
-					$actions  = '<a href="?page='.$page.'&amp;action=domain-stop&amp;dom='.$name.'">Stop domain</a> | ';
-					$actions .= '<a href="?page='.$page.'&amp;action=domain-destroy&amp;dom='.$name.'">Destroy domain</a> | ';
-					$actions .= '<a href="?page='.$page.'&amp;action=domain-dump&amp;dom='.$name.'">Dump domain XML</a> | ';
+					$actions  = '<a href="?page='.$page.'&amp;action=domain-stop&amp;dom='.$name.'">'.$lang->get('dom_stop').'</a> | ';
+					$actions .= '<a href="?page='.$page.'&amp;action=domain-destroy&amp;dom='.$name.'">'.$lang->get('dom_destroy').'</a> | ';
+					$actions .= '<a href="?page='.$page.'&amp;action=domain-dump&amp;dom='.$name.'">'.$lang->get('dom_dumpxml').'</a> | ';
 
 					if ($lv->supports('screenshot'))
-						$actions .= '<a href="?name='.$name.'&amp;page=screenshot">Get screenshot</a> | ';
+						$actions .= '<a href="?name='.$name.'&amp;page=screenshot">'.$lang->get('dom_screenshot').'</a> | ';
 
 					$actions[ strlen($actions) - 2 ] = ' ';
 					$actions = Trim($actions);
@@ -148,7 +148,7 @@
 		}
 
 		if ($num == 0)
-			echo "<tr><td colspan=\"9\">No valid domain found</td></tr>";
+			echo "<tr><td colspan=\"9\">".$lang->get('dom_none')."</td></tr>";
 	?>
 </table>
 

@@ -4,12 +4,14 @@
 		private $last_error;
 		private $allow_cached = true;
 		private $dominfos = array();
+		private $lang_str;
 
-		function Libvirt($uri = false, $debug=false) {
+		function Libvirt($uri = false, $debug=false, $lang=false) {
 			if ($debug)
 				$this->set_logfile($debug);
 			if ($uri != false)
 				$this->connect($uri);
+			$this->lang_str = $lang;
 		}
 
 		function _set_last_error()
@@ -26,9 +28,13 @@
 			return true;
 		}
 
-		function generate_connection_uri($hv, $remote, $remote_method, $remote_username, $remote_hostname) {
-			if ($hv == 'qemu')
-				$append_type = 'system';
+		function generate_connection_uri($hv, $remote, $remote_method, $remote_username, $remote_hostname, $session=false) {
+			if ($hv == 'qemu') {
+				if ($session)
+					$append_type = 'session';
+				else
+					$append_type = 'system';
+			}
 
 			if (!$remote) {
 				if ($hv == 'xen')
@@ -673,20 +679,23 @@
 		}
 
 		function translate_storagepool_state($state) {
+			$lang = new Language($this->lang_str);
+			$ret = $lang->get('unknown');
 			switch ($state) {
-				case 0: return 'Not running';
+				case 0: $ret = $lang->get('pool_not_running');
 					break;
-				case 1: return 'Building pool';
+				case 1: $ret = $lang->get('pool_building');
 					break;
-				case 2: return 'Running';
+				case 2: $ret = $lang->get('pool_running');
 					break;
-				case 3: return 'Running degraded';
+				case 3: $ret = $lang->get('pool_running_deg');
 					break;
-				case 4: return 'Running but inaccessible';
+				case 4: $ret = $lang->get('pool_running_inac');
 					break;
 			}
+			unset($lang);
 
-			return 'Unknown';
+			return $ret;
 		}
 
 		function get_domains() {
@@ -1009,17 +1018,28 @@
 		}
 
 		function domain_state_translate($state) {
-			switch ($state) {
-				case VIR_DOMAIN_RUNNING:  return 'running';
-				case VIR_DOMAIN_NOSTATE:  return 'nostate';
-				case VIR_DOMAIN_BLOCKED:  return 'blocked';
-				case VIR_DOMAIN_PAUSED:   return 'paused';
-				case VIR_DOMAIN_SHUTDOWN: return 'shutdown';
-				case VIR_DOMAIN_SHUTOFF:  return 'shutoff';
-				case VIR_DOMAIN_CRASHED:  return 'crashed';
-			}
+			$lang = new Language($this->lang_str);
 
-			return 'unknown';
+			$ret = $lang->get('unknown');
+			switch ($state) {
+				case VIR_DOMAIN_RUNNING:  $ret = $lang->get('dom_running');
+						  	  break;
+				case VIR_DOMAIN_NOSTATE:  $ret = $lang->get('dom_nostate');
+							  break;
+				case VIR_DOMAIN_BLOCKED:  $ret = $lang->get('dom_blocked');
+							  break;
+				case VIR_DOMAIN_PAUSED:   $ret = $lang->get('dom_paused');
+							  break;
+				case VIR_DOMAIN_SHUTDOWN: $ret = $lang->get('dom_shutdown');
+							  break;
+				case VIR_DOMAIN_SHUTOFF:  $ret = $lang->get('dom_shutoff');
+							  break;
+				case VIR_DOMAIN_CRASHED:  $ret = $this->get('dom_crashed');
+							  break;
+			}
+			unset($lang);
+
+			return $ret;
 		}
 
 		function domain_get_vnc_port($domain) {

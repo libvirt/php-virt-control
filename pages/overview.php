@@ -1,29 +1,88 @@
 <div id="content">
 
-<div class="section">Connections</div>
+<div class="section"><?= $lang->get('info') ?></div>
 
 <?php
 	if ($errmsg)
-		echo '<div id="msg"><b>Message: </b>'.$errmsg.'</div>';
+		echo '<div id="msg"><b>'.$lang->get('msg').': </b>'.$errmsg.'</div>';
 ?>
 
-<p>This is the virtual machine controller tool written in PHP language. You can manage virtual machines (guests) on your machines using this
-web-based controlling interface. For the navigation please use the upper menu and select the domain from the <i>Domain list</i> link to see
-the virtual machines available on the current machine. You can also see the information about the hypervisor connection, host machine and
-libvirt PHP module (used by this system) on the <i>Information</i> page.</p>
+<?= $lang->get('info_msg'); ?>
 
-<p>The hypervisor on the machine running Apache with PHP is being probed automatically if applicable however you can override the definition
-to connect to any other hypervisor on remote machine. To achieve this you need to select a connection and change the host using the form
-below. If you experience any issues (e.g. not working connectivity to SSH-based remote host) please make sure you're having all the prerequisites
-met. For more reference please check <a href="http://libvirt.org/auth.html" target="_blank">libvirt authentication documentation.</a></p>
+<div class="section"><?= $lang->get('conns'); ?></div>
 
 <?php
+	if (array_key_exists('remove_conn', $_GET))
+		$db->remove_connection( (int)$_GET['remove_conn'] );
+
+	$tmp = $db->list_connections(true);
+
+        $spaces = '&nbsp; &nbsp; &nbsp;';
+        echo '<table id="form-table">
+                          <tr>
+                            <th>'.$spaces.$lang->get('connname').$spaces.'</th>
+                            <th>'.$spaces.$lang->get('hypervisor').$spaces.'</th>
+                            <th>'.$spaces.$lang->get('host_type').$spaces.'</th>
+			    <th>'.$spaces.$lang->get('host').$spaces.'</th>
+                            <th>'.$spaces.$lang->get('logfile').$spaces.'</th>
+			    <th>'.$spaces.$lang->get('actions').$spaces.'</td>
+                          </tr>
+                ';
+
+	for ($i = 0; $i < sizeof($tmp); $i++) {
+		$name = $tmp[$i]['name'];
+		$hv = $tmp[$i]['hypervisor'];
+		$remote = $tmp[$i]['remote'];
+		$method = $tmp[$i]['method'];
+		$user = $tmp[$i]['user'];
+		$host = $tmp[$i]['host'];
+		$logfile = $tmp[$i]['logfile'];
+
+		echo '<tr align="center">
+			<td>'.$name.'</td>
+                        <td>'.$hv.'</td>
+                        <td>'.($remote ? $lang->get('type_remote') : $lang->get('type_local')).'</td>
+			<td>'.($host ? $host : '-').'</td>
+                        <td>'.($logfile ? $logfile : '-').'</td>
+			<td>
+				<a href="?connect='.($i + 1).'">'.$lang->get('connect').'</a> |
+				<a href="?remove_conn='.($i + 1).'">'.$lang->get('conn_remove').'</a>
+			</td>
+                      </tr>';
+	}
+
+	if (sizeof($tmp) == 0)
+		echo "<tr align=\"center\"><td colspan=\"6\">".$lang->get('conn_none')."</td></tr>";
+
+	unset($tmp);
+
+	echo '</table>';
+?>
+
+<div class="section"><?= $lang->get('conn_setup') ?></div>
+
+<?php
+	$nm = array_key_exists('lvcname', $_POST) ? $_POST['lvcname'] : false;
 	$hv = array_key_exists('lvchypervisor', $_POST) ? $_POST['lvchypervisor'] : false;
 	$rh = array_key_exists('lvcremotehost', $_POST) ? $_POST['lvcremotehost'] : false;
 	$rm = array_key_exists('lvcremotemethod', $_POST) ? $_POST['lvcremotemethod'] : false;
 	$un = array_key_exists('lvcusername', $_POST) ? $_POST['lvcusername'] : false;
 	$hn = array_key_exists('lvchostname', $_POST) ? $_POST['lvchostname'] : false;
 	$lg = array_key_exists('lvclogging', $_POST) ? $_POST['lvclogging'] : false;
+
+	if (array_key_exists('connect', $_GET)) {
+		$tmp = $db->list_connections();
+		$i = (int)$_GET['connect'] - 1;
+
+                $hv = $tmp[$i]['hypervisor'];
+                $rh = $tmp[$i]['remote'];
+                $rm = $tmp[$i]['method'];
+                $un = $tmp[$i]['user'];
+                $hn = $tmp[$i]['host'];
+                $lg = $tmp[$i]['logfile'];
+		
+		unset($tmp);
+	}
 
 	if ($hv) {
 		$uri = $lv->generate_connection_uri($hv, $rh, $rm, $un, $hn);
@@ -34,13 +93,17 @@ met. For more reference please check <a href="http://libvirt.org/auth.html" targ
 		if ($ok) {
 			$_SESSION['connection_uri'] = $uri;
 			$_SESSION['connection_logging'] = $lg;
-			echo '<p>Changed connection URI to <b>'.$uri.'</b></p>';
+			echo '<p>'.$lang->get('changed_uri').' <b>'.$uri.'</b></p>';
 
-			echo '<a href="?">Click here to reload and connect using new URI</a>';
+			if ((array_key_exists('lvcname', $_POST)) && ($_POST['lvcname']))
+				if ($db->add_connection($_POST['lvcname'], $hv, $rh, $rm, $un, $hn, $lg))
+					echo $lang->get('conn_saved');
+
+			echo '<a href="?">'.$lang->get('click_reload').'</a>';
 			die('</div>');
 		}
 		else {
-			echo '<p>Connection to <b>'.$uri.'</b> failed. Not changing URI...</p>';
+			echo '<p>'.$lang->get('conn_failed').': '.$uri.'</p>';
 		}
 	}
 
@@ -69,10 +132,10 @@ met. For more reference please check <a href="http://libvirt.org/auth.html" targ
 <form method="POST">
 <table id="form-table">
   <tr>
-    <th colspan="2">Change host connection</th>
+    <th colspan="2"><?= $lang->get('change_conn') ?></th>
   </tr>
   <tr>
-    <td>Hypervisor: </td>
+    <td><?= $lang->get('hypervisor') ?>: </td>
     <td align="right">
       <select name="lvchypervisor">
         <option value="xen" <?= ($hv == 'xen') ? ' selected="selected"' : '' ?>>Xen</option>
@@ -81,19 +144,19 @@ met. For more reference please check <a href="http://libvirt.org/auth.html" targ
     </td>
   </tr>
   <tr>
-    <th colspan="2">Host options</th>
+    <th colspan="2"><?= $lang->get('host_opts') ?></th>
   </tr>
   <tr>
-    <td>Host type: </td>
+    <td><?= $lang->get('host_type') ?>: </td>
     <td align="right">
       <select name="lvcremotehost" onchange="change_remote(this)">
-        <option value="0" <?= ($rh == '0') ? ' selected="selected"' : '' ?>>Local host</option>
-        <option value="1" <?= ($rh == '1') ? ' selected="selected"' : '' ?>>Remote host</option>
+        <option value="0" <?= ($rh == '0') ? ' selected="selected"' : '' ?>><?= $lang->get('type_local') ?></option>
+        <option value="1" <?= ($rh == '1') ? ' selected="selected"' : '' ?>><?= $lang->get('type_remote') ?></option>
       </select>
     </td>
   </tr>
   <tr id="remote1" style="display: <?= $ds ?>">
-    <td>Connection method: </td>
+    <td><?= $lang->get('conn_method') ?>: </td>
     <td align="right">
       <select name="lvcremotemethod">
         <option value="ssh" <?= ($rm == 'ssh') ? ' selected="selected"' : '' ?>>SSH</option>
@@ -103,29 +166,38 @@ met. For more reference please check <a href="http://libvirt.org/auth.html" targ
     </td>
   </tr>
   <tr id="remote2" style="display: <?= $ds ?>">
-    <td>User name: </td>
+    <td><?= $lang->get('user')?>: </td>
     <td align="right">
       <input type="text" name="lvcusername" value="<?= $un ?>" />
     </td>
   </tr>
   <tr id="remote3" style="display: <?= $ds ?>">
-    <td>Host: </td>
+    <td><?= $lang->get('host') ?>: </td>
     <td align="right">
       <input type="text" name="lvchostname" value="<?= $hn ?>" />
     </td>
   </tr>
   <tr>
-    <th colspan="2">Logging options</th>
+    <th colspan="2"><?= $lang->get('log_opts') ?></th>
   </tr>
   <tr>
-    <td>Log file: </td>
+    <td><?= $lang->get('logfile')?>: </td>
     <td align="right">
-      <input type="text" name="lvclogging" value="<?= $lg ?>" title="Leave empty to disable logging" />
+      <input type="text" name="lvclogging" value="<?= $lg ?>" title="<?= $lang->get('empty_disable_log') ?>" />
+    </td>
+  </tr>
+  <tr>
+    <th colspan="2"><?= $lang->get('save_conn') ?></th>
+  </tr>
+  <tr>
+    <td><?= $lang->get('connname')?>: </td>
+    <td align="right">
+      <input type="text" name="lvcname" value="<?= $nm ?>" title="<?= $lang->get('empty_disable_save') ?>" />
     </td>
   </tr>
   <tr align="center">
     <td colspan="2">
-      <input type="submit" value=" Connect to the new host " />
+      <input type="submit" value=" <?= $lang->get('connect_new') ?> " />
     </td>
   </tr>
 </table>

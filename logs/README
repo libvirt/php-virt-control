@@ -1,0 +1,3 @@
+This file contains the placeholder for log files useful for libvirt-php debugging.
+Please do *not* remove this directory in order to leave the option to enable debug
+logging enabled.

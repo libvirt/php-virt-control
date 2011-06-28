@@ -17,15 +17,15 @@
 	$nets = $lv->get_networks();
 	$models = $lv->get_nic_models();
 
-        $frm = '<div class="section">Add a new network interface card</div>
+        $frm = '<div class="section">'.$lang->get('vm_network_add').'</div>
                 <form method="POST">
                 <table id="form-table">
                   <tr>
-                    <td align="right"><b>MAC Address: </b></td>
+                    <td align="right"><b>'.$lang->get('vm_network_mac').': </b></td>
                     <td><input type="text" name="mac" value="'.$lv->generate_random_mac_addr().'"/></td>
                   </tr>
 		  <tr>
-		    <td align="right"><b>Network: </b></td>
+		    <td align="right"><b>'.$lang->get('vm_network_net').': </b></td>
 		    <td>
                       <select name="network">';
 
@@ -36,7 +36,7 @@
                     </td>
 		  </tr>
                   <tr>
-                    <td align="right"><b>NIC Type: </b></td>
+                    <td align="right"><b>'.$lang->get('vm_network_type').': </b></td>
                     <td>
                       <select name="nic_type">';
 
@@ -48,7 +48,7 @@
                     </td>
                   </tr>
                   <tr align="center">
-                    <td colspan="2"><input type="submit" value=" Add new NIC " /></td>
+                    <td colspan="2"><input type="submit" value=" '.$lang->get('vm_network_add').' " /></td>
                   </tr>
                 </table>
                 </form>';
@@ -66,12 +66,12 @@
     <script language="javascript">
     <!--
         function confirmAddition() {
-            if (confirm('Do you really want to add a new network interface card ?')) {
+            if (confirm('<?= $lang->get('vm_network_askadd') ?>')) {
                 location.href = '?name=<?= $name.'&page='.$page ?>&action=add-nic';
             }
         }
         function askNicDeletion(mac, macb64) {
-            if (confirm('Are you sure you want to delete interface with MAC address '+mac+' from the guest?'))
+            if (confirm('<?= $lang->get('vm_network_askdel') ?>'))
                 location.href = '?name=<?= $name.'&page='.$page.'&action=del-nic&dev=' ?>'+macb64;
         }
     -->
@@ -94,9 +94,9 @@
 
     <form action="#" method="POST">
 
-    <div class="section">Machine network devices</div>
+    <div class="section"><?= $lang->get('vm_network_title') ?></div>
     <div class="item">
-      <div class="label">Number of NICs:</div>
+      <div class="label"><?= $lang->get('vm_network_num') ?>:</div>
       <div class="value"><?= $numDisks ?></div>
       <div class="nl" />
     </div>
@@ -106,26 +106,26 @@
         $nic = $tmp[$i];
 ?>
     <!-- NIC SECTION -->
-    <div class="section">Network interface card #<?= $i + 1 ?></div>
+    <div class="section"><?= $lang->get('vm_network_nic') ?> #<?= $i + 1 ?></div>
     <div class="item">
-      <div class="label">MAC Address:</div>
+      <div class="label"><?= $lang->get('vm_network_mac') ?>:</div>
       <div class="value"><?= $nic['mac'] ?></div>
       <div class="nl" />
     </div>
     <div class="item">
-      <div class="label">Network:</div>
+      <div class="label"><?= $lang->get('vm_network_net') ?>:</div>
       <div class="value"><?= $nic['network'] ?></div>
       <div class="nl" />
     </div>
     <div class="item">
-      <div class="label">NIC Type:</div>
+      <div class="label"><?= $lang->get('vm_network_type') ?>:</div>
       <div class="value"><?= $nic['nic_type'] ?></div>
       <div class="nl" />
     </div>
     <div class="item">
-      <div class="label">Action:</div>
+      <div class="label"><?= $lang->get('actions') ?>:</div>
       <div class="value">
-        <input type="button" onclick="askNicDeletion('<?= $nic['mac'] ?>', '<?= base64_encode($nic['mac']) ?>')" value=" Remove network interface " />
+        <input type="button" onclick="askNicDeletion('<?= $nic['mac'] ?>', '<?= base64_encode($nic['mac']) ?>')" value=" <?= $lang->get('vm_network_del') ?> " />
       </div>
       <div class="nl" />
     </div>
@@ -135,11 +135,11 @@
 ?>
 
     <!-- ACTIONS SECTION -->
-    <div class="section">Actions</div>
+    <div class="section"><?= $lang->get('actions') ?></div>
     <div class="item">
-      <div class="label">Changes:</div>
+      <div class="label"><?= $lang->get('changes') ?>:</div>
       <div class="value">
-        <input type="button" name="add-nic" value=" Add new a new network interface " onclick="confirmAddition()" />
+        <input type="button" name="add-nic" value=" <?= $lang->get('vm_network_add') ?> " onclick="confirmAddition()" />
       </div>
       <div class="nl" />
     </div>

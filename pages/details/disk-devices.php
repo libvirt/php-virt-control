@@ -15,15 +15,15 @@
                                     'Disk has been successfully added to the guest' :
                                     'Cannot add disk to the guest: '.$lv->get_last_error();
     else
-        $frm = '<div class="section">Add a new disk device</div>
+        $frm = '<div class="section">'.$lang->get('vm_disk_add').'</div>
                 <form method="POST">
                 <table id="form-table">
                   <tr>
-                    <td align="right"><b>Disk image: </b></td>
+                    <td align="right"><b>'.$lang->get('vm_disk_image').': </b></td>
                     <td><input type="text" name="img" /></td>
                   </tr>
 		  <tr>
-		    <td align="right"><b>Location: </b></td>
+		    <td align="right"><b>'.$lang->get('vm_disk_location').': </b></td>
 		    <td>
                       <select name="bus">
                         <option value="ide">IDE Bus</option>
@@ -32,7 +32,7 @@
                     </td>
 		  </tr>
                   <tr>
-                    <td align="right"><b>Driver: </b></td>
+                    <td align="right"><b>'.$lang->get('vm_disk_type').': </b></td>
                     <td>
                       <select name="driver">
                         <option value="raw">raw</option>
@@ -42,11 +42,11 @@
                     </td>
                   </tr>
                   <tr>
-                    <td align="right"><b>Disk device in the guest: </b></td>
+                    <td align="right"><b>'.$lang->get('vm_disk_dev').': </b></td>
                     <td><input type="text" name="dev" value="hdb" /></td>
                   </tr>
                   <tr align="center">
-                    <td colspan="2"><input type="submit" value=" Add new disk " /></td>
+                    <td colspan="2"><input type="submit" value=" '.$lang->get('vm_disk_add').' " /></td>
                   </tr>
                 </table>
                 </form>';
@@ -64,12 +64,12 @@
     <script language="javascript">
     <!--
         function confirmAddition() {
-            if (confirm('Do you really want to add a new disk ?')) {
+            if (confirm('<?= $lang->get('vm_disk_askadd') ?>')) {
                 location.href = '?name=<?= $name.'&page='.$page ?>&action=add-disk';
             }
         }
         function askDiskDeletion(disk) {
-            if (confirm('Are you sure you want to delete disk '+disk+' from the guest?'))
+            if (confirm('<?= $lang->get('vm_disk_askdel') ?>'))
                 location.href = '?name=<?= $name.'&page='.$page.'&action=del-disk&disk=' ?>'+disk;
         }
     -->
@@ -78,7 +78,7 @@
 <?php
     if ($msg):
 ?>
-    <div id="msg"><b>Message: </b><?= $msg ?></div>
+    <div id="msg"><b><?= $lang->get('msg') ?>: </b><?= $msg ?></div>
 <?php
     endif;
 ?>
@@ -92,9 +92,9 @@
 
     <form action="#" method="POST">
 
-    <div class="section">Machine disk devices</div>
+    <div class="section"><?= $lang->get('vm_disk_details') ?></div>
     <div class="item">
-      <div class="label">Number of disks:</div>
+      <div class="label"><?= $lang->get('vm_disk_num') ?>:</div>
       <div class="value"><?= $numDisks.$addmsg ?></div>
       <div class="nl" />
     </div>
@@ -107,39 +107,39 @@
     <!-- DISK SECTION -->
     <div class="section"><?= $bus ?> Disk <?= $i + 1 ?></div>
     <div class="item">
-      <div class="label">Storage:</div>
+      <div class="label"><?= $lang->get('vm_disk_storage') ?>:</div>
       <div class="value"><?= $disk['file'] ?></div>
       <div class="nl" />
     </div>
     <div class="item">
-      <div class="label">Driver type:</div>
+      <div class="label"><?= $lang->get('vm_disk_type') ?>:</div>
       <div class="value"><?= $disk['type'] ?></div>
       <div class="nl" />
     </div>
     <div class="item">
-      <div class="label">Domain device:</div>
+      <div class="label"><?= $lang->get('vm_disk_dev') ?>:</div>
       <div class="value"><?= $disk['device'] ?></div>
       <div class="nl" />
     </div>
     <div class="item">
-      <div class="label">Capacity:</div>
+      <div class="label"><?= $lang->get('vm_disk_capacity') ?>:</div>
       <div class="value"><?= $lv->format_size($disk['capacity'], 2) ?></div>
       <div class="nl" />
     </div>
     <div class="item">
-      <div class="label">Allocation:</div>
+      <div class="label"><?= $lang->get('vm_disk_allocation') ?>:</div>
       <div class="value"><?= $lv->format_size($disk['allocation'], 2) ?></div>
       <div class="nl" />
     </div>
     <div class="item">
-      <div class="label">Physical disk size:</div>
+      <div class="label"><?= $lang->get('vm_disk_physical') ?>:</div>
       <div class="value"><?= $lv->format_size($disk['physical'], 2) ?></div>
       <div class="nl" />
     </div>
     <div class="item">
-      <div class="label">Action:</div>
+      <div class="label"><?= $lang->get('actions') ?>:</div>
       <div class="value">
-        <input type="button" onclick="askDiskDeletion('<?= $disk['device'] ?>')" value=" Remove disk " />
+        <input type="button" onclick="askDiskDeletion('<?= $disk['device'] ?>')" value=" <?= $lang->get('vm_disk_remove') ?> " />
       </div>
       <div class="nl" />
     </div>
@@ -155,39 +155,39 @@
     <!-- DISK SECTION -->
     <div class="section"><?= $bus ?> CD-ROM <?= $i + 1 ?></div>
     <div class="item">
-      <div class="label">Storage:</div>
+      <div class="label"><?= $lang->get('vm_disk_storage') ?>:</div>
       <div class="value"><?= $disk['file'] ?></div>
       <div class="nl" />
     </div>
     <div class="item">
-      <div class="label">Driver type:</div>
+      <div class="label"><?= $lang->get('vm_disk_type') ?>:</div>
       <div class="value"><?= $disk['type'] ?></div>
       <div class="nl" />
     </div>
     <div class="item">
-      <div class="label">Domain device:</div>
+      <div class="label"><?= $lang->get('vm_disk_dev') ?>:</div>
       <div class="value"><?= $disk['device'] ?></div>
       <div class="nl" />
     </div>
     <div class="item">
-      <div class="label">Capacity:</div>
+      <div class="label"><?= $lang->get('vm_disk_capacity') ?>:</div>
       <div class="value"><?= $lv->format_size($disk['capacity'], 2) ?></div>
       <div class="nl" />
     </div>
     <div class="item">
-      <div class="label">Allocation:</div>
+      <div class="label"><?= $lang->get('vm_disk_allocation') ?>:</div>
       <div class="value"><?= $lv->format_size($disk['allocation'], 2) ?></div>
       <div class="nl" />
     </div>
     <div class="item">
-      <div class="label">Physical disk size:</div>
+      <div class="label"><?= $lang->get('vm_disk_physical') ?>:</div>
       <div class="value"><?= $lv->format_size($disk['physical'], 2) ?></div>
       <div class="nl" />
     </div>
     <div class="item">
-      <div class="label">Action:</div>
+      <div class="label"><?= $lang->get('actions') ?>:</div>
       <div class="value">
-        <input type="button" onclick="askDiskDeletion('<?= $disk['device'] ?>')" value=" Remove disk " />
+        <input type="button" onclick="askDiskDeletion('<?= $disk['device'] ?>')" value=" <?= $lang->get('vm_disk_remove') ?> " />
       </div>
       <div class="nl" />
     </div>
@@ -199,11 +199,11 @@
 ?>
 
     <!-- ACTIONS SECTION -->
-    <div class="section">Actions</div>
+    <div class="section"><?= $lang->get('actions') ?></div>
     <div class="item">
-      <div class="label">Changes:</div>
+      <div class="label"><?= $lang->get('changes') ?>:</div>
       <div class="value">
-        <input type="button" name="add-disk" value=" Add new disk " onclick="confirmAddition()" />
+        <input type="button" name="add-disk" value=" <?= $lang->get('vm_disk_add') ?> " onclick="confirmAddition()" />
       </div>
       <div class="nl" />
     </div>

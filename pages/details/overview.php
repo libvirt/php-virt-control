@@ -39,9 +39,9 @@
         }
         function check() {
             if (change_el == 'ch-apply')
-                return (confirm('Do you really want to apply your changes?'));
+                return (confirm('<?= $lang->get('ask_apply') ?>'));
             if (change_el == 'ch-discard')
-                return (confirm('Do you really want to discard your changes?'));
+                return (confirm('<?= $lang->get('ask_discard') ?>'));
         }
     -->
     </script>
@@ -49,9 +49,9 @@
     <form action="#" method="POST" onsubmit="return check();">
 
     <!-- GENERAL SECTION -->
-    <div class="section">General</div>
+    <div class="section"><?= $lang->get('general') ?></div>
     <div class="item">
-      <div class="label">Name:</div>
+      <div class="label"><?= $lang->get('name') ?>:</div>
       <div class="value"><?= $name ?></div>
       <div class="nl" />
     </div>
@@ -61,21 +61,21 @@
       <div class="nl" />
     </div>
     <div class="item">
-      <div class="label">Status:</div>
+      <div class="label"><?= $lang->get('state') ?>:</div>
       <div class="value"><?= $status ?></div>
       <div class="nl" />
     </div>
     <div class="item">
-      <div class="label">Description:</div>
+      <div class="label"><?= $lang->get('description') ?>:</div>
       <div class="value">
         <textarea rows="10" cols="60" name="description"><?= $desc ?></textarea>
       </div>
       <div class="nl" />
     </div>
     <!-- MACHINE DETAILS SECTION -->
-    <div class="section">Machine details</div>
+    <div class="section"><?= $lang->get('vm_details') ?>: </div>
     <div class="item">
-      <div class="label">Architecture:</div>
+      <div class="label"><?= $lang->get('arch') ?>:</div>
       <div class="value"><?= $arch ?></div>
       <div class="nl" />
     </div>
@@ -118,12 +118,12 @@
       <div class="nl" />
     </div>
     <!-- ACTIONS SECTION -->
-    <div class="section">Actions</div>
+    <div class="section"><?= $lang->get('actions') ?></div>
     <div class="item">
-      <div class="label">Changes:</div>
+      <div class="label"><?= $lang->get('changes') ?>:</div>
       <div class="value">
-        <input type="submit" name="ch-apply" value=" Apply changes " onclick="setElement('change', this)" />
-        <input type="submit" name="ch-discard" value=" Discard changes " onclick="setElement('change', this)" />
+        <input type="submit" name="ch-apply" value=" <?= $lang->get('btn_apply') ?> " onclick="setElement('change', this)" />
+        <input type="submit" name="ch-discard" value=" <?= $lang->get('btn_discard') ?> " onclick="setElement('change', this)" />
       </div>
       <div class="nl" />
     </div>

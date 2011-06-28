@@ -1,0 +1,2 @@
+# Disallow web users access
+deny from all

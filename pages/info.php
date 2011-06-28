@@ -35,58 +35,58 @@
 
 <div id="content">
 
-<div class="section">Virtual machine control for PHP</div>
+<div class="section"><?= $lang->get('title_vmc').' '.$lang->get('for_php') ?></div>
 
 <div class="item">
-        <div class="label">Version</div>
+        <div class="label"><?= $lang->get('version') ?></div>
         <div class="value"><?= PHPVIRTCONTROL_VERSION ?></div>
         <div class="nl">
 </div>
 
 <div class="item">
-        <div class="label">Website</div>
+        <div class="label"><?= $lang->get('website') ?></div>
         <div class="value"><a target="_blank" href="<?= PHPVIRTCONTROL_WEBSITE ?>"><?= PHPVIRTCONTROL_WEBSITE ?></a></div>
         <div class="nl">
 </div>
 
-<div class="section">Connection details</div>
+<div class="section"><?= $lang->get('conn_details') ?></div>
 
 <?php
 	$tmp  = $lv->get_connect_information();
 ?>
 
 <div class="item">
-        <div class="label">Hypervisor</div>
+        <div class="label"><?= $lang->get('hypervisor') ?></div>
         <div class="value"><?= $tmp['hypervisor_string'] ?></div>
         <div class="nl">
 </div>
 
 <div class="item">
-        <div class="label">Connection URI</div>
+        <div class="label"><?= $lang->get('conn_uri') ?></div>
         <div class="value"><?= $tmp['uri'] ?></div>
         <div class="nl">
 </div>
 
 <div class="item">
-        <div class="label">Hostname</div>
+        <div class="label"><?= $lang->get('hostname') ?></div>
         <div class="value"><?= $tmp['hostname'] ?></div>
         <div class="nl">
 </div>
 
 <div class="item">
-        <div class="label">Encrypted</div>
-        <div class="value"><?= $tmp['encrypted'] ?></div>
+        <div class="label"><?= $lang->get('conn_encrypted') ?></div>
+        <div class="value"><?= $lang->get($tmp['encrypted']) ?></div>
         <div class="nl">
 </div>
 
 <div class="item">
-        <div class="label">Secure</div>
-        <div class="value"><?= $tmp['secure'] ?></div>
+        <div class="label"><?= $lang->get('conn_secure') ?></div>
+        <div class="value"><?= $lang->get($tmp['secure']) ?></div>
         <div class="nl">
 </div>
 
 <div class="item">
-        <div class="label">Hypervisor limit</div>
+        <div class="label"><?= $lang->get('hypervisor_limit') ?></div>
         <div class="value"><?= $tmp['hypervisor_maxvcpus'] ?> vCPUs per guest</div>
         <div class="nl">
 </div>
@@ -95,32 +95,32 @@
 	unset($tmp);
 	$tmp = $lv->host_get_node_info();
 ?>
-<div class="section">Host machine details</div>
+<div class="section"><?= $lang->get('host_details') ?></div>
 <div class="item">
-	<div class="label">Model</div>
+	<div class="label"><?= $lang->get('model') ?></div>
 	<div class="value"><?= $tmp['model'] ?></div>
 	<div class="nl">
 </div>
 
 <div class="item">
-        <div class="label">Memory</div>
+        <div class="label"><?= $lang->get('mem') ?></div>
         <div class="value"><?= (int)($tmp['memory'] / 1024) ?> MiB</div>
         <div class="nl">
 </div>
 
 <div class="item">
-        <div class="label">CPUs/cores</div>
+        <div class="label"><?= $lang->get('pcpus') ?></div>
         <div class="value"><?= $tmp['cpus'].' ('.$tmp['nodes'].' nodes, '.$tmp['sockets'].' sockets, '.$tmp['cores'].' cores)' ?></div>
         <div class="nl">
 </div>
 
 <div class="item">
-        <div class="label">CPU Speed</div>
+        <div class="label"><?= $lang->get('cpu_speed') ?></div>
         <div class="value"><?= $tmp['mhz'] ?> MHz</div>
         <div class="nl">
 </div>
 <?php unset($tmp) ?>
-<div class="section">libvirt PHP module information</div>
+<div class="section"><?= $lang->get('modinfo') ?></div>
 <?= $out ?>
 
 </div>

@@ -33,9 +33,9 @@
         }
         function check() {
             if (change_el == 'ch-apply')
-                return (confirm('Do you really want to apply your changes?'));
+                return (confirm('<?= $lang->get('ask_apply') ?>'));
             if (change_el == 'ch-discard')
-                return (confirm('Do you really want to discard your changes?'));
+                return (confirm('<?= $lang->get('ask_discard') ?>'));
         }
     -->
     </script>
@@ -43,7 +43,7 @@
 <?php
     if ($msg):
 ?>
-    <div id="msg"><b>Message: </b><?= $msg ?></div>
+    <div id="msg"><b><?= $lang->get('msg') ?>: </b><?= $msg ?></div>
 <?php
     endif;
 ?>
@@ -51,35 +51,35 @@
     <form action="#" method="POST" onsubmit="return check();">
 
     <!-- HOST SECTION -->
-    <div class="section">Host memory information</div>
+    <div class="section"><?= $lang->get('host_mem_info') ?></div>
     <div class="item">
-      <div class="label">Total memory:</div>
+      <div class="label"><?= $lang->get('total_mem') ?>:</div>
       <div class="value"><?= $memory ?> MiB</div>
       <div class="nl" />
     </div>
     <!-- MACHINE SECTION -->
-    <div class="section">Machine memory allocation (in MiBs)</div>
+    <div class="section"><?= $lang->get('vm_mem_info') ?> (MiBs)</div>
     <div class="item">
-      <div class="label">Current allocation:</div>
+      <div class="label"><?= $lang->get('mem_alloc_cur') ?>:</div>
       <div class="value">
         <input type="text" name="memory" value="<?= $guest_memory ?>" />
       </div>
       <div class="nl" />
     </div>
     <div class="item">
-      <div class="label">Max. allocation:</div>
+      <div class="label"><?= $lang->get('mem_alloc_max') ?>:</div>
       <div class="value">
         <input type="text" name="maxmem" value="<?= $guest_maxmem ?>" />
       </div>
       <div class="nl" />
     </div>
     <!-- ACTIONS SECTION -->
-    <div class="section">Actions</div>
+    <div class="section"><?= $lang->get('actions') ?></div>
     <div class="item">
-      <div class="label">Changes:</div>
+      <div class="label"><?= $lang->get('changes') ?>:</div>
       <div class="value">
-        <input type="submit" name="ch-apply" value=" Apply changes " onclick="setElement('change', this)" />
-        <input type="submit" name="ch-discard" value=" Discard changes " onclick="setElement('change', this)" />
+        <input type="submit" name="ch-apply" value=" <?= $lang->get('btn_apply') ?> " onclick="setElement('change', this)" />
+        <input type="submit" name="ch-discard" value=" <?= $lang->get('btn_discard') ?> " onclick="setElement('change', this)" />
       </div>
       <div class="nl" />
     </div>

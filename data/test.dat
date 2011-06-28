@@ -1,0 +1,6 @@
+File-Version: 0.0.1
+Tab: connections
+START_TAB
+Local QEMU,qemu,0,ssh,,,
+Local Xen,xen,0,ssh,,,
+END_TAB
