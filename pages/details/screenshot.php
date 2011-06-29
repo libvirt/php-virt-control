@@ -62,6 +62,9 @@
 	$dims = $lv->domain_get_screen_dimensions($name);
 ?>
 
+<?php
+    if (ALLOW_EXPERIMENTAL_VNC):
+?>
 <div id="ajax-msg"></div>
 
     <script language="javascript">
@@ -203,6 +206,9 @@
         timerID = setTimeout("update_screenshot()", delay);
     -->
     </script>
+<?php
+    endif;
+?>
 
     <!-- SETTINGS SECTION -->
     <form class="table-form" method="POST">
@@ -219,6 +225,9 @@
     <div class="section"><?= $lang->get('dom_screenshot') ?></div>
 
     <div class="screenshot"><img id="screenshot" src="<?= $_SERVER['REQUEST_URI'] ?>&amp;data=png" onclick="screenshotClick()"><br />
+<?php
+    if (ALLOW_EXPERIMENTAL_VNC):
+?>
     <form class="table-form" method="POST">
     <tr>
       <td><input type="text" name="keys" style="width: <?= $dims['width'] - 260 ?>px" autocomplete="off">
@@ -228,6 +237,7 @@
     </tr>
     </div>
 <?php
+    endif;
     endif;
 ?>
 

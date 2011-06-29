@@ -8,6 +8,7 @@
 	define('LOGDIR', getcwd().'/logs');
 	define('PHPVIRTCONTROL_VERSION', '0.0.1');
 	define('PHPVIRTCONTROL_WEBSITE', 'http://www.php-virt-control.org');
+	define('ALLOW_EXPERIMENTAL_VNC', false);
 
 	if (!File_Exists(LOGDIR)) {
 		if (!mkdir(LOGDIR, 0777))
