@@ -103,6 +103,8 @@
 					$id = '-';
 				$state = $lv->domain_state_translate($dom['state']);
 				$nics = $lv->get_network_cards($res);
+				if (!$nics)
+					$nics = 0;
 				if (($diskcnt = $lv->get_disk_count($res)) > 0) {
 					$disks = $diskcnt.' / '.$lv->get_disk_capacity($res);
 					$diskdesc = $lang->get('cur_phys_size').': '.$lv->get_disk_capacity($res, true);

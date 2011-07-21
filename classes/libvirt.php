@@ -57,10 +57,14 @@
 					if (!$this->create_image($disk['image'], $disk['size'], $disk['driver']))
 						return false;
 
-				$path = ini_get('libvirt.image_path');
+				if ($disk['image'][0] != '/')
+					$path = ini_get('libvirt.image_path').'/'.$disk['image'];
+				else
+					$path = $disk['image'];
+
 				$diskstr = "<disk type='file' device='disk'>
 						<driver name='qemu' type='{$disk['driver']}' />
-                                                <source file='$path/{$disk['image']}'/>
+                                                <source file='$path'/>
                                                 <target bus='{$disk['bus']}' dev='hda' />
                                          </disk>";
 			}

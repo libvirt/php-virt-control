@@ -3,4 +3,5 @@ Tab: connections
 START_TAB
 Local QEMU,qemu,0,ssh,0,,,
 Local Xen,xen,0,ssh,0,,,
+QEMU on mig,qemu,1,ssh,0,root,mig,,
 END_TAB
