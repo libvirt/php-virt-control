@@ -12,6 +12,10 @@ h2, h3, h4, h5, h6 {
     color: #3c857c;
 }
 
+img {
+    border: 0;
+}
+
 #header {
     margin: 0px;
     height: 104px;
