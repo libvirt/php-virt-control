@@ -1,10 +1,24 @@
 <?php
-	$tmp = explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
-	$tmp = explode('-', $tmp[0]);
-	$lang_str = $tmp[0];
-	unset($tmp);
-
 	session_start();
+
+	if (array_key_exists('lang-override', $_GET)) {
+		$_SESSION['language'] = $_GET['lang-override'];
+		if (array_key_exists('page', $_GET))
+			Header('Location: ?page='.$_GET['page']);
+		else
+			Header('Location: ?');
+		exit;
+	}
+
+	if (!array_key_exists('language', $_SESSION)) {
+		$tmp = explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
+		$tmp = explode('-', $tmp[0]);
+		$lang_str = $tmp[0];
+		unset($tmp);
+	}
+	else
+		$lang_str = $_SESSION['language'];
+
 	define('LOGDIR', getcwd().'/logs');
 	define('PHPVIRTCONTROL_VERSION', '0.0.1');
 	define('PHPVIRTCONTROL_WEBSITE', 'http://www.php-virt-control.org');

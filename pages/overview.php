@@ -66,6 +66,7 @@
 	$hv = array_key_exists('lvchypervisor', $_POST) ? $_POST['lvchypervisor'] : false;
 	$rh = array_key_exists('lvcremotehost', $_POST) ? $_POST['lvcremotehost'] : false;
 	$rm = array_key_exists('lvcremotemethod', $_POST) ? $_POST['lvcremotemethod'] : false;
+	$rp = array_key_exists('lvcrequirepwd', $_POST) ? $_POST['lvcrequirepwd'] : false;
 	$un = array_key_exists('lvcusername', $_POST) ? $_POST['lvcusername'] : false;
 	$hn = array_key_exists('lvchostname', $_POST) ? $_POST['lvchostname'] : false;
 	$lg = array_key_exists('lvclogging', $_POST) ? $_POST['lvclogging'] : false;
@@ -77,6 +78,7 @@
                 $hv = $tmp[$i]['hypervisor'];
                 $rh = $tmp[$i]['remote'];
                 $rm = $tmp[$i]['method'];
+		$rp = $tmp[$i]['require_pwd'];
                 $un = $tmp[$i]['user'];
                 $hn = $tmp[$i]['host'];
                 $lg = $tmp[$i]['logfile'];
@@ -86,7 +88,12 @@
 
 	if ($hv) {
 		$uri = $lv->generate_connection_uri($hv, $rh, $rm, $un, $hn);
-		$test = libvirt_connect($uri);
+		if ($rp) {
+			$credentials = array(VIR_CRED_AUTHNAME => $un, VIR_CRED_PASSPHRASE => $rp);
+			$test = libvirt_connect($uri, false, $credentials);
+		}
+		else
+			$test = libvirt_connect($uri);
 		$ok = is_resource($test);
 		unset($test);
 
@@ -96,8 +103,8 @@
 			echo '<p>'.$lang->get('changed_uri').' <b>'.$uri.'</b></p>';
 
 			if ((array_key_exists('lvcname', $_POST)) && ($_POST['lvcname']))
-				if ($db->add_connection($_POST['lvcname'], $hv, $rh, $rm, $un, $hn, $lg))
-					echo $lang->get('conn_saved');
+				if ($db->add_connection($_POST['lvcname'], $hv, $rh, $rm, $rp, $un, $hn, $lg))
+					echo '<p>'.$lang->get('conn_saved').'</p>';
 
 			echo '<a href="?">'.$lang->get('click_reload').'</a>';
 			die('</div>');
@@ -125,6 +132,7 @@
     document.getElementById('remote1').style.display = style;
     document.getElementById('remote2').style.display = style;
     document.getElementById('remote3').style.display = style;
+    document.getElementById('remote4').style.display = style;
   }
 -->
 </script>
@@ -172,6 +180,12 @@
     </td>
   </tr>
   <tr id="remote3" style="display: <?= $ds ?>">
+    <td><?= $lang->get('password')?>: </td>
+    <td align="right">
+      <input type="password" name="lvcrequirepwd" value="<?= $rp ?>" />
+    </td>
+  </tr>
+  <tr id="remote4" style="display: <?= $ds ?>">
     <td><?= $lang->get('host') ?>: </td>
     <td align="right">
       <input type="text" name="lvchostname" value="<?= $hn ?>" />

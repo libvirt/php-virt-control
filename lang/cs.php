@@ -1,4 +1,6 @@
 <?php
+		$lang_name = 'Čeština (Czech)';
+		$lang_code = 'cs';
 		$trans = array(
 					'title_vmc' => 'Ovládací panel virtuálních strojů',
 					'for_php' => 'pro PHP',
@@ -10,6 +12,7 @@
 					'conn_secure' => 'Zabezpečení',
 					'hypervisor_limit' => 'Limit hypervisoru',
 					'hostname' => 'Jméno hostitele',
+					'password' => 'Heslo',
 					'Yes' => 'Ano',
 					'No' => 'Ne',
 					'host_details' => 'Detaily hostitele',
@@ -162,5 +165,15 @@
 					'dom_none' => 'Žádná platná doména zde není definovaná',
 					'main_menu' => 'Hlavní menu',
 					'cannot_connect' => 'Nezdařilo se připojení k hypervisoru. Prosím zkontrolujte nastavení.',
+					'language' => 'Jazyk',
+					'using-ssh-auth' => 'Jak používat SSH authentizaci',
+					'info-apache-key-copy' => 'K projektu php-virt-control je přibalena utilita <b>apache-key-copy</b> (možno nalézt v podadresáři tools), '.
+								'která umožňuje nastavení SSH klíčů pro použití serverem Apache a jazykem PHP. Toto je užitečné především pro '.
+								'nastavení SSH authentizace bez hesla (password-less authentization), protože SSH transport nepodporuje předávání '.
+								'přihlašovacích informací SSH procesu a tedy je nezbytné použít tento typ authentizace pro SSH transport. Utilita '.
+								'<b>apache-key-copy</b> musí být spuštěna v kontextu superuživatele root, aby byla schopná přepnutí do uživatele '.
+								'apache i v případě, že uživatel nemá přiřazený žádný shell. Zde bude aplikace přistupovat domovský adresář '.
+								'uživatele apache, kde vytvoří SSH klíč (pokud neexistuje) a zkopíruje veřejný klíč na vzdálený systém, který '.
+								'chcete spravovat.'
 					);
 ?>

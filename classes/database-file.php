@@ -5,8 +5,8 @@
 		File-Version: 0.0.1
 		Tab: connections
 		START_TAB
-		name,hv,type,method,user,host,logfile
-		name1,qemu,0,,,,,
+		name,hv,type,method,require_pwd,user,host,logfile
+		name1,qemu,0,,0,,,,
 		END_TAB
 	*/
 	class DatabaseFile extends Database {
@@ -74,9 +74,10 @@
 								'hypervisor'	=> Trim($tmp[1]),
 								'remote'	=> Trim($tmp[2]),
 								'method'	=> Trim($tmp[3]),
-								'user'		=> Trim($tmp[4]),
-								'host'		=> Trim($tmp[5]),
-								'logfile'	=> Trim($tmp[6])
+								'require_pwd'	=> Trim($tmp[4]),
+								'user'		=> Trim($tmp[5]),
+								'host'		=> Trim($tmp[6]),
+								'logfile'	=> Trim($tmp[7])
 							);
 
 						$this->connections[] = $e;
@@ -98,10 +99,15 @@
 		}
 
 		/* Add/edit/remove functions */
-		function add_connection($name, $hv, $type, $method, $user, $host, $logfile) {
+		function add_connection($name, $hv, $type, $method, $require_pwd, $user, $host, $logfile) {
 			$fp = fopen($this->filename, 'w');
 			if (!$fp)
 				return false;
+
+			if ($require_pwd)
+				$require_pwd = 1;
+			else
+				$require_pwd = 0;
 
 			fputs($fp, "File-Version: {$this->req_version}\n");
 			fputs($fp, "Tab: connections\n");
@@ -111,13 +117,14 @@
 				$hv1 = $this->connections[$i]['hypervisor'];
 				$type1 = $this->connections[$i]['remote'];
 				$method1 = $this->connections[$i]['method'];
+				$require_pwd1 = $this->connections[$i]['require_pwd'];
 				$user1 = $this->connections[$i]['user'];
 				$host1 = $this->connections[$i]['host'];
 				$logfile1 = $this->connections[$i]['logfile'];
 
-				fputs($fp, "$name1,$hv1,$type1,$method1,$user1,$host1,$logfile1\n");
+				fputs($fp, "$name1,$hv1,$type1,$method1,$require_pwd1,$user1,$host1,$logfile1\n");
 			}
-			fputs($fp, "$name,$hv,$type,$method,$user,$host,$logfile\n");
+			fputs($fp, "$name,$hv,$type,$method,$require_pwd,$user,$host,$logfile\n");
 			fputs($fp, "END_TAB\n");
 			
 			fclose($fp);
@@ -125,10 +132,15 @@
 			return true;
 		}
 
-		function edit_connection($id, $name, $hv, $type, $method, $user, $host, $logfile) {
+		function edit_connection($id, $name, $hv, $type, $method, $require_pwd, $user, $host, $logfile) {
 			$fp = fopen($this->filename, 'w');
 			if (!$fp)
 				return false;
+
+			if ($require_pwd)
+				$require_pwd = 1;
+			else
+				$require_pwd = 0;
 
 			fputs($fp, "File-Version: {$this->req_version}\n");
 			fputs($fp, "Tab: connections\n");
@@ -138,14 +150,15 @@
 				$hv1 = $this->connections[$i]['hypervisor'];
 				$type1 = $this->connections[$i]['remote'];
 				$method1 = $this->connections[$i]['method'];
+				$require_pwd1 = $this->connections[$i]['require_pwd'];
 				$user1 = $this->connections[$i]['user'];
 				$host1 = $this->connections[$i]['host'];
 				$logfile1 = $this->connections[$i]['logfile'];
 
 				if ($i + 1 != $id)
-					fputs($fp, "$name1,$hv1,$type1,$method1,$user1,$host1,$logfile1\n");
+					fputs($fp, "$name1,$hv1,$type1,$method1,$require_pwd1,$user1,$host1,$logfile1\n");
 				else
-					fputs($fp, "$name,$hv,$type,$method,$user,$host,$logfile\n");
+					fputs($fp, "$name,$hv,$type,$method,$require_pwd,$user,$host,$logfile\n");
 			}
 			fputs($fp, "END_TAB\n");
 			
@@ -167,12 +180,13 @@
 				$hv1 = $this->connections[$i]['hypervisor'];
 				$type1 = $this->connections[$i]['remote'];
 				$method1 = $this->connections[$i]['method'];
+				$require_pwd1 = $this->connections[$i]['require_pwd'];
 				$user1 = $this->connections[$i]['user'];
 				$host1 = $this->connections[$i]['host'];
 				$logfile1 = $this->connections[$i]['logfile'];
 
 				if ($i + 1 != $id)
-					fputs($fp, "$name1,$hv1,$type1,$method1,$user1,$host1,$logfile1\n");
+					fputs($fp, "$name1,$hv1,$type1,$method1,$require_pwd1,$user1,$host1,$logfile1\n");
 			}
 			fputs($fp, "END_TAB\n");
 			

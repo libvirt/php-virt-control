@@ -1,26 +1,7 @@
 <?php
-	class Language {
-		var $trans = array();
-		private $lang_set = false;
-
-		function Language($lang=false) {
-			$this->initlang();
-
-			if ($lang && File_Exists('lang/'.$lang.'.php')) {
-				include('lang/'.$lang.'.php');
-
-				$this->lang_set = true;
-				$this->trans = $trans;
-			}
-		}
-
-		function get($ident) {
-			return array_key_exists($ident, $this->trans) ? $this->trans[$ident] : false;
-		}
-
-		function initlang() {
-			/* Default to English however implemented in here as well for case lang directory is missing */
-			$trans = array(
+		$lang_name = 'English';
+		$lang_code = 'en';
+		$trans = array(
 					'title_vmc' => 'Virtual Machine Controller',
 					'info'	 => 'Information',
 					'for_php' => 'for PHP',
@@ -186,8 +167,8 @@
 					'main_menu' => 'Main menu',
 					'cannot_connect' => 'Cannot connect to hypervisor. Please change connection information.',
 					'language' => 'Language',
-					'usig-ssh-auth' => 'Using SSH authentication',
-					'info-apache-key-copy' => 'There\'s an utility called <b>apache-key-copy</b> included to this web-application (can be found in tools subdir)'.
+					'using-ssh-auth' => 'Using SSH authentication',
+					'info-apache-key-copy' => 'There\'s an utility called <b>apache-key-copy</b> included to this web-application (can be found in tools subdir) '.
 								'that\'s useful to setup SSH keys for password-less SSH connection. The SSH connection '.
 								'transport <b>does not</b> support passing credentials to the SSH process and that\'s why '.
 								'password-less SSH connection settings is necesary. <b>Apache-key-copy</b> utility have to '.
@@ -196,8 +177,4 @@
 								'different user name to run Apache/php) and creates the hidden SSH settings directory. Then '.
 								'a SSH key is being generated (if it doesn\'t exist yet) and copied to the destination machine.',
 					);
-
-			$this->trans = $trans;
-		}
-	}
 ?>
