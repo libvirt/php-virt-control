@@ -85,6 +85,10 @@
 	width: 200px;
 }
 
+#content #form-table .checkbox {
+	width: 20px;
+}
+
 #content #form-table select {
 	width: 200px;
 }

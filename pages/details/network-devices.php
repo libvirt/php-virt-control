@@ -102,6 +102,9 @@
     </div>
 
 <?php
+    if (!$tmp)
+	$tmp = array();
+
     for ($i = 0; $i < sizeof($tmp); $i++):
         $nic = $tmp[$i];
 ?>

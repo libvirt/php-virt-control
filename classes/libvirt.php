@@ -28,6 +28,137 @@
 			return true;
 		}
 
+		function get_capabilities() {
+			$tmp = libvirt_connect_get_capabilities($this->conn);
+			return ($tmp) ? $tmp : $this->_set_last_error();
+		}
+
+		function get_default_emulator() {
+			$tmp = libvirt_connect_get_capabilities($this->conn, '//capabilities/guest/arch/domain/emulator');
+			return ($tmp) ? $tmp : $this->_set_last_error();
+		}
+
+		function domain_new($name, $img, $vcpus, $features, $mem, $maxmem, $clock, $nic, $disk) {
+			$uuid = $this->domain_generate_uuid_unique();
+			$emulator = $this->get_default_emulator();
+			$name = str_replace(' ', '', $name);
+
+			$mem *= 1024;
+			$maxmem *= 1024;
+
+			$fs = '';
+			for ($i = 0; $i < sizeof($features); $i++) {
+				$fs .= '<'.$features[$i].' />';
+			}
+
+			$diskstr = '';
+			if (!empty($disk)) {
+				if ($disk['size'])
+					if (!$this->create_image($disk['image'], $disk['size'], $disk['driver']))
+						return false;
+
+				$path = ini_get('libvirt.image_path');
+				$diskstr = "<disk type='file' device='disk'>
+						<driver name='qemu' type='{$disk['driver']}' />
+                                                <source file='$path/{$disk['image']}'/>
+                                                <target bus='{$disk['bus']}' dev='hda' />
+                                         </disk>";
+			}
+			$netstr = '';
+			if (!empty($nic)) {
+				$model = '';
+				if ($nic['type'] != 'default')
+					$model = "<model type='{$nic['type']}'/>";
+				$netstr = "
+					    <interface type='network'>
+					      <mac address='{$nic['mac']}'/>
+					      <source network='{$nic['network']}'/>
+					      $model
+					    </interface>";
+			}
+
+			$xml = "<domain type='kvm'>
+				<name>$name</name>
+				<currentMemory>$mem</currentMemory>
+				<memory>$maxmem</memory>
+				<uuid>$uuid</uuid>
+				<os>
+					<type arch='i686'>hvm</type>
+					<boot dev='cdrom'/>
+					<boot dev='hd'/>
+				</os>
+				<features>
+				$fs
+				</features>
+				<clock offset=\"$clock\"/>
+				<on_poweroff>destroy</on_poweroff>
+				<on_reboot>destroy</on_reboot>
+				<on_crash>destroy</on_crash>
+				<vcpu>$vcpus</vcpu>
+				<devices>
+					<emulator>$emulator</emulator>
+					$diskstr
+					<disk type='file' device='cdrom'>
+						<driver name='qemu'/>
+						<source file='$img'/>
+						<target dev='hdc' bus='ide'/>
+						<readonly/>
+					</disk>
+					$netstr
+					<input type='mouse' bus='ps2'/>
+					<graphics type='vnc' port='-1'/>
+					<console type='pty'/>
+					<sound model='ac97'/>
+					<video>
+						<model type='cirrus'/>
+					</video>
+				</devices>
+				</domain>";
+
+			$tmp = libvirt_domain_create_xml($this->conn, $xml);
+			if (!$tmp)
+				return $this->_set_last_error();
+
+			$xml = "<domain type='kvm'>
+				<name>$name</name>
+				<currentMemory>$mem</currentMemory>
+				<memory>$maxmem</memory>
+				<uuid>$uuid</uuid>
+				<os>
+					<type arch='i686'>hvm</type>
+					<boot dev='hd'/>
+				</os>
+				<features>
+				$fs
+				</features>
+				<clock offset=\"$clock\"/>
+				<on_poweroff>destroy</on_poweroff>
+				<on_reboot>destroy</on_reboot>
+				<on_crash>destroy</on_crash>
+				<vcpu>$vcpus</vcpu>
+				<devices>
+					<emulator>$emulator</emulator>
+					$diskstr
+					$netstr
+					<input type='mouse' bus='ps2'/>
+					<graphics type='vnc' port='-1'/>
+					<console type='pty'/>
+					<sound model='ac97'/>
+					<video>
+						<model type='cirrus'/>
+					</video>
+				</devices>
+				</domain>";
+				
+			$tmp = libvirt_domain_define_xml($this->conn, $xml);
+			return ($tmp) ? $tmp : $this->_set_last_error();
+		}
+
+		function create_image($image, $size, $driver) {
+			$tmp = libvirt_image_create($this->conn, $image, $size, $driver);
+                        return ($tmp) ? $tmp : $this->_set_last_error();
+		}
+
 		function generate_connection_uri($hv, $remote, $remote_method, $remote_username, $remote_hostname, $session=false) {
 			if ($hv == 'qemu') {
 				if ($session)
@@ -984,6 +1115,33 @@
 				return false;
 			$tmp = libvirt_domain_get_name($dom);
 			return ($tmp) ? $tmp : $this->_set_last_error();
+		}
+
+		function domain_generate_uuid($seed=false) {
+			if (!$seed)
+				$seed = time();
+			srand($seed);
+
+			$ret = array();
+			for ($i = 0; $i < 16; $i++)
+				$ret[] = $this->macbyte(rand() % 256);
+
+			$a = $ret[0].$ret[1].$ret[2].$ret[3];
+			$b = $ret[4].$ret[5];
+			$c = $ret[6].$ret[7];
+			$d = $ret[8].$ret[9];
+			$e = $ret[10].$ret[11].$ret[12].$ret[13].$ret[14].$ret[15];
+
+			return $a.'-'.$b.'-'.$c.'-'.$d.'-'.$e;
+		}
+
+		function domain_generate_uuid_unique() {
+			$uuid = $this->domain_generate_uuid();
+
+			while ($this->domain_get_name_by_uuid($uuid))
+				$uuid = $this->domain_generate_uuid();
+
+			return $uuid;
 		}
 
 		function domain_shutdown($domain) {

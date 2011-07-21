@@ -62,15 +62,16 @@
 	$dims = $lv->domain_get_screen_dimensions($name);
 ?>
 
-<?php
-    if (ALLOW_EXPERIMENTAL_VNC):
-?>
 <div id="ajax-msg"></div>
 
     <script language="javascript">
     <!--
         timerId = null;
         delay = <?= $interval * 1000 ?>;
+
+<?php
+    if (ALLOW_EXPERIMENTAL_VNC):
+?>
 	var IE = document.all ? true : false;
 	if (!IE) document.captureEvents(Event.MOUSEMOVE)
 	document.onmousemove = getMouseXY;
@@ -107,30 +108,6 @@
 		var loc = "<?= $_SERVER['REQUEST_URI'] ?>&x="+imgX+"&y="+imgY;
 		ajaxRequest.open("GET", loc, true);
 		ajaxRequest.send(null); 
-	}
-
-        function change_interval() {
-		val = document.getElementById('interval').value;
-		delay = val * 1000;
-		alert('Delay has been changed to '+val+' seconds');
-	}
-
-        function update_screenshot() {
-                src = "<?= $_SERVER['REQUEST_URI'].'&data=png' ?>";
-                var date = new Date();
-                src = src + '&date=' + date.getTime()
-                document.getElementById('screenshot').src = src;
-
-                clearTimeout(timerId);
-                timerID = setTimeout("update_screenshot()", delay);
-        }
-
-	function change_interval() {
-		val = document.getElementById('interval').value;
-		delay = val * 1000;
-		alert('Delay has been changed to '+val+' second(s)');
-
-		update_screenshot();
 	}
 
 	function findPosX(obj)
@@ -203,12 +180,30 @@
 		sendMouse();
 	}
 
-        timerID = setTimeout("update_screenshot()", delay);
-    -->
-    </script>
 <?php
     endif;
 ?>
+        function update_screenshot() {
+                src = "<?= $_SERVER['REQUEST_URI'].'&data=png' ?>";
+                var date = new Date();
+                src = src + '&date=' + date.getTime()
+                document.getElementById('screenshot').src = src;
+
+                clearTimeout(timerId);
+                timerID = setTimeout("update_screenshot()", delay);
+        }
+
+        function change_interval() {
+                val = document.getElementById('interval').value;
+                delay = val * 1000;
+                alert('Delay has been changed to '+val+' second(s)');
+
+                update_screenshot();
+        }
+
+        timerID = setTimeout("update_screenshot()", delay);
+    -->
+    </script>
 
     <!-- SETTINGS SECTION -->
     <form class="table-form" method="POST">

@@ -70,6 +70,11 @@
 
 <table id="domain-list">
   <tr>
+    <td colspan="2" align="left">
+      <a href="?page=new-vm"><?= $lang->get('create-new-vm') ?></a>
+    </td>
+  </tr>
+  <tr>
     <th><?= $lang->get('name') ?></th>
     <th><?= $lang->get('arch') ?></th>
     <th><?= $lang->get('vcpus') ?></th>

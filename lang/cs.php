@@ -27,7 +27,7 @@
 					'pool_running_inac' => 'Běží, ale není dostupný',
 					'unknown' => 'Neznámo',
 					'dom_running' => 'spuštěno',
-					'dom_nostate' => 'beze stave',
+					'dom_nostate' => 'beze stavu',
 					'dom_blocked' => 'blokováno',
 					'dom_paused' =>  'zapauzovano',
 					'dom_shutdown' => 'vypnuto',
@@ -174,6 +174,18 @@
 								'<b>apache-key-copy</b> musí být spuštěna v kontextu superuživatele root, aby byla schopná přepnutí do uživatele '.
 								'apache i v případě, že uživatel nemá přiřazený žádný shell. Zde bude aplikace přistupovat domovský adresář '.
 								'uživatele apache, kde vytvoří SSH klíč (pokud neexistuje) a zkopíruje veřejný klíč na vzdálený systém, který '.
-								'chcete spravovat.'
+								'chcete spravovat.',
+					'create-new-vm' => 'Vytvořit nový virtuální stroj',
+					'install-image' => 'Instalační obraz',
+					'create-vm' => 'Vytvořit VM',
+					'clock-offset' => 'Hodinový offset',
+					'features' => 'Vlastnosti',
+					'setup' => 'Nastavit',
+					'nic' => 'síť',
+					'disk' => 'disk',
+					'new-vm-disk' => 'VM Disk',
+					'new-vm-existing' => 'Použít existující disk',
+					'new-vm-create' => 'Vytvořit nový disk',
+					'vm-disk-size' => 'Nová velikost disku',
 					);
 ?>

@@ -108,7 +108,7 @@
       <div class="nl" />
     </div>
     <div class="item">
-      <div class="label">Clock offset:</div>
+      <div class="label"><?= $lang->get('clock-offset') ?>:</div>
       <div class="value">
         <select name="clock_offset">
           <option value="utc" <?= ($clock == 'utc'  ? 'selected="selected"' : '') ?>>UTC</option>

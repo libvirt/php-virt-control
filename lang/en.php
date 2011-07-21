@@ -176,5 +176,17 @@
 								'directory for the apache user (you will most likely need to change it if you are using a '.
 								'different user name to run Apache/php) and creates the hidden SSH settings directory. Then '.
 								'a SSH key is being generated (if it doesn\'t exist yet) and copied to the destination machine.',
+					'create-new-vm' => 'Create a new VM',
+					'install-image' => 'Install image',
+					'create-vm' => 'Create VM',
+					'clock-offset' => 'Clock offset',
+					'features' => 'Features',
+					'setup' => 'Setup',
+					'nic' => 'network',
+					'disk' => 'disk',
+					'new-vm-disk' => 'VM Disk',
+					'new-vm-existing' => 'Use existing disk image',
+					'new-vm-create' => 'Create new disk image',
+					'vm-disk-size' => 'New disk size',
 					);
 ?>
