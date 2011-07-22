@@ -1,10 +1,10 @@
   <!-- CONTENTS -->
   <div id="content">
 
-    <div class="section">Error</div>
+    <div class="section"><?= $lang->get('error_page_title') ?></div>
     <div class="item">
-      <div class="label">Page not found:</div>
-      <div class="value">The page you were looking for was not found. Please report to the administrator and try again later.</div>
+      <div class="label"><?= $lang->get('error_page_label') ?></div>
+      <div class="value"><?= $lang->get('error_page_text') ?></div>
       <div class="nl" />
     </div>
 

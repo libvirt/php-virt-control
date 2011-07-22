@@ -39,7 +39,7 @@
 		}
 
 		function domain_new($name, $img, $vcpus, $features, $mem, $maxmem, $clock, $nic, $disk, $persistent=true) {
-			$uuid = $this->domain_generate_uuid_unique();
+			$uuid = $this->domain_generate_uuid();
 			$emulator = $this->get_default_emulator();
 
 			$mem *= 1024;
@@ -832,6 +832,102 @@
 			return true;
 		}
 
+		function network_new($name, $ipinfo, $dhcpinfo=false, $forward=false, $forward_dev=false, $bridge=false) {
+			$uuid = $this->network_generate_uuid();
+			if (!$bridge) {
+				$maxid = -1;
+				$nets = $this->get_networks();
+				for ($i = 0; $i < sizeof($nets); $i++) {
+					$bridge = $this->get_network_bridge($nets[$i]);
+					if ($bridge) {
+						$tmp = explode('br', $bridge);
+						$id = (int)$tmp[1];
+
+						if ($id > $maxid)
+							$maxid = $id;
+					}
+				}
+
+				$newid = $maxid + 1;
+				$bridge = 'virbr'.$newid;
+			}
+
+			$forwards = '';
+			if ($forward) {
+				if (!$forward_dev)
+					$forwards = "<forward mode='$forward' />";
+				else
+					$forwards = "<forward mode='$forward' dev='$forward_dev' />";
+			}
+
+			/* array('ip' => $ip, 'netmask' => $mask) has been passed */
+			if (is_array($ipinfo)) {
+				$ip = $ipinfo['ip'];
+				$mask = $ipinfo['netmask'];
+			}
+			else {
+				/* CIDR definition otherwise, like 192.168.122.0/24 */
+				$tmp = explode('/', $ipinfo);
+				$ipc = explode('.', $tmp[0]);
+				$ipc[3] = (int)$ipc[3] + 1;
+				$ip = implode('.', $ipc);
+
+				$bin = '';
+				for ($i = 0; $i < $tmp[1]; $i++)
+					$bin .= '1';
+
+				$tmp = bindec($bin);
+				$ipc[0] = $tmp         % 256;
+				$ipc[1] = ($tmp >> 8 ) % 256;
+				$ipc[2] = ($tmp >> 16) % 256;
+				$ipc[3] = ($tmp >> 24) % 256;
+
+				$mask = implode('.', $ipc);
+			}
+
+			$dhcps = '';
+			if ($dhcpinfo) {
+				/* For definition like array('start' => $dhcp_start, 'end' => $dhcp_end) */
+				if (is_array($dhcpinfo)) {
+					$dhcp_start = $dhcpinfo['start'];
+					$dhcp_end = $dhcpinfo['end'];
+				}
+				else {
+					/* Definition like '$dhcp_start - $dhcp_end' */
+					$tmp = explode('-', $dhcpinfo);
+					$dhcp_start = Trim($tmp[0]);
+					$dhcp_end = Trim($tmp[1]);
+				}
+
+				$dhcps = "<dhcp>
+                                                <range start='$dhcp_start' end='$dhcp_end' />
+                                        </dhcp>";
+			}
+
+			$xml = "<network>
+				<name>$name</name>
+				<uuid>$uuid</uuid>
+				$forwards
+				<bridge name='$bridge' stp='on' delay='0' />
+				<ip address='$ip' netmask='$mask'>
+					$dhcps
+				</ip>
+				</network>";
+
+			return $this->network_define($xml);
+		}
+
+		function network_define($xml) {
+			$tmp = libvirt_network_define_xml($this->conn, $xml);
+			return ($tmp) ? $tmp : $this->_set_last_error();
+		}
+
+		function network_undefine($network) {
+			$net = $this->get_network_res($network);
+			$tmp = libvirt_network_undefine($net);
+			return ($tmp) ? $tmp : $this->_set_last_error();
+		}
+
 		function translate_storagepool_state($state) {
 			$lang = new Language($this->lang_str);
 			$ret = $lang->get('unknown');
@@ -1140,7 +1236,7 @@
 			return ($tmp) ? $tmp : $this->_set_last_error();
 		}
 
-		function domain_generate_uuid($seed=false) {
+		function generate_uuid($seed=false) {
 			if (!$seed)
 				$seed = time();
 			srand($seed);
@@ -1158,13 +1254,19 @@
 			return $a.'-'.$b.'-'.$c.'-'.$d.'-'.$e;
 		}
 
-		function domain_generate_uuid_unique() {
-			$uuid = $this->domain_generate_uuid();
+		function domain_generate_uuid() {
+			$uuid = $this->generate_uuid();
 
 			while ($this->domain_get_name_by_uuid($uuid))
-				$uuid = $this->domain_generate_uuid();
+				$uuid = $this->generate_uuid();
 
 			return $uuid;
+		}
+
+		function network_generate_uuid() {
+			/* TODO: Fix after virNetworkLookupByUUIDString is exposed
+				 to libvirt-php to ensure UUID uniqueness */
+			return $this->generate_uuid();
 		}
 
 		function domain_shutdown($domain) {
