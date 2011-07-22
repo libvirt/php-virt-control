@@ -186,7 +186,7 @@
         function update_screenshot() {
                 src = "<?= $_SERVER['REQUEST_URI'].'&data=png' ?>";
                 var date = new Date();
-                src = src + '&date=' + date.getTime()
+                src = src + '&date=' + date.getTime()+'-'+Math.random()
                 document.getElementById('screenshot').src = src;
 
                 clearTimeout(timerId);

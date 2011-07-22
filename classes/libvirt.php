@@ -38,10 +38,9 @@
 			return ($tmp) ? $tmp : $this->_set_last_error();
 		}
 
-		function domain_new($name, $img, $vcpus, $features, $mem, $maxmem, $clock, $nic, $disk) {
+		function domain_new($name, $img, $vcpus, $features, $mem, $maxmem, $clock, $nic, $disk, $persistent=true) {
 			$uuid = $this->domain_generate_uuid_unique();
 			$emulator = $this->get_default_emulator();
-			$name = str_replace(' ', '', $name);
 
 			$mem *= 1024;
 			$maxmem *= 1024;
@@ -53,9 +52,11 @@
 
 			$diskstr = '';
 			if (!empty($disk)) {
-				if ($disk['size'])
+				if ($disk['size']) {
+					$disk['image'] = str_replace(' ', '_', $disk['image']);
 					if (!$this->create_image($disk['image'], $disk['size'], $disk['driver']))
 						return false;
+				}
 
 				if ($disk['image'][0] != '/')
 					$path = ini_get('libvirt.image_path').'/'.$disk['image'];
@@ -123,44 +124,63 @@
 			if (!$tmp)
 				return $this->_set_last_error();
 
-			$xml = "<domain type='kvm'>
-				<name>$name</name>
-				<currentMemory>$mem</currentMemory>
-				<memory>$maxmem</memory>
-				<uuid>$uuid</uuid>
-				<os>
-					<type arch='i686'>hvm</type>
-					<boot dev='hd'/>
-				</os>
-				<features>
-				$fs
-				</features>
-				<clock offset=\"$clock\"/>
-				<on_poweroff>destroy</on_poweroff>
-				<on_reboot>destroy</on_reboot>
-				<on_crash>destroy</on_crash>
-				<vcpu>$vcpus</vcpu>
-				<devices>
-					<emulator>$emulator</emulator>
-					$diskstr
-					$netstr
-					<input type='mouse' bus='ps2'/>
-					<graphics type='vnc' port='-1'/>
-					<console type='pty'/>
-					<sound model='ac97'/>
-					<video>
-						<model type='cirrus'/>
-					</video>
-				</devices>
-				</domain>";
+			if ($persistent) {
+				$xml = "<domain type='kvm'>
+					<name>$name</name>
+					<currentMemory>$mem</currentMemory>
+					<memory>$maxmem</memory>
+					<uuid>$uuid</uuid>
+					<os>
+						<type arch='i686'>hvm</type>
+						<boot dev='hd'/>
+					</os>
+					<features>
+					$fs
+					</features>
+					<clock offset=\"$clock\"/>
+					<on_poweroff>destroy</on_poweroff>
+					<on_reboot>destroy</on_reboot>
+					<on_crash>destroy</on_crash>
+					<vcpu>$vcpus</vcpu>
+					<devices>
+						<emulator>$emulator</emulator>
+						$diskstr
+						$netstr
+						<input type='mouse' bus='ps2'/>
+						<graphics type='vnc' port='-1'/>
+						<console type='pty'/>
+						<sound model='ac97'/>
+						<video>
+							<model type='cirrus'/>
+						</video>
+					</devices>
+					</domain>";
 				
-			$tmp = libvirt_domain_define_xml($this->conn, $xml);
-			return ($tmp) ? $tmp : $this->_set_last_error();
+				$tmp = libvirt_domain_define_xml($this->conn, $xml);
+				return ($tmp) ? $tmp : $this->_set_last_error();
+			}
+			else
+				return $tmp;
 		}
 
 		function create_image($image, $size, $driver) {
 			$tmp = libvirt_image_create($this->conn, $image, $size, $driver);
                         return ($tmp) ? $tmp : $this->_set_last_error();
+		}
+
+		function remove_image($image, $ignore_error_codes=false ) {
+			$tmp = libvirt_image_remove($this->conn, $image);
+			if ((!$tmp) && ($ignore_error_codes)) {
+				$err = libvirt_get_last_error();
+				$comps = explode(':', $err);
+				$err = explode('(', $comps[sizeof($comps)-1]);
+				$code = (int)Trim($err[0]);
+
+				if (in_array($code, $ignore_error_codes))
+					return true;
+			}
+
+			return ($tmp) ? $tmp : $this->_set_last_error();
 		}
 
 		function generate_connection_uri($hv, $remote, $remote_method, $remote_username, $remote_hostname, $session=false) {
@@ -450,7 +470,6 @@
 			$buses =  $this->get_xpath($dom, '//domain/devices/disk[@device="disk"]/target/@bus', false);
 			$disks =  $this->get_xpath($dom, '//domain/devices/disk[@device="disk"]/target/@dev', false);
 			$files =  $this->get_xpath($dom, '//domain/devices/disk[@device="disk"]/source/@file', false);
-			// create image as: qemu-img create -f qcow2 -o backing_file=RAW_IMG OUT_QCOW_IMG SIZE[K,M,G suffixed]
 
 			$ret = array();
 			for ($i = 0; $i < $disks['num']; $i++) {

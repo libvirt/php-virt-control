@@ -5,20 +5,55 @@
   $frm = '';
   if ($action == 'domain-start') {
     $name = $_GET['dom'];
-    $msg = $lv->domain_start($name) ? 'Domain has been started successfully' :
-		'Error while starting domain: '.$lv->get_last_error();
+    $msg = $lv->domain_start($name) ? $lang->get('dom_start_ok') :
+           $lang->get('dom_start_err').': '.$lv->get_last_error();
   }
 
   if ($action == 'domain-stop') {
     $name = $_GET['dom'];
-    $msg = $lv->domain_shutdown($name) ? 'Domain command to stop has been completed successfully' :
-		'Error while stopping domain: '.$lv->get_last_error();
+    $msg = $lv->domain_shutdown($name) ? $lang->get('dom_shutdown_ok') :
+           $lang->get('dom_shutdown_err').': '.$lv->get_last_error();
   }
 
   if ($action == 'domain-destroy') {
     $name = $_GET['dom'];
-    $msg = $lv->domain_destroy($name) ? 'Domain has been destroyed successfully' :
-                'Error while destroying domain: '.$lv->get_last_error();
+    $msg = $lv->domain_destroy($name) ? $lang->get('dom_destroy_ok') :
+           $lang->get('dom_destroy_err').': '.$lv->get_last_error();
+  }
+
+  if ($action == 'domain-undefine') {
+    $name = $_GET['dom'];
+    if ((!array_key_exists('confirmed', $_GET)) || ($_GET['confirmed'] != 1)) {
+        $frm = '<div class="section">'.$lang->get('dom_undefine').'</div>
+                <table id="form-table">
+                <tr>
+                  <td colspan="3">'.$lang->get('dom_undefine_question').' '.$lang->get('name').': <u>'.$name.'</u></td>
+                </tr>
+                <tr align="center">
+                  <td><a href="'.$_SERVER['REQUEST_URI'].'&amp;confirmed=1">'.$lang->get('delete').'</a></td>
+                  <td><a href="'.$_SERVER['REQUEST_URI'].'&amp;confirmed=1&amp;deldisks=1">'.$lang->get('delete_with_disks').'</a></td>
+                  <td><a href="?page='.$page.'">'.$lang->get('No').'</a></td>
+                </td>
+                </table>';
+    }
+    else {
+	$err = '';
+	if (array_key_exists('deldisks', $_GET) && $_GET['deldisks'] == 1) {
+		$disks = $lv->get_disk_stats($name);
+
+		for ($i = 0; $i < sizeof($disks); $i++) {
+			$img = $disks[$i]['file'];
+
+			if (!$lv->remove_image($img, array(2) ))
+				$err .= $img.': '.$lv->get_last_error();
+		}
+	}
+        $msg = $lv->domain_undefine($name) ? $lang->get('dom_undefine_ok') :
+               $lang->get('dom_undefine_err').': '.$lv->get_last_error();
+
+	if ($err)
+		$msg .= ' (err: '.$err.')';
+    }
   }
 
   if ($action == 'domain-dump') {
@@ -39,8 +74,8 @@
     $inactive = (!$lv->domain_is_running($name)) ? true : false;
 
     if (array_key_exists('xmldesc', $_POST)) {
-        $msg = $lv->domain_change_xml($name, $_POST['xmldesc']) ? 'Domain definition has been changed' :
-                                      'Error changing domain definition: '.$lv->get_last_error();
+        $msg = $lv->domain_change_xml($name, $_POST['xmldesc']) ? $lang->get('dom_define_changed') :
+               $lang->get('dom_define_change_err').': '.$lv->get_last_error();
 
     }
     else {
@@ -119,6 +154,7 @@
 					$actions  = '<a href="?page='.$page.'&amp;action=domain-start&amp;dom='.$name.'">'.$lang->get('dom_start').'</a> | ';
 					$actions .= '<a href="?page='.$page.'&amp;action=domain-dump&amp;dom='.$name.'">'.$lang->get('dom_dumpxml').'</a> | ';
 					$actions .= '<a href="?page='.$page.'&amp;action=domain-edit&amp;dom='.$name.'">'.$lang->get('dom_editxml').'</a> | ';
+					$actions .= '<a href="?page='.$page.'&amp;action=domain-undefine&amp;dom='.$name.'">'.$lang->get('dom_undefine').'</a> | ';
 
 					$actions[ strlen($actions) - 2 ] = ' ';
 					$actions = Trim($actions);

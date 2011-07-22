@@ -35,7 +35,7 @@
 		}
 	}
 
-	$tmp = $lv->domain_new($_POST['name'], $img, $_POST['cpu_count'], $feature, $_POST['memory'], $_POST['maxmem'], $_POST['clock_offset'], $nic, $disk);
+	$tmp = $lv->domain_new($_POST['name'], $img, $_POST['cpu_count'], $feature, $_POST['memory'], $_POST['maxmem'], $_POST['clock_offset'], $nic, $disk, $_POST['setup_persistent']);
 	if (!$tmp)
 		$msg = $lv->get_last_error();
 	else {
@@ -252,6 +252,16 @@
 <tr id="setup_disk5" style="display: none">
 	<td align="right"><?= $lang->get('vm_disk_dev') ?>: </td>
 	<td>hda</td>
+</tr>
+
+<tr>
+    <td align="right"><?= $lang->get('persistent') ?>:</td>
+    <td>
+      <select name="setup_persistent">
+        <option value="0"><?= $lang->get('No') ?></option>
+        <option value="1" selected="selected"><?= $lang->get('Yes') ?></option>
+      </select>
+    </td>
 </tr>
 
 </div>
