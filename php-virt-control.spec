@@ -40,16 +40,16 @@ mkdir -p %{buildroot}/%{_sysconfdir}/httpd/conf.d/
 mkdir -p %{buildroot}/%{_sysconfdir}/%{name}
 
 install -d -m0755 %{buildroot}%{_datadir}/%{name}/
-#cp -af *.php %{buildroot}%{_datadir}/%{name}/
-#cp -af *.css %{buildroot}%{_datadir}/%{name}/
-cp -av classes/ data/ graphics/ lang/ logs/ pages/ %{buildroot}%{_datadir}/%{name}/
+cp -af *.php %{buildroot}%{_datadir}/%{name}/
+cp -af *.css %{buildroot}%{_datadir}/%{name}/
+cp -af classes/ data/ graphics/ lang/ logs/ pages/ %{buildroot}%{_datadir}/%{name}/
 install -Dp -m0644 php-virt-control.conf %{buildroot}%{_sysconfdir}/httpd/conf.d/php-virt-control.conf
 
 %clean
 rm -rf %{buildroot}
 
 %files
-%doc AUTHORS
+%doc AUTHORS COPYING README INSTALL
 %defattr(-,root,root,-)
 %config(noreplace) %{_sysconfdir}/httpd/conf.d/php-virt-control.conf
 %{_datadir}/%{name}/
