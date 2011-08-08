@@ -145,7 +145,7 @@
 
 <tr align="center">
     <td colspan="2">
-    <input type="submit" value=" <?= $lang->get('create-vm') ?> " />
+    <input type="submit" value=" <?= $lang->get('create-net') ?> " />
     </td>
 </tr>
 

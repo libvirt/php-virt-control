@@ -5,14 +5,13 @@
   $msg = '';
   $frm = '';
   if (($action == 'del-nic') && ($dev)) {
-    $msg = $lv->domain_nic_remove($name, base64_decode($dev)) ? 'Network card has been removed successfully' :
-		'Cannot remove disk: '.$lv->get_last_error();
+    $msg = $lv->domain_nic_remove($name, base64_decode($dev)) ? $lang->get('network-remove-ok') :
+				$lang->get('network-remove-error').': '.$lv->get_last_error();
   }
   if ($action == 'add-nic') {
     if (array_key_exists('mac', $_POST))
         $msg = $lv->domain_nic_add($name, $_POST['mac'], $_POST['network'], $_POST['nic_type']) ?
-					'Network card has been successfully added to the guest' :
-					'Cannot add NIC to the guest: '.$lv->get_last_error();
+					$lang->get('network-add-ok') : $lang->get('network-add-error').': '.$lv->get_last_error();
     else {
 	$nets = $lv->get_networks();
 	$models = $lv->get_nic_models();

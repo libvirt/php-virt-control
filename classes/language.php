@@ -220,6 +220,7 @@
 					'create-new-vm' => 'Create a new VM',
 					'install-image' => 'Install image',
 					'create-vm' => 'Create VM',
+					'create-net' => 'Create network',
 					'clock-offset' => 'Clock offset',
 					'features' => 'Features',
 					'setup' => 'Setup',
@@ -265,6 +266,10 @@
 					'net_forward_nat' => 'NAT',
 					'net_forward_route' => 'Route',
 					'net_created' => 'Network has been created successfully',
+					'network-add-ok' => 'Network card has been successfully added to the guest. Changes will take effect on next domain startup.',
+					'network-add-error' => 'Cannot add NIC to the guest',
+					'network-remove-ok' => 'Network card has been removed successfully. Changes will take effect on next domain startup.',
+					'network-remove-error' => 'Cannot remove disk',
 					);
 
 			$this->trans = $trans;

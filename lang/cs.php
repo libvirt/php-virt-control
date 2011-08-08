@@ -200,6 +200,7 @@
 					'create-new-vm' => 'Vytvořit nový virtuální stroj',
 					'install-image' => 'Instalační obraz',
 					'create-vm' => 'Vytvořit VM',
+					'create-net' => 'Vytvořit síť̈́',
 					'clock-offset' => 'Hodinový offset',
 					'features' => 'Vlastnosti',
 					'setup' => 'Nastavit',
@@ -245,5 +246,9 @@
 					'net_forward_nat' => 'NAT',
 					'net_forward_route' => 'Route',
 					'net_created' => 'Síť byla vytvořena úspěšně',
+					'network-add-ok' => 'Síťová karta byla úspěšně přidána. Změny se projeví po dalším restartu domény.',
+					'network-add-error' => 'Nelze přidat síťovou kartu do domény',
+					'network-remove-ok' => 'Síťové karta byla úspěšně odebrána. Změny se projeví po dalším restartu domény.',
+					'network-remove-error' => 'Nelze odebrat síťovou kartu',
 					);
 ?>
