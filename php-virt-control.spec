@@ -3,7 +3,7 @@ Version:	0.0.2
 Release:	1%{?dist}%{?extra_release}
 Summary:	PHP-based virtual machine control tool
 Group:		Applications/Internet
-License:	GPL
+License:	GPLv3
 URL:		http://www.php-virt-control.org
 Source0:	http://www.php-virt-control.org/download/php-virt-control-%{version}.tar.gz
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
@@ -12,8 +12,8 @@ Requires:	php-libvirt >= 0.4.3
 Requires:	webserver
 
 %description
-php-virt-control is a virtual machine control tool written in PHP language to allow
-virtual machine management using libvirt-php extension.
+php-virt-control is a virtual machine control tool written in PHP language
+to allow virtual machine management using libvirt-php extension.
 For more details see: http://www.php-virt-control.org
 
 %prep
@@ -28,6 +28,14 @@ For more details see: http://www.php-virt-control.org
   Order Deny,Allow
   Deny from all
   Allow from 127.0.0.1
+</Directory>
+
+<Directory "%{_datadir}/php-virt-control/data">
+  Deny from all
+</Directory>
+
+<Directory "%{_datadir}/php-virt-control/logs">
+  Deny from all
 </Directory>
 
 Alias /php-virt-control %{_datadir}/%{name}
@@ -56,4 +64,7 @@ rm -rf %{buildroot}
 
 %changelog
 * Fri Jul 22 2011 Michal Novotny <minovotn@redhat.com> - 0.0.2
+- Several bugfixes plus network management
+
+* Sun Jul 10 2011 Michal Novotny <minovotn@redhat.com> - 0.0.1
 - Initial version
