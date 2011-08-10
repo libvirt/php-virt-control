@@ -50,5 +50,24 @@
 		include('error.php');
 	endif;
 ?>
+
+<?
+	if (DEBUG) {
+		echo '<div id="content">';
+		echo '<div class="section">Debug - Libvirt-php resources</div>';
+
+		$resources = $lv->print_resources();
+		for ($i = 0; $i < sizeof($resources); $i++) {
+			echo '<div class="item">';
+			echo '        <div class="label">Resource #'.($i + 1).'</div>';
+			echo '        <div class="value">'.$resources[$i].'</div>';
+			echo '        <div class="nl">';
+			echo '</div>';
+		}
+
+		echo '</div>';
+	}
+?>
+
 </body>
 </html>

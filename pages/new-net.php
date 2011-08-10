@@ -151,6 +151,7 @@
 
 <input type="hidden" name="sent" value="1" />
 </form>
+</table>
 
 <?php
   endif;

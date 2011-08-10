@@ -207,6 +207,20 @@
 				return 'qemu+'.$remote_method.'://'.$remote_username.'@'.$remote_hostname.'/'.$append_type;
 		}
 
+		function test_connection_uri($hv, $rh, $rm, $un, $rp, $hn, $session=false) {
+	                $uri = $this->generate_connection_uri($hv, $rh, $rm, $un, $hn, $session);
+	                if ($rp) {
+				$credentials = array(VIR_CRED_AUTHNAME => $un, VIR_CRED_PASSPHRASE => $rp);
+                		$test = libvirt_connect($uri, false, $credentials);
+	                }
+        	        else
+                		$test = libvirt_connect($uri);
+			$ok = is_resource($test);
+			unset($test);
+
+			return $ok;
+		}
+
 		function print_resources() {
 			return libvirt_print_binding_resources();
 		}

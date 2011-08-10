@@ -271,7 +271,7 @@
     <input type="submit" value=" <?= $lang->get('create-vm') ?> " />
     </td>
 </tr>
-
+</table>
 <input type="hidden" name="sent" value="1" />
 </form>
 

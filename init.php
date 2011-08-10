@@ -1,4 +1,5 @@
 <?php
+	define('DEBUG', true);
 	define('LOGDIR', getcwd().'/logs');
 	define('LIBVIRT_PHP_REQ_VERSION', '0.4.3');
 	define('PHPVIRTCONTROL_VERSION', '0.0.2');
@@ -35,6 +36,7 @@
 	require('classes/language.php');
 	require('classes/database.php');
 	require('classes/database-file.php');
+	require('classes/database-mysql.php');
 
 	$lang = new Language($lang_str);
 
@@ -51,5 +53,10 @@
 		exit;
 	}
 
-	$db = getDBObject('file:data/test.dat');
+	//$db = getDBObject('file:data/test.dat');
+	$db = getDBObject('mysql:data/mysql_conn.php');
+	if ($db->has_fatal_error()) {
+		include('error-connection-db.php');
+		exit;
+	}
 ?>

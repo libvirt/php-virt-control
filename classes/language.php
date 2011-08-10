@@ -15,7 +15,7 @@
 		}
 
 		function get($ident) {
-			return array_key_exists($ident, $this->trans) ? $this->trans[$ident] : false;
+			return array_key_exists($ident, $this->trans) ? $this->trans[$ident] : $ident;
 		}
 
 		function initlang() {
@@ -34,6 +34,15 @@
 					'Yes' => 'Yes',
 					'No' => 'No',
 					'error_page_title' => 'Error',
+					'error_connection_db_label' => 'DB Error',
+					'error_connection_db_text' => 'The connection to your database has failed. Please check your configuration (please see init.php script and alter settings).',
+					'no-datafile' => 'Data file is missing.',
+					'no-server' => 'Server definition is missing in the data file.',
+					'no-user' => 'User definition is missing in the data file.',
+					'no-password' => 'Password definition is missing in the data file.',
+					'no-dbname' => 'Database name definition is missing in the data file.',
+					'db-failure-connect' => 'Cannot connect to database. Please check your configuration.',
+					'db-failure-select' => 'Cannot select database name. Please check your configuration.',
 					'error_page_label' => 'Page not found:',
 					'error_page_text' => 'The page you were looking for was not found. Please report to the administrator and try again later.',
 					'error_missing_label' => 'Missing dependency:',

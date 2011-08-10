@@ -2,9 +2,28 @@
 	class Database {
 		var $unimpl = 'Function is not implemented';
 		var $log = array();
+		private $fatal = false;
 
 		function Database($type) {
 			$this->connect();
+		}
+
+		function set_db_fatal($func) {
+			$this->fatal = true;
+			$this->err('connect', $func);
+
+			return false;
+		}
+
+		function has_fatal_error() {
+			return $this->fatal;
+		}
+
+		function get_fatal_error() {
+			if (!$this->fatal)
+				return false;
+
+			return $this->log[0]['msg'];
 		}
 
 		function err($func, $msg) {

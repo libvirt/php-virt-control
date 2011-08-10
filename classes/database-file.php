@@ -39,6 +39,7 @@
 
 		/* Parse function */
 		function parse_data() {
+			$id = 0;
 			rewind($this->fp);
 
 			$in_tab = false;
@@ -69,7 +70,9 @@
 				if ($in_tab) {
 					if ($tab_name == 'connections') {
 						$tmp = explode(',', $s);
+						$id++;
 						$e = array(
+								'id'		=> $id,
 								'name'		=> Trim($tmp[0]),
 								'hypervisor'	=> Trim($tmp[1]),
 								'remote'	=> Trim($tmp[2]),

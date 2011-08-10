@@ -37,6 +37,7 @@
 		$user = $tmp[$i]['user'];
 		$host = $tmp[$i]['host'];
 		$logfile = $tmp[$i]['logfile'];
+		$id = $tmp[$i]['id'];
 
 		echo '<tr align="center">
 			<td>'.$name.'</td>
@@ -45,8 +46,8 @@
 			<td>'.($host ? $host : '-').'</td>
                         <td>'.($logfile ? $logfile : '-').'</td>
 			<td>
-				<a href="?connect='.($i + 1).'">'.$lang->get('connect').'</a> |
-				<a href="?remove_conn='.($i + 1).'">'.$lang->get('conn_remove').'</a>
+				<a href="?connect='.$id.'">'.$lang->get('connect').'</a> |
+				<a href="?remove_conn='.$id.'">'.$lang->get('conn_remove').'</a>
 			</td>
                       </tr>';
 	}
@@ -73,31 +74,28 @@
 
 	if (array_key_exists('connect', $_GET)) {
 		$tmp = $db->list_connections();
-		$i = (int)$_GET['connect'] - 1;
+		$rid = (int)$_GET['connect'];
 
-                $hv = $tmp[$i]['hypervisor'];
-                $rh = $tmp[$i]['remote'];
-                $rm = $tmp[$i]['method'];
-		$rp = $tmp[$i]['require_pwd'];
-                $un = $tmp[$i]['user'];
-                $hn = $tmp[$i]['host'];
-                $lg = $tmp[$i]['logfile'];
+		for ($i = 0; $i < sizeof($tmp); $i++) {
+			if ($tmp[$i]['id'] == $rid) {
+				$id = $tmp[$i]['id'];
+        		        $hv = $tmp[$i]['hypervisor'];
+                		$rh = $tmp[$i]['remote'];
+	                	$rm = $tmp[$i]['method'];
+				$rp = $tmp[$i]['require_pwd'];
+        	        	$un = $tmp[$i]['user'];
+	        	        $hn = $tmp[$i]['host'];
+        	        	$lg = $tmp[$i]['logfile'];
+			}
+		}
 		
 		unset($tmp);
 	}
 
+	$skip_rest = false;
 	if ($hv) {
-		$uri = $lv->generate_connection_uri($hv, $rh, $rm, $un, $hn);
-		if ($rp) {
-			$credentials = array(VIR_CRED_AUTHNAME => $un, VIR_CRED_PASSPHRASE => $rp);
-			$test = libvirt_connect($uri, false, $credentials);
-		}
-		else
-			$test = libvirt_connect($uri);
-		$ok = is_resource($test);
-		unset($test);
-
-		if ($ok) {
+		if ($lv->test_connection_uri($hv, $rh, $rm, $un, $rp, $hn)) {
+			$uri = $lv->generate_connection_uri($hv, $rh, $rm, $un, $hn);
 			$_SESSION['connection_uri'] = $uri;
 			$_SESSION['connection_logging'] = $lg;
 			echo '<p>'.$lang->get('changed_uri').' <b>'.$uri.'</b></p>';
@@ -107,7 +105,7 @@
 					echo '<p>'.$lang->get('conn_saved').'</p>';
 
 			echo '<a href="?">'.$lang->get('click_reload').'</a>';
-			die('</div>');
+			$skip_rest = true;
 		}
 		else {
 			echo '<p>'.$lang->get('conn_failed').': '.$uri.'</p>';
@@ -117,6 +115,9 @@
 	$ds = ($rh) ? 'table-row' : 'none';
 ?>
 
+<?php
+	if (!$skip_rest):
+?>
 <p />
 
 <script language="javascript">
@@ -216,6 +217,10 @@
   </tr>
 </table>
 </form>
+
+<?php
+	endif;
+?>
 
 </div>
 
