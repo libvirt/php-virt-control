@@ -39,25 +39,54 @@
 		else
 			style = 'none';
 
-		for (i = 1; i < 10; i++) {
-			name = 'setup_'+what+i;
-			d = document.getElementById(name);
-			if (d == null)
-				break;
+		name = 'setup_'+what;
+		d = document.getElementById(name);
+		if (d != null)
 			d.style.display = style;
-		}
 	}
 
 	function net_ip_change(val) {
 		if (val == 1) {
 			document.getElementById('net_ip_cidr').style.display = 'table-row';
-			document.getElementById('net_ip_direct1').style.display = 'none';
-			document.getElementById('net_ip_direct2').style.display = 'none';
+			document.getElementById('net_ip_direct').style.display = 'none';
 		} else {
 			document.getElementById('net_ip_cidr').style.display = 'none';
-			document.getElementById('net_ip_direct1').style.display = 'table-row';
-			document.getElementById('net_ip_direct2').style.display = 'table-row';
+			document.getElementById('net_ip_direct').style.display = 'table-row';
 		}
+	}
+
+	function check_values() {
+		if (document.getElementById('net_name').value == '') {
+			alert('Network name is not set!');
+			return false;
+		}
+
+		cidr  = document.getElementById('net_cidr').value;
+		bIP   = (document.getElementById('net_ip').value != '');
+		bMask = (document.getElementById('net_mask').value != '');
+
+		sCidr = (document.getElementById('ipdef_val').value == 1);
+		if (sCidr) {
+			if (cidr == '') {
+				alert('CIDR definition missing');
+				return false;
+			}
+			if (cidr.indexOf("/") == -1) {
+				alert('Invalid CIDR definition');
+				return false;
+			}
+		}
+
+		if (!sCidr && !(bIP && bMask)) {
+			if (!bIP)
+				alert('No IP address defined!');
+			if (!bMask)
+				alert('No network mask defined!');
+			return false;
+		}
+
+
+		return true;
 	}
 -->
 </script>
@@ -66,18 +95,18 @@
 
 <div class="section"><?= $lang->get('create-new-network') ?></div>
 
-<form method="POST">
+<form method="POST" onsubmit="return check_values()">
 
 <table id="form-table">
 <tr>
     <td align="right"><?= $lang->get('name') ?>: </td>
-    <td><input type="text" name="name" /></td>
+    <td><input type="text" name="name" id="net_name" /></td>
 </tr>
 
 <tr>
     <td align="right"><?= $lang->get('net_ip_range_def') ?>:</td>
     <td>
-      <select name="ip_range_cidr" onchange="net_ip_change(this.value)">
+      <select name="ip_range_cidr" onchange="net_ip_change(this.value)" id="ipdef_val">
 	<option value="1"><?= $lang->get('net_ip_cidr') ?></option>
 	<option value="0"><?= $lang->get('net_ip_direct') ?></option>
       </select>
@@ -86,17 +115,23 @@
 
 <tr id="net_ip_cidr">
     <td align="right"><?= $lang->get('net_ipdef_cidr') ?>:</td>
-    <td><input type="text" name="net_cidr" /></td>
+    <td><input type="text" name="net_cidr" id="net_cidr" /></td>
 </tr>
 
-<tr id="net_ip_direct1" style="display: none">
-    <td align="right"><?= $lang->get('net_ip') ?>:</td>
-    <td><input type="text" name="net_ip" /></td>
-</tr>
-
-<tr id="net_ip_direct2" style="display: none">
-    <td align="right"><?= $lang->get('net_mask') ?>:</td>
-    <td><input type="text" name="net_mask" /></td>
+<tr id="net_ip_direct" style="display: none">
+    <td>&nbsp;</td>
+    <td>
+    <table>
+	<tr>
+	    <td align="right"><?= $lang->get('net_ip') ?>:</td>
+	    <td><input type="text" name="net_ip" id="net_ip" /></td>
+ 	</tr>
+	<tr>
+	    <td align="right"><?= $lang->get('net_mask') ?>:</td>
+	    <td><input type="text" name="net_mask" id="net_mask" /></td>
+        </tr>
+    </table>
+    <td>
 </tr>
 
 <tr>
@@ -109,18 +144,23 @@
     </td>
 </tr>
 
-<tr id="setup_dhcp1" style="display: none">
-    <td align="right"><?= $lang->get('net_dhcp_start') ?>:</td>
+<tr id="setup_dhcp" style="display: none">
+    <td>&nbsp;</td>
     <td>
-      <input type="text" name="net_dhcp_start" />
-    </td>
-</tr>
-
-<tr id="setup_dhcp2" style="display: none">
-    <td align="right"><?= $lang->get('net_dhcp_end') ?>:</td>
-    <td>
-      <input type="text" name="net_dhcp_end" />
-    </td>
+	<table>
+	<tr>
+	    <td align="right"><?= $lang->get('net_dhcp_start') ?>:</td>
+	    <td>
+	      <input type="text" name="net_dhcp_start" />
+	    </td>
+	</tr>
+	<tr>
+	    <td align="right"><?= $lang->get('net_dhcp_end') ?>:</td>
+	    <td>
+	      <input type="text" name="net_dhcp_end" />
+	    </td>
+	</tr>
+	</table>
 </tr>
 
 <tr>
@@ -137,7 +177,7 @@
 <tr>
     <td align="right"><?= $lang->get('net_dev') ?>:</td>
     <td>
-      <input type="text" name="net_forward_dev" />
+      <input type="text" name="net_forward_dev" /> (<?= $lang->get('net_forward_dev_empty_msg') ?>)
     </td>
 </tr>
 

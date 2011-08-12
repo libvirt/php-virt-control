@@ -11,6 +11,12 @@
 
 	$errmsg = false;
 	$lv = new Libvirt($uri, $lg, $lang_str);
+
+	/* Get new MAC address in plain text - called by Ajax from pages/new-vm.php */
+	if (array_key_exists('get_mac', $_GET)) {
+		die( $lv->generate_random_mac_addr() );
+	}
+
 	if ($lv->get_last_error()) {
 		$page = 'overview';
 		$name = false;

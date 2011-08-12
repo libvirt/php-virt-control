@@ -115,6 +115,9 @@
 				$active = $netinfo['active'];
 				$active_str = $lang->get( $active ? 'Yes' : 'No' );
 
+				if ($dev == 'any interface')
+					$dev = $lang->get('net_forward_dev_any');
+
 				$actions = '';
 				if (!$active) {
 					$actions .= '<a href="?page='.$page.'&amp;action=net-start&amp;net='.$name.'">'.$lang->get('net_start').'</a> | ';

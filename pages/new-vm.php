@@ -70,13 +70,10 @@
 		else
 			style = 'none';
 
-		for (i = 1; i < 10; i++) {
-			name = 'setup_'+what+i;
-			d = document.getElementById(name);
-			if (d == null)
-				break;
+		name = 'setup_'+what;
+		d = document.getElementById(name);
+		if (d != null)
 			d.style.display = style;
-		}
 	}
 
 	function vm_disk_change(val) {
@@ -87,6 +84,23 @@
 			document.getElementById('vm_disk_existing').style.display = 'none';
 			document.getElementById('vm_disk_create').style.display = 'inline';
 		}
+	}
+
+	function generate_mac_addr() {
+		var xmlhttp;
+		if (window.XMLHttpRequest)
+			xmlhttp = new XMLHttpRequest();
+		else
+			xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+
+		xmlhttp.onreadystatechange=function() {
+			if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+				document.getElementById('nic_mac_addr').value = xmlhttp.responseText;
+			}
+		}
+
+		xmlhttp.open("GET", '<?= $_SERVER['REQUEST_URI'] ?>&get_mac=1',true);
+		xmlhttp.send();
 	}
 -->
 </script>
@@ -165,36 +179,44 @@
     </td>
 </tr>
 
-<tr id="setup_network1" style="display: none">
-    <td align="right"><?= $lang->get('vm_network_mac') ?>:</td>
-    <td><input type="text" name="nic_mac" value="<?= $lv->generate_random_mac_addr() ?>"/></td>
-</tr>
-
-<tr id="setup_network2" style="display: none">
-    <td align="right"><?= $lang->get('vm_network_type') ?>:</td>
+<tr id="setup_network" style="display: none">
+    <td>&nbsp;</td>
     <td>
-                      <select name="nic_type">';
+        <table>
+            <tr>
+                <td align="right"><?= $lang->get('vm_network_mac') ?>:</td>
+                <td>
+			<input type="text" name="nic_mac" value="<?= $lv->generate_random_mac_addr() ?>" id="nic_mac_addr" />
+			<input type="button" onclick="generate_mac_addr()" value="<?= $lang->get('network-generate-mac') ?>">
+		</td>
+            </tr>
+            <tr>
+                 <td align="right"><?= $lang->get('vm_network_type') ?>:</td>
+                 <td>
+                     <select name="nic_type">';
 
 <?php
 	$models = $lv->get_nic_models();
         for ($i = 0; $i < sizeof($models); $i++)
                 echo '<option value="'.$models[$i].'">'.$models[$i].'</option>';
 ?>
-                      </select>
-    </td>
-</tr>
-
-<tr id="setup_network3" style="display: none">
-    <td align="right"><?= $lang->get('vm_network_net') ?>:</td>
-    <td>
-                      <select name="nic_net">';
+                     </select>
+                 </td>
+            </tr>
+            <tr>
+                 <td align="right"><?= $lang->get('vm_network_net') ?>:</td>
+                 <td>
+                     <select name="nic_net">';
 
 <?php
         $nets = $lv->get_networks();
         for ($i = 0; $i < sizeof($nets); $i++)
                 echo '<option value="'.$nets[$i].'">'.$nets[$i].'</option>';
 ?>
-                      </select>
+                     </select>
+                 </td>
+            </tr>
+        </table>
     </td>
 </tr>
 
@@ -208,60 +230,64 @@
     </td>
 </tr>
 
-<tr id="setup_disk1" style="display: none">
-        <td align="right"><?= $lang->get('new-vm-disk')?>: </td>
-        <td>
-		<select name="new_vm_disk" onchange="vm_disk_change(this.value)">
+<tr id="setup_disk" style="display: none">
+    <td>&nbsp;</td>
+    <td>
+        <table>
+            <tr>
+                <td align="right"><?= $lang->get('new-vm-disk')?>: </td>
+                <td>
+		    <select name="new_vm_disk" onchange="vm_disk_change(this.value)">
 			<option value="0"><?= $lang->get('new-vm-existing') ?></option>
 			<option value="1"><?= $lang->get('new-vm-create') ?></option>
-		</select>
-	</td>
-</tr>
-
-<tr id="setup_disk2" style="display: none">
-	<td align="right">
-		<span id="vm_disk_existing">
-		<?= $lang->get('vm_disk_image')?>:
-		</span>
-		<span id="vm_disk_create" style="display: none">
-		<?= $lang->get('vm-disk-size') ?> (MiB): 
-		</span>
-	</td>
-	<td><input type="text" name="img_data" /></td>
-</tr>
-
-<tr id="setup_disk3" style="display: none">
-	<td align="right"><?= $lang->get('vm_disk_location') ?>: </td>
-	<td>
-		<select name="disk_bus">
+		    </select>
+		</td>
+	    </tr>
+            <tr>
+		<td align="right">
+			<span id="vm_disk_existing">
+			<?= $lang->get('vm_disk_image')?>:
+			</span>
+			<span id="vm_disk_create" style="display: none">
+			<?= $lang->get('vm-disk-size') ?> (MiB): 
+			</span>
+		</td>
+		<td><input type="text" name="img_data" /></td>
+	    </tr>
+	    <tr>
+		<td align="right"><?= $lang->get('vm_disk_location') ?>: </td>
+		<td>
+		    <select name="disk_bus">
 			<option value="ide">IDE Bus</option>
 			<option value="scsi">SCSI Bus</option>
-		</select>
-	</td>
-</tr>
-<tr id="setup_disk4" style="display: none">
-	<td align="right"><?= $lang->get('vm_disk_type') ?>: </td>
-	<td>
-		<select name="disk_driver">
+		    </select>
+		</td>
+	    </tr>
+	    <tr>
+		<td align="right"><?= $lang->get('vm_disk_type') ?>: </td>
+		<td>
+		    <select name="disk_driver">
 			<option value="raw">raw</option>
 			<option value="qcow">qcow</option>
 			<option value="qcow2">qcow2</option>
+		    </select>
+		</td>
+	    </tr>
+	    <tr>
+		<td align="right"><?= $lang->get('vm_disk_dev') ?>: </td>
+		<td>hda</td>
+	    </tr>
+	</table>
+    </td>
+</tr>
+<tr>
+	<td align="right"><?= $lang->get('persistent') ?>:</td>
+	<td>
+		<select name="setup_persistent">
+			<option value="0"><?= $lang->get('No') ?></option>
+			<option value="1" selected="selected"><?= $lang->get('Yes') ?></option>
 		</select>
 	</td>
-</tr>
-<tr id="setup_disk5" style="display: none">
-	<td align="right"><?= $lang->get('vm_disk_dev') ?>: </td>
-	<td>hda</td>
-</tr>
-
-<tr>
-    <td align="right"><?= $lang->get('persistent') ?>:</td>
-    <td>
-      <select name="setup_persistent">
-        <option value="0"><?= $lang->get('No') ?></option>
-        <option value="1" selected="selected"><?= $lang->get('Yes') ?></option>
-      </select>
-    </td>
 </tr>
 
 </div>
