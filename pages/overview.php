@@ -1,15 +1,15 @@
 <div id="content">
 
-<div class="section"><?= $lang->get('info') ?></div>
+<div class="section"><?php echo $lang->get('info') ?></div>
 
 <?php
 	if ($errmsg)
 		echo '<div id="msg"><b>'.$lang->get('msg').': </b>'.$errmsg.'</div>';
 ?>
 
-<?= $lang->get('info_msg'); ?>
+<?php echo $lang->get('info_msg'); ?>
 
-<div class="section"><?= $lang->get('conns'); ?></div>
+<div class="section"><?php echo $lang->get('conns'); ?></div>
 
 <?php
 	if (array_key_exists('remove_conn', $_GET))
@@ -60,7 +60,7 @@
 	echo '</table>';
 ?>
 
-<div class="section"><?= $lang->get('conn_setup') ?></div>
+<div class="section"><?php echo $lang->get('conn_setup') ?></div>
 
 <?php
 	$nm = array_key_exists('lvcname', $_POST) ? $_POST['lvcname'] : false;
@@ -141,78 +141,78 @@
 <form method="POST">
 <table id="form-table">
   <tr>
-    <th colspan="2"><?= $lang->get('change_conn') ?></th>
+    <th colspan="2"><?php echo $lang->get('change_conn') ?></th>
   </tr>
   <tr>
-    <td><?= $lang->get('hypervisor') ?>: </td>
+    <td><?php echo $lang->get('hypervisor') ?>: </td>
     <td align="right">
       <select name="lvchypervisor">
-        <option value="xen" <?= ($hv == 'xen') ? ' selected="selected"' : '' ?>>Xen</option>
-        <option value="qemu" <?= ($hv == 'qemu') ? ' selected="selected"' : '' ?>>QEMU/KVM</option>
+        <option value="xen" <?php echo ($hv == 'xen') ? ' selected="selected"' : '' ?>>Xen</option>
+        <option value="qemu" <?php echo ($hv == 'qemu') ? ' selected="selected"' : '' ?>>QEMU/KVM</option>
       </select>
     </td>
   </tr>
   <tr>
-    <th colspan="2"><?= $lang->get('host_opts') ?></th>
+    <th colspan="2"><?php echo $lang->get('host_opts') ?></th>
   </tr>
   <tr>
-    <td><?= $lang->get('host_type') ?>: </td>
+    <td><?php echo $lang->get('host_type') ?>: </td>
     <td align="right">
       <select name="lvcremotehost" onchange="change_remote(this)">
-        <option value="0" <?= ($rh == '0') ? ' selected="selected"' : '' ?>><?= $lang->get('type_local') ?></option>
-        <option value="1" <?= ($rh == '1') ? ' selected="selected"' : '' ?>><?= $lang->get('type_remote') ?></option>
+        <option value="0" <?php echo ($rh == '0') ? ' selected="selected"' : '' ?>><?php echo $lang->get('type_local') ?></option>
+        <option value="1" <?php echo ($rh == '1') ? ' selected="selected"' : '' ?>><?php echo $lang->get('type_remote') ?></option>
       </select>
     </td>
   </tr>
-  <tr id="remote1" style="display: <?= $ds ?>">
-    <td><?= $lang->get('conn_method') ?>: </td>
+  <tr id="remote1" style="display: <?php echo $ds ?>">
+    <td><?php echo $lang->get('conn_method') ?>: </td>
     <td align="right">
       <select name="lvcremotemethod">
-        <option value="ssh" <?= ($rm == 'ssh') ? ' selected="selected"' : '' ?>>SSH</option>
-        <option value="tcp" <?= ($rm == 'tcp') ? ' selected="selected"' : '' ?>>TCP (SASL, Kerberos, ...)</option>
-        <option value="tls" <?= ($rm == 'tls') ? ' selected="selected"' : '' ?>>SSL/TLS with certificates</option>
+        <option value="ssh" <?php echo ($rm == 'ssh') ? ' selected="selected"' : '' ?>>SSH</option>
+        <option value="tcp" <?php echo ($rm == 'tcp') ? ' selected="selected"' : '' ?>>TCP (SASL, Kerberos, ...)</option>
+        <option value="tls" <?php echo ($rm == 'tls') ? ' selected="selected"' : '' ?>>SSL/TLS with certificates</option>
       </select>
     </td>
   </tr>
-  <tr id="remote2" style="display: <?= $ds ?>">
-    <td><?= $lang->get('user')?>: </td>
+  <tr id="remote2" style="display: <?php echo $ds ?>">
+    <td><?php echo $lang->get('user')?>: </td>
     <td align="right">
-      <input type="text" name="lvcusername" value="<?= $un ?>" />
+      <input type="text" name="lvcusername" value="<?php echo $un ?>" />
     </td>
   </tr>
-  <tr id="remote3" style="display: <?= $ds ?>">
-    <td><?= $lang->get('password')?>: </td>
+  <tr id="remote3" style="display: <?php echo $ds ?>">
+    <td><?php echo $lang->get('password')?>: </td>
     <td align="right">
-      <input type="password" name="lvcrequirepwd" value="<?= $rp ?>" />
+      <input type="password" name="lvcrequirepwd" value="<?php echo $rp ?>" />
     </td>
   </tr>
-  <tr id="remote4" style="display: <?= $ds ?>">
-    <td><?= $lang->get('host') ?>: </td>
+  <tr id="remote4" style="display: <?php echo $ds ?>">
+    <td><?php echo $lang->get('host') ?>: </td>
     <td align="right">
-      <input type="text" name="lvchostname" value="<?= $hn ?>" />
-    </td>
-  </tr>
-  <tr>
-    <th colspan="2"><?= $lang->get('log_opts') ?></th>
-  </tr>
-  <tr>
-    <td><?= $lang->get('logfile')?>: </td>
-    <td align="right">
-      <input type="text" name="lvclogging" value="<?= $lg ?>" title="<?= $lang->get('empty_disable_log') ?>" />
+      <input type="text" name="lvchostname" value="<?php echo $hn ?>" />
     </td>
   </tr>
   <tr>
-    <th colspan="2"><?= $lang->get('save_conn') ?></th>
+    <th colspan="2"><?php echo $lang->get('log_opts') ?></th>
   </tr>
   <tr>
-    <td><?= $lang->get('connname')?>: </td>
+    <td><?php echo $lang->get('logfile')?>: </td>
     <td align="right">
-      <input type="text" name="lvcname" value="<?= $nm ?>" title="<?= $lang->get('empty_disable_save') ?>" />
+      <input type="text" name="lvclogging" value="<?php echo $lg ?>" title="<?php echo $lang->get('empty_disable_log') ?>" />
+    </td>
+  </tr>
+  <tr>
+    <th colspan="2"><?php echo $lang->get('save_conn') ?></th>
+  </tr>
+  <tr>
+    <td><?php echo $lang->get('connname')?>: </td>
+    <td align="right">
+      <input type="text" name="lvcname" value="<?php echo $nm ?>" title="<?php echo $lang->get('empty_disable_save') ?>" />
     </td>
   </tr>
   <tr align="center">
     <td colspan="2">
-      <input type="submit" value=" <?= $lang->get('connect_new') ?> " />
+      <input type="submit" value=" <?php echo $lang->get('connect_new') ?> " />
     </td>
   </tr>
 </table>

@@ -7,9 +7,13 @@ License:	GPLv3
 URL:		http://www.php-virt-control.org
 Source0:	http://www.php-virt-control.org/download/php-virt-control-%{version}.tar.gz
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
-BuildArch:	noarch
-Requires:	php-libvirt >= 0.4.3
-Requires:	webserver
+#BuildArch:	noarch
+BuildRequires:	gcc
+Requires:	php-libvirt >= 0.4.4
+Requires:	httpd
+Requires:	php
+Requires:	php-gd
+Requires:	php-mysql
 
 %description
 php-virt-control is a virtual machine control tool written in PHP language
@@ -28,6 +32,7 @@ For more details see: http://www.php-virt-control.org
   Order Deny,Allow
   Deny from all
   Allow from 127.0.0.1
+  Allow from ::1
 </Directory>
 
 <Directory "%{_datadir}/php-virt-control/data">
@@ -47,6 +52,9 @@ mkdir -p %{buildroot}/%{_datadir}/%{name}
 mkdir -p %{buildroot}/%{_sysconfdir}/httpd/conf.d/
 mkdir -p %{buildroot}/%{_sysconfdir}/%{name}
 
+mkdir -p %{buildroot}/%{_bindir}
+gcc -o %{buildroot}/%{_bindir}/apache-key-copy tools/apache-key-copy.c
+
 install -d -m0755 %{buildroot}%{_datadir}/%{name}/
 cp -af *.php %{buildroot}%{_datadir}/%{name}/
 cp -af *.css %{buildroot}%{_datadir}/%{name}/
@@ -60,6 +68,7 @@ rm -rf %{buildroot}
 %doc AUTHORS COPYING README INSTALL
 %defattr(-,root,root,-)
 %config(noreplace) %{_sysconfdir}/httpd/conf.d/php-virt-control.conf
+%{_bindir}/apache-key-copy
 %{_datadir}/%{name}/
 
 %changelog

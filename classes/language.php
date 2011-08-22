@@ -228,6 +228,7 @@
 								'a SSH key is being generated (if it doesn\'t exist yet) and copied to the destination machine.',
 					'create-new-vm' => 'Create a new VM',
 					'install-image' => 'Install image',
+					'error' => 'Error',
 					'create-vm' => 'Create VM',
 					'create-net' => 'Create network',
 					'clock-offset' => 'Clock offset',

@@ -23,7 +23,7 @@
 <?php
     if ($msg):
 ?>
-    <div id="msg"><b><?= $lang->get('msg') ?>: </b><?= $msg ?></div>
+    <div id="msg"><b><?php echo $lang->get('msg') ?>: </b><?php echo $msg ?></div>
 <?php
     endif;
 ?>
@@ -93,28 +93,28 @@
 
 <div id="content">
 
-<div class="section"><?= $lang->get('create-new-network') ?></div>
+<div class="section"><?php echo $lang->get('create-new-network') ?></div>
 
 <form method="POST" onsubmit="return check_values()">
 
 <table id="form-table">
 <tr>
-    <td align="right"><?= $lang->get('name') ?>: </td>
+    <td align="right"><?php echo $lang->get('name') ?>: </td>
     <td><input type="text" name="name" id="net_name" /></td>
 </tr>
 
 <tr>
-    <td align="right"><?= $lang->get('net_ip_range_def') ?>:</td>
+    <td align="right"><?php echo $lang->get('net_ip_range_def') ?>:</td>
     <td>
       <select name="ip_range_cidr" onchange="net_ip_change(this.value)" id="ipdef_val">
-	<option value="1"><?= $lang->get('net_ip_cidr') ?></option>
-	<option value="0"><?= $lang->get('net_ip_direct') ?></option>
+	<option value="1"><?php echo $lang->get('net_ip_cidr') ?></option>
+	<option value="0"><?php echo $lang->get('net_ip_direct') ?></option>
       </select>
     </td>
 </tr>
 
 <tr id="net_ip_cidr">
-    <td align="right"><?= $lang->get('net_ipdef_cidr') ?>:</td>
+    <td align="right"><?php echo $lang->get('net_ipdef_cidr') ?>:</td>
     <td><input type="text" name="net_cidr" id="net_cidr" /></td>
 </tr>
 
@@ -123,11 +123,11 @@
     <td>
     <table>
 	<tr>
-	    <td align="right"><?= $lang->get('net_ip') ?>:</td>
+	    <td align="right"><?php echo $lang->get('net_ip') ?>:</td>
 	    <td><input type="text" name="net_ip" id="net_ip" /></td>
  	</tr>
 	<tr>
-	    <td align="right"><?= $lang->get('net_mask') ?>:</td>
+	    <td align="right"><?php echo $lang->get('net_mask') ?>:</td>
 	    <td><input type="text" name="net_mask" id="net_mask" /></td>
         </tr>
     </table>
@@ -135,11 +135,11 @@
 </tr>
 
 <tr>
-    <td align="right"><?= $lang->get('setup').' '.$lang->get('dhcp') ?>:</td>
+    <td align="right"><?php echo $lang->get('setup').' '.$lang->get('dhcp') ?>:</td>
     <td>
       <select name="setup_dhcp" onchange="change_divs('dhcp', this.value)">
-        <option value="0"><?= $lang->get('No') ?></option>
-        <option value="1"><?= $lang->get('Yes') ?></option>
+        <option value="0"><?php echo $lang->get('No') ?></option>
+        <option value="1"><?php echo $lang->get('Yes') ?></option>
       </select>
     </td>
 </tr>
@@ -149,13 +149,13 @@
     <td>
 	<table>
 	<tr>
-	    <td align="right"><?= $lang->get('net_dhcp_start') ?>:</td>
+	    <td align="right"><?php echo $lang->get('net_dhcp_start') ?>:</td>
 	    <td>
 	      <input type="text" name="net_dhcp_start" />
 	    </td>
 	</tr>
 	<tr>
-	    <td align="right"><?= $lang->get('net_dhcp_end') ?>:</td>
+	    <td align="right"><?php echo $lang->get('net_dhcp_end') ?>:</td>
 	    <td>
 	      <input type="text" name="net_dhcp_end" />
 	    </td>
@@ -164,20 +164,20 @@
 </tr>
 
 <tr>
-    <td align="right"><?= $lang->get('net_forward') ?>:</td>
+    <td align="right"><?php echo $lang->get('net_forward') ?>:</td>
     <td>
       <select name="forward">
-        <option value="none"><?= $lang->get('net_forward_none') ?></option>
-        <option value="nat"><?= $lang->get('net_forward_nat') ?></option>
-	<option value="route"><?= $lang->get('net_forward_route') ?></option>
+        <option value="none"><?php echo $lang->get('net_forward_none') ?></option>
+        <option value="nat"><?php echo $lang->get('net_forward_nat') ?></option>
+	<option value="route"><?php echo $lang->get('net_forward_route') ?></option>
       </select>
     </td>
 </tr>
 
 <tr>
-    <td align="right"><?= $lang->get('net_dev') ?>:</td>
+    <td align="right"><?php echo $lang->get('net_dev') ?>:</td>
     <td>
-      <input type="text" name="net_forward_dev" /> (<?= $lang->get('net_forward_dev_empty_msg') ?>)
+      <input type="text" name="net_forward_dev" /> (<?php echo $lang->get('net_forward_dev_empty_msg') ?>)
     </td>
 </tr>
 
@@ -185,7 +185,7 @@
 
 <tr align="center">
     <td colspan="2">
-    <input type="submit" value=" <?= $lang->get('create-net') ?> " />
+    <input type="submit" value=" <?php echo $lang->get('create-net') ?> " />
     </td>
 </tr>
 

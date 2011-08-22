@@ -39,9 +39,9 @@
         }
         function check() {
             if (change_el == 'ch-apply')
-                return (confirm('<?= $lang->get('ask_apply') ?>'));
+                return (confirm('<?php echo $lang->get('ask_apply') ?>'));
             if (change_el == 'ch-discard')
-                return (confirm('<?= $lang->get('ask_discard') ?>'));
+                return (confirm('<?php echo $lang->get('ask_discard') ?>'));
         }
     -->
     </script>
@@ -49,81 +49,81 @@
     <form action="#" method="POST" onsubmit="return check();">
 
     <!-- GENERAL SECTION -->
-    <div class="section"><?= $lang->get('general') ?></div>
+    <div class="section"><?php echo $lang->get('general') ?></div>
     <div class="item">
-      <div class="label"><?= $lang->get('name') ?>:</div>
-      <div class="value"><?= $name ?></div>
+      <div class="label"><?php echo $lang->get('name') ?>:</div>
+      <div class="value"><?php echo $name ?></div>
       <div class="nl" />
     </div>
     <div class="item">
       <div class="label">UUID:</div>
-      <div class="value"><?= $uuid ?></div>
+      <div class="value"><?php echo $uuid ?></div>
       <div class="nl" />
     </div>
     <div class="item">
-      <div class="label"><?= $lang->get('state') ?>:</div>
-      <div class="value"><?= $status ?></div>
+      <div class="label"><?php echo $lang->get('state') ?>:</div>
+      <div class="value"><?php echo $status ?></div>
       <div class="nl" />
     </div>
     <div class="item">
-      <div class="label"><?= $lang->get('description') ?>:</div>
+      <div class="label"><?php echo $lang->get('description') ?>:</div>
       <div class="value">
-        <textarea rows="10" cols="60" name="description"><?= $desc ?></textarea>
+        <textarea rows="10" cols="60" name="description"><?php echo $desc ?></textarea>
       </div>
       <div class="nl" />
     </div>
     <!-- MACHINE DETAILS SECTION -->
-    <div class="section"><?= $lang->get('vm_details') ?>: </div>
+    <div class="section"><?php echo $lang->get('vm_details') ?>: </div>
     <div class="item">
-      <div class="label"><?= $lang->get('arch') ?>:</div>
-      <div class="value"><?= $arch ?></div>
+      <div class="label"><?php echo $lang->get('arch') ?>:</div>
+      <div class="value"><?php echo $arch ?></div>
       <div class="nl" />
     </div>
     <div class="item">
       <div class="label">APIC:</div>
       <div class="value">
-        <input type="checkbox" value="1" <?= ($apic ? 'checked="checked"' : '') ?> name="feature_apic" />
+        <input type="checkbox" value="1" <?php echo ($apic ? 'checked="checked"' : '') ?> name="feature_apic" />
       </div>
       <div class="nl" />
     </div>
     <div class="item">
       <div class="label">ACPI:</div>
       <div class="value">
-        <input type="checkbox" value="1" <?= ($acpi ? 'checked="checked"' : '') ?> name="feature_acpi" />
+        <input type="checkbox" value="1" <?php echo ($acpi ? 'checked="checked"' : '') ?> name="feature_acpi" />
       </div>
       <div class="nl" />
     </div>
     <div class="item">
       <div class="label">PAE:</div>
       <div class="value">
-        <input type="checkbox" value="1" <?= ($pae ? 'checked="checked"' : '') ?> name="feature_pae" />
+        <input type="checkbox" value="1" <?php echo ($pae ? 'checked="checked"' : '') ?> name="feature_pae" />
       </div>
       <div class="nl" />
     </div>
     <div class="item">
       <div class="label">HAP:</div>
       <div class="value">
-        <input type="checkbox" value="1" <?= ($hap ? 'checked="checked"' : '') ?> name="feature_hap" />
+        <input type="checkbox" value="1" <?php echo ($hap ? 'checked="checked"' : '') ?> name="feature_hap" />
       </div>
       <div class="nl" />
     </div>
     <div class="item">
-      <div class="label"><?= $lang->get('clock-offset') ?>:</div>
+      <div class="label"><?php echo $lang->get('clock-offset') ?>:</div>
       <div class="value">
         <select name="clock_offset">
-          <option value="utc" <?= ($clock == 'utc'  ? 'selected="selected"' : '') ?>>UTC</option>
-          <option value="localtime" <?= ($clock == 'localtime'  ? 'selected="selected"' : '') ?>>localtime</option>
+          <option value="utc" <?php echo ($clock == 'utc'  ? 'selected="selected"' : '') ?>>UTC</option>
+          <option value="localtime" <?php echo ($clock == 'localtime'  ? 'selected="selected"' : '') ?>>localtime</option>
         </select>
       </div>
       <div class="nl" />
     </div>
     <!-- ACTIONS SECTION -->
-    <div class="section"><?= $lang->get('actions') ?></div>
+    <div class="section"><?php echo $lang->get('actions') ?></div>
     <div class="item">
-      <div class="label"><?= $lang->get('changes') ?>:</div>
+      <div class="label"><?php echo $lang->get('changes') ?>:</div>
       <div class="value">
-        <input type="submit" name="ch-apply" value=" <?= $lang->get('btn_apply') ?> " onclick="setElement('change', this)" />
-        <input type="submit" name="ch-discard" value=" <?= $lang->get('btn_discard') ?> " onclick="setElement('change', this)" />
+        <input type="submit" name="ch-apply" value=" <?php echo $lang->get('btn_apply') ?> " onclick="setElement('change', this)" />
+        <input type="submit" name="ch-discard" value=" <?php echo $lang->get('btn_discard') ?> " onclick="setElement('change', this)" />
       </div>
       <div class="nl" />
     </div>

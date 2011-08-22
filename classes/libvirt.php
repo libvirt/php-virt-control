@@ -5,12 +5,15 @@
 		private $allow_cached = true;
 		private $dominfos = array();
 		private $lang_str;
+		private $enabled = false;
 
 		function Libvirt($uri = false, $debug=false, $lang=false) {
 			if ($debug)
 				$this->set_logfile($debug);
-			if ($uri != false)
+			if ($uri != false) {
+				$this->enabled = true;
 				$this->connect($uri);
+			}
 			$this->lang_str = $lang;
 		}
 
@@ -18,6 +21,10 @@
 		{
 			$this->last_error = libvirt_get_last_error();
 			return false;
+		}
+
+		function enabled() {
+			return $this->enabled;
 		}
 
 		function set_logfile($filename)
@@ -262,7 +269,7 @@
 		function domain_get_screenshot($domain) {
 			$dom = $this->get_domain_object($domain);
 
-			$tmp = libvirt_domain_get_screenshot($dom, $this->get_hostname() );
+			$tmp = libvirt_domain_get_screenshot($dom, $this->get_hostname(), 8 );
 			return ($tmp) ? $tmp : $this->_set_last_error();
 		}
 
@@ -307,23 +314,10 @@
 		}
 
                 function domain_get_screen_dimensions($domain) {
-			$screen = $this->domain_get_screenshot($domain);
-			$imgFile = tempnam("/tmp", "libvirt-php-tmp-resize-XXXXXX");;
+			$dom = $this->get_domain_object($domain);
 
-			$width = false;
-			$height = false;
-
-			if ($screen) {
-                                $fp = fopen($imgFile, "wb");
-				fwrite($fp, $screen);
-				fclose($fp);
-			}
-			if (file_exists($imgFile) && $screen)
-				list($width, $height) = getimagesize($imgFile);
-
-			unlink($imgFile);
-
-			return array('height' => $height, 'width' => $width);
+			$tmp = libvirt_domain_get_screen_dimensions($dom, $this->get_hostname() );
+			return ($tmp) ? $tmp : $this->_set_last_error();
 		}
 
 		function domain_send_keys($domain, $keys) {

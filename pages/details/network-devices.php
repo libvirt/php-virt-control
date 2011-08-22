@@ -65,13 +65,13 @@
     <script language="javascript">
     <!--
         function confirmAddition() {
-            if (confirm('<?= $lang->get('vm_network_askadd') ?>')) {
-                location.href = '?name=<?= $name.'&page='.$page ?>&action=add-nic';
+            if (confirm('<?php echo $lang->get('vm_network_askadd') ?>')) {
+                location.href = '?name=<?php echo $name.'&page='.$page ?>&action=add-nic';
             }
         }
         function askNicDeletion(mac, macb64) {
-            if (confirm('<?= $lang->get('vm_network_askdel') ?>'))
-                location.href = '?name=<?= $name.'&page='.$page.'&action=del-nic&dev=' ?>'+macb64;
+            if (confirm('<?php echo $lang->get('vm_network_askdel') ?>'))
+                location.href = '?name=<?php echo $name.'&page='.$page.'&action=del-nic&dev=' ?>'+macb64;
         }
     -->
     </script>
@@ -79,24 +79,24 @@
 <?php
     if ($msg):
 ?>
-    <div id="msg"><b>Message: </b><?= $msg ?></div>
+    <div id="msg"><b>Message: </b><?php echo $msg ?></div>
 <?php
     endif;
 ?>
 <?php
     if ($frm):
 ?>
-    <div><?= $frm ?></div>
+    <div><?php echo $frm ?></div>
 <?php
     endif;
 ?>
 
     <form action="#" method="POST">
 
-    <div class="section"><?= $lang->get('vm_network_title') ?></div>
+    <div class="section"><?php echo $lang->get('vm_network_title') ?></div>
     <div class="item">
-      <div class="label"><?= $lang->get('vm_network_num') ?>:</div>
-      <div class="value"><?= $numDisks ?></div>
+      <div class="label"><?php echo $lang->get('vm_network_num') ?>:</div>
+      <div class="value"><?php echo $numDisks ?></div>
       <div class="nl" />
     </div>
 
@@ -108,26 +108,26 @@
         $nic = $tmp[$i];
 ?>
     <!-- NIC SECTION -->
-    <div class="section"><?= $lang->get('vm_network_nic') ?> #<?= $i + 1 ?></div>
+    <div class="section"><?php echo $lang->get('vm_network_nic') ?> #<?php echo $i + 1 ?></div>
     <div class="item">
-      <div class="label"><?= $lang->get('vm_network_mac') ?>:</div>
-      <div class="value"><?= $nic['mac'] ?></div>
+      <div class="label"><?php echo $lang->get('vm_network_mac') ?>:</div>
+      <div class="value"><?php echo $nic['mac'] ?></div>
       <div class="nl" />
     </div>
     <div class="item">
-      <div class="label"><?= $lang->get('vm_network_net') ?>:</div>
-      <div class="value"><?= $nic['network'] ?></div>
+      <div class="label"><?php echo $lang->get('vm_network_net') ?>:</div>
+      <div class="value"><?php echo $nic['network'] ?></div>
       <div class="nl" />
     </div>
     <div class="item">
-      <div class="label"><?= $lang->get('vm_network_type') ?>:</div>
-      <div class="value"><?= $nic['nic_type'] ?></div>
+      <div class="label"><?php echo $lang->get('vm_network_type') ?>:</div>
+      <div class="value"><?php echo $nic['nic_type'] ?></div>
       <div class="nl" />
     </div>
     <div class="item">
-      <div class="label"><?= $lang->get('actions') ?>:</div>
+      <div class="label"><?php echo $lang->get('actions') ?>:</div>
       <div class="value">
-        <input type="button" onclick="askNicDeletion('<?= $nic['mac'] ?>', '<?= base64_encode($nic['mac']) ?>')" value=" <?= $lang->get('vm_network_del') ?> " />
+        <input type="button" onclick="askNicDeletion('<?php echo $nic['mac'] ?>', '<?php echo base64_encode($nic['mac']) ?>')" value=" <?php echo $lang->get('vm_network_del') ?> " />
       </div>
       <div class="nl" />
     </div>
@@ -137,11 +137,11 @@
 ?>
 
     <!-- ACTIONS SECTION -->
-    <div class="section"><?= $lang->get('actions') ?></div>
+    <div class="section"><?php echo $lang->get('actions') ?></div>
     <div class="item">
-      <div class="label"><?= $lang->get('changes') ?>:</div>
+      <div class="label"><?php echo $lang->get('changes') ?>:</div>
       <div class="value">
-        <input type="button" name="add-nic" value=" <?= $lang->get('vm_network_add') ?> " onclick="confirmAddition()" />
+        <input type="button" name="add-nic" value=" <?php echo $lang->get('vm_network_add') ?> " onclick="confirmAddition()" />
       </div>
       <div class="nl" />
     </div>

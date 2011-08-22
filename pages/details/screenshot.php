@@ -1,11 +1,29 @@
 <?php
+  if (array_key_exists('get-dims', $_GET)) {
+    ob_end_clean();
+    $tmp = $lv->domain_get_screen_dimensions($name);
+    if (!$tmp)
+        die( 'Error occured while getting screen dimensions '.$lv->get_last_error() );
+
+    die('ok: '.$tmp['width'].'x'.$tmp['height']);
+  }
+
   if (array_key_exists('x', $_GET)) {
     ob_end_clean();
     $tmp = $lv->domain_send_pointer_event($name, $_GET['x'], $_GET['y'], 1, true);
     if (!$tmp)
 	die( 'Error occured while sending pointer event: '.$lv->get_last_error() );
 
-    die( $_GET['x'].','.$_GET['y'] );
+    //die( $_GET['x'].','.$_GET['y'] );
+    die('ok');
+  }
+  if (array_key_exists('send_keys', $_GET)) {
+    ob_end_clean();
+    $tmp = $lv->domain_send_keys($name, $_GET['send_keys']);
+    if (!$tmp)
+        die( 'Error occured while sending keys: '.$lv->get_last_error() );
+
+    die('ok');
   }
 
   $interval = array_key_exists('interval', $_POST) ? $_POST['interval'] : 5;
@@ -14,14 +32,6 @@
     $msg = 'Domain is not running';
   if (!$lv->supports('screenshot'))
     $msg = 'Host machine doesn\'t support getting domain screenshots';
-
-  if (array_key_exists('keys', $_POST)) {
-    $keys = $_POST['keys'];
-    if (!strstr( $_POST['submit'], 'without' ))
-	$keys .= '\n';
-
-    $lv->domain_send_keys($name, $keys);
-  }
 
  function error($w, $h, $msg) {
     $im = imagecreatetruecolor($w, $h);
@@ -55,8 +65,8 @@
 <?php
     if ($msg):
 ?>
-    <div class="section"><?= $lang->get('dom_screenshot') ?></div>
-    <div id="msg"><b><?= $lang->get('msg') ?>: </b><?= $msg ?></div>
+    <div class="section"><?php echo $lang->get('dom_screenshot') ?></div>
+    <div id="msg"><b><?php echo $lang->get('msg') ?>: </b><?php echo $msg ?></div>
 <?php
     else:
 	$dims = $lv->domain_get_screen_dimensions($name);
@@ -67,7 +77,7 @@
     <script language="javascript">
     <!--
         timerId = null;
-        delay = <?= $interval * 1000 ?>;
+        delay = <?php echo $interval * 1000 ?>;
 
 <?php
     if (ALLOW_EXPERIMENTAL_VNC):
@@ -76,38 +86,97 @@
 	if (!IE) document.captureEvents(Event.MOUSEMOVE)
 	document.onmousemove = getMouseXY;
 
-	var tempX = 0
-	var tempY = 0
-	var screenshotX = 0
-	var screenshotY = 0
-	var imgX = 0
-	var imgY = 0
+	var tempX = 0;
+	var tempY = 0;
+	var screenshotX = 0;
+	var screenshotY = 0;
+	var imgX = 0;
+	var imgY = 0;
+	var maxWidth = <?php echo $dims['width'] ?>;
+	var maxHeight = <?php echo $dims['height'] ?>;
+	var req_data = false;
+
+	function get_time() {
+		return Math.round((new Date()).getTime());
+	}
+
+        function request_data(uri) {
+		var xmlhttp;
+		if (window.XMLHttpRequest)
+			xmlhttp = new XMLHttpRequest();
+		else
+			xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+
+		xmlhttp.onreadystatechange=function() {
+			if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+				req_data = xmlhttp.responseText;
+			}
+		}
+
+		xmlhttp.open("GET", uri, true);
+		xmlhttp.send(null);
+
+		start = get_time();
+		while (!req_data) {
+			end = get_time();
+			total = end - start;
+
+			/* Timeout of 100ms exceeded */
+			if (total > 100)
+				break;
+		}
+
+		return req_data;
+	}
+
+	function write_error(msg) {
+		if (msg.indexOf('ok') != -1) {
+			// Invalid result. Should be dimensions results so set width
+			parseAndSetKeyBoxWidth(msg);
+			return;
+		}
+
+		document.getElementById('ajax-msg').innerHTML = msg;
+	}
+
+        function write_error2(msg) {
+                document.getElementById('ajax-msg2').innerHTML = msg;
+        }
+
+	function parseAndSetKeyBoxWidth(data) {
+		tmp = data.split(':')[1];
+		data = tmp.split('x');
+		maxWidth = parseInt(data[0]);
+		maxHeight = parseInt(data[1]);
+		width = maxWidth - 260;
+		document.getElementById('keys').style.width = width+"px";
+	}
 
 	function sendMouse() {
-		var ajaxRequest;
-		try {
-			ajaxRequest = new XMLHttpRequest();
-		} catch (e) {
-			try {
-			ajaxRequest = new ActiveXObject("Msxml2.XMLHTTP");
-			} catch (e) {
-				try {
-					ajaxRequest = new ActiveXObject("Microsoft.XMLHTTP");
-				} catch (e) {
-					alert("Cannot activate AJAX object!");
-					return false;
-				}
-			}
+		data = request_data('<?php echo $_SERVER['REQUEST_URI'] ?>&x='+imgX+'&y='+imgY);
+		if (!data)
+			return;
+
+		if (data.indexOf('ok') != -1) {
+			// Invalid result. Should be dimensions results so set width
+			parseAndSetKeyBoxWidth(data);
+			return;
 		}
-		ajaxRequest.onreadystatechange = function(){
-			if(ajaxRequest.readyState == 4){
-				var ajaxDisplay = document.getElementById('ajax-msg');
-				ajaxDisplay.innerHTML = ajaxRequest.responseText;
-			}
+
+		if (data) {
+			update_screenshot();
+			write_error(data);
 		}
-		var loc = "<?= $_SERVER['REQUEST_URI'] ?>&x="+imgX+"&y="+imgY;
-		ajaxRequest.open("GET", loc, true);
-		ajaxRequest.send(null); 
+		else
+			write_error('Cannot process the request.');
+	}
+
+	function getDimensions() {
+		data = request_data('<?php echo $_SERVER['REQUEST_URI'] ?>&get-dims=1');
+		if (!data)
+			return;
+
+		parseAndSetKeyBoxWidth(data);
 	}
 
 	function findPosX(obj)
@@ -149,11 +218,11 @@
 
 	function getMouseXY(e) {
 		if (IE) {
-			tempX = event.clientX + document.body.scrollLeft
-			tempY = event.clientY + document.body.scrollTop
+			tempX = event.clientX + document.body.scrollLeft;
+			tempY = event.clientY + document.body.scrollTop;
 		} else {
-			tempX = e.pageX
-			tempY = e.pageY
+			tempX = e.pageX;
+			tempY = e.pageY;
 		}
 		if (tempX < 0) tempX = 0;
 		if (tempY < 0) tempY = 0;
@@ -166,7 +235,7 @@
 		imgX = tempX - screenshotX;
 		imgY = tempY - screenshotY;
 
-		if (((imgX > <?= $dims['width'] ?>) || (imgY > <?= $dims['height'] ?>))
+		if (((imgX > maxWidth) || (imgY > maxHeight))
 			|| (imgX < 0) || (imgY < 0)) {
 			imgX = 0;
 			imgY = 0;
@@ -180,17 +249,40 @@
 		sendMouse();
 	}
 
+        function send_keys(hitEnter) {
+		write_error('');
+		val = document.getElementById('keys').value;
+		document.getElementById('keys').value = '';
+		if (hitEnter)
+			val += '\\n';
+		ret = request_data('<?php echo $_SERVER['REQUEST_URI'] ?>&send_keys='+val);
+		if (ret != 'ok') {
+			if (ret == false)
+				ret = 'Cannot process Ajax request';
+
+			write_error('Error: '+ret);
+		}
+		else
+			update_screenshot();
+	}
+
 <?php
     endif;
 ?>
         function update_screenshot() {
-                src = "<?= $_SERVER['REQUEST_URI'].'&data=png' ?>";
+		clearTimeout(timerId);
+                src = "<?php echo $_SERVER['REQUEST_URI'].'&data=png' ?>";
                 var date = new Date();
-                src = src + '&date=' + date.getTime()+'-'+Math.random()
+		cDate = date.getTime();
+                src = src + '&date=' + encodeURIComponent(cDate) + encodeURIComponent(cDate + Math.floor(Math.random() * 11));
                 document.getElementById('screenshot').src = src;
 
-                clearTimeout(timerId);
-                timerID = setTimeout("update_screenshot()", delay);
+		getDimensions();
+
+		/* Update time specified *after* the screenshot loaded successfully */
+		document.getElementById('screenshot').onload = function() {
+			timerID = setTimeout("update_screenshot()", delay);
+		}
         }
 
         function change_interval() {
@@ -207,30 +299,31 @@
 
     <!-- SETTINGS SECTION -->
     <form class="table-form" method="POST">
-    <div class="section"><?= $lang->get('settings') ?></div>
+    <div class="section"><?php echo $lang->get('settings') ?></div>
     <div class="item">
-      <div class="label"><?= $lang->get('interval_sec') ?>:</div>
+      <div class="label"><?php echo $lang->get('interval_sec') ?>:</div>
       <div class="value">
-	<input type="text" name="interval" value="<?= $interval ?>" id="interval">
-	<input type="button" value=" <?= $lang->get('change') ?> " onclick="change_interval()">
+	<input type="text" name="interval" value="<?php echo $interval ?>" id="interval">
+	<input type="button" value=" <?php echo $lang->get('change') ?> " onclick="change_interval()">
       </div>
       <div class="nl" />
     </div>
 
-    <div class="section"><?= $lang->get('dom_screenshot') ?></div>
+    <div class="section"><?php echo $lang->get('dom_screenshot') ?></div>
 
-    <div class="screenshot"><img id="screenshot" src="<?= $_SERVER['REQUEST_URI'] ?>&amp;data=png" onclick="screenshotClick()"><br />
+    <div class="screenshot"><img id="screenshot" src="<?php echo $_SERVER['REQUEST_URI'] ?>&amp;data=png" onclick="screenshotClick()"><br />
 <?php
     if (ALLOW_EXPERIMENTAL_VNC):
 ?>
     <form class="table-form" method="POST">
     <tr>
-      <td><input type="text" name="keys" style="width: <?= $dims['width'] - 260 ?>px" autocomplete="off">
-	<input type="submit" name="submit" value="Send keys" style="width: 100px">
-	<input type="submit" name="submit" value="Send without Enter" style="width: 150px">
+      <td><input type="text" id="keys" style="width: <?php echo $dims['width'] - 260 ?>px" autocomplete="off">
+	<input type="button" value="Send keys" style="width: 100px" onclick="send_keys(true)">
+	<input type="button" value="Send without Enter" style="width: 150px" onclick="send_keys(false)">
       </td>
     </tr>
     </div>
+    <div id="ajax-msg2">xxx</div>
 <?php
     endif;
     endif;

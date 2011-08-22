@@ -29,9 +29,9 @@
         }
         function check() {
             if (change_el == 'ch-apply')
-                return (confirm('<?= $lang->get('ask_apply') ?>'));
+                return (confirm('<?php echo $lang->get('ask_apply') ?>'));
             if (change_el == 'ch-discard')
-                return (confirm('<?= $lang->get('ask_discard') ?>'));
+                return (confirm('<?php echo $lang->get('ask_discard') ?>'));
         }
     -->
     </script>
@@ -39,7 +39,7 @@
 <?php
     if ($msg):
 ?>
-    <div id="msg"><b><?= $lang->get('msg') ?>: </b><?= $msg ?></div>
+    <div id="msg"><b><?php echo $lang->get('msg') ?>: </b><?php echo $msg ?></div>
 <?php
     endif;
 ?>
@@ -47,39 +47,39 @@
     <form action="#" method="POST" onsubmit="return check();">
 
     <!-- HOST SECTION -->
-    <div class="section"><?= $lang->get('vm_boot_opts') ?></div>
+    <div class="section"><?php echo $lang->get('vm_boot_opts') ?></div>
     <div class="item">
-      <div class="label"><?= $lang->get('vm_boot_dev1') ?>:</div>
+      <div class="label"><?php echo $lang->get('vm_boot_dev1') ?>:</div>
       <div class="value">
         <select name="bd_1st">
-          <option value="hd" <?= (($bd_1st == 'hd') ? 'selected="selected"' : '') ?>><?= $lang->get('vm_boot_hdd') ?></option>
-          <option value="cdrom" <?= (($bd_1st == 'cdrom') ? 'selected="selected"' : '') ?>><?= $lang->get('vm_boot_cd') ?></option>
-          <option value="fd" <?= (($bd_1st == 'fd') ? 'selected="selected"' : '') ?>><?= $lang->get('vm_boot_fda') ?></option>
-          <option value="network" <?= (($bd_1st == 'network') ? 'selected="selected"' : '') ?>><?= $lang->get('vm_boot_pxe') ?></option>
+          <option value="hd" <?php echo (($bd_1st == 'hd') ? 'selected="selected"' : '') ?>><?php echo $lang->get('vm_boot_hdd') ?></option>
+          <option value="cdrom" <?php echo (($bd_1st == 'cdrom') ? 'selected="selected"' : '') ?>><?php echo $lang->get('vm_boot_cd') ?></option>
+          <option value="fd" <?php echo (($bd_1st == 'fd') ? 'selected="selected"' : '') ?>><?php echo $lang->get('vm_boot_fda') ?></option>
+          <option value="network" <?php echo (($bd_1st == 'network') ? 'selected="selected"' : '') ?>><?php echo $lang->get('vm_boot_pxe') ?></option>
         </select>
       </div>
       <div class="nl" />
     </div>
     <div class="item">
-      <div class="label"><?= $lang->get('vm_boot_dev2') ?>:</div>
+      <div class="label"><?php echo $lang->get('vm_boot_dev2') ?>:</div>
       <div class="value">
         <select name="bd_2nd">
-          <option value="-" <?= (($bd_2nd == '-') ? 'selected="selected"' : '') ?>><?= $lang->get('vm_boot_none') ?></option>
-          <option value="hd" <?= (($bd_2nd == 'hd') ? 'selected="selected"' : '') ?>><?= $lang->get('vm_boot_hdd') ?></option>
-          <option value="cdrom" <?= (($bd_2nd == 'cdrom') ? 'selected="selected"' : '') ?>><?= $lang->get('vm_boot_cd') ?></option>
-          <option value="fd" <?= (($bd_2nd == 'fd') ? 'selected="selected"' : '') ?>><?= $lang->get('vm_boot_fda') ?></option>
-          <option value="network" <?= (($bd_2nd == 'network') ? 'selected="selected"' : '') ?>><?= $lang->get('vm_boot_pxe') ?></option>
+          <option value="-" <?php echo (($bd_2nd == '-') ? 'selected="selected"' : '') ?>><?php echo $lang->get('vm_boot_none') ?></option>
+          <option value="hd" <?php echo (($bd_2nd == 'hd') ? 'selected="selected"' : '') ?>><?php echo $lang->get('vm_boot_hdd') ?></option>
+          <option value="cdrom" <?php echo (($bd_2nd == 'cdrom') ? 'selected="selected"' : '') ?>><?php echo $lang->get('vm_boot_cd') ?></option>
+          <option value="fd" <?php echo (($bd_2nd == 'fd') ? 'selected="selected"' : '') ?>><?php echo $lang->get('vm_boot_fda') ?></option>
+          <option value="network" <?php echo (($bd_2nd == 'network') ? 'selected="selected"' : '') ?>><?php echo $lang->get('vm_boot_pxe') ?></option>
         </select>
       </div>
       <div class="nl" />
     </div>
     <!-- ACTIONS SECTION -->
-    <div class="section"><?= $lang->get('actions') ?></div>
+    <div class="section"><?php echo $lang->get('actions') ?></div>
     <div class="item">
-      <div class="label"><?= $lang->get('changes') ?>:</div>
+      <div class="label"><?php echo $lang->get('changes') ?>:</div>
       <div class="value">
-        <input type="submit" name="ch-apply" value=" <?= $lang->get('btn_apply') ?> " onclick="setElement('change', this)" />
-        <input type="submit" name="ch-discard" value=" <?= $lang->get('btn_discard') ?> " onclick="setElement('change', this)" />
+        <input type="submit" name="ch-apply" value=" <?php echo $lang->get('btn_apply') ?> " onclick="setElement('change', this)" />
+        <input type="submit" name="ch-discard" value=" <?php echo $lang->get('btn_discard') ?> " onclick="setElement('change', this)" />
       </div>
       <div class="nl" />
     </div>

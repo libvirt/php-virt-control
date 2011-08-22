@@ -91,7 +91,7 @@
 <?php
     if ($msg):
 ?>
-    <div id="msg"><b><?= $lang->get('msg') ?>: </b><?= $msg ?></div>
+    <div id="msg"><b><?php echo $lang->get('msg') ?>: </b><?php echo $msg ?></div>
 <?php
     endif;
 ?>
@@ -101,24 +101,24 @@
 	echo $frm;
 ?>
 
-<div class="section"><?= $lang->get('domain_list') ?></div>
+<div class="section"><?php echo $lang->get('domain_list') ?></div>
 
 <table id="domain-list">
   <tr>
     <td colspan="2" align="left">
-      <a href="?page=new-vm"><?= $lang->get('create-new-vm') ?></a>
+      <a href="?page=new-vm"><?php echo $lang->get('create-new-vm') ?></a>
     </td>
   </tr>
   <tr>
-    <th><?= $lang->get('name') ?></th>
-    <th><?= $lang->get('arch') ?></th>
-    <th><?= $lang->get('vcpus') ?></th>
-    <th><?= $lang->get('mem') ?></th>
-    <th><?= $lang->get('disk/s') ?></th>
-    <th><?= $lang->get('nics') ?></th>
-    <th><?= $lang->get('state') ?></th>
-    <th><?= $lang->get('id') ?></th>
-    <th><?= $lang->get('actions') ?></th>
+    <th><?php echo $lang->get('name') ?></th>
+    <th><?php echo $lang->get('arch') ?></th>
+    <th><?php echo $lang->get('vcpus') ?></th>
+    <th><?php echo $lang->get('mem') ?></th>
+    <th><?php echo $lang->get('disk/s') ?></th>
+    <th><?php echo $lang->get('nics') ?></th>
+    <th><?php echo $lang->get('state') ?></th>
+    <th><?php echo $lang->get('id') ?></th>
+    <th><?php echo $lang->get('actions') ?></th>
   </tr>
 <?php
 		$doms = $lv->get_domains();

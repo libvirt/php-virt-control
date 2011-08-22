@@ -208,6 +208,7 @@
 								'chcete spravovat.',
 					'create-new-vm' => 'Vytvořit nový virtuální stroj',
 					'install-image' => 'Instalační obraz',
+					'error' => 'Chyba',
 					'create-vm' => 'Vytvořit VM',
 					'create-net' => 'Vytvořit síť̈́',
 					'clock-offset' => 'Hodinový offset',

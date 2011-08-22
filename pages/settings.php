@@ -33,10 +33,10 @@
 
 <div id="content">
 
-<div class="section"><?= $lang->get('settings') ?></div>
+<div class="section"><?php echo $lang->get('settings') ?></div>
 
 <div class="item">
-        <div class="label"><?= $lang->get('language') ?>: </div>
+        <div class="label"><?php echo $lang->get('language') ?>: </div>
         <div class="value">
 		<select name="language" onchange="change_lang(this.value)">
 <?php
@@ -44,7 +44,7 @@
 
 	for ($i = 0; $i < sizeof($langs); $i++):
 ?>
-			<option value="<?= $langs[$i]['code'] ?>" <?= ($lang_str == $langs[$i]['code'] ? 'selected="selected"' : '') ?>><?= $langs[$i]['name'] ?></option>
+			<option value="<?php echo $langs[$i]['code'] ?>" <?php echo ($lang_str == $langs[$i]['code'] ? 'selected="selected"' : '') ?>><?php echo $langs[$i]['name'] ?></option>
 <?php
 	endfor;
 ?>
@@ -53,8 +53,8 @@
         <div class="nl">
 </div>
 
-<div class="section"><?= $lang->get('using-ssh-auth') ?></div>
+<div class="section"><?php echo $lang->get('using-ssh-auth') ?></div>
 
-<?= $lang->get('info-apache-key-copy') ?>
+<?php echo $lang->get('info-apache-key-copy') ?>
 
 </div>

@@ -1,4 +1,4 @@
-#define DEFAULT_USER		"apache"
+#define APACHE_USER		"apache"
 
 #include <stdio.h>
 #include <unistd.h>
@@ -70,8 +70,12 @@ int main(int argc, char *argv[])
 {
 	int uid, olduid;
 	char *dir = NULL;
-	char *user = DEFAULT_USER;
+	char *user = APACHE_USER;
 	char keyfile[1024] = { 0 };
+
+	fprintf(stderr, "Apache key copy tool\n");
+	fprintf(stderr, "Tool to generate and copy SSH public keys into the user apache SSH settings.\n");
+	fprintf(stderr, "Part of php-virt-control project (http://php-virt-control.org).\n\n");
 
 	if (getuid() != 0) {
 		fprintf(stderr, "Error: You must run this utility as root!\n");

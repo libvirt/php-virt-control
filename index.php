@@ -10,6 +10,9 @@
 		$lg = LOGDIR.'/'.$lg;
 
 	$errmsg = false;
+	if (!CONNECT_WITH_NULL_STRING && $uri == 'null')
+		$uri = false;
+
 	$lv = new Libvirt($uri, $lg, $lang_str);
 
 	/* Get new MAC address in plain text - called by Ajax from pages/new-vm.php */
@@ -17,7 +20,7 @@
 		die( $lv->generate_random_mac_addr() );
 	}
 
-	if ($lv->get_last_error()) {
+	if (!$lv->enabled() || ($lv->get_last_error())) {
 		$page = 'overview';
 		$name = false;
 		$errmsg = $lang->get('cannot_connect');
@@ -30,7 +33,7 @@
 ?>
 <html>
 <head>
- <title>php-virt-control - <?= $lang->get('title_vmc') ?></title>
+ <title>php-virt-control - <?php echo $lang->get('title_vmc') ?></title>
  <link rel="STYLESHEET" type="text/css" href="manager.css"> 
 </head>
 <body>
@@ -42,7 +45,7 @@
 	include('main-menu.php');
 	if ($name):
 ?>
-	<h2 id="vm-name"><?= $lang->get('vm_title').' '.$name ?></h2>
+	<h2 id="vm-name"><?php echo $lang->get('vm_title').' '.$name ?></h2>
 <?php
 	include('menu.php');
 	if (File_Exists('./pages/details/'.$page.'.php'))
@@ -57,7 +60,7 @@
 	endif;
 ?>
 
-<?
+<?php
 	if (DEBUG) {
 		echo '<div id="content">';
 		echo '<div class="section">Debug - Libvirt-php resources</div>';

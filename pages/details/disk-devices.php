@@ -64,13 +64,13 @@
     <script language="javascript">
     <!--
         function confirmAddition() {
-            if (confirm('<?= $lang->get('vm_disk_askadd') ?>')) {
-                location.href = '?name=<?= $name.'&page='.$page ?>&action=add-disk';
+            if (confirm('<?php echo $lang->get('vm_disk_askadd') ?>')) {
+                location.href = '?name=<?php echo $name.'&page='.$page ?>&action=add-disk';
             }
         }
         function askDiskDeletion(disk) {
-            if (confirm('<?= $lang->get('vm_disk_askdel') ?>'))
-                location.href = '?name=<?= $name.'&page='.$page.'&action=del-disk&disk=' ?>'+disk;
+            if (confirm('<?php echo $lang->get('vm_disk_askdel') ?>'))
+                location.href = '?name=<?php echo $name.'&page='.$page.'&action=del-disk&disk=' ?>'+disk;
         }
     -->
     </script>
@@ -78,24 +78,24 @@
 <?php
     if ($msg):
 ?>
-    <div id="msg"><b><?= $lang->get('msg') ?>: </b><?= $msg ?></div>
+    <div id="msg"><b><?php echo $lang->get('msg') ?>: </b><?php echo $msg ?></div>
 <?php
     endif;
 ?>
 <?php
     if ($frm):
 ?>
-    <div><?= $frm ?></div>
+    <div><?php echo $frm ?></div>
 <?php
     endif;
 ?>
 
     <form action="#" method="POST">
 
-    <div class="section"><?= $lang->get('vm_disk_details') ?></div>
+    <div class="section"><?php echo $lang->get('vm_disk_details') ?></div>
     <div class="item">
-      <div class="label"><?= $lang->get('vm_disk_num') ?>:</div>
-      <div class="value"><?= $numDisks.$addmsg ?></div>
+      <div class="label"><?php echo $lang->get('vm_disk_num') ?>:</div>
+      <div class="value"><?php echo $numDisks.$addmsg ?></div>
       <div class="nl" />
     </div>
 
@@ -105,41 +105,41 @@
       $bus = ($disk['bus'] == 'ide') ? 'IDE' : 'SCSI';
 ?>
     <!-- DISK SECTION -->
-    <div class="section"><?= $bus ?> Disk <?= $i + 1 ?></div>
+    <div class="section"><?php echo $bus ?> Disk <?php echo $i + 1 ?></div>
     <div class="item">
-      <div class="label"><?= $lang->get('vm_disk_storage') ?>:</div>
-      <div class="value"><?= $disk['file'] ?></div>
+      <div class="label"><?php echo $lang->get('vm_disk_storage') ?>:</div>
+      <div class="value"><?php echo $disk['file'] ?></div>
       <div class="nl" />
     </div>
     <div class="item">
-      <div class="label"><?= $lang->get('vm_disk_type') ?>:</div>
-      <div class="value"><?= $disk['type'] ?></div>
+      <div class="label"><?php echo $lang->get('vm_disk_type') ?>:</div>
+      <div class="value"><?php echo $disk['type'] ?></div>
       <div class="nl" />
     </div>
     <div class="item">
-      <div class="label"><?= $lang->get('vm_disk_dev') ?>:</div>
-      <div class="value"><?= $disk['device'] ?></div>
+      <div class="label"><?php echo $lang->get('vm_disk_dev') ?>:</div>
+      <div class="value"><?php echo $disk['device'] ?></div>
       <div class="nl" />
     </div>
     <div class="item">
-      <div class="label"><?= $lang->get('vm_disk_capacity') ?>:</div>
-      <div class="value"><?= $lv->format_size($disk['capacity'], 2) ?></div>
+      <div class="label"><?php echo $lang->get('vm_disk_capacity') ?>:</div>
+      <div class="value"><?php echo $lv->format_size($disk['capacity'], 2) ?></div>
       <div class="nl" />
     </div>
     <div class="item">
-      <div class="label"><?= $lang->get('vm_disk_allocation') ?>:</div>
-      <div class="value"><?= $lv->format_size($disk['allocation'], 2) ?></div>
+      <div class="label"><?php echo $lang->get('vm_disk_allocation') ?>:</div>
+      <div class="value"><?php echo $lv->format_size($disk['allocation'], 2) ?></div>
       <div class="nl" />
     </div>
     <div class="item">
-      <div class="label"><?= $lang->get('vm_disk_physical') ?>:</div>
-      <div class="value"><?= $lv->format_size($disk['physical'], 2) ?></div>
+      <div class="label"><?php echo $lang->get('vm_disk_physical') ?>:</div>
+      <div class="value"><?php echo $lv->format_size($disk['physical'], 2) ?></div>
       <div class="nl" />
     </div>
     <div class="item">
-      <div class="label"><?= $lang->get('actions') ?>:</div>
+      <div class="label"><?php echo $lang->get('actions') ?>:</div>
       <div class="value">
-        <input type="button" onclick="askDiskDeletion('<?= $disk['device'] ?>')" value=" <?= $lang->get('vm_disk_remove') ?> " />
+        <input type="button" onclick="askDiskDeletion('<?php echo $disk['device'] ?>')" value=" <?php echo $lang->get('vm_disk_remove') ?> " />
       </div>
       <div class="nl" />
     </div>
@@ -153,41 +153,41 @@
       $bus = ($disk['bus'] == 'ide') ? 'IDE' : 'SCSI';
 ?>
     <!-- DISK SECTION -->
-    <div class="section"><?= $bus ?> CD-ROM <?= $i + 1 ?></div>
+    <div class="section"><?php echo $bus ?> CD-ROM <?php echo $i + 1 ?></div>
     <div class="item">
-      <div class="label"><?= $lang->get('vm_disk_storage') ?>:</div>
-      <div class="value"><?= $disk['file'] ?></div>
+      <div class="label"><?php echo $lang->get('vm_disk_storage') ?>:</div>
+      <div class="value"><?php echo $disk['file'] ?></div>
       <div class="nl" />
     </div>
     <div class="item">
-      <div class="label"><?= $lang->get('vm_disk_type') ?>:</div>
-      <div class="value"><?= $disk['type'] ?></div>
+      <div class="label"><?php echo $lang->get('vm_disk_type') ?>:</div>
+      <div class="value"><?php echo $disk['type'] ?></div>
       <div class="nl" />
     </div>
     <div class="item">
-      <div class="label"><?= $lang->get('vm_disk_dev') ?>:</div>
-      <div class="value"><?= $disk['device'] ?></div>
+      <div class="label"><?php echo $lang->get('vm_disk_dev') ?>:</div>
+      <div class="value"><?php echo $disk['device'] ?></div>
       <div class="nl" />
     </div>
     <div class="item">
-      <div class="label"><?= $lang->get('vm_disk_capacity') ?>:</div>
-      <div class="value"><?= $lv->format_size($disk['capacity'], 2) ?></div>
+      <div class="label"><?php echo $lang->get('vm_disk_capacity') ?>:</div>
+      <div class="value"><?php echo $lv->format_size($disk['capacity'], 2) ?></div>
       <div class="nl" />
     </div>
     <div class="item">
-      <div class="label"><?= $lang->get('vm_disk_allocation') ?>:</div>
-      <div class="value"><?= $lv->format_size($disk['allocation'], 2) ?></div>
+      <div class="label"><?php echo $lang->get('vm_disk_allocation') ?>:</div>
+      <div class="value"><?php echo $lv->format_size($disk['allocation'], 2) ?></div>
       <div class="nl" />
     </div>
     <div class="item">
-      <div class="label"><?= $lang->get('vm_disk_physical') ?>:</div>
-      <div class="value"><?= $lv->format_size($disk['physical'], 2) ?></div>
+      <div class="label"><?php echo $lang->get('vm_disk_physical') ?>:</div>
+      <div class="value"><?php echo $lv->format_size($disk['physical'], 2) ?></div>
       <div class="nl" />
     </div>
     <div class="item">
-      <div class="label"><?= $lang->get('actions') ?>:</div>
+      <div class="label"><?php echo $lang->get('actions') ?>:</div>
       <div class="value">
-        <input type="button" onclick="askDiskDeletion('<?= $disk['device'] ?>')" value=" <?= $lang->get('vm_disk_remove') ?> " />
+        <input type="button" onclick="askDiskDeletion('<?php echo $disk['device'] ?>')" value=" <?php echo $lang->get('vm_disk_remove') ?> " />
       </div>
       <div class="nl" />
     </div>
@@ -199,11 +199,11 @@
 ?>
 
     <!-- ACTIONS SECTION -->
-    <div class="section"><?= $lang->get('actions') ?></div>
+    <div class="section"><?php echo $lang->get('actions') ?></div>
     <div class="item">
-      <div class="label"><?= $lang->get('changes') ?>:</div>
+      <div class="label"><?php echo $lang->get('changes') ?>:</div>
       <div class="value">
-        <input type="button" name="add-disk" value=" <?= $lang->get('vm_disk_add') ?> " onclick="confirmAddition()" />
+        <input type="button" name="add-disk" value=" <?php echo $lang->get('vm_disk_add') ?> " onclick="confirmAddition()" />
       </div>
       <div class="nl" />
     </div>

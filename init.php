@@ -1,9 +1,10 @@
 <?php
 	define('DEBUG', true);
 	define('LOGDIR', getcwd().'/logs');
-	define('LIBVIRT_PHP_REQ_VERSION', '0.4.3');
+	define('LIBVIRT_PHP_REQ_VERSION', '0.4.4');
 	define('PHPVIRTCONTROL_VERSION', '0.0.2');
 	define('PHPVIRTCONTROL_WEBSITE', 'http://www.php-virt-control.org');
+	define('CONNECT_WITH_NULL_STRING', false);
 	define('ALLOW_EXPERIMENTAL_VNC', false);
 
 	session_start();
@@ -48,7 +49,7 @@
 
 	/* Now check for correct version of libvirt-php */
 	$tmp = explode('.', LIBVIRT_PHP_REQ_VERSION);
-	if (!libvirt_check_version($tmp[0], $tmp[1], $tmp[2])) {
+	if (!libvirt_check_version($tmp[0], $tmp[1], $tmp[2], VIR_VERSION_BINDING)) {
 		include('error-need-update.php');
 		exit;
 	}

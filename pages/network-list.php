@@ -69,7 +69,7 @@
 <?php
     if ($msg):
 ?>
-    <div id="msg"><b><?= $lang->get('msg') ?>: </b><?= $msg ?></div>
+    <div id="msg"><b><?php echo $lang->get('msg') ?>: </b><?php echo $msg ?></div>
 <?php
     endif;
 ?>
@@ -79,24 +79,24 @@
 	echo $frm;
 ?>
 
-<div class="section"><?= $lang->get('network_list') ?></div>
+<div class="section"><?php echo $lang->get('network_list') ?></div>
 
 <table id="domain-list">
   <tr>
     <td colspan="2" align="left">
-      <a href="?page=new-net"><?= $lang->get('create-new-network') ?></a>
+      <a href="?page=new-net"><?php echo $lang->get('create-new-network') ?></a>
     </td>
   </tr>
   <tr>
-    <th><?= $lang->get('name') ?></th>
-    <th><?= $lang->get('net_ip') ?></th>
-    <th><?= $lang->get('net_mask') ?></th>
-    <th><?= $lang->get('net_range') ?></th>
-    <th><?= $lang->get('net_forward') ?></th>
-    <th><?= $lang->get('net_dev') ?></th>
-    <th><?= $lang->get('net_dhcp_range') ?></th>
-    <th><?= $lang->get('net_active') ?></th>
-    <th><?= $lang->get('actions') ?></th>
+    <th><?php echo $lang->get('name') ?></th>
+    <th><?php echo $lang->get('net_ip') ?></th>
+    <th><?php echo $lang->get('net_mask') ?></th>
+    <th><?php echo $lang->get('net_range') ?></th>
+    <th><?php echo $lang->get('net_forward') ?></th>
+    <th><?php echo $lang->get('net_dev') ?></th>
+    <th><?php echo $lang->get('net_dhcp_range') ?></th>
+    <th><?php echo $lang->get('net_active') ?></th>
+    <th><?php echo $lang->get('actions') ?></th>
   </tr>
 <?php
 		$nets = $lv->get_networks();
