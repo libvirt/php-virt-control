@@ -35,7 +35,7 @@
 					'No' => 'No',
 					'error_page_title' => 'Error',
 					'error_connection_db_label' => 'DB Error',
-					'error_connection_db_text' => 'The connection to your database has failed. Please check your configuration (please see init.php script and alter settings).',
+					'error_connection_db_text' => 'The connection to your database has failed.',
 					'no-datafile' => 'Data file is missing.',
 					'no-server' => 'Server definition is missing in the data file.',
 					'no-user' => 'User definition is missing in the data file.',

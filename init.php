@@ -1,5 +1,5 @@
 <?php
-	define('DEBUG', true);
+	define('DEBUG', false);
 	define('LOGDIR', getcwd().'/logs');
 	define('LIBVIRT_PHP_REQ_VERSION', '0.4.4');
 	define('PHPVIRTCONTROL_VERSION', '0.0.2');
@@ -54,8 +54,13 @@
 		exit;
 	}
 
-	//$db = getDBObject('file:data/test.dat');
-	$db = getDBObject('mysql:data/mysql_conn.php');
+	/* If connection.php in config dir doesn't exist override to local config dir */
+	if (!include('/etc/php-virt-control/connection.php'))
+		$cstr = 'mysql:config/mysql-connection.php';
+
+	$cstr = $type.':/etc/php-virt-control/'.$config;
+
+	$db = getDBObject($cstr);
 	if ($db->has_fatal_error()) {
 		include('error-connection-db.php');
 		exit;

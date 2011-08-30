@@ -17,7 +17,7 @@
 					'No' => 'Ne',
 					'error_page_title' => 'Chyba',
 					'error_connection_db_label' => 'Chyba databáze',
-					'error_connection_db_text' => 'Připojení k Vaší databázi se nezdařilo. Prosím zkontrolujte Vaši konfiguraci (změňte nastavení v souboru init.php).',
+					'error_connection_db_text' => 'Připojení k Vaší databázi se nezdařilo.',
 					'no-datafile' => 'Datový soubor neexistuje.',
 					'no-server' => 'Definice serveru v datovém souboru neexistuje.',
 					'no-user' => 'Definice uživatele v datovém souboru neexistuje.',

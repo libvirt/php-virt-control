@@ -1,13 +1,12 @@
 Name:		php-virt-control
 Version:	0.0.2
-Release:	1%{?dist}%{?extra_release}
+Release:	2%{?dist}%{?extra_release}
 Summary:	PHP-based virtual machine control tool
 Group:		Applications/Internet
 License:	GPLv3
 URL:		http://www.php-virt-control.org
 Source0:	http://www.php-virt-control.org/download/php-virt-control-%{version}.tar.gz
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
-#BuildArch:	noarch
 BuildRequires:	gcc
 Requires:	php-libvirt >= 0.4.4
 Requires:	httpd
@@ -59,6 +58,8 @@ install -d -m0755 %{buildroot}%{_datadir}/%{name}/
 cp -af *.php %{buildroot}%{_datadir}/%{name}/
 cp -af *.css %{buildroot}%{_datadir}/%{name}/
 cp -af classes/ data/ graphics/ lang/ logs/ pages/ %{buildroot}%{_datadir}/%{name}/
+cp -af config/connection.php %{buildroot}/%{_sysconfdir}/%{name}/connection.php
+cp -af config/mysql-connection.php %{buildroot}/%{_sysconfdir}/%{name}/mysql-connection.php
 install -Dp -m0644 php-virt-control.conf %{buildroot}%{_sysconfdir}/httpd/conf.d/php-virt-control.conf
 
 %clean
@@ -67,11 +68,16 @@ rm -rf %{buildroot}
 %files
 %doc AUTHORS COPYING README INSTALL
 %defattr(-,root,root,-)
+%config(noreplace) %{_sysconfdir}/%{name}/connection.php
+%config(noreplace) %{_sysconfdir}/%{name}/mysql-connection.php
 %config(noreplace) %{_sysconfdir}/httpd/conf.d/php-virt-control.conf
 %{_bindir}/apache-key-copy
 %{_datadir}/%{name}/
 
 %changelog
+* Tue Aug 30 2011 Michal Novotny <minovotn@redhat.com> - 0.0.2-2
+- Fix for SPEC file and installation
+
 * Fri Jul 22 2011 Michal Novotny <minovotn@redhat.com> - 0.0.2
 - Several bugfixes plus network management
 
