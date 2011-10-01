@@ -18,13 +18,16 @@ char *get_user_home_dir(char *user)
 	return pwd->pw_dir;
 }
 
-int get_user_uid(char *user)
+int get_user_uid(char *user, int *oGid)
 {
 	struct passwd *pwd;
 
 	pwd = getpwnam(user);
 	if (!pwd)
 		return -1;
+
+	if (oGid != NULL)
+		*oGid = pwd->pw_gid;
 
 	return pwd->pw_uid;
 }
@@ -68,7 +71,7 @@ void copy_key(char *keyfile, char *host)
 
 int main(int argc, char *argv[])
 {
-	int uid, olduid;
+	int uid, olduid, gid;
 	char *dir = NULL;
 	char *user = APACHE_USER;
 	char keyfile[1024] = { 0 };
@@ -94,11 +97,16 @@ int main(int argc, char *argv[])
 		return 3;
 	}
 
-	uid = get_user_uid(user);
+	uid = get_user_uid(user, &gid);
 	if (uid < 0) {
 		fprintf(stderr, "Error: Cannot get uid for user %d\n", user);
 		return 4;
 	}
+
+	snprintf(keyfile, sizeof(keyfile), "%s/.ssh", dir);
+	mkdir(keyfile, 0700);
+	chown(keyfile, uid, gid);
+
 	olduid = getuid();
 	setuid(uid);
 

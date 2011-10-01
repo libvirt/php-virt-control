@@ -15,6 +15,10 @@
 			return false;
 		}
 
+		function init() {
+			return $this->err('init', $this->unimpl);
+		}
+
 		function has_fatal_error() {
 			return $this->fatal;
 		}

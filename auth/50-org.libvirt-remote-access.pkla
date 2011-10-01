@@ -1,0 +1,6 @@
+[libvirt Management Access]
+Identity=unix-group:apache
+Action=org.libvirt.unix.manage
+ResultAny=yes
+ResultInactive=yes
+ResultActive=yes

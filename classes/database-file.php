@@ -37,6 +37,10 @@
 			return true;
 		}
 
+		function init() {
+			return true;
+		}
+
 		/* Parse function */
 		function parse_data() {
 			$id = 0;

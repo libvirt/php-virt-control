@@ -225,6 +225,9 @@
 			$ok = is_resource($test);
 			unset($test);
 
+			if (!$ok)
+				$this->_set_last_error();
+
 			return $ok;
 		}
 

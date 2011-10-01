@@ -108,7 +108,7 @@
 			$skip_rest = true;
 		}
 		else {
-			echo '<p>'.$lang->get('conn_failed').': '.$uri.'</p>';
+			echo '<p>'.$lang->get('conn_failed').': '.$uri.' '.($lv->get_last_error() ? '('.$lv->get_last_error().')' : '').'</p>';
 		}
 	}
 

@@ -1,6 +1,6 @@
 Name:		php-virt-control
 Version:	0.0.2
-Release:	2%{?dist}%{?extra_release}
+Release:	3%{?dist}%{?extra_release}
 Summary:	PHP-based virtual machine control tool
 Group:		Applications/Internet
 License:	GPLv3
@@ -60,6 +60,7 @@ cp -af *.css %{buildroot}%{_datadir}/%{name}/
 cp -af classes/ data/ graphics/ lang/ logs/ pages/ %{buildroot}%{_datadir}/%{name}/
 cp -af config/connection.php %{buildroot}/%{_sysconfdir}/%{name}/connection.php
 cp -af config/mysql-connection.php %{buildroot}/%{_sysconfdir}/%{name}/mysql-connection.php
+install -Dp -m0644 auth/50-org.libvirt-remote-access.pkla %{buildroot}/etc/polkit-1/localauthority/50-local.d/50-org.libvirt-remote-access.pkla
 install -Dp -m0644 php-virt-control.conf %{buildroot}%{_sysconfdir}/httpd/conf.d/php-virt-control.conf
 
 %clean
@@ -71,10 +72,14 @@ rm -rf %{buildroot}
 %config(noreplace) %{_sysconfdir}/%{name}/connection.php
 %config(noreplace) %{_sysconfdir}/%{name}/mysql-connection.php
 %config(noreplace) %{_sysconfdir}/httpd/conf.d/php-virt-control.conf
+%config(noreplace) /etc/polkit-1/localauthority/50-local.d/50-org.libvirt-remote-access.pkla
 %{_bindir}/apache-key-copy
 %{_datadir}/%{name}/
 
 %changelog
+* Sat Oct 01 2011 Michal Novotny <minovotn@redhat.com> - 0.0.2-3
+- Fixes for Fedora-15 and policy kit
+
 * Tue Aug 30 2011 Michal Novotny <minovotn@redhat.com> - 0.0.2-2
 - Fix for SPEC file and installation
 

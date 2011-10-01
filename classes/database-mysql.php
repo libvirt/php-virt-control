@@ -75,6 +75,27 @@
 			return true;
 		}
 
+		function init() {
+			$res = mysql_query('SELECT * FROM '.$this->prefix.$this->tab_connections);
+			if ($res)
+				return true;
+
+			$qry = 'CREATE TABLE IF NOT EXISTS '.$this->prefix.$this->tab_connections.' ('.
+					'id int(11) NOT NULL AUTO_INCREMENT,'.
+					'name varchar(255) NOT NULL,'.
+					'hv varchar(5) NOT NULL,'.
+					'type tinyint(4) NOT NULL,.'
+					'method varchar(3) NOT NULL,'.
+					'require_pwd tinyint(4) NOT NULL,'.
+					'user varchar(255) NOT NULL,'.
+					'host varchar(255) NOT NULL,'.
+					'logfile varchar(255) NOT NULL,'.
+					'PRIMARY KEY (id)'.
+				') ENGINE=MyISAM  DEFAULT CHARSET=utf8';
+
+			return is_resource( mysql_query($qry) );
+		}
+
 		function refresh() {
 			$res = mysql_query('SELECT * FROM '.$this->prefix.$this->tab_connections);
 			if (!$res)
