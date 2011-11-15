@@ -84,7 +84,7 @@
 					'id int(11) NOT NULL AUTO_INCREMENT,'.
 					'name varchar(255) NOT NULL,'.
 					'hv varchar(5) NOT NULL,'.
-					'type tinyint(4) NOT NULL,.'
+					'type tinyint(4) NOT NULL,'.
 					'method varchar(3) NOT NULL,'.
 					'require_pwd tinyint(4) NOT NULL,'.
 					'user varchar(255) NOT NULL,'.
