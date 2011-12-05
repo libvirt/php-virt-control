@@ -201,6 +201,9 @@
       <input type="text" name="lvclogging" value="<?php echo $lg ?>" title="<?php echo $lang->get('empty_disable_log') ?>" />
     </td>
   </tr>
+<?php
+ 	if (verify_user($db, USER_PERMISSION_SAVE_CONNECTION)):
+?>
   <tr>
     <th colspan="2"><?php echo $lang->get('save_conn') ?></th>
   </tr>
@@ -210,6 +213,9 @@
       <input type="text" name="lvcname" value="<?php echo $nm ?>" title="<?php echo $lang->get('empty_disable_save') ?>" />
     </td>
   </tr>
+<?php
+	endif;
+?>
   <tr align="center">
     <td colspan="2">
       <input type="submit" value=" <?php echo $lang->get('connect_new') ?> " />

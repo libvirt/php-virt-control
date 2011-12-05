@@ -1,4 +1,7 @@
 <?php
+	if (!verify_user($db, USER_PERMISSION_NETWORK_CREATE))
+		exit;
+
   $skip = false;
   $msg = false;
 

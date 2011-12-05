@@ -41,6 +41,26 @@
 			return true;
 		}
 
+		function verify_user($user, $password) {
+			return true;
+		}
+
+		function user_add($user, $password, $perms) {
+			return false;
+		}
+
+		function user_edit($id, $user, $password, $perms) {
+			return false;
+		}
+
+		function user_del($id, $user) {
+			return false;
+		}
+
+		function get_users() {
+			return array();
+		}
+
 		/* Parse function */
 		function parse_data() {
 			$id = 0;

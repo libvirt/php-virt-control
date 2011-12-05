@@ -2,10 +2,35 @@
 	define('DEBUG', false);
 	define('LOGDIR', getcwd().'/logs');
 	define('LIBVIRT_PHP_REQ_VERSION', '0.4.4');
-	define('PHPVIRTCONTROL_VERSION', '0.0.2');
+	define('PHPVIRTCONTROL_VERSION', '0.0.3');
 	define('PHPVIRTCONTROL_WEBSITE', 'http://www.php-virt-control.org');
 	define('CONNECT_WITH_NULL_STRING', false);
 	define('ALLOW_EXPERIMENTAL_VNC', false);
+
+	/* User permission defines */
+	define('USER_PERMISSION_SAVE_CONNECTION', 0x01);
+	define('USER_PERMISSION_VM_CREATE', 0x02);
+	define('USER_PERMISSION_VM_EDIT', 0x04);
+	define('USER_PERMISSION_VM_DELETE', 0x08);
+	define('USER_PERMISSION_NETWORK_CREATE', 0x10);
+	define('USER_PERMISSION_NETWORK_EDIT', 0x20);
+	define('USER_PERMISSION_NETWORK_DELETE', 0x40);
+	define('USER_PERMISSION_USER_CREATE', 0x80);
+	define('USER_PERMISSION_USER_EDIT', 0x100);
+	define('USER_PERMISSION_USER_DELETE', 0x200);
+
+	$user_permissions = array(
+				'USER_PERMISSION_SAVE_CONNECTION'       => 'permission_save_connection',
+				'USER_PERMISSION_VM_CREATE'             => 'permission_vm_create',
+				'USER_PERMISSION_VM_EDIT'               => 'permission_vm_edit',
+				'USER_PERMISSION_VM_DELETE'             => 'permission_vm_delete',
+				'USER_PERMISSION_NETWORK_CREATE'        => 'permission_network_create',
+				'USER_PERMISSION_NETWORK_EDIT'          => 'permission_network_edit',
+				'USER_PERMISSION_NETWORK_DELETE'        => 'permission_network_delete',
+				'USER_PERMISSION_USER_CREATE'           => 'permission_user_create',
+				'USER_PERMISSION_USER_EDIT'             => 'permission_user_edit',
+				'USER_PERMISSION_USER_DELETE'           => 'permission_user_delete',
+				);
 
 	session_start();
 
@@ -61,8 +86,19 @@
 	$cstr = $type.':/etc/php-virt-control/'.$config;
 
 	$db = getDBObject($cstr);
+	$db->init();
 	if ($db->has_fatal_error()) {
 		include('error-connection-db.php');
+		exit;
+	}
+
+	if (array_key_exists('action', $_GET) && ($_GET['action'] == 'logout')) {
+		unset($_SESSION['logged_in']);
+		unset($_SESSION['user_perms']);
+	}
+
+	if (!verify_user($db)) {
+		include('dialog-login.php');
 		exit;
 	}
 ?>

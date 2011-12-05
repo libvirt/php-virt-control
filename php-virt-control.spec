@@ -1,6 +1,6 @@
 Name:		php-virt-control
-Version:	0.0.2
-Release:	3%{?dist}%{?extra_release}
+Version:	0.0.3
+Release:	1%{?dist}%{?extra_release}
 Summary:	PHP-based virtual machine control tool
 Group:		Applications/Internet
 License:	GPLv3
@@ -77,6 +77,9 @@ rm -rf %{buildroot}
 %{_datadir}/%{name}/
 
 %changelog
+* Mon Dec 05 2011 Michal Novotny <minovotn@redhat.com> - 0.0.3
+- Implement the user administration and access permissions
+
 * Sat Oct 01 2011 Michal Novotny <minovotn@redhat.com> - 0.0.2-3
 - Fixes for Fedora-15 and policy kit
 

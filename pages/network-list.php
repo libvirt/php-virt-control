@@ -18,7 +18,7 @@
            $lang->get('net_stop_err').': '.$lv->get_last_error();
   }
 
-  if ($action == 'net-undefine') {
+  if (($action == 'net-undefine') && (verify_user($db, USER_PERMISSION_NETWORK_CREATE))){
     $name = $_GET['net'];
     if ((!array_key_exists('confirmed', $_GET)) || ($_GET['confirmed'] != 1)) {
         $frm = '<div class="section">'.$lang->get('net_undefine').'</div>
@@ -48,7 +48,7 @@
             </tr></form></table>';
   }
 
-  if ($action == 'net-editxml') {
+  if (($action == 'net-editxml') && (verify_user($db, USER_PERMISSION_NETWORK_EDIT))) {
     $name = $_GET['net'];
 
     if (array_key_exists('xmldesc', $_POST)) {
@@ -82,11 +82,17 @@
 <div class="section"><?php echo $lang->get('network_list') ?></div>
 
 <table id="domain-list">
+<?php
+	if (verify_user($db, USER_PERMISSION_NETWORK_CREATE)):
+?>
   <tr>
     <td colspan="2" align="left">
       <a href="?page=new-net"><?php echo $lang->get('create-new-network') ?></a>
     </td>
   </tr>
+<?php
+	endif;
+?>
   <tr>
     <th><?php echo $lang->get('name') ?></th>
     <th><?php echo $lang->get('net_ip') ?></th>
@@ -122,8 +128,10 @@
 				if (!$active) {
 					$actions .= '<a href="?page='.$page.'&amp;action=net-start&amp;net='.$name.'">'.$lang->get('net_start').'</a> | ';
 					$actions .= '<a href="?page='.$page.'&amp;action=net-dumpxml&amp;net='.$name.'">'.$lang->get('net_dumpxml').'</a> | ';
-					$actions .= '<a href="?page='.$page.'&amp;action=net-editxml&amp;net='.$name.'">'.$lang->get('net_editxml').'</a> | ';
-					$actions .= '<a href="?page='.$page.'&amp;action=net-undefine&amp;net='.$name.'">'.$lang->get('net_undefine').'</a> | ';
+					if (verify_user($db, USER_PERMISSION_NETWORK_EDIT))
+						$actions .= '<a href="?page='.$page.'&amp;action=net-editxml&amp;net='.$name.'">'.$lang->get('net_editxml').'</a> | ';
+					if (verify_user($db, USER_PERMISSION_NETWORK_DELETE))
+						$actions .= '<a href="?page='.$page.'&amp;action=net-undefine&amp;net='.$name.'">'.$lang->get('net_undefine').'</a> | ';
 
 					$actions[ strlen($actions) - 2 ] = ' ';
 					$actions = Trim($actions);

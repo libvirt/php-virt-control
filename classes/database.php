@@ -19,6 +19,26 @@
 			return $this->err('init', $this->unimpl);
 		}
 
+		function verify_user($user, $password) {
+			return $this->err('verify_user', $this->unimpl);
+		}
+
+		function user_add($user, $password, $perms) {
+			return $this->err('user_add', $this->unimpl);
+		}
+
+		function user_edit($id, $user, $password, $perms) {
+			return $this->err('user_edit', $this->unimpl);
+		}
+
+		function user_del($id, $user) {
+			return $this->err('user_del', $this->unimpl);
+		}
+
+		function get_users() {
+			return $this->err('get_users', $this->unimpl);
+		}
+
 		function has_fatal_error() {
 			return $this->fatal;
 		}

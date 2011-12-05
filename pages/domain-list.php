@@ -21,7 +21,7 @@
            $lang->get('dom_destroy_err').': '.$lv->get_last_error();
   }
 
-  if ($action == 'domain-undefine') {
+  if (($action == 'domain-undefine') && (verify_user($db, USER_PERMISSION_VM_DELETE))) {
     $name = $_GET['dom'];
     if ((!array_key_exists('confirmed', $_GET)) || ($_GET['confirmed'] != 1)) {
         $frm = '<div class="section">'.$lang->get('dom_undefine').'</div>
@@ -104,11 +104,17 @@
 <div class="section"><?php echo $lang->get('domain_list') ?></div>
 
 <table id="domain-list">
+<?php
+	if (verify_user($db, USER_PERMISSION_VM_CREATE)):
+?>
   <tr>
     <td colspan="2" align="left">
       <a href="?page=new-vm"><?php echo $lang->get('create-new-vm') ?></a>
     </td>
   </tr>
+<?php
+	endif;
+?>
   <tr>
     <th><?php echo $lang->get('name') ?></th>
     <th><?php echo $lang->get('arch') ?></th>
@@ -153,8 +159,10 @@
 				if (!$running) {
 					$actions  = '<a href="?page='.$page.'&amp;action=domain-start&amp;dom='.$name.'">'.$lang->get('dom_start').'</a> | ';
 					$actions .= '<a href="?page='.$page.'&amp;action=domain-dump&amp;dom='.$name.'">'.$lang->get('dom_dumpxml').'</a> | ';
-					$actions .= '<a href="?page='.$page.'&amp;action=domain-edit&amp;dom='.$name.'">'.$lang->get('dom_editxml').'</a> | ';
-					$actions .= '<a href="?page='.$page.'&amp;action=domain-undefine&amp;dom='.$name.'">'.$lang->get('dom_undefine').'</a> | ';
+					if (verify_user($db, USER_PERMISSION_VM_EDIT))
+						$actions .= '<a href="?page='.$page.'&amp;action=domain-edit&amp;dom='.$name.'">'.$lang->get('dom_editxml').'</a> | ';
+					if (verify_user($db, USER_PERMISSION_VM_DELETE))
+						$actions .= '<a href="?page='.$page.'&amp;action=domain-undefine&amp;dom='.$name.'">'.$lang->get('dom_undefine').'</a> | ';
 
 					$actions[ strlen($actions) - 2 ] = ' ';
 					$actions = Trim($actions);
@@ -173,7 +181,15 @@
 
 				echo "<tr>
         	                                <td class=\"name\">
-                	                            <a href=\"?name=$name\">$name</a>
+					";
+
+				if (verify_user($db, USER_PERMISSION_VM_EDIT))
+					echo "
+                	                            <a href=\"?name=$name\">$name</a>";
+				else
+					echo '<b><i>'.$name.'</i></b>';
+
+				echo "
                         	                </td>
                                 	        <td>$arch</td>
                                         <td>$cpu</td>
