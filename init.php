@@ -8,18 +8,20 @@
 	define('ALLOW_EXPERIMENTAL_VNC', false);
 
 	/* User permission defines */
-	define('USER_PERMISSION_SAVE_CONNECTION', 0x01);
-	define('USER_PERMISSION_VM_CREATE', 0x02);
-	define('USER_PERMISSION_VM_EDIT', 0x04);
-	define('USER_PERMISSION_VM_DELETE', 0x08);
-	define('USER_PERMISSION_NETWORK_CREATE', 0x10);
-	define('USER_PERMISSION_NETWORK_EDIT', 0x20);
-	define('USER_PERMISSION_NETWORK_DELETE', 0x40);
-	define('USER_PERMISSION_USER_CREATE', 0x80);
-	define('USER_PERMISSION_USER_EDIT', 0x100);
-	define('USER_PERMISSION_USER_DELETE', 0x200);
+	define('USER_PERMISSION_BASIC', 0x01);
+	define('USER_PERMISSION_SAVE_CONNECTION', 0x02);
+	define('USER_PERMISSION_VM_CREATE', 0x04);
+	define('USER_PERMISSION_VM_EDIT', 0x08);
+	define('USER_PERMISSION_VM_DELETE', 0x10);
+	define('USER_PERMISSION_NETWORK_CREATE', 0x20);
+	define('USER_PERMISSION_NETWORK_EDIT', 0x40);
+	define('USER_PERMISSION_NETWORK_DELETE', 0x80);
+	define('USER_PERMISSION_USER_CREATE', 0x100);
+	define('USER_PERMISSION_USER_EDIT', 0x200);
+	define('USER_PERMISSION_USER_DELETE', 0x400);
 
 	$user_permissions = array(
+				'USER_PERMISSION_BASIC'                 => 'permission_basic',
 				'USER_PERMISSION_SAVE_CONNECTION'       => 'permission_save_connection',
 				'USER_PERMISSION_VM_CREATE'             => 'permission_vm_create',
 				'USER_PERMISSION_VM_EDIT'               => 'permission_vm_edit',

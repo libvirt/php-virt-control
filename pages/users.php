@@ -106,6 +106,8 @@
 
 	while (list($key, $value) = each($user_permissions)) {
 		$val = in_array($key, $p_perms) ? 'checked="checked"' : '';
+		if ($key == 'USER_PERMISSION_BASIC')
+			$val = 'checked="checked" disabled="disabled"';
 		echo "<input type=\"checkbox\" name=\"perm[]\" value=\"$key\" $val $readonly_perms/> ".$lang->get($value)."<br />";
 	}
 ?>
@@ -227,6 +229,7 @@
 	<a href="?page=users&amp;action=edit&amp;user_id=<?php echo $users[$i]['id'] ?>">
 		<?php echo $lang->get('user_edit') ?>
 	</a>
+	|
 	<a href="?page=users&amp;action=del&amp;user_id=<?php echo $users[$i]['id'] ?>">
 		<?php echo $lang->get('user_del') ?>
 	</a>

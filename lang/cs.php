@@ -281,6 +281,7 @@
                                         'user_deleted' => 'Uživatel byl úspěšně smazán',
                                         'confirm_password' => 'Potvrzení hesla',
                                         'permissions' => 'Oprávnění',
+					'permission_basic' => 'Obecný přístup',
                                         'permission_save_connection' => 'Uložit nastavení',
                                         'permission_vm_create' => 'Vytvořit virtuální stroj',
                                         'permission_vm_edit' => 'Upravit virtuální stroj',

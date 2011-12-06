@@ -301,6 +301,7 @@
 					'user_deleted' => 'User has been succesfully deleted',
 					'confirm_password' => 'Confirm password',
 					'permissions' => 'Permissions',
+					'permission_basic' => 'Basic access',
 					'permission_save_connection' => 'Save connection',
 					'permission_vm_create' => 'Create virtual machine',
 					'permission_vm_edit' => 'Edit virtual machine',
