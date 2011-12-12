@@ -61,6 +61,7 @@
 
 	require('functions.php');
 	require('classes/libvirt.php');
+	require('classes/graphics.php');
 	require('classes/language.php');
 	require('classes/database.php');
 	require('classes/database-file.php');

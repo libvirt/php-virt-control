@@ -273,6 +273,29 @@
 			$dom = $this->get_domain_object($domain);
 
 			$tmp = libvirt_domain_get_screenshot($dom, $this->get_hostname(), 8 );
+			if (Graphics::isBMPStream($tmp)) {
+				$gc = new Graphics();
+				$fn = tempnam("/tmp", "php-virt-control.tmp");
+				$fn2 = tempnam("/tmp", "php-virt-control.tmp");
+
+				$fp = fopen($fn, "wb");
+				fputs($fp, $tmp);
+				fclose($fp);
+
+				unset($tmp);
+				if ($gc->ConvertBMPToPNG($fn, $fn2) == false) {
+					unlink($fn);
+					return false;
+				}
+
+				$fp = fopen($fn2, "rb");
+				$tmp = fread($fp, filesize($fn2));
+				fclose($fp);
+
+				unlink($fn2);
+				unlink($fn);
+				unset($gc);
+			}
 			return ($tmp) ? $tmp : $this->_set_last_error();
 		}
 
