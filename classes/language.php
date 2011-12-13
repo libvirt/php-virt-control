@@ -278,6 +278,7 @@
 					'net_forward_dev_empty_msg' => 'Leave empty for forwarding to any device/interface',
 					'net_forward_dev_any' => 'any interface / device',
 					'net_created' => 'Network has been created successfully',
+					'new-vm-created' => 'New virtual machine has been created successfully',
 					'network-add-ok' => 'Network card has been successfully added to the guest. Changes will take effect on next domain startup.',
 					'network-add-error' => 'Cannot add NIC to the guest',
 					'network-generate-mac' => 'Generate new MAC address',
@@ -315,6 +316,8 @@
 					'user_add_btn' => 'Add user',
 					'user_edit_btn' => 'Edit user',
 					'password_mismatch' => 'Password mismatch',
+					'screenshot-settings-auto-release' => 'Send automatic mouse pointer release event',
+					'screenshot-delay' => 'Delay has been changed to %d second(s)',
 					);
 
 			$this->trans = $trans;

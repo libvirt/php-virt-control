@@ -5,7 +5,7 @@
 	define('PHPVIRTCONTROL_VERSION', '0.0.3');
 	define('PHPVIRTCONTROL_WEBSITE', 'http://www.php-virt-control.org');
 	define('CONNECT_WITH_NULL_STRING', false);
-	define('ALLOW_EXPERIMENTAL_VNC', false);
+	define('ALLOW_EXPERIMENTAL_VNC', true);
 
 	/* User permission defines */
 	define('USER_PERMISSION_BASIC', 0x01);

@@ -353,10 +353,10 @@
 			return ($tmp) ? $tmp : $this->_set_last_error();
 		}
 
-		function domain_send_pointer_event($domain, $x, $y, $clicked = 1) {
+		function domain_send_pointer_event($domain, $x, $y, $clicked = 1, $release = false) {
 			$dom = $this->get_domain_object($domain);
 
-			$tmp = libvirt_domain_send_pointer_event($dom, $this->get_hostname(), $x, $y, $clicked, true);
+			$tmp = libvirt_domain_send_pointer_event($dom, $this->get_hostname(), $x, $y, $clicked, $release);
 			return ($tmp) ? $tmp : $this->_set_last_error();
 		}
 

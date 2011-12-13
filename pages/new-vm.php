@@ -43,7 +43,7 @@
 		$msg = $lv->get_last_error();
 	else {
 		$skip = true;
-		$msg = 'Domain has been created successfully';
+		$msg = $lang->get('new-vm-created');
 	}
   }
 

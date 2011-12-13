@@ -48,6 +48,7 @@ EOF
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/%{_datadir}/%{name}
+mkdir -p %{buildroot}/%{_datadir}/%{name}/logs
 mkdir -p %{buildroot}/%{_sysconfdir}/httpd/conf.d/
 mkdir -p %{buildroot}/%{_sysconfdir}/%{name}
 
@@ -57,11 +58,13 @@ gcc -o %{buildroot}/%{_bindir}/apache-key-copy tools/apache-key-copy.c
 install -d -m0755 %{buildroot}%{_datadir}/%{name}/
 cp -af *.php %{buildroot}%{_datadir}/%{name}/
 cp -af *.css %{buildroot}%{_datadir}/%{name}/
-cp -af classes/ data/ graphics/ lang/ logs/ pages/ %{buildroot}%{_datadir}/%{name}/
+cp -af classes/ data/ graphics/ lang/ pages/ %{buildroot}%{_datadir}/%{name}/
+cp -af logs/README %{buildroot}%{_datadir}/%{name}/logs
 cp -af config/connection.php %{buildroot}/%{_sysconfdir}/%{name}/connection.php
 cp -af config/mysql-connection.php %{buildroot}/%{_sysconfdir}/%{name}/mysql-connection.php
 install -Dp -m0644 auth/50-org.libvirt-remote-access.pkla %{buildroot}/etc/polkit-1/localauthority/50-local.d/50-org.libvirt-remote-access.pkla
 install -Dp -m0644 php-virt-control.conf %{buildroot}%{_sysconfdir}/httpd/conf.d/php-virt-control.conf
+chmod 777 %{buildroot}%{_datadir}/%{name}/logs
 
 %clean
 rm -rf %{buildroot}
