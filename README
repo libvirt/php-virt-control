@@ -5,3 +5,9 @@ The php-virt-control tool is the virtual machine control tool for PHP.
 It depends on libvirt PHP bindings as the module for PHP. You can use
 the tool to manage your virtual guests you're having available on your
 libvirt connection(s).
+
+
+LICENSES
+--------
+Icons used are from http://www.icojoy.com/articles/49/ (license free)
+

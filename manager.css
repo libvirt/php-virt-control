@@ -14,6 +14,21 @@
 	background: url(graphics/php-virt-control.png);
 }
 
+table {
+	border-collapse:collapse;
+}
+table tr td {
+	padding-top: 5px;
+        padding-right: 5px;
+}
+
+.odd  {
+	background-color: #cccccc;
+}
+.even  {
+
+}
+
 #vm-name {
 	padding-left: 10px;
 }
@@ -33,7 +48,7 @@
 }
 
 #menu a {
-	font-size: 20px;
+	font-size: 16px;
 	padding: 10px;
 	color: blue;
 	text-decoration: none;
@@ -47,7 +62,7 @@
 }
 
 #main-menu a {
-        font-size: 20px;
+        font-size: 16px;
         padding: 10px;
         color: blue;
         text-decoration: none;

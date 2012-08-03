@@ -7,4 +7,7 @@
     | <a href="?page=settings"><?php echo $lang->get('settings') ?></a>
     | <a href="?page=info"><?php echo $lang->get('info') ?></a>
     | <a href="?action=logout"><?php echo $lang->get('logout') ?></a>
+    <div style="float:right;text-align: right; width:220px;font-size:11px;font-style:italic">
+	<?php if (isset($uri)) echo "Connected to <br />".$uri; ?>
+    </div>
   </div>

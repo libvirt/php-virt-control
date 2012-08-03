@@ -5,6 +5,11 @@ php-virt-control tool is maintained and developed by:
 
 	Michal Novotny <minovotn@redhat.com> (or <mignov@gmail.com>)
 
+
+Some changes were made by:
+
+	Olivier Doucet <odoucet@php.net>
+
 The project is using libvirt-php extension for PHP to access the
 libvirt virtualization toolkit directly from the PHP scripts.
 

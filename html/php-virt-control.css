@@ -33,15 +33,16 @@ img {
 }
 
 #content {
-    margin-left: 230px;
+    margin-left: 1em;
     margin-right: 1em;
     padding: 0px;
     padding-bottom: 1em;
+    float: left;
 }
 
 #menu {
     float: left;
-    width: 220px;
+    width: 200px;
     margin-bottom: 1em;
 }
 

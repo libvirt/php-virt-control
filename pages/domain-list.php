@@ -1,6 +1,5 @@
 <?php
   $action = array_key_exists('action', $_GET) ? $_GET['action'] : false;
-
   $msg = '';
   $frm = '';
   if ($action == 'domain-start') {
@@ -103,18 +102,18 @@
 
 <div class="section"><?php echo $lang->get('domain_list') ?></div>
 
+<?php
+        if (verify_user($db, USER_PERMISSION_VM_CREATE)):
+?>
+<?php
+        endif;
+?>
+
+<div style="padding: 10px; font-size: 14px; font-weight: bold; width: 100%; border: 1px solid grey;margin-bottom: 10px;">
+<a href="?page=new-vm"><?php echo $lang->get('create-new-vm') ?></a>
+</div>
+
 <table id="domain-list">
-<?php
-	if (verify_user($db, USER_PERMISSION_VM_CREATE)):
-?>
-  <tr>
-    <td colspan="2" align="left">
-      <a href="?page=new-vm"><?php echo $lang->get('create-new-vm') ?></a>
-    </td>
-  </tr>
-<?php
-	endif;
-?>
   <tr>
     <th><?php echo $lang->get('name') ?></th>
     <th><?php echo $lang->get('arch') ?></th>
@@ -157,30 +156,33 @@
 
 				$running = $lv->domain_is_running($res, $name);
 				if (!$running) {
-					$actions  = '<a href="?page='.$page.'&amp;action=domain-start&amp;dom='.$name.'">'.$lang->get('dom_start').'</a> | ';
-					$actions .= '<a href="?page='.$page.'&amp;action=domain-dump&amp;dom='.$name.'">'.$lang->get('dom_dumpxml').'</a> | ';
+					$actions  = '<a href="?page='.$page.'&amp;action=domain-start&amp;dom='.$name.'"><img src="graphics/play.png" title="'.$lang->get('dom_start').'" /></a> ';
+					$actions .= '<a href="?page='.$page.'&amp;action=domain-dump&amp;dom='.$name.'"><img src="graphics/dump.png" title="'.$lang->get('dom_dumpxml').'" /></a> ';
 					if (verify_user($db, USER_PERMISSION_VM_EDIT))
-						$actions .= '<a href="?page='.$page.'&amp;action=domain-edit&amp;dom='.$name.'">'.$lang->get('dom_editxml').'</a> | ';
+						$actions .= '<a href="?page='.$page.'&amp;action=domain-edit&amp;dom='.$name.'"><img src="graphics/edit.png" title="'.$lang->get('dom_editxml').'" /></a> ';
 					if (verify_user($db, USER_PERMISSION_VM_DELETE))
-						$actions .= '<a href="?page='.$page.'&amp;action=domain-undefine&amp;dom='.$name.'">'.$lang->get('dom_undefine').'</a> | ';
+						$actions .= '<a href="?page='.$page.'&amp;action=domain-undefine&amp;dom='.$name.'"><img src="graphics/undefine.png" title="'.$lang->get('dom_undefine').'" /></a> ';
 
 					$actions[ strlen($actions) - 2 ] = ' ';
 					$actions = Trim($actions);
 				}
 				else {
-					$actions  = '<a href="?page='.$page.'&amp;action=domain-stop&amp;dom='.$name.'">'.$lang->get('dom_stop').'</a> | ';
-					$actions .= '<a href="?page='.$page.'&amp;action=domain-destroy&amp;dom='.$name.'">'.$lang->get('dom_destroy').'</a> | ';
-					$actions .= '<a href="?page='.$page.'&amp;action=domain-dump&amp;dom='.$name.'">'.$lang->get('dom_dumpxml').'</a> | ';
+					$actions  = '<a href="?page='.$page.'&amp;action=domain-stop&amp;dom='.$name.'"><img src="graphics/stop.png" title="'.$lang->get('dom_stop').'" /></a> ';
+					$actions .= '<a href="?page='.$page.'&amp;action=domain-destroy&amp;dom='.$name.'"><img src="graphics/destroy.png" title="'.$lang->get('dom_destroy').'" /></a> ';
+					$actions .= '<a href="?page='.$page.'&amp;action=domain-dump&amp;dom='.$name.'"><img src="graphics/dump.png" title="'.$lang->get('dom_dumpxml').'" /></a> ';
 
 					if ($lv->supports('screenshot'))
-						$actions .= '<a href="?name='.$name.'&amp;page=screenshot">'.$lang->get('dom_screenshot').'</a> | ';
+						$actions .= '<a href="?name='.$name.'&amp;page=screenshot"><img src="graphics/screenshot.png" title="'.$lang->get('dom_screenshot').'" /></a>';
 
 					$actions[ strlen($actions) - 2 ] = ' ';
 					$actions = Trim($actions);
 				}
 
-				echo "<tr>
-        	                                <td class=\"name\">
+				echo '<tr class="';
+				if (($i % 2) == 0) echo 'odd'; 
+				else echo 'even';
+				echo '">';
+				echo   "<td class=\"name\">
 					";
 
 				if (verify_user($db, USER_PERMISSION_VM_EDIT))

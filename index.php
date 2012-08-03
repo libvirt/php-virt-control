@@ -12,18 +12,26 @@
 	$errmsg = false;
 	if (!CONNECT_WITH_NULL_STRING && $uri == 'null')
 		$uri = false;
+	if (isset($_SESSION['connection_credentials']))
+		$lv = new Libvirt(
+			$uri, 
+			$_SESSION['connection_credentials'][VIR_CRED_AUTHNAME], 
+			$_SESSION['connection_credentials'][VIR_CRED_PASSPHRASE], 
+			$lg, 
+			$lang_str
+		);
 
-	$lv = new Libvirt($uri, $lg, $lang_str);
+	else
+		$lv = new Libvirt($uri, null, null, $lg, $lang_str);
 
 	/* Get new MAC address in plain text - called by Ajax from pages/new-vm.php */
 	if (array_key_exists('get_mac', $_GET)) {
 		die( $lv->generate_random_mac_addr() );
 	}
-
 	if (!$lv->enabled() || ($lv->get_last_error())) {
 		$page = 'overview';
 		$name = false;
-		$errmsg = $lang->get('cannot_connect');
+		$errmsg = $lang->get('cannot_connect').' '.$lv->get_last_error();
 	}
 	else {
 		$name = array_key_exists('name', $_GET) ? $_GET['name'] : false;
@@ -34,7 +42,8 @@
 <html>
 <head>
  <title>php-virt-control - <?php echo $lang->get('title_vmc') ?></title>
- <link rel="STYLESHEET" type="text/css" href="manager.css"> 
+ <link rel="STYLESHEET" type="text/css" href="html/main.css" />
+ <link rel="STYLESHEET" type="text/css" href="manager.css" /> 
 </head>
 <body>
   <div id="header">

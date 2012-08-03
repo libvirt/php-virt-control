@@ -68,7 +68,7 @@
     <div class="item">
       <div class="label"><?php echo $lang->get('description') ?>:</div>
       <div class="value">
-        <textarea rows="10" cols="60" name="description"><?php echo $desc ?></textarea>
+        <textarea rows="5" cols="60" name="description"><?php echo $desc ?></textarea>
       </div>
       <div class="nl" />
     </div>

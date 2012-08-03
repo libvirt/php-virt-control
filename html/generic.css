@@ -3,9 +3,14 @@ body {
   margin: 0em;
   padding: 0px;
   color: rgb(0,0,0);
-  font-family: Verdana, Arial, Helvetica, sans-serif;
-  font-size: 80%;
+  font-family: Arial, Helvetica, sans-serif;
   background: #ffffff;
+  font-size: 11px;
+}
+
+div, td, p {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 11px;
 }
 
 p, ul, ol, dl {

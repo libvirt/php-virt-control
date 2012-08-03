@@ -84,6 +84,7 @@
 	                	$rm = $tmp[$i]['method'];
 				$rp = $tmp[$i]['require_pwd'];
         	        	$un = $tmp[$i]['user'];
+				$pwd= $tmp[$i]['password'];
 	        	        $hn = $tmp[$i]['host'];
         	        	$lg = $tmp[$i]['logfile'];
 			}
@@ -94,14 +95,19 @@
 
 	$skip_rest = false;
 	if ($hv) {
-		if ($lv->test_connection_uri($hv, $rh, $rm, $un, $rp, $hn)) {
+		if ($lv->test_connection_uri($hv, $rh, $rm, $un, $pwd, $hn)) {
 			$uri = $lv->generate_connection_uri($hv, $rh, $rm, $un, $hn);
 			$_SESSION['connection_uri'] = $uri;
 			$_SESSION['connection_logging'] = $lg;
+			if (isset($un) && isset($pwd)) 
+				$_SESSION['connection_credentials'] = array(
+					VIR_CRED_AUTHNAME => $un, 
+					VIR_CRED_PASSPHRASE => $pwd
+				);
 			echo '<p>'.$lang->get('changed_uri').' <b>'.$uri.'</b></p>';
 
 			if ((array_key_exists('lvcname', $_POST)) && ($_POST['lvcname']))
-				if ($db->add_connection($_POST['lvcname'], $hv, $rh, $rm, $rp, $un, $hn, $lg))
+				if ($db->add_connection($_POST['lvcname'], $hv, $rh, $rm, $pwd, $un, $hn, $lg))
 					echo '<p>'.$lang->get('conn_saved').'</p>';
 
 			echo '<a href="?">'.$lang->get('click_reload').'</a>';

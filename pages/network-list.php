@@ -126,25 +126,27 @@
 
 				$actions = '';
 				if (!$active) {
-					$actions .= '<a href="?page='.$page.'&amp;action=net-start&amp;net='.$name.'">'.$lang->get('net_start').'</a> | ';
-					$actions .= '<a href="?page='.$page.'&amp;action=net-dumpxml&amp;net='.$name.'">'.$lang->get('net_dumpxml').'</a> | ';
+					$actions .= '<a href="?page='.$page.'&amp;action=net-start&amp;net='.$name.'"><img src="graphics/play.png" title="'.$lang->get('net_start').'" /></a> ';
+					$actions .= '<a href="?page='.$page.'&amp;action=net-dumpxml&amp;net='.$name.'"><img src="graphics/dump.png" title="'.$lang->get('net_dumpxml').'" /></a> ';
 					if (verify_user($db, USER_PERMISSION_NETWORK_EDIT))
-						$actions .= '<a href="?page='.$page.'&amp;action=net-editxml&amp;net='.$name.'">'.$lang->get('net_editxml').'</a> | ';
+						$actions .= '<a href="?page='.$page.'&amp;action=net-editxml&amp;net='.$name.'"><img src="graphics/edit.png" title="'.$lang->get('net_editxml').'" /></a> ';
 					if (verify_user($db, USER_PERMISSION_NETWORK_DELETE))
-						$actions .= '<a href="?page='.$page.'&amp;action=net-undefine&amp;net='.$name.'">'.$lang->get('net_undefine').'</a> | ';
+						$actions .= '<a href="?page='.$page.'&amp;action=net-undefine&amp;net='.$name.'"><img src="graphics/undefine.png" title="'.$lang->get('net_undefine').'" /></a> ';
 
 					$actions[ strlen($actions) - 2 ] = ' ';
 					$actions = Trim($actions);
 				}
 				else {
-					$actions  = '<a href="?page='.$page.'&amp;action=net-stop&amp;net='.$name.'">'.$lang->get('net_stop').'</a> | ';
-					$actions .= '<a href="?page='.$page.'&amp;action=net-dumpxml&amp;net='.$name.'">'.$lang->get('net_dumpxml').'</a> | ';
+					$actions  = '<a href="?page='.$page.'&amp;action=net-stop&amp;net='.$name.'"><img src="graphics/stop.png" title="'.$lang->get('net_stop').'" /></a> ';
+					$actions .= '<a href="?page='.$page.'&amp;action=net-dumpxml&amp;net='.$name.'"><img src="graphics/dump.png title="'.$lang->get('net_dumpxml').'" /></a> ';
 
 					$actions[ strlen($actions) - 2 ] = ' ';
 					$actions = Trim($actions);
 				}
 
-				echo "<tr>
+				echo "<tr class=";
+				if(($i % 2) == 0) echo "odd"; else echo "even";
+				echo ">
         	                        <td class=\"name\">
                 	                    $name
                         	        </td>

@@ -86,7 +86,7 @@
 	if (!include('/etc/php-virt-control/connection.php'))
 		$cstr = 'mysql:config/mysql-connection.php';
 
-	$cstr = $type.':/etc/php-virt-control/'.$config;
+	else $cstr = $type.':/etc/php-virt-control/'.$config;
 
 	$db = getDBObject($cstr);
 	$db->init();

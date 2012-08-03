@@ -7,12 +7,12 @@
 		private $lang_str;
 		private $enabled = false;
 
-		function Libvirt($uri = false, $debug=false, $lang=false) {
+		function Libvirt($uri = false, $login = false, $pwd = false, $debug=false, $lang=false) {
 			if ($debug)
 				$this->set_logfile($debug);
 			if ($uri != false) {
 				$this->enabled = true;
-				$this->connect($uri);
+				$this->connect($uri, $login, $pwd);
 			}
 			$this->lang_str = $lang;
 		}
@@ -214,10 +214,10 @@
 				return 'qemu+'.$remote_method.'://'.$remote_username.'@'.$remote_hostname.'/'.$append_type;
 		}
 
-		function test_connection_uri($hv, $rh, $rm, $un, $rp, $hn, $session=false) {
+		function test_connection_uri($hv, $rh, $rm, $un, $pwd, $hn, $session=false) {
 	                $uri = $this->generate_connection_uri($hv, $rh, $rm, $un, $hn, $session);
-	                if ($rp) {
-				$credentials = array(VIR_CRED_AUTHNAME => $un, VIR_CRED_PASSPHRASE => $rp);
+	                if (strlen($pwd) > 0) {
+				$credentials = array(VIR_CRED_AUTHNAME => $un, VIR_CRED_PASSPHRASE => $pwd);
                 		$test = libvirt_connect($uri, false, $credentials);
 	                }
         	        else
@@ -235,8 +235,12 @@
 			return libvirt_print_binding_resources();
 		}
 
-		function connect($uri = 'null') {
-			$this->conn=libvirt_connect($uri, false);
+		function connect($uri = 'null', $login = false, $password = false) {
+			if ($login !== false && $password !== false) {
+				$this->conn=libvirt_connect($uri, false, array(VIR_CRED_AUTHNAME => $login, VIR_CRED_PASSPHRASE => $password));
+			} else {
+				$this->conn=libvirt_connect($uri, false);
+			}
 			if ($this->conn==false)
 				return $this->_set_last_error();
 		}

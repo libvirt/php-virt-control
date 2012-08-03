@@ -73,6 +73,7 @@
 					'type tinyint(4) NOT NULL,'.
 					'method varchar(3) NOT NULL,'.
 					'require_pwd tinyint(4) NOT NULL,'.
+					'password varchar(255) NULL,'.
 					'user varchar(255) NOT NULL,'.
 					'host varchar(255) NOT NULL,'.
 					'logfile varchar(255) NOT NULL,'.
@@ -215,14 +216,14 @@
 		}
 
 		/* Add/edit/remove functions */
-		function add_connection($name, $hv, $type, $method, $require_pwd, $user, $host, $logfile) {
-			if ($require_pwd)
+		function add_connection($name, $hv, $type, $method, $pwd, $user, $host, $logfile) {
+			if (strlen($pwd) > 0)
 				$require_pwd = 1;
 			else
 				$require_pwd = 0;
 
-			$qry = 'INSERT INTO '.$this->prefix.$this->tab_connections.'(name, hv, type, method, require_pwd, user, host, logfile) '.
-				"VALUES('$name', '$hv', '$type', '$method', $require_pwd, '$user', '$host', '$logfile')";
+			$qry = 'INSERT INTO '.$this->prefix.$this->tab_connections.'(name, hv, type, method, require_pwd, password, user, host, logfile) '.
+				"VALUES('$name', '$hv', '$type', '$method', $require_pwd, '$pwd', '$user', '$host', '$logfile')";
 
 			if (!mysql_query($qry))
 				return false;
