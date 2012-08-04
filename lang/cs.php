@@ -11,6 +11,7 @@
 					'conn_encrypted' => 'Šifrování',
 					'conn_secure' => 'Zabezpečení',
 					'connected_to' => 'Připojeno k',
+					'no_iso' => 'Nebyl nalezen žádný instalační obraz ISO',
 					'hypervisor_limit' => 'Limit hypervisoru',
 					'hostname' => 'Jméno hostitele',
 					'password' => 'Heslo',
