@@ -1,5 +1,5 @@
 Name:		php-virt-control
-Version:	0.0.3
+Version:	0.0.4
 Release:	1%{?dist}%{?extra_release}
 Summary:	PHP-based virtual machine control tool
 Group:		Applications/Internet
