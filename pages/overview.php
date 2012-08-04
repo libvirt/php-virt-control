@@ -67,7 +67,7 @@
 	$hv = array_key_exists('lvchypervisor', $_POST) ? $_POST['lvchypervisor'] : false;
 	$rh = array_key_exists('lvcremotehost', $_POST) ? $_POST['lvcremotehost'] : false;
 	$rm = array_key_exists('lvcremotemethod', $_POST) ? $_POST['lvcremotemethod'] : false;
-	$rp = array_key_exists('lvcrequirepwd', $_POST) ? $_POST['lvcrequirepwd'] : false;
+	$pwd = array_key_exists('lvcrequirepwd', $_POST) ? $_POST['lvcrequirepwd'] : false;
 	$un = array_key_exists('lvcusername', $_POST) ? $_POST['lvcusername'] : false;
 	$hn = array_key_exists('lvchostname', $_POST) ? $_POST['lvchostname'] : false;
 	$lg = array_key_exists('lvclogging', $_POST) ? $_POST['lvclogging'] : false;
@@ -114,6 +114,7 @@
 			$skip_rest = true;
 		}
 		else {
+			$uri = $lv->generate_connection_uri($hv, $rh, $rm, $un, $hn);
 			echo '<p>'.$lang->get('conn_failed').': '.$uri.' '.($lv->get_last_error() ? '('.$lv->get_last_error().')' : '').'</p>';
 		}
 	}
