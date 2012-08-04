@@ -50,15 +50,12 @@
     $isos = libvirt_get_iso_images();
 
     $nodetails = false;
-    if (empty($isos)) {
+    if (empty($isos))
       $msg = $lang->get('no_iso');
-      $skip = true;
-      $nodetails = true;
-    } else {
-      $ci  = $lv->get_connect_information();
-      $maxcpu = $ci['hypervisor_maxvcpus'];
-      unset($ci);
-    }
+
+    $ci  = $lv->get_connect_information();
+    $maxcpu = $ci['hypervisor_maxvcpus'];
+    unset($ci);
 ?>
 
 <?php
@@ -313,11 +310,9 @@
 
 <?php
   else:
-      if (!$nodetails):
 ?>
   <br /><a href="?name=<?php echo $_POST['name'] ?>"><?php echo $lang->get('vm_details') ?></a>
 <?php
-      endif;
   endif;
 ?>
 
