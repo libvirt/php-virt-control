@@ -138,7 +138,7 @@
 				}
 				else {
 					$actions  = '<a href="?page='.$page.'&amp;action=net-stop&amp;net='.$name.'"><img src="graphics/stop.png" title="'.$lang->get('net_stop').'" /></a> ';
-					$actions .= '<a href="?page='.$page.'&amp;action=net-dumpxml&amp;net='.$name.'"><img src="graphics/dump.png title="'.$lang->get('net_dumpxml').'" /></a> ';
+					$actions .= '<a href="?page='.$page.'&amp;action=net-dumpxml&amp;net='.$name.'"><img src="graphics/dump.png" title="'.$lang->get('net_dumpxml').'" /></a> ';
 
 					$actions[ strlen($actions) - 2 ] = ' ';
 					$actions = Trim($actions);

@@ -8,6 +8,6 @@
     | <a href="?page=info"><?php echo $lang->get('info') ?></a>
     | <a href="?action=logout"><?php echo $lang->get('logout') ?></a>
     <div style="float:right;text-align: right; width:220px;font-size:11px;font-style:italic">
-	<?php if (isset($uri)) echo "Connected to <br />".$uri; ?>
+	<?php if (isset($uri)) echo $lang->get('connected_to').'<br />'.$uri; ?>
     </div>
   </div>

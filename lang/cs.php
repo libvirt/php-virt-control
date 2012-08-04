@@ -10,6 +10,7 @@
 					'conn_uri' => 'URI připojení',
 					'conn_encrypted' => 'Šifrování',
 					'conn_secure' => 'Zabezpečení',
+					'connected_to' => 'Připojeno k',
 					'hypervisor_limit' => 'Limit hypervisoru',
 					'hostname' => 'Jméno hostitele',
 					'password' => 'Heslo',

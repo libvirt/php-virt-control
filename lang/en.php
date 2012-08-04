@@ -9,6 +9,7 @@
 					'conn_uri' => 'Connection URI',
 					'conn_encrypted' => 'Encrypted',
 					'conn_secure' => 'Secure',
+					'connected_to' => 'Connected to',
 					'hypervisor_limit' => 'Hypervisor limit',
 					'hostname' => 'Hostname',
 					'password' => 'Password',
