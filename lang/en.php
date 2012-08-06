@@ -301,5 +301,8 @@
 					'password_mismatch' => 'Password mismatch',
 					'screenshot-settings-auto-release' => 'Send automatic mouse pointer release event',
 					'screenshot-delay' => 'Delay has been changed to %d second(s)',
+					'cpu_stats' => 'Node CPU stats',
+					'mem_stats' => 'Node memory stats',
+					'system_information' => 'System information',
 					);
 ?>

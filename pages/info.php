@@ -122,5 +122,38 @@
 <?php unset($tmp) ?>
 <div class="section"><?php echo $lang->get('modinfo') ?></div>
 <?php echo $out ?>
-
 </div>
+
+<div class="section"><?php echo $lang->get('cpu_stats'); ?></div>
+<?php 
+$tmp = $lv->node_get_cpu_stats();
+foreach ($tmp as $id => $data) {
+    echo '<div class="label">CPU #'.$id.'</div>';
+    echo '<div class="value">';
+    foreach ($data as $key => $val) {
+        echo '<div class="label">'.$key.'</div><div class="value" style="text-align: right">'.$val.'</div>';
+    }
+    echo '</div>';
+}
+?>
+<div style="clear:both"></div>
+<div class="section"><?php echo $lang->get('mem_stats'); ?></div>
+<?php 
+$tmp = $lv->node_get_mem_stats();
+foreach ($tmp as $id => $data) {
+    echo '<div class="label">CPU #'.$id.'</div>';
+    echo '<div class="value">';
+    foreach ($data as $key => $val) {
+        echo '<div class="label">'.$key.'</div><div class="value" style="text-align: right">'.$val.'</div>';
+    }
+    echo '</div>';
+}
+?>
+<div style="clear:both"></div>
+<div class="section"><?php echo $lang->get('system_information'); ?></div>
+<pre>
+<?php
+    $tmp = $lv->connect_get_sysinfo();
+    echo htmlentities($tmp);
+?>
+</pre>

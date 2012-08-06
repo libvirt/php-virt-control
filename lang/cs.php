@@ -300,5 +300,8 @@
 					'password_mismatch' => 'Heslo nebylo ověřeno',
 					'screenshot-settings-auto-release' => 'Automaticky poslat událost uvolnění tlačítka myši',
 					'screenshot-delay' => 'Interval byl změněn na %d sekund',
+					'cpu_stats' => 'CPU Statistiky uzlu',
+					'mem_stats' => 'Paměťové statistiky uzlu',
+					'system_information' => 'Systémové informace',
 					);
 ?>
