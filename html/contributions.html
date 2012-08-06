@@ -60,6 +60,8 @@
             <a href="#hacking">Hacking php-virt-control</a>
           </li><li>
             <a href="#sending">Sending patches</a>
+          </li><li>
+	    <a href="#bugzilla">Bug tracking</a>
           </li></ul>
         <h2>
           <a name="hacking" id="hacking">Hacking php-virt-control</a>
@@ -80,6 +82,11 @@
      <pre>git config --local format.subjectprefix "PATCH"</pre>
 
  </li><li>Create the patch in the form of the commits and include also information about usage (example source codes maybe) and testing</li><li>Format it using <code>git format-patch -X</code> where X is the number of patch parts to be posted, for multipart patch (X is greater than 1) please use also numbering (-n) option and include the cover-letter (--cover-letter).</li><li>Send to php-virt-control@lists.fedorahosted.org using the <code>git send-email &lt;files&gt; --to php-virt-control@lists.fedorahosted.org</code> command where &lt;files&gt; can be <i>000*</i> to send all the patches formatted by git format-patch since git format-patch names the files starting with the 4 digit numbers.</li></ol>
+	</p>
+	<h2>
+	  <a name="bugzilla">Bug tracking</a>
+        </h2>
+        <p>For the bug tracking it's possible to use the project's <a href="http://bugzilla.php-virt-control.org" target="_blank">Bugzilla</a>.</p>
       </div>
     </div>
     <div id="footer"></div>

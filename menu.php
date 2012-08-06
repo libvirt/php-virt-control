@@ -1,7 +1,7 @@
   <!-- MENU -->
   <div id="menu">
   <a href="?name=<?php echo $name ?>"><?php echo $lang->get('menu_overview') ?></a>
-  <!-- 
+  <!--
   <br /> <a href="?name=<?php echo $name ?>&amp;page=performance">Performance</a>
   -->
   <br /> <a href="?name=<?php echo $name ?>&amp;page=processor"><?php echo $lang->get('menu_processor') ?></a>

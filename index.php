@@ -14,10 +14,10 @@
 		$uri = false;
 	if (isset($_SESSION['connection_credentials']))
 		$lv = new Libvirt(
-			$uri, 
-			$_SESSION['connection_credentials'][VIR_CRED_AUTHNAME], 
-			$_SESSION['connection_credentials'][VIR_CRED_PASSPHRASE], 
-			$lg, 
+			$uri,
+			$_SESSION['connection_credentials'][VIR_CRED_AUTHNAME],
+			$_SESSION['connection_credentials'][VIR_CRED_PASSPHRASE],
+			$lg,
 			$lang_str
 		);
 
@@ -43,7 +43,7 @@
 <head>
  <title>php-virt-control - <?php echo $lang->get('title_vmc') ?></title>
  <link rel="STYLESHEET" type="text/css" href="html/main.css" />
- <link rel="STYLESHEET" type="text/css" href="manager.css" /> 
+ <link rel="STYLESHEET" type="text/css" href="manager.css" />
 </head>
 <body>
   <div id="header">

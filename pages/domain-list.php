@@ -179,7 +179,7 @@
 				}
 
 				echo '<tr class="';
-				if (($i % 2) == 0) echo 'odd'; 
+				if (($i % 2) == 0) echo 'odd';
 				else echo 'even';
 				echo '">';
 				echo   "<td class=\"name\">

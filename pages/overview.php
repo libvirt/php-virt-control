@@ -99,9 +99,9 @@
 			$uri = $lv->generate_connection_uri($hv, $rh, $rm, $un, $hn);
 			$_SESSION['connection_uri'] = $uri;
 			$_SESSION['connection_logging'] = $lg;
-			if (isset($un) && isset($pwd)) 
+			if (isset($un) && isset($pwd))
 				$_SESSION['connection_credentials'] = array(
-					VIR_CRED_AUTHNAME => $un, 
+					VIR_CRED_AUTHNAME => $un,
 					VIR_CRED_PASSPHRASE => $pwd
 				);
 			echo '<p>'.$lang->get('changed_uri').' <b>'.$uri.'</b></p>';

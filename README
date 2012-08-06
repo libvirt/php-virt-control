@@ -8,7 +8,6 @@ libvirt connection(s).
 
 LANGUAGE LOCALIZATIONS
 ----------------------
-
 If you're a developer and you're adding a new functionality with new
 strings you should use $lang->get($ident) functions instead of coding
 in strings directly. The $ident argument is being used as a key of
@@ -21,7 +20,7 @@ variable - the first entry from there before the dash ('-') is being
 used. The system is looking for a file named as $thisPart.php in the
 lang directory and uses the default from Languages class if it cannot
 be found. E.g. for English browser settings the first token is usually
-en-US, so the part before dash character is 'en' so this is looking for 
+en-US, so the part before dash character is 'en' so this is looking for
 lang/en.php etc.
 
 The language can be changed using the Settings link after you log in.
@@ -29,4 +28,3 @@ The language can be changed using the Settings link after you log in.
 LICENSES
 --------
 Icons used are from http://www.icojoy.com/articles/49/ (license free)
-
