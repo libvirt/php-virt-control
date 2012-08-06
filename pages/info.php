@@ -125,7 +125,7 @@
 </div>
 
 <div class="section"><?php echo $lang->get('cpu_stats'); ?></div>
-<?php 
+<?php
 $tmp = $lv->node_get_cpu_stats();
 foreach ($tmp as $id => $data) {
     echo '<div class="label">CPU #'.$id.'</div>';
@@ -133,12 +133,12 @@ foreach ($tmp as $id => $data) {
     foreach ($data as $key => $val) {
         echo '<div class="label">'.$key.'</div><div class="value" style="text-align: right">'.$val.'</div>';
     }
-    echo '</div>';
+    echo '</div><br />';
 }
 ?>
 <div style="clear:both"></div>
 <div class="section"><?php echo $lang->get('mem_stats'); ?></div>
-<?php 
+<?php
 $tmp = $lv->node_get_mem_stats();
 foreach ($tmp as $id => $data) {
     echo '<div class="label">CPU #'.$id.'</div>';
@@ -146,7 +146,7 @@ foreach ($tmp as $id => $data) {
     foreach ($data as $key => $val) {
         echo '<div class="label">'.$key.'</div><div class="value" style="text-align: right">'.$val.'</div>';
     }
-    echo '</div>';
+    echo '</div><br />';
 }
 ?>
 <div style="clear:both"></div>

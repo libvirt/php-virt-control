@@ -1601,20 +1601,20 @@
 			$tmp = libvirt_node_get_info($this->conn);
 			return ($tmp) ? $tmp : $this->_set_last_error();
 		}
-        
-        function node_get_cpu_stats() {
-            $tmp = libvirt_node_get_cpu_stats($this->conn);
-            return ($tmp) ? $tmp : $this->_set_last_error();
-        }
-        
-        function node_get_mem_stats() {
-            $tmp = libvirt_node_get_mem_stats($this->conn);
-            return ($tmp) ? $tmp : $this->_set_last_error();
-        }
-        
-        function connect_get_sysinfo() {
-            $tmp = libvirt_connect_get_sysinfo($this->conn);
-            return ($tmp) ? $tmp : $this->_set_last_error();
-        }
+
+		function node_get_cpu_stats() {
+			$tmp = libvirt_node_get_cpu_stats($this->conn);
+			return ($tmp) ? $tmp : $this->_set_last_error();
+		}
+
+		function node_get_mem_stats() {
+			$tmp = libvirt_node_get_mem_stats($this->conn);
+			return ($tmp) ? $tmp : $this->_set_last_error();
+		}
+
+		function connect_get_sysinfo() {
+			$tmp = libvirt_connect_get_sysinfo($this->conn);
+			return ($tmp) ? $tmp : $this->_set_last_error();
+		}
 	}
 ?>
