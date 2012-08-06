@@ -304,5 +304,7 @@
 					'cpu_stats' => 'Node CPU stats',
 					'mem_stats' => 'Node memory stats',
 					'system_information' => 'System information',
+					'date-format' => 'Y-m-d H:i:s',
+					'run' => 'Run',
 					);
 ?>

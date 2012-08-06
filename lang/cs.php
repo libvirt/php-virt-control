@@ -303,5 +303,7 @@
 					'cpu_stats' => 'CPU Statistiky uzlu',
 					'mem_stats' => 'Paměťové statistiky uzlu',
 					'system_information' => 'Systémové informace',
+					'date-format' => 'd.m.Y H:i:s',
+					'run' => 'Spuštění',
 					);
 ?>
