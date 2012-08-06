@@ -6,9 +6,6 @@
 	if ($lg == '')
 		$lg = false;
 
-	if ($lg && LOGDIR)
-		$lg = LOGDIR.'/'.$lg;
-
 	$errmsg = false;
 	if (!CONNECT_WITH_NULL_STRING && $uri == 'null')
 		$uri = false;
@@ -20,9 +17,82 @@
 			$lg,
 			$lang_str
 		);
-
 	else
 		$lv = new Libvirt($uri, null, null, $lg, $lang_str);
+
+	$conns = array();
+	if (array_key_exists('connections', $_SESSION))
+		$conns = $_SESSION['connections'];
+
+	if (array_key_exists('attach', $_GET) && ($_GET['attach'])) {
+		$tmp = $db->list_connections(true);
+		$rid = (int)$_GET['attach'];
+
+		for ($i = 0; $i < sizeof($tmp); $i++) {
+			if ($tmp[$i]['id'] == $rid) {
+				$id = $tmp[$i]['id'];
+				$hv = $tmp[$i]['hypervisor'];
+				$nm = $tmp[$i]['name'];
+				$rh = $tmp[$i]['remote'];
+				$rm = $tmp[$i]['method'];
+				$rp = $tmp[$i]['require_pwd'];
+				$un = $tmp[$i]['user'];
+				$pwd= $tmp[$i]['password'];
+				$hn = $tmp[$i]['host'];
+				$lg = $tmp[$i]['logfile'];
+			}
+		}
+
+		if ($hv) {
+			if ($lv->test_connection_uri($hv, $rh, $rm, $un, $pwd, $hn)) {
+				$new_uri = $lv->generate_connection_uri($hv, $rh, $rm, $un, $hn);
+				$new_conn = array();
+				$new_conn['connection_uri'] = $new_uri;
+				$new_conn['connection_name'] = $nm;
+				$new_conn['connection_logging'] = $lg;
+				$new_conn['id'] = $id;
+				if (isset($un) && isset($pwd))
+					$new_conn['connection_credentials'] = array(
+						VIR_CRED_AUTHNAME => $un,
+						VIR_CRED_PASSPHRASE => $pwd
+					);
+			}
+		}
+
+		$skip = false;
+		foreach ($conns as $item) {
+			if ($item['connection_uri'] == $new_uri)
+				$skip = true;
+		}
+
+		if (!$skip) {
+			$conns[] = $new_conn;
+			$_SESSION['connections'] = $conns;
+		}
+
+		$_GET['connect'] = $rid;
+	}
+
+	if (array_key_exists('detach', $_GET) && ($_GET['detach'])) {
+		$tmp = $db->list_connections(true);
+		$rid = (int)$_GET['detach'];
+
+		for ($i = 0; $i < sizeof($tmp); $i++) {
+			if ($tmp[$i]['id'] == $rid) {
+				$id = $tmp[$i]['id'];
+
+				for ($j = 0; $j < sizeof($conns); $j++) {
+					if ($conns[$j]['id'] == $id)
+						unset($conns[$j]);
+				}
+			}
+		}
+
+		$_SESSION['connections'] = $conns;
+	}
+
+	if ($lg && LOGDIR)
+		$lg = LOGDIR.'/'.$lg;
 
 	/* Get new MAC address in plain text - called by Ajax from pages/new-vm.php */
 	if (array_key_exists('get_mac', $_GET)) {

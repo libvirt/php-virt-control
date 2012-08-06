@@ -139,3 +139,31 @@ table tr td {
 #content .item .nl {
 	clear: both;
 }
+
+#conn-list {
+	width: 145px;
+	float: left;
+	background-color: lightgray;
+}
+
+#conn-list a {
+	font-size: 1em;
+	padding: 10px;
+	color: blue;
+	text-decoration: none;
+	font-weight: bold;
+	font-style: italic;
+}
+
+#conn-list p {
+	font-size: 1em;
+	font-weight: bold;
+	font-style: italic;
+	padding: 0;
+	margin: 10px 0 10px 0;
+	text-align: center;
+}
+
+#conn-detail {
+	margin-left: 150px;
+}

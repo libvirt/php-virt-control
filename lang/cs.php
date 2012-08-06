@@ -305,5 +305,8 @@
 					'system_information' => 'Systémové informace',
 					'date-format' => 'd.m.Y H:i:s',
 					'run' => 'Spuštění',
+					'no-destination-present' => 'Žádný cíl není dostupný či na něj nejste připojeni',
+					'choose-destination' => 'Zvolte cíl migrace',
+					'dom_migrate' => 'Migrovat doménu',
 					);
 ?>

@@ -325,6 +325,9 @@
 					'system_information' => 'System information',
 					'date-format' => 'Y-m-d H:i:s',
 					'run' => 'Run',
+					'no-destination-present' => 'No destination present or connected',
+					'choose-destination' => 'Choose migration destination',
+					'dom_migrate' => 'Migrate domain',
 					);
 
 			$this->trans = $trans;

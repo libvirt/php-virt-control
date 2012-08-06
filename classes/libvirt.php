@@ -190,6 +190,26 @@
 			return ($tmp) ? $tmp : $this->_set_last_error();
 		}
 
+		function migrate_to_uri($domain, $uri, $live = false, $bandwidth = 100) {
+			$dom = $this->get_domain_object($domain);
+			if (!$dom)
+				return false;
+
+			$name = $this->domain_get_name($dom);
+			$tmp = libvirt_domain_migrate_to_uri($dom, $uri, $live ? VIR_MIGRATE_LIVE : 0, $name, $bandwidth);
+			return ($tmp) ? $tmp : $this->_set_last_error();
+		}
+
+		function migrate($domain, $conn, $live = false, $bandwidth = 100) {
+			$dom = $this->get_domain_object($domain);
+			if (!$dom)
+				return false;
+
+			$name = $this->domain_get_name($dom);
+			$tmp = libvirt_domain_migrate($dom, $conn, $live ? VIR_MIGRATE_LIVE : 0, $name, $bandwidth);
+			return ($tmp) ? $tmp : $this->_set_last_error();
+		}
+
 		function generate_connection_uri($hv, $remote, $remote_method, $remote_username, $remote_hostname, $session=false) {
 			if ($hv == 'qemu') {
 				if ($session)

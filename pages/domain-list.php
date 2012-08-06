@@ -67,6 +67,41 @@
             </tr></form></table>';
   }
 
+  if ($action == 'domain-migrate') {
+    $name = $_GET['dom'];
+
+    if (!array_key_exists('dest-uri', $_POST)) {
+	$uris = array();
+
+	foreach ($conns as $conn) {
+		if ($conn['connection_uri'] != $uri)
+			$uris[] = array(
+					'uri' => $conn['connection_uri'],
+					'name' => $conn['connection_name']
+					);
+	}
+
+	if (sizeof($uris) == 0)
+		echo $lang->get('no-destination-present');
+	else {
+		echo "<form method='POST'>".$lang->get('choose-destination')." ($name): <br /><select name='dest-uri' style='width: 150px'>";
+
+		foreach ($uris as $cn) {
+			$str = base64_encode($cn['uri']);
+
+			echo "<option value=\"$str\">{$cn['name']}</option>";
+		}
+
+		echo "</select><br /><input type='submit' value='".$lang->get('dom_migrate')."'>";
+	}
+    }
+    else {
+	$uri = base64_decode($_POST['dest-uri']);
+        if (!$lv->migrate_to_uri($name, $uri))
+		echo '<b>'.$lang->get('error_page_title').'</b>: '.$lv->get_last_error();
+    }
+  }
+
   if ($action == 'domain-edit') {
     $name = $_GET['dom'];
 
@@ -170,6 +205,7 @@
 					$actions  = '<a href="?page='.$page.'&amp;action=domain-stop&amp;dom='.$name.'"><img src="graphics/stop.png" title="'.$lang->get('dom_stop').'" /></a> ';
 					$actions .= '<a href="?page='.$page.'&amp;action=domain-destroy&amp;dom='.$name.'"><img src="graphics/destroy.png" title="'.$lang->get('dom_destroy').'" /></a> ';
 					$actions .= '<a href="?page='.$page.'&amp;action=domain-dump&amp;dom='.$name.'"><img src="graphics/dump.png" title="'.$lang->get('dom_dumpxml').'" /></a> ';
+					$actions .= '<a href="?page='.$page.'&amp;action=domain-migrate&amp;dom='.$name.'"><img src="graphics/migrate.png" title="'.$lang->get('dom_migrate').'" /></a> ';
 
 					if ($lv->supports('screenshot'))
 						$actions .= '<a href="?name='.$name.'&amp;page=screenshot"><img src="graphics/screenshot.png" title="'.$lang->get('dom_screenshot').'" /></a>';
