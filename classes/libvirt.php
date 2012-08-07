@@ -1624,7 +1624,14 @@
 
 		function node_get_cpu_stats() {
 			$tmp = libvirt_node_get_cpu_stats($this->conn);
-			return ($tmp) ? $tmp : $this->_set_last_error();
+			if (!$tmp) return $this->_set_last_error();
+
+			// tmp has two array, collected at 1sec delay. Make a diff
+			$newvalues = array();
+			foreach ($tmp[0] as $key => $elem) {
+				$newvalues[$key] = $tmp[1][$key] - $elem;
+			}
+			return $newvalues;
 		}
 
 		function node_get_mem_stats() {
