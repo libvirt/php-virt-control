@@ -1622,8 +1622,13 @@
 			return ($tmp) ? $tmp : $this->_set_last_error();
 		}
 
-		function node_get_cpu_stats() {
-			$tmp = libvirt_node_get_cpu_stats($this->conn);
+		function node_get_cpu_stats_raw($cpu = VIR_NODE_CPU_STATS_ALL_CPUS) {
+			$tmp = libvirt_node_get_cpu_stats($this->conn, $cpu);
+			return ($tmp) ? $tmp : $this->_set_last_error();
+		}
+
+		function node_get_cpu_stats($cpu = VIR_NODE_CPU_STATS_ALL_CPUS) {
+			$tmp = libvirt_node_get_cpu_stats($this->conn, $cpu);
 			if (!$tmp) return $this->_set_last_error();
 
 			// tmp has two array, collected at 1sec delay. Make a diff
@@ -1631,6 +1636,7 @@
 			foreach ($tmp[0] as $key => $elem) {
 				$newvalues[$key] = $tmp[1][$key] - $elem;
 			}
+			$newvalues['cpus'] = $tmp['cpus'];
 			return $newvalues;
 		}
 

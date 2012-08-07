@@ -300,7 +300,7 @@
 					'password_mismatch' => 'Heslo nebylo ověřeno',
 					'screenshot-settings-auto-release' => 'Automaticky poslat událost uvolnění tlačítka myši',
 					'screenshot-delay' => 'Interval byl změněn na %d sekund',
-					'cpu_stats' => 'CPU Statistiky uzlu',
+					'cpu_stats' => 'CPU Statistiky uzlu (průměr za sekundu)',
 					'mem_stats' => 'Paměťové statistiky uzlu',
 					'system_information' => 'Systémové informace',
 					'date-format' => 'd.m.Y H:i:s',
@@ -308,5 +308,6 @@
 					'no-destination-present' => 'Žádný cíl není dostupný či na něj nejste připojeni',
 					'choose-destination' => 'Zvolte cíl migrace',
 					'dom_migrate' => 'Migrovat doménu',
+					'cpu_stats_per_each_cpu' => 'CPU Statistiky uzlu pro jednotlivá CPU (průměr za sekundu)',
 					);
 ?>

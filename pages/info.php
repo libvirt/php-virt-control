@@ -127,9 +127,29 @@
 <div class="section"><?php echo $lang->get('cpu_stats'); ?></div>
 <?php
 $tmp = $lv->node_get_cpu_stats();
+$numCpus = $tmp['cpus'];
 if (is_array($tmp)) foreach ($tmp as $name => $value) {
     echo '<div class="label">'.$name.'</div>';
     echo '<div class="value">'.$value.'</div><div class="nl">';
+}
+?>
+<br />
+<div class="section"><?php echo $lang->get('cpu_stats_per_each_cpu'); ?></div>
+<?php
+for ($i = 0; $i < $numCpus; $i++) {
+    $tmp = $lv->node_get_cpu_stats_raw($i);
+    $newvalues = array();
+    foreach ($tmp[0] as $key => $elem) {
+        $newvalues[$key] = $tmp[1][$key] - $elem;
+    }
+    echo '<div class="label">CPU #'.$i.'</div>';
+    echo '<div class="value">';
+    foreach ($tmp[0] as $key => $val) {
+        $v = $tmp[1][$key] - $val;
+        if ($key != 'time')
+            echo '<div class="label">'.$key.'</div><div class="value" style="text-align: right">'.$v.'</div>';
+    }
+    echo '</div><br />';
 }
 ?>
 <div style="clear:both"></div>
@@ -138,9 +158,14 @@ if (is_array($tmp)) foreach ($tmp as $name => $value) {
 $tmp = $lv->node_get_mem_stats();
 if (is_array($tmp)) foreach ($tmp as $name => $value) {
     echo '<div class="label">'.$name.'</div>';
-    echo '<div class="value">'.$value.'</div><div class="nl">';
+
+    if ($name != 'time')
+        echo '<div class="value">'.$value.'</div><div class="nl">';
+    else
+        echo '<div class="value">'.@Date($lang->get('date-format'), $value).'</div><div class="nl">';
 }
 ?>
+<br />
 <div style="clear:both"></div>
 <div class="section"><?php echo $lang->get('system_information'); ?></div>
 <pre>

@@ -328,6 +328,7 @@
 					'no-destination-present' => 'No destination present or connected',
 					'choose-destination' => 'Choose migration destination',
 					'dom_migrate' => 'Migrate domain',
+					'cpu_stats_per_each_cpu' => 'Node CPU stats per each CPU (one second average)',
 					);
 
 			$this->trans = $trans;
