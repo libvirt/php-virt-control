@@ -1622,6 +1622,27 @@
 			return ($tmp) ? $tmp : $this->_set_last_error();
 		}
 
+		function node_get_cpu_stats_each_cpu($sec = 0) {
+			$tmp = libvirt_node_get_cpu_stats_for_each_cpu($this->conn, $sec);
+
+			if ($sec <= 1)
+				return ($tmp) ? $tmp : $this->_set_last_error();
+
+			if (!$tmp) return $this->_set_last_error();
+
+			$numcpus = sizeof($tmp[0]) - 1;
+			$numvalues = sizeof($tmp) - 1;
+			$out = array();
+			for ($i = 0; $i < $numcpus; $i++) {
+				$out[$i]['kernel'] = (($tmp[ sizeof($tmp) - 2 ][$i]['kernel'] - $tmp[0][$i]['kernel']) / $numvalues);
+				$out[$i]['iowait'] = (($tmp[ sizeof($tmp) - 2 ][$i]['iowait'] - $tmp[0][$i]['iowait']) / $numvalues);
+				$out[$i]['idle'] = (($tmp[ sizeof($tmp) - 2 ][$i]['idle'] - $tmp[0][$i]['idle']) / $numvalues);
+				$out[$i]['user'] = (($tmp[ sizeof($tmp) - 2 ][$i]['user'] - $tmp[0][$i]['user']) / $numvalues);
+			}
+
+			return $out;
+		}
+
 		function node_get_cpu_stats_raw($cpu = VIR_NODE_CPU_STATS_ALL_CPUS) {
 			$tmp = libvirt_node_get_cpu_stats($this->conn, $cpu);
 			return ($tmp) ? $tmp : $this->_set_last_error();
