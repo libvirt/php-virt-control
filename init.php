@@ -98,6 +98,10 @@
 	if (array_key_exists('action', $_GET) && ($_GET['action'] == 'logout')) {
 		unset($_SESSION['logged_in']);
 		unset($_SESSION['user_perms']);
+		unset($_SESSION['connections']);
+		unset($_SESSION['connection_uri']);
+		unset($_SESSION['connection_credentials']);
+		unset($_SESSION['connection_logging']);
 	}
 
 	if (!verify_user($db)) {
