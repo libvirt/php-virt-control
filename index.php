@@ -28,6 +28,7 @@
 		$tmp = $db->list_connections(true);
 		$rid = (int)$_GET['attach'];
 
+		$new_uri = false;
 		for ($i = 0; $i < sizeof($tmp); $i++) {
 			if ($tmp[$i]['id'] == $rid) {
 				$id = $tmp[$i]['id'];

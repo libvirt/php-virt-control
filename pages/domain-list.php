@@ -76,7 +76,7 @@
 	foreach ($conns as $conn) {
 		if ($conn['connection_uri'] != $uri)
 			$uris[] = array(
-					'uri' => $conn['connection_uri'],
+					'id' => $conn['id'],
 					'name' => $conn['connection_name']
 					);
 	}
@@ -86,18 +86,23 @@
 	else {
 		echo "<form method='POST'>".$lang->get('choose-destination')." ($name): <br /><select name='dest-uri' style='width: 150px'>";
 
-		foreach ($uris as $cn) {
-			$str = base64_encode($cn['uri']);
-
-			echo "<option value=\"$str\">{$cn['name']}</option>";
-		}
+		foreach ($uris as $cn)
+			echo "<option value=\"${cn['id']}\">{$cn['name']}</option>";
 
 		echo "</select><br /><input type='submit' value='".$lang->get('dom_migrate')."'>";
 	}
     }
     else {
-	$uri = base64_decode($_POST['dest-uri']);
-        if (!$lv->migrate_to_uri($name, $uri))
+	$arr = false;
+
+	for ($i = 0; $i < sizeof($conns); $i++) {
+		if ($conns[$i]['id'] == $_POST['dest-uri']) {
+			$arr = $conns[$i];
+			break;
+		}
+	}
+
+        if ($arr && (!$lv->migrate($name, $arr)))
 		echo '<b>'.$lang->get('error_page_title').'</b>: '.$lv->get_last_error();
     }
   }

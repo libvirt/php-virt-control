@@ -206,7 +206,26 @@
 				return false;
 
 			$name = $this->domain_get_name($dom);
-			$tmp = libvirt_domain_migrate($dom, $conn, $live ? VIR_MIGRATE_LIVE : 0, $name, $bandwidth);
+			if (!is_resource($conn)) {
+				$uri = $conn['connection_uri'];
+				$login = $conn['connection_credentials'][VIR_CRED_AUTHNAME];
+				$pwd = $conn['connection_credentials'][VIR_CRED_PASSPHRASE];
+
+				if ($login && $pwd)
+					$dconn = libvirt_connect($uri, false, array(VIR_CRED_AUTHNAME => $login, VIR_CRED_PASSPHRASE => $password));
+				else
+					$dconn = libvirt_connect($uri, false);
+
+				if ($dconn && $dom && $name)
+					$tmp = libvirt_domain_migrate($dom, $dconn, $live ? VIR_MIGRATE_LIVE : 0, $name, $bandwidth);
+				else
+					$tmp = false;
+
+				unset($dconn);
+			}
+			else
+				$tmp = libvirt_domain_migrate($dom, $conn, $live ? VIR_MIGRATE_LIVE : 0, $name, $bandwidth);
+
 			return ($tmp) ? $tmp : $this->_set_last_error();
 		}
 
@@ -241,7 +260,7 @@
                 		$test = libvirt_connect($uri, false, $credentials);
 	                }
         	        else
-                		$test = libvirt_connect($uri);
+				$test = @libvirt_connect($uri);
 			$ok = is_resource($test);
 			unset($test);
 
