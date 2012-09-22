@@ -2,25 +2,15 @@
 	if (!verify_user($db, USER_PERMISSION_NETWORK_CREATE))
 		exit;
 
-  $skip = false;
-  $msg = false;
+	$lvNetwork = new LibvirtNetwork($lv, $lang);
+	$lvNetworkData = $lvNetwork->createNewNetwork($_POST);
 
-  if (array_key_exists('sent', $_POST)) {
-	if ($_POST['ip_range_cidr'])
-		$ipinfo = $_POST['net_cidr'];
-	else
-		$ipinfo = array('ip' => $_POST['net_ip'], 'netmask' => $_POST['net_mask']);
-
-	$dhcpinfo = ($_POST['setup_dhcp']) ? $_POST['net_dhcp_start'].'-'.$_POST['net_dhcp_end'] : false;
-
-	$tmp = $lv->network_new($_POST['name'], $ipinfo, $dhcpinfo, $_POST['forward'], $_POST['net_forward_dev']);
-	if (!$tmp)
-		$msg = $lv->get_last_error();
-	else {
-		$skip = true;
-		$msg = $lang->get('net_created');
+	if ($lvNetworkData) {
+		$skip = $lvNetworkData['skip'];
+		$msg  = $lvNetworkData['msg'];
 	}
-  }
+	else
+		$skip = $msg = false;
 ?>
 
 <?php
@@ -107,17 +97,17 @@
 </tr>
 
 <tr>
-    <td align="right"><?php echo $lang->get('net_ip_range_def') ?>:</td>
+    <td align="right"><?php echo $lang->get('net-ip-range-def') ?>:</td>
     <td>
       <select name="ip_range_cidr" onchange="net_ip_change(this.value)" id="ipdef_val">
-	<option value="1"><?php echo $lang->get('net_ip_cidr') ?></option>
-	<option value="0"><?php echo $lang->get('net_ip_direct') ?></option>
+	<option value="1"><?php echo $lang->get('net-ip-cidr') ?></option>
+	<option value="0"><?php echo $lang->get('net-ip-direct') ?></option>
       </select>
     </td>
 </tr>
 
 <tr id="net_ip_cidr">
-    <td align="right"><?php echo $lang->get('net_ipdef_cidr') ?>:</td>
+    <td align="right"><?php echo $lang->get('net-ipdef-cidr') ?>:</td>
     <td><input type="text" name="net_cidr" id="net_cidr" /></td>
 </tr>
 
@@ -126,11 +116,11 @@
     <td>
     <table>
 	<tr>
-	    <td align="right"><?php echo $lang->get('net_ip') ?>:</td>
+	    <td align="right"><?php echo $lang->get('net-ip') ?>:</td>
 	    <td><input type="text" name="net_ip" id="net_ip" /></td>
  	</tr>
 	<tr>
-	    <td align="right"><?php echo $lang->get('net_mask') ?>:</td>
+	    <td align="right"><?php echo $lang->get('net-mask') ?>:</td>
 	    <td><input type="text" name="net_mask" id="net_mask" /></td>
         </tr>
     </table>
@@ -152,13 +142,13 @@
     <td>
 	<table>
 	<tr>
-	    <td align="right"><?php echo $lang->get('net_dhcp_start') ?>:</td>
+	    <td align="right"><?php echo $lang->get('net-dhcp-start') ?>:</td>
 	    <td>
 	      <input type="text" name="net_dhcp_start" />
 	    </td>
 	</tr>
 	<tr>
-	    <td align="right"><?php echo $lang->get('net_dhcp_end') ?>:</td>
+	    <td align="right"><?php echo $lang->get('net-dhcp-end') ?>:</td>
 	    <td>
 	      <input type="text" name="net_dhcp_end" />
 	    </td>
@@ -167,20 +157,20 @@
 </tr>
 
 <tr>
-    <td align="right"><?php echo $lang->get('net_forward') ?>:</td>
+    <td align="right"><?php echo $lang->get('net-forward') ?>:</td>
     <td>
       <select name="forward">
-        <option value="none"><?php echo $lang->get('net_forward_none') ?></option>
-        <option value="nat"><?php echo $lang->get('net_forward_nat') ?></option>
-	<option value="route"><?php echo $lang->get('net_forward_route') ?></option>
+        <option value="none"><?php echo $lang->get('net-forward-none') ?></option>
+        <option value="nat"><?php echo $lang->get('net-forward-nat') ?></option>
+	<option value="route"><?php echo $lang->get('net-forward-route') ?></option>
       </select>
     </td>
 </tr>
 
 <tr>
-    <td align="right"><?php echo $lang->get('net_dev') ?>:</td>
+    <td align="right"><?php echo $lang->get('net-dev') ?>:</td>
     <td>
-      <input type="text" name="net_forward_dev" /> (<?php echo $lang->get('net_forward_dev_empty_msg') ?>)
+      <input type="text" name="net_forward_dev" /> (<?php echo $lang->get('net-forward-dev-empty-msg') ?>)
     </td>
 </tr>
 

@@ -43,8 +43,10 @@ table tr td {
 }
 
 #menu {
-	background-color: lightblue;
 	padding: 10px;
+	width: 100%;
+	border: 1px solid grey;
+	margin-bottom: 10px;
 }
 
 #menu a {

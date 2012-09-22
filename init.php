@@ -2,7 +2,7 @@
 	define('DEBUG', false);
 	define('LOGDIR', getcwd().'/logs');
 	define('LIBVIRT_PHP_REQ_VERSION', '0.4.4');
-	define('PHPVIRTCONTROL_VERSION', '0.0.3');
+	define('PHPVIRTCONTROL_VERSION', '0.0.5');
 	define('PHPVIRTCONTROL_WEBSITE', 'http://www.php-virt-control.org');
 	define('CONNECT_WITH_NULL_STRING', false);
 	define('ALLOW_EXPERIMENTAL_VNC', true);
@@ -21,17 +21,17 @@
 	define('USER_PERMISSION_USER_DELETE', 0x400);
 
 	$user_permissions = array(
-				'USER_PERMISSION_BASIC'                 => 'permission_basic',
-				'USER_PERMISSION_SAVE_CONNECTION'       => 'permission_save_connection',
-				'USER_PERMISSION_VM_CREATE'             => 'permission_vm_create',
-				'USER_PERMISSION_VM_EDIT'               => 'permission_vm_edit',
-				'USER_PERMISSION_VM_DELETE'             => 'permission_vm_delete',
-				'USER_PERMISSION_NETWORK_CREATE'        => 'permission_network_create',
-				'USER_PERMISSION_NETWORK_EDIT'          => 'permission_network_edit',
-				'USER_PERMISSION_NETWORK_DELETE'        => 'permission_network_delete',
-				'USER_PERMISSION_USER_CREATE'           => 'permission_user_create',
-				'USER_PERMISSION_USER_EDIT'             => 'permission_user_edit',
-				'USER_PERMISSION_USER_DELETE'           => 'permission_user_delete',
+				'USER_PERMISSION_BASIC'                 => 'permission-basic',
+				'USER_PERMISSION_SAVE_CONNECTION'       => 'permission-save-connection',
+				'USER_PERMISSION_VM_CREATE'             => 'permission-vm-create',
+				'USER_PERMISSION_VM_EDIT'               => 'permission-vm-edit',
+				'USER_PERMISSION_VM_DELETE'             => 'permission-vm-delete',
+				'USER_PERMISSION_NETWORK_CREATE'        => 'permission-network-create',
+				'USER_PERMISSION_NETWORK_EDIT'          => 'permission-network-edit',
+				'USER_PERMISSION_NETWORK_DELETE'        => 'permission-network-delete',
+				'USER_PERMISSION_USER_CREATE'           => 'permission-user-create',
+				'USER_PERMISSION_USER_EDIT'             => 'permission-user-edit',
+				'USER_PERMISSION_USER_DELETE'           => 'permission-user-delete',
 				);
 
 	session_start();
@@ -61,6 +61,10 @@
 
 	require('functions.php');
 	require('classes/libvirt.php');
+	require('classes/loggerBase.php');
+	require('classes/libvirt-domain.php');
+	require('classes/libvirt-network.php');
+	require('classes/libvirt-info.php');
 	require('classes/graphics.php');
 	require('classes/language.php');
 	require('classes/database.php');
@@ -85,8 +89,8 @@
 	/* If connection.php in config dir doesn't exist override to local config dir */
 	if (!include('/etc/php-virt-control/connection.php'))
 		$cstr = 'mysql:config/mysql-connection.php';
-
-	else $cstr = $type.':/etc/php-virt-control/'.$config;
+	else
+		$cstr = $type.':/etc/php-virt-control/'.$config;
 
 	$db = getDBObject($cstr);
 	$db->init();

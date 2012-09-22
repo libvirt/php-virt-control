@@ -7,7 +7,7 @@
 		echo '<div id="msg"><b>'.$lang->get('msg').': </b>'.$errmsg.'</div>';
 ?>
 
-<?php echo $lang->get('info_msg'); ?>
+<?php echo $lang->get('info-msg'); ?>
 
 <div class="section"><?php echo $lang->get('conns'); ?></div>
 
@@ -22,7 +22,7 @@
                           <tr>
                             <th>'.$spaces.$lang->get('connname').$spaces.'</th>
                             <th>'.$spaces.$lang->get('hypervisor').$spaces.'</th>
-                            <th>'.$spaces.$lang->get('host_type').$spaces.'</th>
+                            <th>'.$spaces.$lang->get('host-type').$spaces.'</th>
 			    <th>'.$spaces.$lang->get('host').$spaces.'</th>
                             <th>'.$spaces.$lang->get('logfile').$spaces.'</th>
 			    <th>'.$spaces.$lang->get('actions').$spaces.'</td>
@@ -42,25 +42,25 @@
 		echo '<tr align="center">
 			<td>'.$name.'</td>
                         <td>'.$hv.'</td>
-                        <td>'.($remote ? $lang->get('type_remote') : $lang->get('type_local')).'</td>
+                        <td>'.($remote ? $lang->get('type-remote') : $lang->get('type-local')).'</td>
 			<td>'.($host ? $host : '-').'</td>
                         <td>'.($logfile ? $logfile : '-').'</td>
 			<td>
 				<a href="?connect='.$id.'">'.$lang->get('connect').'</a> |
-				<a href="?remove_conn='.$id.'">'.$lang->get('conn_remove').'</a>
+				<a href="?remove_conn='.$id.'">'.$lang->get('conn-remove').'</a>
 			</td>
                       </tr>';
 	}
 
 	if (sizeof($tmp) == 0)
-		echo "<tr align=\"center\"><td colspan=\"6\">".$lang->get('conn_none')."</td></tr>";
+		echo "<tr align=\"center\"><td colspan=\"6\">".$lang->get('conn-none')."</td></tr>";
 
 	unset($tmp);
 
 	echo '</table>';
 ?>
 
-<div class="section"><?php echo $lang->get('conn_setup') ?></div>
+<div class="section"><?php echo $lang->get('conn-setup') ?></div>
 
 <?php
 	$nm = array_key_exists('lvcname', $_POST) ? $_POST['lvcname'] : false;
@@ -104,18 +104,18 @@
 					VIR_CRED_AUTHNAME => $un,
 					VIR_CRED_PASSPHRASE => $pwd
 				);
-			echo '<p>'.$lang->get('changed_uri').' <b>'.$uri.'</b></p>';
+			echo '<p>'.$lang->get('changed-uri').' <b>'.$uri.'</b></p>';
 
 			if ((array_key_exists('lvcname', $_POST)) && ($_POST['lvcname']))
 				if ($db->add_connection($_POST['lvcname'], $hv, $rh, $rm, $pwd, $un, $hn, $lg))
-					echo '<p>'.$lang->get('conn_saved').'</p>';
+					echo '<p>'.$lang->get('conn-saved').'</p>';
 
-			echo '<a href="?">'.$lang->get('click_reload').'</a>';
+			echo '<a href="?">'.$lang->get('click-reload').'</a>';
 			$skip_rest = true;
 		}
 		else {
 			$uri = $lv->generate_connection_uri($hv, $rh, $rm, $un, $hn);
-			echo '<p>'.$lang->get('conn_failed').': '.$uri.' '.($lv->get_last_error() ? '('.$lv->get_last_error().')' : '').'</p>';
+			echo '<p>'.$lang->get('conn-failed').': '.$uri.' '.($lv->get_last_error() ? '('.$lv->get_last_error().')' : '').'</p>';
 		}
 	}
 
@@ -148,7 +148,7 @@
 <form method="POST">
 <table id="form-table">
   <tr>
-    <th colspan="2"><?php echo $lang->get('change_conn') ?></th>
+    <th colspan="2"><?php echo $lang->get('change-conn') ?></th>
   </tr>
   <tr>
     <td><?php echo $lang->get('hypervisor') ?>: </td>
@@ -160,19 +160,19 @@
     </td>
   </tr>
   <tr>
-    <th colspan="2"><?php echo $lang->get('host_opts') ?></th>
+    <th colspan="2"><?php echo $lang->get('host-opts') ?></th>
   </tr>
   <tr>
-    <td><?php echo $lang->get('host_type') ?>: </td>
+    <td><?php echo $lang->get('host-type') ?>: </td>
     <td align="right">
       <select name="lvcremotehost" onchange="change_remote(this)">
-        <option value="0" <?php echo ($rh == '0') ? ' selected="selected"' : '' ?>><?php echo $lang->get('type_local') ?></option>
-        <option value="1" <?php echo ($rh == '1') ? ' selected="selected"' : '' ?>><?php echo $lang->get('type_remote') ?></option>
+        <option value="0" <?php echo ($rh == '0') ? ' selected="selected"' : '' ?>><?php echo $lang->get('type-local') ?></option>
+        <option value="1" <?php echo ($rh == '1') ? ' selected="selected"' : '' ?>><?php echo $lang->get('type-remote') ?></option>
       </select>
     </td>
   </tr>
   <tr id="remote1" style="display: <?php echo $ds ?>">
-    <td><?php echo $lang->get('conn_method') ?>: </td>
+    <td><?php echo $lang->get('conn-method') ?>: </td>
     <td align="right">
       <select name="lvcremotemethod">
         <option value="ssh" <?php echo ($rm == 'ssh') ? ' selected="selected"' : '' ?>>SSH</option>
@@ -200,24 +200,24 @@
     </td>
   </tr>
   <tr>
-    <th colspan="2"><?php echo $lang->get('log_opts') ?></th>
+    <th colspan="2"><?php echo $lang->get('log-opts') ?></th>
   </tr>
   <tr>
     <td><?php echo $lang->get('logfile')?>: </td>
     <td align="right">
-      <input type="text" name="lvclogging" value="<?php echo $lg ?>" title="<?php echo $lang->get('empty_disable_log') ?>" />
+      <input type="text" name="lvclogging" value="<?php echo $lg ?>" title="<?php echo $lang->get('empty-disable-log') ?>" />
     </td>
   </tr>
 <?php
  	if (verify_user($db, USER_PERMISSION_SAVE_CONNECTION)):
 ?>
   <tr>
-    <th colspan="2"><?php echo $lang->get('save_conn') ?></th>
+    <th colspan="2"><?php echo $lang->get('save-conn') ?></th>
   </tr>
   <tr>
     <td><?php echo $lang->get('connname')?>: </td>
     <td align="right">
-      <input type="text" name="lvcname" value="<?php echo $nm ?>" title="<?php echo $lang->get('empty_disable_save') ?>" />
+      <input type="text" name="lvcname" value="<?php echo $nm ?>" title="<?php echo $lang->get('empty-disable-save') ?>" />
     </td>
   </tr>
 <?php
@@ -225,7 +225,7 @@
 ?>
   <tr align="center">
     <td colspan="2">
-      <input type="submit" value=" <?php echo $lang->get('connect_new') ?> " />
+      <input type="submit" value=" <?php echo $lang->get('connect-new') ?> " />
     </td>
   </tr>
 </table>

@@ -1009,15 +1009,15 @@
 			$lang = new Language($this->lang_str);
 			$ret = $lang->get('unknown');
 			switch ($state) {
-				case 0: $ret = $lang->get('pool_not_running');
+				case 0: $ret = $lang->get('pool-not-running');
 					break;
-				case 1: $ret = $lang->get('pool_building');
+				case 1: $ret = $lang->get('pool-building');
 					break;
-				case 2: $ret = $lang->get('pool_running');
+				case 2: $ret = $lang->get('pool-running');
 					break;
-				case 3: $ret = $lang->get('pool_running_deg');
+				case 3: $ret = $lang->get('pool-running-deg');
 					break;
-				case 4: $ret = $lang->get('pool_running_inac');
+				case 4: $ret = $lang->get('pool-running-inac');
 					break;
 			}
 			unset($lang);
@@ -1156,6 +1156,9 @@
 		}
 
 		function domain_get_name($res) {
+			if (!is_resource($res))
+				return false;
+
 			return libvirt_domain_get_name($res);
 		}
 
@@ -1194,6 +1197,14 @@
 
 			$domname = $name_override ? $name_override : $name;
 			$domkey  = $name_override ? $name_override : $this->domain_get_name($name);
+
+			if ((!$domkey) && (is_string($name))) {
+				$dom = $this->get_domain_object($name);
+				if (!$dom)
+					return false;
+				return libvirt_domain_get_info($dom);
+			}
+
 			if (!array_key_exists($domkey, $this->dominfos)) {
 				$tmp = $this->domain_get_info_call($name, $name_override);
 				$this->dominfos[$domkey] = $tmp[$domname];
@@ -1382,19 +1393,19 @@
 
 			$ret = $lang->get('unknown');
 			switch ($state) {
-				case VIR_DOMAIN_RUNNING:  $ret = $lang->get('dom_running');
+				case VIR_DOMAIN_RUNNING:  $ret = $lang->get('dom-running');
 						  	  break;
-				case VIR_DOMAIN_NOSTATE:  $ret = $lang->get('dom_nostate');
+				case VIR_DOMAIN_NOSTATE:  $ret = $lang->get('dom-nostate');
 							  break;
-				case VIR_DOMAIN_BLOCKED:  $ret = $lang->get('dom_blocked');
+				case VIR_DOMAIN_BLOCKED:  $ret = $lang->get('dom-blocked');
 							  break;
-				case VIR_DOMAIN_PAUSED:   $ret = $lang->get('dom_paused');
+				case VIR_DOMAIN_PAUSED:   $ret = $lang->get('dom-paused');
 							  break;
-				case VIR_DOMAIN_SHUTDOWN: $ret = $lang->get('dom_shutdown');
+				case VIR_DOMAIN_SHUTDOWN: $ret = $lang->get('dom-shutdown');
 							  break;
-				case VIR_DOMAIN_SHUTOFF:  $ret = $lang->get('dom_shutoff');
+				case VIR_DOMAIN_SHUTOFF:  $ret = $lang->get('dom-shutoff');
 							  break;
-				case VIR_DOMAIN_CRASHED:  $ret = $this->get('dom_crashed');
+				case VIR_DOMAIN_CRASHED:  $ret = $lang->get('dom-crashed');
 							  break;
 			}
 			unset($lang);

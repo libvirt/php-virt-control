@@ -39,9 +39,9 @@
         }
         function check() {
             if (change_el == 'ch-apply')
-                return (confirm('<?php echo $lang->get('ask_apply') ?>'));
+                return (confirm('<?php echo $lang->get('ask-apply') ?>'));
             if (change_el == 'ch-discard')
-                return (confirm('<?php echo $lang->get('ask_discard') ?>'));
+                return (confirm('<?php echo $lang->get('ask-discard') ?>'));
         }
     -->
     </script>
@@ -73,7 +73,7 @@
       <div class="nl" />
     </div>
     <!-- MACHINE DETAILS SECTION -->
-    <div class="section"><?php echo $lang->get('vm_details') ?>: </div>
+    <div class="section"><?php echo $lang->get('vm-details') ?>: </div>
     <div class="item">
       <div class="label"><?php echo $lang->get('arch') ?>:</div>
       <div class="value"><?php echo $arch ?></div>
@@ -122,8 +122,8 @@
     <div class="item">
       <div class="label"><?php echo $lang->get('changes') ?>:</div>
       <div class="value">
-        <input type="submit" name="ch-apply" value=" <?php echo $lang->get('btn_apply') ?> " onclick="setElement('change', this)" />
-        <input type="submit" name="ch-discard" value=" <?php echo $lang->get('btn_discard') ?> " onclick="setElement('change', this)" />
+        <input type="submit" name="ch-apply" value=" <?php echo $lang->get('btn-apply') ?> " onclick="setElement('change', this)" />
+        <input type="submit" name="ch-discard" value=" <?php echo $lang->get('btn-discard') ?> " onclick="setElement('change', this)" />
       </div>
       <div class="nl" />
     </div>

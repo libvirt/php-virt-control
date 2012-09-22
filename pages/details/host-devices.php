@@ -1,15 +1,15 @@
 <?php
-  $devs = $lv->domain_get_host_devices($name);
+	$devs = $lv->domain_get_host_devices($name);
 ?>
   <!-- CONTENTS -->
   <div id="content">
 
     <form action="#" method="POST">
 
-    <div class="section"><?php echo $lang->get('host_devices_title') ?></div>
+    <div class="section"><?php echo $lang->get('host-devices-title') ?></div>
 
 <?php
-    for ($i = 0; $i < sizeof($devs['pci']); $i++):
+	for ($i = 0; $i < sizeof($devs['pci']); $i++):
 ?>
     <div class="item">
       <div class="label">PCI Device #<?php echo $i+1 ?>:</div>
@@ -17,11 +17,11 @@
       <div class="nl" />
     </div>
 <?php
-    endfor;
+	endfor;
 ?>
 
 <?php
-    for ($i = 0; $i < sizeof($devs['usb']); $i++):
+	for ($i = 0; $i < sizeof($devs['usb']); $i++):
 ?>
     <div class="item">
       <div class="label">USB Device #<?php echo $i+1 ?>:</div>
@@ -29,18 +29,18 @@
       <div class="nl" />
     </div>
 <?php
-    endfor;
+	endfor;
 ?>
 
 <?php
-    if (sizeof($devs['usb']) + sizeof($devs['pci']) == 0):
+	if (sizeof($devs['usb']) + sizeof($devs['pci']) == 0):
 ?>
     <div class="item">
-      <div class="label"><?php echo $lang->get('host_devices') ?>:</div>
-      <div class="value"><?php echo $lang->get('hostdev_none') ?></div>
+      <div class="label"><?php echo $lang->get('host-devices') ?>:</div>
+      <div class="value"><?php echo $lang->get('hostdev-none') ?></div>
       <div class="nl" />
     </div>
-<?
+<?php
     endif;
 ?>
 
@@ -49,7 +49,7 @@
     <div class="item">
       <div class="label"><?php echo $lang->get('changes') ?>:</div>
       <div class="value">
-        <?php echo $lang->get('details_readonly') ?>
+        <?php echo $lang->get('details-readonly') ?>
       </div>
       <div class="nl" />
     </div>

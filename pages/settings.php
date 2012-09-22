@@ -1,28 +1,3 @@
-<?php
-	function get_languages()
-	{
-		$dh = opendir('lang');
-
-		if (!$dh)
-			return false;
-
-		$langs = array();
-		while (($file = readdir($dh)) !== false) {
-			if (strpos($file, '.php')) {
-				include('lang/'.$file);
-
-				$langs[] = array(
-						'name' => $lang_name,
-						'code' => $lang_code
-						);
-			}
-		}
-		closedir($dh);
-
-		return $langs;
-	}
-?>
-
 <script language="javascript">
 <!--
 	function change_lang(lang) {

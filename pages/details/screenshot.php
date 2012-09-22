@@ -1,77 +1,76 @@
 <?php
-  define('MOUSE_POINTER_DEBUG', false);
+	define('MOUSE_POINTER_DEBUG', false);
 
-  if (array_key_exists('get-dims', $_GET)) {
-    ob_end_clean();
-    $tmp = $lv->domain_get_screen_dimensions($name);
-    if (!$tmp)
-        die( 'Error occured while getting screen dimensions '.$lv->get_last_error() );
+	if (array_key_exists('get-dims', $_GET)) {
+		ob_end_clean();
+		$tmp = $lv->domain_get_screen_dimensions($name);
+		if (!$tmp)
+			die( 'Error occured while getting screen dimensions '.$lv->get_last_error() );
 
-    die('ok: '.$tmp['width'].'x'.$tmp['height']);
-  }
+		die('ok: '.$tmp['width'].'x'.$tmp['height']);
+	}
 
-  if (array_key_exists('x', $_GET)) {
-    ob_end_clean();
-    $tmp = $lv->domain_send_pointer_event($name, $_GET['x'], $_GET['y'], (int)$_GET['bm'], $_GET['autorelease'] ? true : false);
-    if (!$tmp)
-	die( 'Error occured while sending pointer event: '.$lv->get_last_error() );
+	if (array_key_exists('x', $_GET)) {
+		ob_end_clean();
+		$tmp = $lv->domain_send_pointer_event($name, $_GET['x'], $_GET['y'], (int)$_GET['bm'], $_GET['autorelease'] ? true : false);
+		if (!$tmp)
+			die( 'Error occured while sending pointer event: '.$lv->get_last_error() );
 
-    //die( $_GET['x'].','.$_GET['y'] );
-    die('ok');
-  }
-  if (array_key_exists('send_keys', $_GET)) {
-    ob_end_clean();
-    $tmp = $lv->domain_send_keys($name, $_GET['send_keys']);
-    if (!$tmp)
-        die( 'Error occured while sending keys: '.$lv->get_last_error() );
+		//die( $_GET['x'].','.$_GET['y'] );
+		die('ok');
+	}
 
-    die('ok');
-  }
+	if (array_key_exists('send_keys', $_GET)) {
+		ob_end_clean();
+		$tmp = $lv->domain_send_keys($name, $_GET['send_keys']);
+		if (!$tmp)
+			die( 'Error occured while sending keys: '.$lv->get_last_error() );
 
-  $interval = array_key_exists('interval', $_POST) ? $_POST['interval'] : 1;
-  $msg = '';
-  if (!$lv->domain_is_running($name))
-    $msg = 'Domain is not running';
-  if (!$lv->supports('screenshot'))
-    $msg = 'Host machine doesn\'t support getting domain screenshots';
+		die('ok');
+	}
 
- function error($w, $h, $msg) {
-    $im = imagecreatetruecolor($w, $h);
-    $text_color = imagecolorallocate($im, 233, 14, 11);
-    imagestring($im, 5, 5, 20, 'We are sorry!', $text_color);
+	$interval = array_key_exists('interval', $_POST) ? $_POST['interval'] : 1;
+	$msg = '';
+	if (!$lv->domain_is_running($name))
+		$msg = 'Domain is not running';
+	if (!$lv->supports('screenshot'))
+		$msg = 'Host machine doesn\'t support getting domain screenshots';
 
-    $arr = explode("\n", $msg);
-    for ($i = 0; $i < sizeof($arr); $i++) {
-      imagestring($im, 5, 5, 50 + ($i * 20), $arr[$i], $text_color);
-    }
+	function error($w, $h, $msg) {
+		$im = imagecreatetruecolor($w, $h);
+		$text_color = imagecolorallocate($im, 233, 14, 11);
+		imagestring($im, 5, 5, 20, 'We are sorry!', $text_color);
 
-    imagepng($im);
-    imagedestroy($im);
- }
+		$arr = explode("\n", $msg);
+		for ($i = 0; $i < sizeof($arr); $i++)
+			imagestring($im, 5, 5, 50 + ($i * 20), $arr[$i], $text_color);
 
-  if (array_key_exists('data', $_GET) && ($_GET['data'] == 'png')) {
-    ob_end_clean();
-    $tmp = $lv->domain_get_screenshot($name);
-    Header('Content-Type: image/png');
-    if (!$tmp)
-        error(240, 130, "Cannot get the domain\nscreenshot for domain\nrequested.");
-    else
-        echo $tmp;
+		imagepng($im);
+		imagedestroy($im);
+	}
 
-    exit;
-  }
+	if (array_key_exists('data', $_GET) && ($_GET['data'] == 'png')) {
+		ob_end_clean();
+		$tmp = $lv->domain_get_screenshot($name);
+		Header('Content-Type: image/png');
+		if (!$tmp)
+			error(240, 130, "Cannot get the domain\nscreenshot for domain\nrequested.");
+		else
+			echo $tmp;
+		exit;
+	}
 ?>
   <!-- CONTENTS -->
   <div id="content">
 
 <?php
-    if ($msg):
+	if ($msg):
 ?>
-    <div class="section"><?php echo $lang->get('dom_screenshot') ?></div>
+    <div class="section"><?php echo $lang->get('dom-screenshot') ?></div>
     <div id="msg"><b><?php echo $lang->get('msg') ?>: </b><?php echo $msg ?></div>
 <?php
-    else:
-	$dims = $lv->domain_get_screen_dimensions($name);
+	else:
+		$dims = $lv->domain_get_screen_dimensions($name);
 ?>
 
 <div id="ajax-msg"></div>
@@ -82,7 +81,7 @@
         delay = <?php echo $interval * 1000 ?>;
 
 <?php
-    if (ALLOW_EXPERIMENTAL_VNC):
+	if (ALLOW_EXPERIMENTAL_VNC):
 ?>
 	var IE = document.all ? true : false;
 	if (!IE) document.captureEvents(Event.MOUSEMOVE || Event.CLICK)

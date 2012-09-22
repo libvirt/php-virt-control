@@ -1,157 +1,43 @@
 <?php
-  $action = array_key_exists('action', $_GET) ? $_GET['action'] : false;
-  $msg = '';
-  $frm = '';
-  if ($action == 'domain-start') {
-    $name = $_GET['dom'];
-    $msg = $lv->domain_start($name) ? $lang->get('dom_start_ok') :
-           $lang->get('dom_start_err').': '.$lv->get_last_error();
-  }
+	$action = array_key_exists('action', $_GET) ? $_GET['action'] : false;
 
-  if ($action == 'domain-stop') {
-    $name = $_GET['dom'];
-    $msg = $lv->domain_shutdown($name) ? $lang->get('dom_shutdown_ok') :
-           $lang->get('dom_shutdown_err').': '.$lv->get_last_error();
-  }
+	$lvDomain = new LibvirtDomain($lv, $lang, $action, $_GET);
+	$lvDomainData = $lvDomain->getData();
 
-  if ($action == 'domain-destroy') {
-    $name = $_GET['dom'];
-    $msg = $lv->domain_destroy($name) ? $lang->get('dom_destroy_ok') :
-           $lang->get('dom_destroy_err').': '.$lv->get_last_error();
-  }
-
-  if (($action == 'domain-undefine') && (verify_user($db, USER_PERMISSION_VM_DELETE))) {
-    $name = $_GET['dom'];
-    if ((!array_key_exists('confirmed', $_GET)) || ($_GET['confirmed'] != 1)) {
-        $frm = '<div class="section">'.$lang->get('dom_undefine').'</div>
-                <table id="form-table">
-                <tr>
-                  <td colspan="3">'.$lang->get('dom_undefine_question').' '.$lang->get('name').': <u>'.$name.'</u></td>
-                </tr>
-                <tr align="center">
-                  <td><a href="'.$_SERVER['REQUEST_URI'].'&amp;confirmed=1">'.$lang->get('delete').'</a></td>
-                  <td><a href="'.$_SERVER['REQUEST_URI'].'&amp;confirmed=1&amp;deldisks=1">'.$lang->get('delete_with_disks').'</a></td>
-                  <td><a href="?page='.$page.'">'.$lang->get('No').'</a></td>
-                </td>
-                </table>';
-    }
-    else {
-	$err = '';
-	if (array_key_exists('deldisks', $_GET) && $_GET['deldisks'] == 1) {
-		$disks = $lv->get_disk_stats($name);
-
-		for ($i = 0; $i < sizeof($disks); $i++) {
-			$img = $disks[$i]['file'];
-
-			if (!$lv->remove_image($img, array(2) ))
-				$err .= $img.': '.$lv->get_last_error();
-		}
+	if (is_array($lvDomainData)) {
+		$msg = $lvDomainData['msg'];
+		$frm = $lvDomainData['frm'];
+		$xml = $lvDomainData['xml'];
 	}
-        $msg = $lv->domain_undefine($name) ? $lang->get('dom_undefine_ok') :
-               $lang->get('dom_undefine_err').': '.$lv->get_last_error();
-
-	if ($err)
-		$msg .= ' (err: '.$err.')';
-    }
-  }
-
-  if ($action == 'domain-dump') {
-    $name = $_GET['dom'];
-
-    $inactive = (!$lv->domain_is_running($name)) ? true : false;
-
-    $xml = $lv->domain_get_xml($name, $inactive);
-    $frm = '<div class="section">'.$lang->get('dom_xmldesc').' - <i>'.$name.'</i></div><form method="POST">
-            <table id="form-table"><tr><td>'.$lang->get('dom_xmldesc').': </td>
-            <td><textarea readonly="readonly" name="xmldesc" rows="25" cols="90%">'.$xml.'</textarea></td></tr><tr align="center"><td colspan="2">
-            </tr></form></table>';
-  }
-
-  if ($action == 'domain-migrate') {
-    $name = $_GET['dom'];
-
-    if (!array_key_exists('dest-uri', $_POST)) {
-	$uris = array();
-
-	foreach ($conns as $conn) {
-		if ($conn['connection_uri'] != $uri)
-			$uris[] = array(
-					'id' => $conn['id'],
-					'name' => $conn['connection_name']
-					);
-	}
-
-	if (sizeof($uris) == 0)
-		echo $lang->get('no-destination-present');
-	else {
-		echo "<form method='POST'>".$lang->get('choose-destination')." ($name): <br /><select name='dest-uri' style='width: 150px'>";
-
-		foreach ($uris as $cn)
-			echo "<option value=\"${cn['id']}\">{$cn['name']}</option>";
-
-		echo "</select><br /><input type='submit' value='".$lang->get('dom_migrate')."'>";
-	}
-    }
-    else {
-	$arr = false;
-
-	for ($i = 0; $i < sizeof($conns); $i++) {
-		if ($conns[$i]['id'] == $_POST['dest-uri']) {
-			$arr = $conns[$i];
-			break;
-		}
-	}
-
-        if ($arr && (!$lv->migrate($name, $arr)))
-		echo '<b>'.$lang->get('error_page_title').'</b>: '.$lv->get_last_error();
-    }
-  }
-
-  if ($action == 'domain-edit') {
-    $name = $_GET['dom'];
-
-    $inactive = (!$lv->domain_is_running($name)) ? true : false;
-
-    if (array_key_exists('xmldesc', $_POST)) {
-        $msg = $lv->domain_change_xml($name, $_POST['xmldesc']) ? $lang->get('dom_define_changed') :
-               $lang->get('dom_define_change_err').': '.$lv->get_last_error();
-
-    }
-    else {
-        $xml = $lv->domain_get_xml($name, $inactive);
-        $frm = '<div class="section">'.$lang->get('dom_editxml').' - <i>'.$name.'</i></div><form method="POST"><table id="form-table"><tr><td>'.$lang->get('dom_xmldesc').': </td>
-             <td><textarea name="xmldesc" rows="25" cols="90%">'.$xml.'</textarea></td></tr><tr align="center"><td colspan="2">
-             <input type="submit" value=" '.$lang->get('dom_editxml').' "></tr></form></table>';
-    }
-  }
+	else
+		$msg = $frm = $xml = false;
 ?>
 <div id="content">
 
 <?php
-    if ($msg):
+	if ($msg):
 ?>
-    <div id="msg"><b><?php echo $lang->get('msg') ?>: </b><?php echo $msg ?></div>
+	<div id="msg"><b><?php echo $lang->get('msg') ?>: </b><?php echo $msg ?></div>
 <?php
-    endif;
+	endif;
 ?>
 
 <?php
-    if ($frm)
-	echo $frm;
+	if ($frm)
+		echo $frm;
 ?>
 
-<div class="section"><?php echo $lang->get('domain_list') ?></div>
+<div class="section"><?php echo $lang->get('domain-list') ?></div>
 
 <?php
-        if (verify_user($db, USER_PERMISSION_VM_CREATE)):
+	if (verify_user($db, USER_PERMISSION_VM_CREATE)):
 ?>
-<?php
-        endif;
-?>
-
 <div style="padding: 10px; font-size: 14px; font-weight: bold; width: 100%; border: 1px solid grey;margin-bottom: 10px;">
 <a href="?page=new-vm"><?php echo $lang->get('create-new-vm') ?></a>
 </div>
+<?php
+	endif;
+?>
 
 <table id="domain-list">
   <tr>
@@ -187,7 +73,7 @@
 					$nics = 0;
 				if (($diskcnt = $lv->get_disk_count($res)) > 0) {
 					$disks = $diskcnt.' / '.$lv->get_disk_capacity($res);
-					$diskdesc = $lang->get('cur_phys_size').': '.$lv->get_disk_capacity($res, true);
+					$diskdesc = $lang->get('cur-phys-size').': '.$lv->get_disk_capacity($res, true);
 				}
 				else {
 					$disks = $lang->get('diskless');
@@ -196,24 +82,24 @@
 
 				$running = $lv->domain_is_running($res, $name);
 				if (!$running) {
-					$actions  = '<a href="?page='.$page.'&amp;action=domain-start&amp;dom='.$name.'"><img src="graphics/play.png" title="'.$lang->get('dom_start').'" /></a> ';
-					$actions .= '<a href="?page='.$page.'&amp;action=domain-dump&amp;dom='.$name.'"><img src="graphics/dump.png" title="'.$lang->get('dom_dumpxml').'" /></a> ';
+					$actions  = '<a href="?page='.$page.'&amp;action=domain-start&amp;dom='.$name.'"><img src="graphics/play.png" title="'.$lang->get('dom-start').'" /></a> ';
+					$actions .= '<a href="?page='.$page.'&amp;action=domain-dump&amp;dom='.$name.'"><img src="graphics/dump.png" title="'.$lang->get('dom-dumpxml').'" /></a> ';
 					if (verify_user($db, USER_PERMISSION_VM_EDIT))
-						$actions .= '<a href="?page='.$page.'&amp;action=domain-edit&amp;dom='.$name.'"><img src="graphics/edit.png" title="'.$lang->get('dom_editxml').'" /></a> ';
+						$actions .= '<a href="?page='.$page.'&amp;action=domain-edit&amp;dom='.$name.'"><img src="graphics/edit.png" title="'.$lang->get('dom-editxml').'" /></a> ';
 					if (verify_user($db, USER_PERMISSION_VM_DELETE))
-						$actions .= '<a href="?page='.$page.'&amp;action=domain-undefine&amp;dom='.$name.'"><img src="graphics/undefine.png" title="'.$lang->get('dom_undefine').'" /></a> ';
+						$actions .= '<a href="?page='.$page.'&amp;action=domain-undefine&amp;dom='.$name.'"><img src="graphics/undefine.png" title="'.$lang->get('dom-undefine').'" /></a> ';
 
 					$actions[ strlen($actions) - 2 ] = ' ';
 					$actions = Trim($actions);
 				}
 				else {
-					$actions  = '<a href="?page='.$page.'&amp;action=domain-stop&amp;dom='.$name.'"><img src="graphics/stop.png" title="'.$lang->get('dom_stop').'" /></a> ';
-					$actions .= '<a href="?page='.$page.'&amp;action=domain-destroy&amp;dom='.$name.'"><img src="graphics/destroy.png" title="'.$lang->get('dom_destroy').'" /></a> ';
-					$actions .= '<a href="?page='.$page.'&amp;action=domain-dump&amp;dom='.$name.'"><img src="graphics/dump.png" title="'.$lang->get('dom_dumpxml').'" /></a> ';
-					$actions .= '<a href="?page='.$page.'&amp;action=domain-migrate&amp;dom='.$name.'"><img src="graphics/migrate.png" title="'.$lang->get('dom_migrate').'" /></a> ';
+					$actions  = '<a href="?page='.$page.'&amp;action=domain-stop&amp;dom='.$name.'"><img src="graphics/stop.png" title="'.$lang->get('dom-stop').'" /></a> ';
+					$actions .= '<a href="?page='.$page.'&amp;action=domain-destroy&amp;dom='.$name.'"><img src="graphics/destroy.png" title="'.$lang->get('dom-destroy').'" /></a> ';
+					$actions .= '<a href="?page='.$page.'&amp;action=domain-dump&amp;dom='.$name.'"><img src="graphics/dump.png" title="'.$lang->get('dom-dumpxml').'" /></a> ';
+					$actions .= '<a href="?page='.$page.'&amp;action=domain-migrate&amp;dom='.$name.'"><img src="graphics/migrate.png" title="'.$lang->get('dom-migrate').'" /></a> ';
 
 					if ($lv->supports('screenshot'))
-						$actions .= '<a href="?name='.$name.'&amp;page=screenshot"><img src="graphics/screenshot.png" title="'.$lang->get('dom_screenshot').'" /></a>';
+						$actions .= '<a href="?name='.$name.'&amp;page=screenshot"><img src="graphics/screenshot.png" title="'.$lang->get('dom-screenshot').'" /></a>';
 
 					$actions[ strlen($actions) - 2 ] = ' ';
 					$actions = Trim($actions);
@@ -250,7 +136,7 @@
 		}
 
 		if ($num == 0)
-			echo "<tr><td colspan=\"9\">".$lang->get('dom_none')."</td></tr>";
+			echo "<tr><td colspan=\"9\">".$lang->get('dom-none')."</td></tr>";
 	?>
 </table>
 

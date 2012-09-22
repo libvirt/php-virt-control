@@ -102,7 +102,7 @@
 	if (!$lv->enabled() || ($lv->get_last_error())) {
 		$page = 'overview';
 		$name = false;
-		$errmsg = $lang->get('cannot_connect').' '.$lv->get_last_error();
+		$errmsg = $lang->get('cannot-connect').' '.$lv->get_last_error();
 	}
 	else {
 		$name = array_key_exists('name', $_GET) ? $_GET['name'] : false;
@@ -112,7 +112,7 @@
 ?>
 <html>
 <head>
- <title>php-virt-control - <?php echo $lang->get('title_vmc') ?></title>
+ <title>php-virt-control - <?php echo $lang->get('title-vmc') ?></title>
  <link rel="STYLESHEET" type="text/css" href="html/main.css" />
  <link rel="STYLESHEET" type="text/css" href="manager.css" />
 </head>
@@ -125,7 +125,7 @@
 	include('main-menu.php');
 	if ($name):
 ?>
-	<h2 id="vm-name"><?php echo $lang->get('vm_title').' '.$name ?></h2>
+	<h2 id="vm-name"><?php echo $lang->get('vm-title').' '.$name ?></h2>
 <?php
 	include('menu.php');
 	if (File_Exists('./pages/details/'.$page.'.php'))

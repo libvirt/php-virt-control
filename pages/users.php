@@ -39,13 +39,13 @@
 				$skip_add_dlg = true;
 				if ($action == 'new') {
 					if ($db->user_add($_POST['user'], $_POST['password'], $perms))
-						$msg = $lang->get('user_added');
+						$msg = $lang->get('user-added');
 					else
 						$msg = $lang->get('error');
 				}
 				else {
 					if ($db->user_edit($_GET['user_id'], $_POST['user'], $_POST['password'], $perms))
-						$msg = $lang->get('user_edited');
+						$msg = $lang->get('user-edited');
 					else
 						$msg = $lang->get('error');
 				}
@@ -55,7 +55,7 @@
 		}
 
 		if (!$skip_add_dlg):
-			$ident = ($action == 'new') ? 'user_add' : 'user_edit';
+			$ident = ($action == 'new') ? 'user-add' : 'user-edit';
 
 			if ($action == 'edit') {
 				$tmp = $db->get_users();
@@ -93,7 +93,7 @@
 </div>
 
 <div class="item">
-        <div class="label"><?php echo $lang->get('confirm_password') ?></div>
+        <div class="label"><?php echo $lang->get('confirm-password') ?></div>
         <div class="value"><input type="password" name="password2" /></div>
         <div class="nl">
 </div>
@@ -119,7 +119,7 @@
         <div class="label">&nbsp;</div>
 	<div class="value">
 		<br />
-		<input type="submit" value=" <?php echo $lang->get($ident.'_btn') ?>" />
+		<input type="submit" value=" <?php echo $lang->get($ident.'-btn') ?>" />
 	</div>
 </div>
 
@@ -136,7 +136,7 @@
 
 		if (array_key_exists('confirmed', $_GET) && $_GET['confirmed']):
 			if ($db->user_del($_GET['user_id'], $name))
-				$msg = $lang->get('user_deleted');
+				$msg = $lang->get('user-deleted');
 			else
 				$msg = $lang->get('error');
 
@@ -146,10 +146,10 @@
 
 <div id="content">
 
-<div class="section"><?php echo $lang->get('user_del') ?></div>
+<div class="section"><?php echo $lang->get('user-del') ?></div>
 <table id="form-table">
 	<tr>
-		<td colspan="3"><?php echo $lang->get('user_del_confirm').'.'. $lang->get('user').': '.$name ?></u></td>
+		<td colspan="3"><?php echo $lang->get('user-del-confirm').'.'. $lang->get('user').': '.$name ?></u></td>
 	</tr>
 	<tr align="center">
 		<td><a href="<?php echo $_SERVER['REQUEST_URI'] ?>&amp;confirmed=1"><?php echo $lang->get('Yes') ?></a></td>
@@ -166,25 +166,25 @@
 
 		$str = array();
 		if ($perms & USER_PERMISSION_SAVE_CONNECTION)
-			$str[] = $lang->get('permission_save_connection');
+			$str[] = $lang->get('permission-save-connection');
 		if ($perms & USER_PERMISSION_VM_CREATE)
-			$str[] = $lang->get('permission_vm_create');
+			$str[] = $lang->get('permission-vm-create');
 		if ($perms & USER_PERMISSION_VM_EDIT)
-			$str[] = $lang->get('permission_vm_edit');
+			$str[] = $lang->get('permission-vm-edit');
 		if ($perms & USER_PERMISSION_VM_DELETE)
-			$str[] = $lang->get('permission_vm_delete');
+			$str[] = $lang->get('permission-vm-delete');
 		if ($perms & USER_PERMISSION_NETWORK_CREATE)
-			$str[] = $lang->get('permission_network_create');
+			$str[] = $lang->get('permission-network-create');
 		if ($perms & USER_PERMISSION_NETWORK_EDIT)
-			$str[] = $lang->get('permission_network_edit');
+			$str[] = $lang->get('permission-network-edit');
 		if ($perms & USER_PERMISSION_NETWORK_DELETE)
-			$str[] = $lang->get('permission_network_delete');
+			$str[] = $lang->get('permission-network-delete');
 		if ($perms & USER_PERMISSION_USER_CREATE)
-			$str[] = $lang->get('permission_user_create');
+			$str[] = $lang->get('permission-user-create');
 		if ($perms & USER_PERMISSION_USER_EDIT)
-			$str[] = $lang->get('permission_user_edit');
+			$str[] = $lang->get('permission-user-edit');
 		if ($perms & USER_PERMISSION_USER_DELETE)
-			$str[] = $lang->get('permission_user_delete');
+			$str[] = $lang->get('permission-user-delete');
 
 		if (empty($str))
 			return '-';
@@ -202,11 +202,9 @@
 <?php
 	if (verify_user($db, USER_PERMISSION_USER_CREATE)):
 ?>
-  <tr>
-    <td>
-      <a href="?page=users&amp;action=new"><?php echo $lang->get('create-new-user') ?></a>
-    </td>
-  </tr>
+<div style="padding: 10px; font-size: 14px; font-weight: bold; width: 100%; border: 1px solid grey;margin-bottom: 10px;">
+<a href="?page=users&amp;action=new"><?php echo $lang->get('create-new-user') ?></a>
+</div>
 <?php
 	endif;
 ?>
@@ -227,11 +225,11 @@
     <td><?php echo translate_permissions($users[$i]['permissions']) ?></td>
     <td>
 	<a href="?page=users&amp;action=edit&amp;user_id=<?php echo $users[$i]['id'] ?>">
-		<?php echo $lang->get('user_edit') ?>
+		<?php echo $lang->get('user-edit') ?>
 	</a>
 	|
 	<a href="?page=users&amp;action=del&amp;user_id=<?php echo $users[$i]['id'] ?>">
-		<?php echo $lang->get('user_del') ?>
+		<?php echo $lang->get('user-del') ?>
 	</a>
     </td>
   </tr>

@@ -2,72 +2,25 @@
 	if (!verify_user($db, USER_PERMISSION_VM_CREATE))
 		exit;
 
-  $skip = false;
-  $msg = false;
-  if (array_key_exists('sent', $_POST)) {
-	$features = array('apic', 'acpi', 'pae', 'hap');
+	$lvDomain = new LibvirtDomain($lv, $lang);
+	$lvDomainData = $lvDomain->createNewVM($_POST);
 
-	$iso_path = ini_get('libvirt.iso_path');
-
-	$img = $iso_path.'/'.$_POST['install_img'];
-
-	$feature = array();
-	for ($i = 0; $i < sizeof($features); $i++)
-		if (array_key_exists('feature_'.$features[$i], $_POST))
-			$feature[] = $features[$i];
-
-	$nic = array();
-	if ($_POST['setup_nic']) {
-		$nic['mac'] = $_POST['nic_mac'];
-		$nic['type'] = $_POST['nic_type'];
-		$nic['network'] = $_POST['nic_net'];
-	}
-	$disk = array();
-	if ($_POST['setup_disk']) {
-		if ($_POST['new_vm_disk']) {
-			$disk['image'] = $_POST['name'].'.'.$_POST['disk_driver'];
-			$disk['size'] = (int)$_POST['img_data'];
-			$disk['bus'] = $_POST['disk_bus'];
-			$disk['driver'] = $_POST['disk_driver'];
-		}
-		else {
-			$disk['image'] = $_POST['img_data'];
-			$disk['size'] = 0;
-			$disk['bus'] = $_POST['disk_bus'];
-			$disk['driver'] = $_POST['disk_driver'];
-		}
-	}
-
-	$tmp = $lv->domain_new($_POST['name'], $img, $_POST['cpu_count'], $feature, $_POST['memory'], $_POST['maxmem'], $_POST['clock_offset'], $nic, $disk, $_POST['setup_persistent']);
-	if (!$tmp)
-		$msg = $lv->get_last_error();
-	else {
-		$skip = true;
-		$msg = $lang->get('new-vm-created');
-	}
-  }
-
-    $isos = libvirt_get_iso_images();
-
-    $nodetails = false;
-    if (empty($isos))
-      $msg = $lang->get('no_iso');
-
-    $ci  = $lv->get_connect_information();
-    $maxcpu = $ci['hypervisor_maxvcpus'];
-    unset($ci);
+	$skip = $lvDomainData['skip'];
+	$msg  = $lvDomainData['msg'];
+	$isos = $lvDomainData['isos'];
+	$maxvcpu = $lvDomainData['maxvcpu'];
 ?>
 
 <?php
-    if ($msg):
+	if ($msg):
 ?>
     <div id="msg"><b><?php echo $lang->get('msg') ?>: </b><?php echo $msg ?></div>
 <?php
-    endif;
+	endif;
 ?>
 
 <?php
-    if (!$skip):
+	if (!$skip):
 ?>
 <script>
 <!--
@@ -140,8 +93,8 @@
     <td>
 		<select name="cpu_count">
 <?php
-        for ($i = 1; $i <= $maxcpu; $i++)
-            echo '<option value='.$i.'>'.$i.'</option>';
+		for ($i = 1; $i <= $maxvcpu; $i++)
+			echo '<option value='.$i.'>'.$i.'</option>';
 ?>
 		</select>
 </td>
@@ -162,7 +115,7 @@
 </tr>
 
 <tr>
-    <td align="right"><?php echo $lang->get('mem_alloc_max') ?> (MiB):</td>
+    <td align="right"><?php echo $lang->get('mem-alloc-max') ?> (MiB):</td>
     <td><input type="text" name="maxmem" value="512" /></td>
 </tr>
 
@@ -191,34 +144,34 @@
     <td>
         <table>
             <tr>
-                <td align="right"><?php echo $lang->get('vm_network_mac') ?>:</td>
+                <td align="right"><?php echo $lang->get('vm-network-mac') ?>:</td>
                 <td>
 			<input type="text" name="nic_mac" value="<?php echo $lv->generate_random_mac_addr() ?>" id="nic_mac_addr" />
 			<input type="button" onclick="generate_mac_addr()" value="<?php echo $lang->get('network-generate-mac') ?>">
 		</td>
             </tr>
             <tr>
-                 <td align="right"><?php echo $lang->get('vm_network_type') ?>:</td>
+                 <td align="right"><?php echo $lang->get('vm-network-type') ?>:</td>
                  <td>
                      <select name="nic_type">';
 
 <?php
-	$models = $lv->get_nic_models();
-        for ($i = 0; $i < sizeof($models); $i++)
-                echo '<option value="'.$models[$i].'">'.$models[$i].'</option>';
+		$models = $lv->get_nic_models();
+	        for ($i = 0; $i < sizeof($models); $i++)
+			echo '<option value="'.$models[$i].'">'.$models[$i].'</option>';
 ?>
                      </select>
                  </td>
             </tr>
             <tr>
-                 <td align="right"><?php echo $lang->get('vm_network_net') ?>:</td>
+                 <td align="right"><?php echo $lang->get('vm-network-net') ?>:</td>
                  <td>
                      <select name="nic_net">';
 
 <?php
-        $nets = $lv->get_networks();
-        for ($i = 0; $i < sizeof($nets); $i++)
-                echo '<option value="'.$nets[$i].'">'.$nets[$i].'</option>';
+		$nets = $lv->get_networks();
+	        for ($i = 0; $i < sizeof($nets); $i++)
+			echo '<option value="'.$nets[$i].'">'.$nets[$i].'</option>';
 ?>
                      </select>
                  </td>
@@ -253,7 +206,7 @@
             <tr>
 		<td align="right">
 			<span id="vm_disk_existing">
-			<?php echo $lang->get('vm_disk_image')?>:
+			<?php echo $lang->get('vm-disk-image')?>:
 			</span>
 			<span id="vm_disk_create" style="display: none">
 			<?php echo $lang->get('vm-disk-size') ?> (MiB): 
@@ -262,7 +215,7 @@
 		<td><input type="text" name="img_data" /></td>
 	    </tr>
 	    <tr>
-		<td align="right"><?php echo $lang->get('vm_disk_location') ?>: </td>
+		<td align="right"><?php echo $lang->get('vm-disk-location') ?>: </td>
 		<td>
 		    <select name="disk_bus">
 			<option value="ide">IDE Bus</option>
@@ -271,7 +224,7 @@
 		</td>
 	    </tr>
 	    <tr>
-		<td align="right"><?php echo $lang->get('vm_disk_type') ?>: </td>
+		<td align="right"><?php echo $lang->get('vm-disk-type') ?>: </td>
 		<td>
 		    <select name="disk_driver">
 			<option value="raw">raw</option>
@@ -281,7 +234,7 @@
 		</td>
 	    </tr>
 	    <tr>
-		<td align="right"><?php echo $lang->get('vm_disk_dev') ?>: </td>
+		<td align="right"><?php echo $lang->get('vm-disk-dev') ?>: </td>
 		<td>hda</td>
 	    </tr>
 	</table>
@@ -309,11 +262,11 @@
 </form>
 
 <?php
-  else:
+	else:
 ?>
   <br /><a href="?name=<?php echo $_POST['name'] ?>"><?php echo $lang->get('vm_details') ?></a>
 <?php
-  endif;
+	endif;
 ?>
 
 </div>
