@@ -45,14 +45,20 @@
 		exit;
 	}
 
-	if (!array_key_exists('language', $_SESSION)) {
-		$tmp = explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
-		$tmp = explode('-', $tmp[0]);
-		$lang_str = $tmp[0];
-		unset($tmp);
+	if (!isset($is_xmlrpc)) {
+		if (!array_key_exists('language', $_SESSION)) {
+			$tmp = explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
+			$tmp = explode('-', $tmp[0]);
+			$lang_str = $tmp[0];
+			unset($tmp);
+		}
+		else
+			$lang_str = $_SESSION['language'];
 	}
-	else
-		$lang_str = $_SESSION['language'];
+
+	/* Fallback to default language */
+	if (!isset($lang_str))
+		$lang_str = 'en';
 
 	if (!File_Exists(LOGDIR)) {
 		if (!mkdir(LOGDIR, 0777))
@@ -70,6 +76,7 @@
 	require('classes/database.php');
 	require('classes/database-file.php');
 	require('classes/database-mysql.php');
+	require('classes/XmlRPC.php');
 
 	$lang = new Language($lang_str);
 
@@ -108,7 +115,7 @@
 		unset($_SESSION['connection_logging']);
 	}
 
-	if (!verify_user($db)) {
+	if ((!verify_user($db)) && (!isset($is_xmlrpc))) {
 		include('dialog-login.php');
 		exit;
 	}

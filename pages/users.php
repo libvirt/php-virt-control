@@ -16,6 +16,9 @@
 
 	$uid = array_key_exists('user_id', $_GET) ? $_GET['user_id'] : false;
 
+	if (isset($_GET['renew']))
+		$msg = ($db->user_renew_apikey($_GET['user_id'])) ? 'API Key renewed successfully' : 'API Key renew failed';
+
 	if ((($action == 'new') && (verify_user($db, USER_PERMISSION_USER_CREATE)))
 		|| ((($action == 'edit') && (verify_user($db, USER_PERMISSION_USER_EDIT))) || ($uid == $myId))):
 		$skip = true;
@@ -64,6 +67,7 @@
 					if ($tmp[$i]['id'] == $_GET['user_id']) {
 						$p_user = $tmp[$i]['name'];
 						$perms = $tmp[$i]['permissions'];
+						$apikey = $tmp[$i]['apikey'];
 
 						$p_perms = array();
 						while (list($key, $val) = each($user_permissions))
@@ -75,6 +79,11 @@
 			}
 ?>
 <div id="content">
+
+<?php
+	if (isset($msg))
+		echo "<div id=\"msg\"><b>{$lang->get('msg')}: </b>$msg</div>";
+?>
 
 <div class="section"><?php echo $lang->get($ident) ?></div>
 
@@ -112,7 +121,15 @@
 	}
 ?>
 	</div>
-        <div class="nl">
+        <div class="nl" />
+</div>
+
+<div class="item">
+	<div class="label">API Key: </div>
+	<div class="value">
+		<textarea rows="3" cols="50" readonly="readonly"><?php echo $apikey ?></textarea> &nbsp; <input type="button" value=" <?php echo $lang->get('apikey-renew') ?> " onclick="javascript:location.href='<?php echo $_SERVER['REQUEST_URI'] ?>&amp;renew=1'"/>
+	</div>
+	<div class="nl" />
 </div>
 
 <div class="item">

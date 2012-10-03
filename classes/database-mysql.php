@@ -9,6 +9,7 @@
 		private $default_password = 'admin';
 		private $tab_connections = 'connections';
 		private $tab_users = 'users';
+		private $tab_apikeys = 'apikeys';
 		private $connections = array();
 		private $db;
 
@@ -94,6 +95,16 @@
 			if (!mysql_query($qry))
 				return false;
 
+			$qry = 'CREATE TABLE IF NOT EXISTS '.$this->prefix.$this->tab_apikeys.' ('.
+					'id int(11) NOT NULL AUTO_INCREMENT,'.
+					'idUser int NOT NULL,'.
+					'apikey varchar(128) NOT NULL,'.
+					'PRIMARY KEY (id)'.
+				') ENGINE=MyISAM DEFAULT CHARSET=utf8';
+
+			if (!mysql_query($qry))
+				return false;
+
 			/* Create a user with full permissions */
 			global $user_permissions;
 			$perms = 0;
@@ -134,8 +145,23 @@
 
 			$qry = 'INSERT INTO '.$this->prefix.$this->tab_users.'(username, password, permissions) VALUES("'.$user.'", "'.
 				$password.'", '.$perms.')';
+			if (!mysql_query($qry))
+				return false;
+
+			$id = mysql_insert_id();
+			$key = $this->_generate_unique_apikey();
+			$qry = 'INSERT INTO '.$this->prefix.$this->tab_apikeys.'(idUser, apikey) VALUES('.$id.', "'.$key.'")';
 
 			return (mysql_query($qry) ? true : false);
+		}
+
+		function user_renew_apikey($id) {
+			$apikey = $this->_generate_unique_apikey();
+
+			$qry = 'UPDATE '.$this->prefix.$this->tab_apikeys.' SET apikey = "'.$this->_generate_unique_apikey().'" '.
+				'WHERE idUser = '.$id;
+
+			return mysql_query($qry) ? $apikey : false;
 		}
 
 		function user_edit($id, $user, $password, $perms) {
@@ -172,6 +198,9 @@
 			if (mysql_num_rows($res) == 0)
 				return false;
 
+			$qry = 'DELETE FROM '.$this->prefix.$this->tab_apikeys.' WHERE idUser = '.$id;
+			mysql_query($qry);
+
 			$qry = 'DELETE FROM '.$this->prefix.$this->tab_users.' WHERE username = "'.$user.'" AND id = '.$id;
 			return (mysql_query($qry) ? true : false);
 		}
@@ -181,10 +210,14 @@
 
 			$ret = array();
 			while ($rec = mysql_fetch_assoc($res)) {
+				$res2 = mysql_query('SELECT apikey FROM '.$this->prefix.$this->tab_apikeys.' WHERE idUser = '.$rec['id']);
+				$rec2 = mysql_fetch_assoc($res2);
+
 				$ret[] = array(
 						'id'   => $rec['id'],
 						'name' => $rec['username'],
-						'permissions' => $rec['permissions']
+						'permissions' => $rec['permissions'],
+						'apikey' => $rec2['apikey']
 						);
 			}
 
@@ -205,6 +238,15 @@
 			}
 
 			return true;
+		}
+
+		function _generate_unique_apikey() {
+			$apikey = $this->generate_random_chars(128);
+			$res = mysql_query('SELECT id FROM '.$this->prefix.$this->tab_apikeys.' WHERE apikey = "'.$apikey.'"');
+			while (mysql_num_rows($res) > 0)
+				$apikey = $this->generate_random_chars(128);
+
+			return $apikey;
 		}
 
 		/* Listing functions */
@@ -247,6 +289,20 @@
 			$qry = 'DELETE FROM '.$this->prefix.$this->tab_connections.' WHERE id = '.$id;
 
 			return mysql_query($qry) ? true : false;
+		}
+
+		/* Used for XmlRPC */
+		function get_by_apikey($apikey) {
+			if (!$apikey)
+				return false;
+
+			$qry = 'SELECT idUser FROM '.$this->prefix.$this->tab_apikeys.' WHERE apikey = "'.$apikey.'"';
+			$res = mysql_query($qry);
+			if (mysql_num_rows($res) == 0)
+				return false;
+
+			$rec = mysql_fetch_assoc($res);
+			return $rec['idUser'];
 		}
 	}
 ?>

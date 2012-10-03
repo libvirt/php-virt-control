@@ -319,5 +319,6 @@
 
 					'mem-alloc-changed' => 'Paměť přidělená doméněu byla změněna',
 					'mem-alloc-change-error' => 'Nelze změnit přidělenou paměť',
+					'apikey-renew' => 'Obnovit API klíč pro XMLRPC',
 					);
 ?>

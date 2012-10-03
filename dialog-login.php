@@ -1,8 +1,9 @@
 
 <html> 
 <head> 
- <title>php-virt-control - <?php echo $lang->get('title-vmc') ?></title
- <link rel="STYLESHEET" type="text/css" href="manager.css"> 
+ <title>php-virt-control - <?php echo $lang->get('title-vmc') ?></title>
+ <link rel="STYLESHEET" type="text/css" href="manager.css" />
+ <link rel="STYLESHEET" type="text/css" href="html/main.css" />
 </head> 
 <body> 
   <div id="header"> 

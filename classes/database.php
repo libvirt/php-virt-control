@@ -1,5 +1,5 @@
 <?php
-	class Database {
+	class Database extends LoggerBase {
 		var $unimpl = 'Function is not implemented';
 		var $log = array();
 		private $fatal = false;
@@ -12,7 +12,7 @@
 			$this->fatal = true;
 			$this->err('connect', $func);
 
-			return false;
+			return $this->log(TYPE_ERROR, __CLASS__.'::'.__FUNCTION__, 'Connect error', $this->unimpl);
 		}
 
 		function init() {
@@ -25,6 +25,10 @@
 
 		function user_add($user, $password, $perms) {
 			return $this->err('user_add', $this->unimpl);
+		}
+
+		function user_renew_apikey($id) {
+			return $this->err('user_renew_apikey', $this->unimpl);
 		}
 
 		function user_edit($id, $user, $password, $perms) {
@@ -68,6 +72,19 @@
 			return $this->err('close', $this->unimpl);
 		}
 
+		function refresh() {
+		}
+
+		function generate_random_chars($len = 6) {
+			$chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+
+			$ret = '';
+			for ($i = 0; $i < $len; $i++)
+				$ret = $ret.$chars[rand() % strlen($chars)];
+
+			return $ret;
+		}
+
 		/* Listing functions */
 		function list_connections() {
 			return $this->err('list_connections', $this->unimpl);
@@ -84,6 +101,11 @@
 
 		function remove_connection($id) {
 			return $this->err('remove_connection', $this->unimpl);
+		}
+
+		/* Used for XmlRPC */
+		function get_by_apikey($apikey) {
+			return false;
 		}
 	}
 ?>

@@ -13,6 +13,9 @@
 		}
 
 		function getData() {
+			if (!$this->data)
+				return $this->log(TYPE_INFO, __CLASS__.'::'.__FUNCTION__, 'No data', 'No data set yet');
+
 			return $this->data;
 		}
 
@@ -180,6 +183,9 @@
 		}
 
 		function createNewVM($input) {
+			if (!$this->lv)
+				return $this->log(TYPE_ERROR, __CLASS__.'::'.__FUNCTION__, 'Libvirt Domain', 'Libvirt class is not set');
+
 			$lv = $this->lv;
 			$lang = $this->lang;
 
@@ -241,6 +247,74 @@
 						'isos' => $isos,
 						'maxvcpu' => $maxvcpu
 					);
+		}
+
+		function rpc_list($idUser, $lv, $ret) {
+			return $lv->get_domains();
+		}
+
+		function rpc_start($idUser, $lv, $ret) {
+			if ((!array_key_exists('data', $ret)) || (!array_key_exists('data', $ret['data'])) || (!array_key_exists('name', $ret['data']['data'])))
+				return $this->log(TYPE_ERROR, __CLASS__.'::'.__FUNCTION__, 'Name is missing', 'Domain name is missing');
+
+			$name = $ret['data']['data']['name'];
+			return ($lv->domain_start($name)) ? 'Domain started successfully' : 'Cannot start domain';
+		}
+
+		function rpc_stop($idUser, $lv, $ret) {
+			if ((!array_key_exists('data', $ret)) || (!array_key_exists('data', $ret['data'])) || (!array_key_exists('name', $ret['data']['data'])))
+				return $this->log(TYPE_ERROR, __CLASS__.'::'.__FUNCTION__, 'Name is missing', 'Domain name is missing');
+
+			$name = $ret['data']['data']['name'];
+			return ($lv->domain_destroy($name)) ? 'Domain stopped successfully' : 'Cannot stop domain';
+		}
+
+		function rpc_reboot($idUser, $lv, $ret) {
+			if ((!array_key_exists('data', $ret)) || (!array_key_exists('data', $ret['data'])) || (!array_key_exists('name', $ret['data']['data'])))
+				return $this->log(TYPE_ERROR, __CLASS__.'::'.__FUNCTION__, 'Name is missing', 'Domain name is missing');
+
+			$name = $ret['data']['data']['name'];
+			return ($lv->domain_reboot($name)) ? 'Domain reboot triggered successfully' : 'Cannot trigger reboot command';
+		}
+
+		function rpc_info($idUser, $lv, $ret) {
+			if ((!array_key_exists('data', $ret)) || (!array_key_exists('data', $ret['data'])) || (!array_key_exists('name', $ret['data']['data'])))
+				return $this->log(TYPE_ERROR, __CLASS__.'::'.__FUNCTION__, 'Name is missing', 'Domain name is missing');
+
+			$name = $ret['data']['data']['name'];
+			$tmp = $lv->domain_get_info_call($name);
+			$ret = $tmp[$name];
+
+			if ($lv->domain_is_running($name))
+				$ret['vnc_port'] = $lv->domain_get_vnc_port($name);
+
+			$ret['arch'] = $lv->domain_get_arch($name);
+			$ret['boot_devices'] = $lv->domain_get_boot_devices($name);
+			$ret['multimedia'] = array(
+							'console' => $lv->domain_get_multimedia_device($name, 'console'),
+							'input' => $lv->domain_get_multimedia_device($name, 'input'),
+							'graphics' => $lv->domain_get_multimedia_device($name, 'graphics'),
+							'video' => $lv->domain_get_multimedia_device($name, 'video')
+						);
+
+			$ret['devices'] = $lv->domain_get_host_devices($name);
+			if (!$ret['devices']['pci'])
+				$ret['devices']['pci'] = 'none';
+			if (!$ret['devices']['usb'])
+				$ret['devices']['usb'] = 'none';
+			$ret['clock-offset'] = $lv->domain_get_clock_offset($name);
+
+			$features = array('apic', 'acpi', 'pae', 'hap');
+			$feat = array();
+			for ($i = 0; $i < sizeof($features); $i++) {
+				if ($lv->domain_get_feature($name, $features[$i]))
+					$feat[] = $features[$i];
+			}
+
+			$ret['features'] = join(',', $feat);
+
+			$ret['state'] = $lv->domain_state_translate($ret['state']);
+			return $ret;
 		}
 	}
 ?>

@@ -13,6 +13,9 @@
 		}
 
 		function getData() {
+			if (!$this->data)
+				return $this->log(TYPE_INFO, __CLASS__.'::'.__FUNCTION__, 'No data', 'No data set yet');
+
 			return $this->data;
 		}
 
@@ -110,6 +113,9 @@
 		}
 
 		function createNewNetwork($input) {
+			if (!$this->lv)
+				return $this->log(TYPE_ERROR, __CLASS__.'::'.__FUNCTION__, 'Libvirt Network', 'Libvirt class is not set');
+
 			$lv = $this->lv;
 			$lang = $this->lang;
 

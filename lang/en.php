@@ -320,5 +320,6 @@
 
 					'mem-alloc-changed' => 'Memory allocation for next run has been altered successfully',
 					'mem-alloc-change-error' => 'Cannot change memory allocation',
+					'apikey-renew' => 'Renew API key for XMLRPC',
 					);
 ?>
