@@ -3,7 +3,8 @@
 import sys
 import xmlrpc.client
 
-apikey = "8YBjNqa8zFyTs3lZqqqNnkC8KT3KQsxOfWWQaUNAq9jI2vxgJLRUWkSu1M2H2ok5a6MbQpB4oICe1YjAz0lj83E0DwvwKFrJz1Ige7asFBvxnEVKs6UrYmfpGyLf41Mr"
+# Change to valid data
+apikey = "<apikey>"
 address = "http://localhost/php-virt-control/xmlrpc.php"
 selections = ['Information', 'Domain', 'Get network information']
 info_types = ['connection', 'node', 'cpustats', 'eachcpustats', 'memstats', 'system']
