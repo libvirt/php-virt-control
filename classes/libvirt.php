@@ -35,6 +35,10 @@
 			return true;
 		}
 
+		function is_connected() {
+			return $this->conn ? true : false;
+		}
+
 		function get_capabilities() {
 			$tmp = libvirt_connect_get_capabilities($this->conn);
 			return ($tmp) ? $tmp : $this->_set_last_error();

@@ -277,6 +277,56 @@
 			return ($lv->domain_reboot($name)) ? 'Domain reboot triggered successfully' : 'Cannot trigger reboot command';
 		}
 
+		function rpc_dump($idUser, $lv, $ret) {
+			if ((!array_key_exists('data', $ret)) || (!array_key_exists('data', $ret['data'])) || (!array_key_exists('name', $ret['data']['data'])))
+				return $this->log(TYPE_ERROR, __CLASS__.'::'.__FUNCTION__, 'Name is missing', 'Domain name is missing');
+
+			$name = $ret['data']['data']['name'];
+			return $lv->domain_get_xml($name, ($lv->domain_is_running($name) ? false : true));
+		}
+
+		function rpc_migrate($idUser, $lv, $ret) {
+			if ((!array_key_exists('data', $ret)) || (!array_key_exists('data', $ret['data'])) || (!array_key_exists('name', $ret['data']['data'])))
+				return $this->log(TYPE_ERROR, __CLASS__.'::'.__FUNCTION__, 'Name is missing', 'Domain name is missing');
+
+			if ((!array_key_exists('destination', $ret['data']['data'])) || (!array_key_exists('uri', $ret['data']['data']['destination'])))
+				return $this->log(TYPE_ERROR, __CLASS__.'::'.__FUNCTION__, 'Destination is missing', 'Destination connection information are missing');
+
+			$name = $ret['data']['data']['name'];
+			$uri  = $ret['data']['data']['destination']['uri'];
+			$user = array_key_exists('username', $ret['data']['data']['destination']) ? $ret['data']['data']['destination']['username'] : null;
+			$pass = array_key_exists('password', $ret['data']['data']['destination']) ? $ret['data']['data']['destination']['password'] : null;
+
+			if ($lv->get_uri() == $uri)
+				return $this->log(TYPE_ERROR, __CLASS__.'::'.__FUNCTION__, 'Local migration not supported', 'Local migration requested but not supported');
+
+			$dest_lv = new Libvirt($uri, $user, $pass, false, 'en');
+			if (!$dest_lv->is_connected()) {
+				unset($dest_lv);
+				return 'Cannot connect to destination';
+			}
+
+			$ret = $lv->migrate($name, $dest_lv->get_connection(), array_key_exists('live', $ret['data']['data']) ? $ret['data']['data']['live'] : false,
+					array_key_exists('bandwidth', $ret['data']['data']) ? $ret['data']['data']['bandwidth'] :  1000);
+			unset($dest_lv);
+
+			return $ret ? 'Success' : 'Error on migrate';
+		}
+
+		function rpc_get_screenshot($idUser, $lv, $ret) {
+			if ((!array_key_exists('data', $ret)) || (!array_key_exists('data', $ret['data'])) || (!array_key_exists('name', $ret['data']['data'])))
+				return $this->log(TYPE_ERROR, __CLASS__.'::'.__FUNCTION__, 'Name is missing', 'Domain name is missing');
+
+			$name = $ret['data']['data']['name'];
+
+			if (!$lv->domain_is_running($name))
+				return $this->log(TYPE_ERROR, __CLASS__.'::'.__FUNCTION__, 'Domain not active', 'Cannot get screenshot for inactive domain');
+
+			/* TODO: Implement. Just a placeholder for now */
+
+			return 'Not supported yet';
+		}
+
 		function rpc_info($idUser, $lv, $ret) {
 			if ((!array_key_exists('data', $ret)) || (!array_key_exists('data', $ret['data'])) || (!array_key_exists('name', $ret['data']['data'])))
 				return $this->log(TYPE_ERROR, __CLASS__.'::'.__FUNCTION__, 'Name is missing', 'Domain name is missing');

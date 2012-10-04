@@ -255,7 +255,7 @@
 			if ((empty($data)) || ($data == false)) {
 				$errmsg = false;
 				$log = ($this->log_override) ? $this->log_override : $this->get_log();
-				for ($i = sizeof($log) - 1; $i > 0; $i--) {
+				for ($i = sizeof($log) - 1; $i >= 0; $i--) {
 					if ($log[$i]['type'] == TYPE_ERROR) {
 						$errmsg = $log[$i]['msg'];
 						break;

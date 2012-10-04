@@ -145,5 +145,17 @@
 					'msg' => $msg
 					);
 		}
+
+		function rpc_list($idUser, $lv, $ret) {
+			return $lv->get_networks();
+		}
+
+		function rpc_info($idUser, $lv, $ret) {
+			if ((!array_key_exists('data', $ret)) || (!array_key_exists('data', $ret['data'])) || (!array_key_exists('name', $ret['data']['data'])))
+				return $this->log(TYPE_ERROR, __CLASS__.'::'.__FUNCTION__, 'Name is missing', 'Network name is missing');
+
+			$name = $ret['data']['data']['name'];
+			return $lv->get_network_information($name);
+		}
 	}
 ?>
