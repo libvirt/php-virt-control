@@ -29,7 +29,7 @@
 
 <div class="item">
         <div class="label"><?php echo $lang->get('hypervisor') ?></div>
-        <div class="value"><?php echo (array_key_exists('hypervisor_string', $tmp) ? $connectInfo['hypervisor_string'] : '<i>'.$lang->get('error').'</i>' ) ?></div>
+        <div class="value"><?php echo (array_key_exists('hypervisor_string', $connectInfo) ? $connectInfo['hypervisor_string'] : '<i>'.$lang->get('error').'</i>' ) ?></div>
         <div class="nl">
 </div>
 
