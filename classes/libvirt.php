@@ -280,9 +280,9 @@
 
 		function connect($uri = 'null', $login = false, $password = false) {
 			if ($login !== false && $password !== false) {
-				$this->conn=libvirt_connect($uri, false, array(VIR_CRED_AUTHNAME => $login, VIR_CRED_PASSPHRASE => $password));
+				$this->conn=@libvirt_connect($uri, false, array(VIR_CRED_AUTHNAME => $login, VIR_CRED_PASSPHRASE => $password));
 			} else {
-				$this->conn=libvirt_connect($uri, false);
+				$this->conn=@libvirt_connect($uri, false);
 			}
 			if ($this->conn==false)
 				return $this->_set_last_error();
@@ -875,6 +875,8 @@
 		}
 
 		function get_connect_information() {
+			if (!$this->is_connected())
+				return false;
 			$tmp = libvirt_connect_get_information($this->conn);
 			return ($tmp) ? $tmp : $this->_set_last_error();
 		}

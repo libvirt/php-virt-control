@@ -75,6 +75,10 @@
 		function refresh() {
 		}
 
+		function get_user_connection($idUser) {
+			return array();
+		}
+
 		function generate_random_chars($len = 6) {
 			$chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 

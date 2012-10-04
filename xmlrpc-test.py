@@ -40,6 +40,29 @@ try:
         address = input("Enter new address: ")
 
     proxy = xmlrpc.client.ServerProxy(address)
+
+    request['connection']['uri'] = 'list'
+    conns = proxy.Information.get(request)
+    conns_s = sorted(conns)
+
+    print("\n")
+    for connection in conns_s:
+        print("%s) %s" % (int(connection) + 1, conns[connection]['name']))
+    print("\n")
+
+    line = input("Choose connection: ")
+    try:
+        conn = int(line) - 1
+    except:
+        sys.exit(1)
+
+    conn = str(conn)
+    request['connection']['uri'] = conns[conn]['uri']
+    request_info['connection']['uri'] = request['connection']['uri']
+    request_name['connection']['uri'] = request['connection']['uri']
+
+    print("\nConnection URI: %s" % request['connection']['uri'])
+
     num = choose("Enter type: ", "Type", selections)
     if num == 0:
         num = choose("Enter your choice: ", "Information", info_types)

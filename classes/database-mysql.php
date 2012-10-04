@@ -10,6 +10,7 @@
 		private $tab_connections = 'connections';
 		private $tab_users = 'users';
 		private $tab_apikeys = 'apikeys';
+		private $tab_assoc = 'userconnections';
 		private $connections = array();
 		private $db;
 
@@ -105,6 +106,16 @@
 			if (!mysql_query($qry))
 				return false;
 
+			$qry = 'CREATE TABLE IF NOT EXISTS '.$this->prefix.$this->tab_assoc.' (
+					`id` int(11) NOT NULL,
+					`idUser` int(11) NOT NULL,
+					`idConnection` int(11) NOT NULL,
+					PRIMARY KEY (`id`)
+				) ENGINE=MyISAM DEFAULT CHARSET=utf8;';
+
+			if (!mysql_query($qry))
+				return false;
+
 			/* Create a user with full permissions */
 			global $user_permissions;
 			$perms = 0;
@@ -162,6 +173,52 @@
 				'WHERE idUser = '.$id;
 
 			return mysql_query($qry) ? $apikey : false;
+		}
+
+		function get_user_connection($idUser, $getNames = false) {
+			if ($getNames)
+				$qry = 'SELECT a.idConnection, c.* FROM '.$this->prefix.$this->tab_assoc.' a '.
+					'LEFT JOIN '.$this->prefix.$this->tab_connections.' c ON c.id = a.idConnection '.
+					'WHERE a.idUser = '.$idUser;
+			else
+				$qry = 'SELECT idConnection FROM '.$this->prefix.$this->tab_assoc.' WHERE idUser = '.$idUser;
+
+			$res = mysql_query($qry);
+
+			$data = array();
+			while ($rec = mysql_fetch_assoc($res)) {
+				$cId = $rec['idConnection'];
+				if ($getNames) {
+					$new_uri = false;
+					$tmp = $this->list_connections(true);
+					for ($i = 0; $i < sizeof($tmp); $i++) {
+						if ($tmp[$i]['id'] == $cId) {
+							$id = $tmp[$i]['id'];
+							$hv = $tmp[$i]['hypervisor'];
+							$nm = $tmp[$i]['name'];
+							$rh = $tmp[$i]['remote'];
+							$rm = $tmp[$i]['method'];
+							$rp = $tmp[$i]['require_pwd'];
+							$un = $tmp[$i]['user'];
+							$pwd= $tmp[$i]['password'];
+							$hn = $tmp[$i]['host'];
+							$lg = $tmp[$i]['logfile'];
+						}
+					}
+
+					$new_uri = Libvirt::generate_connection_uri($hv, $rh, $rm, $un, $hn);
+
+					$data[] = array(
+								'id' => $cId,
+								'name' => $nm,
+								'uri' => $new_uri
+							);
+				}
+				else
+					$data[] = $cId;
+			}
+
+			return $data;
 		}
 
 		function user_edit($id, $user, $password, $perms) {

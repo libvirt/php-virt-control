@@ -228,6 +228,14 @@
 			if (!CONNECT_WITH_NULL_STRING && $uri == 'null')
 				$uri = false;
 
+			if ($uri == 'list') {
+				$tmp = $this->db->get_user_connection($idUser, true);
+				if (empty($tmp))
+					return $this->log(TYPE_ERROR, __CLASS__.'::'.__FUNCTION__, 'Invalid connection permissions', 'No connection available for user specified');
+
+				return $tmp;
+			}
+
 			if ((array_key_exists('user', $ret['data']['connection'])) && (array_key_exists('password', $ret['data']['connection'])))
 				$lv = new Libvirt($uri, $ret['data']['connection']['user'], $ret['data']['connection']['password'], false, 'en');
 			else
