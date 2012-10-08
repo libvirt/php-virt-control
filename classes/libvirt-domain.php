@@ -366,5 +366,19 @@
 			$ret['state'] = $lv->domain_state_translate($ret['state']);
 			return $ret;
 		}
+
+		function rpc_list_state($idUser, $lv, $ret) {
+			$tmp = $lv->get_domains();
+
+			$ret = array();
+			for ($i = 0; $i < sizeof($tmp); $i++) {
+				$tmp2 = $lv->domain_get_info_call($tmp[$i]);
+				$state = $lv->domain_state_translate($tmp2[$tmp[$i]]['state']);
+
+				$ret[] = $tmp[$i].' ('.$state.')';
+			}
+
+			return $ret;
+		}
 	}
 ?>
