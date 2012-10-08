@@ -124,13 +124,46 @@
         <div class="nl" />
 </div>
 
+<script language="javascript">
+<!--
+	function ask() {
+		if (confirm('<?php echo $lang->get('apikey-renew') ?> ?')) {
+			location.href='<?php echo $_SERVER['REQUEST_URI'] ?>&renew=1';
+		}
+	}
+-->
+</script>
+
 <div class="item">
 	<div class="label">API Key: </div>
 	<div class="value">
-		<textarea rows="3" cols="50" readonly="readonly"><?php echo $apikey ?></textarea> &nbsp; <input type="button" value=" <?php echo $lang->get('apikey-renew') ?> " onclick="javascript:location.href='<?php echo $_SERVER['REQUEST_URI'] ?>&amp;renew=1'"/>
+		<textarea rows="3" cols="75" readonly="readonly"><?php echo $apikey ?></textarea>
+		&nbsp;
+		<input type="button" value=" <?php echo $lang->get('apikey-renew') ?> " onclick="javascript:ask()"/>
 	</div>
 	<div class="nl" />
 </div>
+
+<?php
+	if (function_exists('qrencode')) {
+		echo "<div class=\"item\">";
+		echo "<div class=\"label\">QR Code: </div>";
+		echo "<div class=\"value\">";
+
+		$str = "http://localhost/virtDroid/?address=http://".$_SERVER['REMOTE_HOST']."/php-virt-control/xmlrpc.php&apikey=".$apikey;
+		$qrdata = qrencode($str,3,QR_ECLEVEL_M,QR_MODE_8);
+		foreach($qrdata as $row) {
+			echo "<div class=\"qr_line\">";
+			foreach($row as $cell)
+				echo ($cell=="0") ? "<b></b>" : "<i></i>";
+			echo "</div>";
+		}
+
+		echo "</div>";
+		echo "<div class=\"nl\" />";
+		echo "</div>";
+	}
+?>
 
 <div class="item">
         <div class="label">&nbsp;</div>

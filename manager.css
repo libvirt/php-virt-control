@@ -169,3 +169,25 @@ table tr td {
 #conn-detail {
 	margin-left: 150px;
 }
+
+.qr_line{
+    clear:both;
+    overflow:hidden;
+    height:4px;
+}
+
+.qr_line b{
+    background:#fff;
+    width:4px;
+    height:4px;
+    float:left;
+    overflow:hidden;
+}
+
+.qr_line i{
+    background:#000;
+    width:4px;
+    height:4px;
+    float:left;
+    overflow:hidden;
+}
