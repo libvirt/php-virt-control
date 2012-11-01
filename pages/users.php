@@ -150,7 +150,7 @@
 		echo "<div class=\"label\">QR Code: </div>";
 		echo "<div class=\"value\">";
 
-		$str = "http://localhost/virtDroid/?address=http://".$_SERVER['REMOTE_HOST']."/php-virt-control/xmlrpc.php&apikey=".$apikey;
+		$str = "http://localhost/virtDroid/?address=http://".(array_key_exists('REMOTE_HOST', $_SERVER) ? $_SERVER['REMOTE_HOST'] : $_SERVER['REMOTE_ADDR'])."/php-virt-control/xmlrpc.php&apikey=".$apikey;
 		$qrdata = qrencode($str,3,QR_ECLEVEL_M,QR_MODE_8);
 		foreach($qrdata as $row) {
 			echo "<div class=\"qr_line\">";
