@@ -107,7 +107,7 @@
 				return false;
 
 			$qry = 'CREATE TABLE IF NOT EXISTS '.$this->prefix.$this->tab_assoc.' (
-					`id` int(11) NOT NULL,
+					`id` int(11) NOT NULL AUTO_INCREMENT,
 					`idUser` int(11) NOT NULL,
 					`idConnection` int(11) NOT NULL,
 					PRIMARY KEY (`id`)
@@ -124,6 +124,16 @@
 
 			$qry = 'INSERT INTO '.$this->prefix.$this->tab_users.'(username, password, permissions) '.
 				'VALUES("'.$this->default_user.'", "'.hash('sha512', $this->default_password).'", '.$perms.')';
+			if (!mysql_query($qry))
+				return false;
+			$idUser = mysql_insert_id();
+			$apikey = $this->_generate_unique_apikey();
+			$qry = 'INSERT INTO '.$this->prefix.$this->tab_apikeys.'(idUser, apikey) VALUES('.
+				$idUser.', "'.$apikey.'")';
+			if (!mysql_query($qry))
+				return false;
+			$qry = 'INSERT INTO '.$this->prefix.$this->tab_assoc.'(idUser, idConnection) VALUES('.
+				$idUser.', -1)';
 			return mysql_query($qry) ? true : false;
 		}
 
@@ -216,6 +226,44 @@
 				}
 				else
 					$data[] = $cId;
+			}
+
+			/* If required connection id is -1 then it means all of the connection are allowed (admin access) */
+			if ($cId == -1) {
+				$data = array();
+				$res = mysql_query('SELECT idConnection FROM '.$this->prefix.$this->tab_connections.
+						' ORDER BY name');
+				while ($rec = mysql_fetch_assoc($res)) {
+					$cId = $rec['idConnection'];
+					if ($getNames) {
+						$new_uri = false;
+						$tmp = $this->list_connections(true);
+						for ($i = 0; $i < sizeof($tmp); $i++) {
+							if ($tmp[$i]['id'] == $cId) {
+								$id = $tmp[$i]['id'];
+								$hv = $tmp[$i]['hypervisor'];
+								$nm = $tmp[$i]['name'];
+								$rh = $tmp[$i]['remote'];
+								$rm = $tmp[$i]['method'];
+								$rp = $tmp[$i]['require_pwd'];
+								$un = $tmp[$i]['user'];
+								$pwd= $tmp[$i]['password'];
+								$hn = $tmp[$i]['host'];
+								$lg = $tmp[$i]['logfile'];
+							}
+						}
+
+						$new_uri = Libvirt::generate_connection_uri($hv, $rh, $rm, $un, $hn);
+
+						$data[] = array(
+								'id' => $cId,
+								'name' => $nm,
+								'uri' => $new_uri
+								);
+					}
+					else
+						$data[] = $cId;
+				}
 			}
 
 			return $data;

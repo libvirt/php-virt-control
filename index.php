@@ -66,7 +66,7 @@
 				$skip = true;
 		}
 
-		if (!$skip) {
+		if ((!$skip) && (isset($new_conn))) {
 			$conns[] = $new_conn;
 			$_SESSION['connections'] = $conns;
 		}
