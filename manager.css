@@ -1,0 +1,506 @@
+#header {
+	margin: 0px;
+	height: 104px;
+	width: 100%;
+	background: url(graphics/php-virt-control-bg.png);
+	border: 0px;
+}
+
+#headerLogo {
+	position: absolute;
+	left: 0px;
+	height: 104px;
+	width: 400px;
+	background: url(graphics/php-virt-control.png);
+}
+
+#headShowUsers {
+	position: absolute;
+	margin-top: 5px;
+	right: 160px;
+	height: 60px;
+	width: 58px;
+	background: url(graphics/users.png);
+	cursor: pointer;
+}
+
+#headProfileEdit {
+	position: absolute;
+	margin-top: 3px;
+	right: 90px;
+	height: 60px;
+	width: 58px;
+	background: url(graphics/settings.png);
+	cursor: pointer;
+}
+
+#headLogout {
+	position: absolute;
+	margin-top: 2px;
+	right: 20px;
+	height: 60px;
+	width: 58px;
+	background: url(graphics/logout.png);
+	cursor: pointer;
+}
+
+table {
+	border-collapse:collapse;
+}
+table tr td {
+	padding-top: 5px;
+        padding-right: 5px;
+}
+
+.odd  {
+	background-color: #cccccc;
+}
+.even  {
+
+}
+
+#vm-name {
+	padding-left: 10px;
+}
+
+#msg {
+	margin-top: 20px;
+	padding: 5px 5px 5px 20px;
+	font-size: 18px;
+	background-color: lightgreen;
+	color: gray;
+	font-style: italic;
+}
+
+#menu {
+	padding: 10px;
+	width: 100%;
+	border: 1px solid grey;
+	margin-bottom: 10px;
+}
+
+#menu a {
+	font-size: 16px;
+	padding: 10px;
+	color: blue;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+#main-menu {
+	border-radius: 15px;
+	background-color: #dfeffc;
+	padding: 10px;
+	margin-bottom: 10px;
+	text-align: center;
+}
+
+#main-menu a {
+	font-size: 16px;
+	padding: 10px;
+	text-decoration: none;
+	font-weight: bold;
+	color: #2e6eac;
+}
+
+#main-menu .active {
+	font-size: 16px;
+	padding: 10px;
+	text-decoration: none;
+	font-weight: bold;
+	color: #57b3ea;
+}
+
+#domain-menu {
+	border-radius: 10px;
+	background-color: #dfeffc;
+	padding: 5px;
+	margin-bottom: 10px;
+	text-align: left;
+}
+
+#domain-menu a {
+	font-size: 16px;
+	padding: 10px;
+	text-decoration: none;
+	font-weight: bold;
+	color: #2e6eac;
+}
+
+#domain-menu .active {
+	font-size: 16px;
+	padding: 10px;
+	text-decoration: none;
+	font-weight: bold;
+	color: #57b3ea;
+}
+
+#content {
+	font-size: 16px;
+}
+
+h1 {
+	font-size: 26px;
+	color: #2e6e9c;
+	width: auto;
+	border-bottom: 1px solid #c5dbec;
+}
+
+#content #domain-list {
+	padding-left: 30px;
+}
+
+#content #domain-list th {
+	padding-left: 30px;
+}
+
+#content #domain-list td {
+	padding-left: 30px;
+	text-align: center;
+}
+
+#content #domain-list .name {
+	text-align: left;
+}
+
+#content #domain-list td a {
+	text-decoration: none;
+	color: blue;
+	font-weight: bold;
+}
+
+#content #form-table input {
+	width: 200px;
+}
+
+#content #form-table .checkbox {
+	width: 20px;
+}
+
+#content #form-table select {
+	width: 200px;
+}
+
+#content .section {
+	padding: 10px;
+	padding-left: 20px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	font-size: 20px;
+	font-weight: bold;
+	font-style: italic;
+	/*background-color: lightgray;*/
+	background-color: #daf4fd;
+	color: #2e6eac;
+}
+
+#content .screenshot {
+	padding: 25px;
+	text-align: center;
+}
+
+#content .item .label {
+	width: 150px;
+	padding-right: 10px;
+	text-align: right;
+	float: left;
+	font-weight: bold;
+}
+
+#content .item .value {
+	float: left;
+}
+
+#content .item .nl {
+	clear: both;
+}
+
+#conn-list {
+	width: 185px;
+	float: left;
+	background: url(graphics/connections-bg.png) no-repeat;
+	height: 80px;
+	padding: 0;
+	margin: 0;
+}
+
+#conn-list p {
+	padding: 0;
+	margin: 0;
+	height: 32px;
+}
+
+#conn-list p .head {
+	color: white;
+	font-style: italic;
+	padding-left: 5px;
+	line-height: 38px;
+}
+
+#conn-list ul {
+	background-color: #eaf4fd;
+	width: 180px;
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+}
+
+#conn-list li {
+	border: 1px solid #c5dbec;
+	color: #2e6eac;
+	font-style: italic;
+}
+
+#conn-list .open {
+	background: url(graphics/open.png) no-repeat;
+	padding-left: 20px;
+}
+
+#conn-list .closed {
+	background: url(graphics/closed.png) no-repeat;
+	padding-left: 20px;
+}
+
+#conn-list a {
+	color: #2e6eac;
+	font-size: 1em;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+#conn-list .no-vm {
+	font-weight: normal;
+	text-align: center;
+}
+
+#conn-list .add-vm {
+	font-weight: normal;
+}
+
+#conn-list .add-vm a {
+	color: #2e6eac;
+	font-weight: normal;
+	padding-left: 20px;
+}
+
+#conn-detail {
+	margin-left: 190px;
+}
+
+#list-form {
+	/*width: 95%;*/
+	color: #2e6eac;
+	font-weight: bold;
+	background-color: #85b5d9;
+	border-spacing: 1px;
+	border-collapse: separate;
+}
+
+#list-form th {
+	padding: 0 15px 0 15px;
+}
+
+#list-form td {
+	color: #2e6eac;
+	background-color: #daf4fd;
+	font-weight: bold;
+	text-align: center;
+	padding: 0 15px 0 15px;
+}
+
+#list-form td a {
+	color: #2e6eac;
+	background-color: #daf4fd;
+	font-weight: bold;
+	text-decoration: none;
+	font-style: italic;
+}
+
+#delete-form {
+	color: #2e6eac;
+	padding: 0 5px 0 5px;
+	font-size: 22px;
+}
+
+#delete-form .field {
+	text-align: center;
+	font-weight: bold;
+	font-size: 16px;
+	pointer: cursor;
+}
+
+#delete-form .field a {
+	color: #2e6eac;
+}
+
+#dump-form {
+}
+
+#dump-form .field {
+	font-size: 20px;
+	color: #2e6eac;
+	padding-bottom: 15px;
+}
+
+#connections-edit {
+}
+
+#connections-edit .title {
+	text-align: right;
+	color: #2e6eac;
+	vertical-align: top;
+}
+
+#connections-edit .title2 {
+	text-align: center;
+	color: #2e6eac;
+	vertical-align: top;
+}
+
+#connections-edit .section {
+	color: gray;
+	font-size: 18px;
+	font-weight: bold;
+	font-style: italic;
+	background-color: #85b5d9;
+	border-radius: 15px;
+	padding: 0 10px 0 10px;
+}
+
+#connections-edit .field {
+	border-radius: 5px;
+	color: #2e6eac;
+}
+
+#connections-edit .field-checkbox {
+	color: #2e6eac;
+}
+
+#connections-edit .field input {
+	color: #2e6eac;
+	border: 1px solid #3e6eac;
+	border-radius: 5px;
+	padding: 0 5px 0 5px;
+	width: 250px;
+}
+
+#connections-edit .field .btn {
+	color: #2e6eac;
+	border: 1px solid #3e6eac;
+	border-radius: 5px;
+	padding: 0 5px 0 5px;
+	cursor: pointer;
+	width: 100px;
+}
+
+#connections-edit .field select {
+	color: #2e6eac;
+	border: 1px solid #3e6eac;
+	border-radius: 5px;
+	padding: 0 5px 0 5px;
+	width: 250px;
+}
+
+#connections-edit .submit {
+	color: #2e6eac;
+	padding: 0 5px 0 5px;
+	width: 250px;
+	text-align: center;
+}
+
+#connections-edit .submit input {
+	color: #2e6eac;
+	border: 1px solid #3e6eac;
+	border-radius: 15px;
+	padding: 0 15px 0 15px;
+	text-align: center;
+	cursor: pointer;
+}
+
+#connections-edit table {
+	border: 1px solid #3e6eac;
+}
+
+.qr_line{
+	clear:both;
+	overflow:hidden;
+	height:4px;
+}
+
+.qr_line b{
+	background:#fff;
+	width:4px;
+	height:4px;
+	float:left;
+	overflow:hidden;
+}
+
+.qr_line i{
+	background:#000;
+	width:4px;
+	height:4px;
+	float:left;
+	overflow:hidden;
+}
+
+#msg-error {
+	background: url(graphics/error.png) no-repeat 10px;
+	color: red;
+	border-radius: 8px;
+	border: 1px solid red;
+	padding-left: 30px;
+	font-weight: bold;
+}
+
+#msg-info {
+	background: url(graphics/info.png) no-repeat 10px;
+	color: black;
+	background-color: #fbec88;
+	border-radius: 8px;
+	border: 1px solid #fad42e;
+	padding-left: 30px;
+	font-weight: bold;
+}
+
+.log_head {
+	color: #2e6eac;
+	font-weight: bold;
+	font-style: italic;
+	padding: 10px 0 10px 10px;
+}
+
+.log_head_th {
+	color: #2e6eac;
+	font-weight: bold;
+	background-color: #85b5d9;
+}
+
+.log_info {
+	color: #2e6eac;
+	background-color: #daf4fd;
+	font-weight: bold;
+	text-align: center;
+}
+
+.log_warn {
+	color: #2e6eac;
+	background-color: #4af4fd;
+	font-weight: bold;
+	text-align: center;
+}
+
+.log_error {
+	color: white;
+	background-color: #ff32f3;
+	font-weight: bold;
+	text-align: center;
+}
+
+.log_fatal {
+	color: white;
+	background-color: #ff3233;
+	font-weight: bold;
+	text-align: center;
+}
+
+

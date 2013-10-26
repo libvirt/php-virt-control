@@ -1,0 +1,7 @@
+TODO:
+  - Implement user to connection associations (should require save connection permissions for administration *only* of your connections)
+
+  - Implement XML-RPC for virtDroid purposes
+  - Rewrite virtDroid for better design and to use new XML-RPC
+  - Add option to generate new API key with option to display QR Code on the Users page
+    - Show if qrencode library is available on the system
