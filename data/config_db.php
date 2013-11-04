@@ -1,8 +1,8 @@
 <?php
     $host = 'localhost';
-    $username = 'username';
-    $password = 'password';
+    $username = 'root';
+    $password = base64_decode('bWlndWVs');
     $dbname = 'php-virt-control';
     
-    $debug = false;
+    $debug = true;
 ?>
