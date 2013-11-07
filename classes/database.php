@@ -8,11 +8,17 @@
 		// Uncomment to enable logging
 		//private $_logfile = 'tmp/query.log';
 		private $_logfile = false;
+		private $_tabDBUser = 'user';
+		private $_tabDBs = 'db';
+		private $_setup_done = false;
+		private $_setup_called = false;
 		public $_origin = __CLASS__;
 		public $_log_head = __CLASS__;
 		public $_tables = array();
 		
 		function Database($cfg) {
+			if ($cfg == false)
+				return;
 			if (strpos($cfg, '://')) {
 				$tmp = explode('://', $cfg);
 				$protocol = $this->safe_string($tmp[0]);
@@ -30,9 +36,14 @@
 			$dbname = false;
 			
 			if ($protocol == 'file') {
-				if (!file_exists('data/'.$data))
-					return false;
-				include('data/'.$data);
+				if (!file_exists('data/'.$data)) {
+					if (!file_exists('../data/'.$data))
+						return false;
+					else
+						include('../data/'.$data);
+				}
+				else
+					include('data/'.$data);
 			}
 			else
 			if ($protocol == 'raw') {
@@ -79,10 +90,24 @@
 				return $this->log(TYPE_ERROR, __CLASS__.'::'.__FUNCTION__, 'Invalid configuration', 'Cannot connect');
 				
 			$this->_debug = $debug;
+			$this->_setup_done = true;
 		}
-		
+
+		function isConnected() {
+			return $this->_setup_done;
+		}
+
+		function setup($server, $user, $password, $dbname = 'mysql') {
+			$this->_setup_called = true;
+			$str = 'host='.$server.';username='.$user.';password='.$password.';dbname='.$dbname.';debug=false';
+			$this->_load('raw', $str);
+			if ($this->_setup_done)
+				$this->_ensure_database_models();
+			return $this->_setup_done;
+		}
+
 		function _connect($host, $username, $password, $dbname) {
-			$this->_db = mysql_connect($host, $username, $password);
+			$this->_db = @mysql_connect($host, $username, $password);
 			if (!$this->_db)
 				return $this->log(TYPE_ERROR, __CLASS__.'::'.__FUNCTION__, 'Connection error', 'Connection error');
 			if (!mysql_select_db($dbname))
@@ -109,7 +134,7 @@
 				fclose($fp);
 			}
 			
-			$this->_res = mysql_query($query);
+			$this->_res = @mysql_query($query);
 			return $this->_res;
 		}
 		
@@ -166,9 +191,10 @@
 			}
 
 			$res = $this->query($qry);
-			
 			if ((!$res) && (mysql_error()))
 				return $this->log(TYPE_ERROR, __CLASS__.'::'.__FUNCTION__, 'Error running query', mysql_error());
+			if (!$res)
+				return $this->log(TYPE_ERROR, __CLASS__.'::'.__FUNCTION__, 'Error running query', 'Invalid resource but no error provided');
 
 			$ret = array();
 			while ($rec = $this->fetch_assoc()) {
@@ -185,7 +211,7 @@
 			return $ret;
 		}
 		
-		function update($tabName, $fields, $conditions) {
+		function update($tabName, $fields, $conditions, $autoEscape = true) {
 			if (empty($fields))
 				return;
 			$ak = array_keys($fields);
@@ -193,8 +219,11 @@
 			for ($i = 0; $i < sizeof($ak); $i++) {
 				$key = $ak[$i];
 				$val = $fields[$key];
-				
-				$fld .= $key.' = "'.$val.'", ';
+
+				if ($autoEscape)
+					$fld .= $key.' = "'.$val.'", ';
+				else
+					$fld .= $key.' = '.$val.', ';
 			}
 			$fld = trim($fld);
 			$fld[strlen($fld) - 1] = ' ';
@@ -204,8 +233,11 @@
 			for ($i = 0; $i < sizeof($ak); $i++) {
 				$key = $ak[$i];
 				$val = $conditions[$key];
-				
-				$conds .= $key.' = "'.$val.'" AND ';
+
+				if ($autoEscape)
+					$conds .= $key.' = "'.$val.'" AND ';
+				else
+					$conds .= $key.' = '.$val.' AND ';
 			}
 			$conds = trim($conds);
 			$conds[strlen($conds) - 3] = ' ';
@@ -331,9 +363,10 @@
 		}
 
 		function _ensure_database_models() {
+			$prepend = ($this->_setup_called) ? '../' : '';
 			for ($i = 0; $i < sizeof($this->_tables); $i++) {
 				$name = $this->_tables[$i];
-				$fn = 'models/'.$name.'.php';
+				$fn = $prepend.'models/'.$name.'.php';
 				if ((!$this->_table_exists($name)) && (File_Exists($fn))) {
 					include($fn);
 
@@ -465,6 +498,102 @@
 				return $this->log(TYPE_ERROR, __CLASS__.'::'.__FUNCTION__, 'No cached result', 'No result is cached');
 
 			return $res;
+		}
+
+		function createNewUser($username, $password, $host = 'localhost', $canOverride = true) {
+			if (!$host)
+				$host = '%';
+
+			$conditions = array(
+						'Host' => $host,
+						'User' => $username
+						);
+
+			$fields = array(
+						'Password'
+					);
+
+			$updated = false;
+			$ret = $this->select($this->_tabDBUser, $conditions, $fields);
+			if (sizeof($ret) != 0) {
+				if ($canOverride) {
+					$conditions = array(
+							'Host' => '"'.$host.'"',
+							'User' => '"'.$username.'"'
+							);
+
+					$fields = array(
+							'Password' => 'PASSWORD("'.$password.'")'
+							);
+
+					$updated = $this->update($this->_tabDBUser, $fields, $conditions, false);
+				}
+				else
+					return $this->log(TYPE_ERROR, __CLASS__.'::'.__FUNCTION__, 'User creation failed', 'User '.$username.' already exists');
+			}
+
+			if (!$updated) {
+				$qry = "CREATE USER '$username'@'$host' IDENTIFIED BY '$password';";
+				if (!$this->query($qry))
+					return $this->log(TYPE_ERROR, __CLASS__.'::'.__FUNCTION__, 'User creation failed', 'Cannot create user '.$username);
+			}
+
+			$qry = 'FLUSH PRIVILEGES';
+			if (!$this->query($qry))
+				return $this->log(TYPE_ERROR, __CLASS__.'::'.__FUNCTION__, 'User flush failed', 'Cannot flush privileges');
+
+			return true;
+		}
+
+		function createDatabase($dbname, $username = false, $host = 'localhost') {
+			if (!$host)
+				$host = '%';
+
+			$qry = 'CREATE DATABASE `'.$dbname.'`';
+			if (!$this->query($qry))
+				return $this->log(TYPE_ERROR, __CLASS__.'::'.__FUNCTION__, 'Database creation failed', 'Cannot create database '.$dbname);
+
+			if (!$username)
+				return true;
+
+			$conditions = array(
+						'Host' => $host,
+						'User' => $username,
+						'Db'   => $dbname
+					);
+
+			$fields = array(
+						'User'
+					);
+
+			$ret = $this->select($this->_tabDBs, $conditions, $fields);
+			if (sizeof($ret) == 0) {
+				$conditions['Select_priv'] = 'Y';
+				$conditions['Insert_priv'] = 'Y';
+				$conditions['Update_priv'] = 'Y';
+				$conditions['Delete_priv'] = 'Y';
+				$conditions['Create_priv'] = 'Y';
+				$conditions['Drop_priv'] = 'Y';
+
+				$ret = $this->insert($this->_tabDBs, $conditions);
+			}
+			else {
+				$fields = $conditions;
+				$fields['Select_priv'] = 'Y';
+				$fields['Insert_priv'] = 'Y';
+				$fields['Update_priv'] = 'Y';
+				$fields['Delete_priv'] = 'Y';
+				$fields['Create_priv'] = 'Y';
+				$fields['Drop_priv'] = 'Y';
+
+				$ret = $this->update($this->_tabDBs, $fields, $conditions);
+			}
+
+			$qry = 'FLUSH PRIVILEGES';
+			if (!$this->query($qry))
+				return $this->log(TYPE_ERROR, __CLASS__.'::'.__FUNCTION__, 'User flush failed', 'Cannot flush privileges');
+
+			return $ret;
 		}
 	}
 ?>

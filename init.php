@@ -3,6 +3,14 @@
 	define('PHPVIRTCONTROL_WEBSITE', 'http://www.php-virt-control.org');
 	define('ENABLE_TRANSLATOR_MODE', true);
 
+	$my_classes = array(
+				'Keys',
+				'Application',
+				'Connection',
+				'Language',
+				'User'
+				);
+
 	require('classes/loggerBase.php');
 	require('classes/Security.php');
 	require('classes/database.php');

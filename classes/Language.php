@@ -9,13 +9,14 @@
 		public $_log_head = __CLASS__;
 		public $_tables = array( 'LangStrings' );
 		
-		function __construct($fn, $lang) {
+		function __construct($fn, $lang = 'en') {
 			parent::__construct($fn);
 			$this->_fn = $fn;
 			$this->_lang = $lang;
 			$this->_ensure_database_models();
 
-			$this->_langs = $this->getLanguages();
+			if ($lang != false)
+				$this->_langs = $this->getLanguages();
 		}
 		
 		function getLanguages() {

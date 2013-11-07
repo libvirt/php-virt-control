@@ -194,6 +194,18 @@ h1 {
 	color: #2e6eac;
 }
 
+#content .section-small {
+	padding: 5px;
+	padding-left: 25px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	font-size: 16px;
+	font-weight: bold;
+	font-style: italic;
+	background-color: #daf4fd;
+	color: #2e6eac;
+}
+
 #content .screenshot {
 	padding: 25px;
 	text-align: center;

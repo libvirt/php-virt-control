@@ -221,7 +221,7 @@
 			return $this->insert($this->tabUsersLoginHistory, $fields);
 		}
 		
-		function register($username, $password = false, $userAgent = false, $lang = false, $permissions = array()) {
+		function register($username, $password = false, $email = false, $userAgent = false, $lang = false, $permissions = array()) {
 			if (!$username)
 				return $this->log(TYPE_ERROR, __CLASS__.'::'.__FUNCTION__, 'Register error', 'Invalid username');
 			
@@ -234,11 +234,15 @@
 			
 			$password = sha1($password);
 
-			$val = 0;
-			if (!empty($permissions)) {
-				for ($i = 0; $i < sizeof($permissions); $i++)
-					eval('$val += '.$permissions[$i].';');
+			if (is_array($permissions)) {
+				$val = 0;
+				if (!empty($permissions)) {
+					for ($i = 0; $i < sizeof($permissions); $i++)
+						eval('$val += '.$permissions[$i].';');
+				}
 			}
+			else
+				$val = $permissions;
 
 			if (!$userAgent)
 				$userAgent = $_SERVER['HTTP_USER_AGENT'];
@@ -268,7 +272,8 @@
 					'permissions'  => $val,
 					'regFrom'      => time(),
 					'apikey'       => '-',
-					'lang'         => $lang
+					'lang'         => $lang,
+					'email'        => $email
 					);
 
 			return $this->insert($this->tabUsers, $fields, 'username');
@@ -425,38 +430,6 @@
 			return $this->_lang;
 		}
 		
-		/* RPC functions */
-		function rpc_Login($data) {
-			$fp = fopen('tmp/test-rpc.tmp', 'a');
-			fputs($fp, print_r($data, 1)."\n\n");
-			fclose($fp);
-			
-			$user = $this->get_data($data, 'user');
-			$pass = $this->get_data($data, 'password');
-			
-			$res = $this->login($user, $pass);
-			
-			return array('result' => ($res ? 'OK' : 'Error'));
-		}
-		
-		function rpc_Register($data) {
-			$fp = fopen('tmp/test-rpc.tmp', 'a');
-			fputs($fp, print_r($data, 1)."\n\n");
-			fclose($fp);
-			
-			$imsi = $this->get_data($data, 'imsi');
-			$imei = $this->get_data($data, 'imei');
-			$user = $this->get_data($data, 'user');
-			$pass = $this->get_data($data, 'password');
-			$lic  = $this->get_data($data, 'license');
-			$mLic = $this->get_data($data, 'maxLicense');
-			$pkg  = $this->get_data($data, 'package');
-			
-			$res = $this->register($user, $imei, $imsi, $pkg, $pass);
-			
-			return array('result' => ($res ? 'OK' : 'Error'));
-		}
-
 		/* User RPC methods */
 		function rpc_ChangePassword($input) {
 			$data = $input['data'];

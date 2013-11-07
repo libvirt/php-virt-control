@@ -1,0 +1,38 @@
+<?php
+	$code = 'en';
+	$strings = array(
+				'administrator-password-mismatch' => 'System administrator password cannot be confirmed. Passwords mismatch.',
+				'connect-failed' => 'Database connection failed',
+				'create-db-failed' => 'Database creation failed',
+				'password-mismatch' => 'New database user password mismatch',
+				'create-user-failed' => 'Cannot create new database user',
+				'database' => 'Database',
+				'database-host' => 'Database server host',
+				'database-type' => 'Database type',
+				'database-existing-user' => 'Administrator user',
+				'database-user' => 'Database user',
+				'database-password' => 'Database password',
+				'database-new-title' => 'New database and new user',
+				'database-new-name' => 'Database name',
+				'database-new-user' => 'Database user name',
+				'database-new-password' => 'Database user password',
+				'database-new-cpassword' => 'Confirm user password',
+				'system-admin-title' => 'Manager Administrator Account',
+				'system-admin-username' => 'Username',
+				'system-admin-email' => 'E-mail address',
+				'system-admin-password' => 'Password',
+				'system-admin-cpassword' => 'Confirm password',
+				'system-admin-language' => 'Language',
+				'setup-title' => 'Setup',
+				'setup' => 'Setup',
+				'add-new-database-type' => 'Add new database type',
+				'add-new-language' => 'Add new language',
+				'config-perms-disable-prompt' => 'For security reasons please change permissions of <i>data</i> directory and <i>data/config_db.php</i> file to 0644.',
+				'config-perms-save-file-prompt' => 'To activate your database settings please create or overwrite file <i>data/config_db.php</i> with following contents',
+				'click-here-when-done' => 'Click here when done',
+				'incorrect-permissions' => 'The data directory and config_db.php file still does <i>not</i> have correct permissions. Here is the guide how to set them. ',
+				'incorrect-permissions-help' => 'Log on server using SSH with user than can access this project directory and run following commands',
+				'db-cannot-connect' => 'Cannot connect to database. Please check your settings in <i>data/config_db.php</i> file. ',
+				'login-prompt' => 'Setup is complete. You can now %LINKlogin#LINK.'
+				);
+?>

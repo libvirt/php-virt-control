@@ -142,7 +142,7 @@
 			}
 
 			if ($entries == 0)
-				echo '<tr align="center" style="background-color: lightgreen"><td colspan="4">No items in the log</td></tr>';
+				echo '<tr align="center" style="background-color: lightgreen"><td colspan="5">No items in the log</td></tr>';
 			echo '</table>';
 
 			if ($showFooter)

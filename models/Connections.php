@@ -54,6 +54,12 @@
 					'null' => false,
 					'comment' => 'Entry creation timestamp'
 					),
+			'uri_override' => array(
+					'type' => 'varchar',
+					'length' => 250,
+					'null' => true,
+					'comment' => 'URI override for the connection'
+					),
 			'creatorId' => array(
 					'type' => 'bigint',
 					'null' => false,

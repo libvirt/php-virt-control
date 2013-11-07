@@ -1,5 +1,5 @@
 <?php
-	define('DEBUG', true);
+	define('DEBUG', false);
 	require('init.php');
 	
 	$config = 'file://config_db.php';
