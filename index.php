@@ -266,8 +266,8 @@
 	if (DEBUG) {
 		echo '<div id="content">';
 		echo '<div class="section">Query debug</div>';
-		$user->log_dump();
-		$lang->log_dump();
+		$user->logDump();
+		$lang->logDump();
 
 		$idx = false;
 		for ($i = 0; $i < sizeof($lvObjects); $i++) {

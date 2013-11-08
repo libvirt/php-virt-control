@@ -33,6 +33,7 @@
 				'incorrect-permissions' => 'Adresář data či soubor config_db.php stále <i>nemá</i> správná oprávnění. Zde je návod jak oprávnění nastavit. ',
 				'incorrect-permissions-help' => 'Přihlašte se pomocí SSH na server účtem uživatele, který smí přistupovat k adresáři projektu a spusťte následující příkazy',
 				'db-cannot-connect' => 'Nelze se přihlásit k databázi. Prosím zkontrolujte nastavení v souboru <i>config_db.php</i> v adresáři <i>data</i>.',
-				'login-prompt' => 'Nastavení bylo dokončeno. Nyní se můžete %LINKpřihlásit#LINK.'
+				'login-prompt' => 'Nastavení bylo dokončeno. Nyní se můžete %LINKpřihlásit#LINK.',
+				'setup-config-dir-missing' => 'Adresář s nastavením není dostupný. Adresářem může být jeden z následujících adresářů'
 				);
 ?>

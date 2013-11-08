@@ -86,12 +86,12 @@
 				$lenSalt = $lenKey;
 
 			if ($lenKey < 64)
-				$key = $this->generate_random_chars($lenKey);
+				$key = $this->generateRandomChars($lenKey);
 			else
 				$key = md5($idUser . rand(1, $idUser * $lenKey)).
-					$this->generate_random_chars($lenKey - 32);
+					$this->generateRandomChars($lenKey - 32);
 
-			$salt = $this->generate_random_chars($lenSalt);
+			$salt = $this->generateRandomChars($lenSalt);
 
 			return array(
 					'key' => $key,

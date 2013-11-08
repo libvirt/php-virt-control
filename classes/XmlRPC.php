@@ -198,7 +198,7 @@
 			$ret = '';
 			if ((empty($data)) || ($data == false)) {
 				$errmsg = false;
-				$log = ($this->log_override) ? $this->log_override : $this->get_log();
+				$log = ($this->log_override) ? $this->log_override : $this->getLog();
 				for ($i = sizeof($log) - 1; $i >= 0; $i--) {
 					if ($log[$i]['type'] == TYPE_ERROR) {
 						$errmsg = $log[$i]['msg'];
@@ -346,7 +346,7 @@
 			$ret = '';
 			if (empty($data)) {
 				$errmsg = false;
-				$log = ($this->log_override) ? $this->log_override : $this->get_log();
+				$log = ($this->log_override) ? $this->log_override : $this->getLog();
 				for ($i = sizeof($log) - 1; $i > 0; $i--) {
 					if ($log[$i]['type'] == TYPE_ERROR) {
 						$errmsg = $log[$i]['msg'];

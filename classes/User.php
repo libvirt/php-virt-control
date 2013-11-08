@@ -17,23 +17,23 @@
 		}
 		
 		function login($username, $password, $userAgent = false) {
-			$username = $this->safe_string($username);
+			$username = $this->safeString($username);
 			$password = sha1($password);
 			
 			if (!$userAgent)
-				$userAgent = $this->safe_string($_SERVER['HTTP_USER_AGENT']);
+				$userAgent = $this->safeString($_SERVER['HTTP_USER_AGENT']);
 			
 			$res = $this->query('SELECT id, numLogins FROM '.$this->tabUsers.' WHERE username = "'.$username.'" AND password = "'.$password.'"');
-			if (!$this->num_rows($res))
+			if (!$this->numRows($res))
 				return $this->log(TYPE_ERROR, __CLASS__.'::'.__FUNCTION__, 'Invalid user or password', 'No such user found or invalid password');
 				
-			$id = $this->field_by_name('id', $res);
+			$id = $this->fieldByName('id', $res);
 			if (!$id)
 				return $this->log(TYPE_ERROR, __CLASS__.'::'.__FUNCTION__, 'Missing field in query', 'Missing field "id" in query');
 			
 			$this->_idUser = $id;
 						
-			$numLogins = $this->field_by_name('numLogins', $res);
+			$numLogins = $this->fieldByName('numLogins', $res);
 			if ($numLogins == false)
 				$numLogins = 0;
 			
@@ -63,7 +63,7 @@
 			$this->_idUser = $idUser;
 			return true;
 		}
-		
+
 		function logout($sess) {
 			if (!$sess->get('User'))
 				return false;
@@ -178,7 +178,7 @@
 					);
 			}
 			$r = $this->sortArrayBy($r, 'name');
-			$this->set_log($c->log_append($this->get_log(), __CLASS__.'::'.__FUNCTION__));
+			$this->setLog($c->_logAppend($this->getLog(), __CLASS__.'::'.__FUNCTION__));
 			unset($c);
 			
 			return $r;
@@ -205,7 +205,7 @@
 				$r[] = $c->get($conns[$i])[0];
 			}
 			$r = $this->sortArrayBy($r, 'name');
-			$this->set_log($c->log_append($this->get_log(), __CLASS__.'::'.__FUNCTION__));
+			$this->setLog($c->_logAppend($this->getLog(), __CLASS__.'::'.__FUNCTION__));
 			unset($c);
 			
 			return $r;
@@ -225,10 +225,10 @@
 			if (!$username)
 				return $this->log(TYPE_ERROR, __CLASS__.'::'.__FUNCTION__, 'Register error', 'Invalid username');
 			
-			$username = $this->safe_string($username);
+			$username = $this->safeString($username);
 			
 			if (!$password) {
-				$password = $this->generate_random_chars(16);
+				$password = $this->generateRandomChars(16);
 				/* Send by e-mail */
 			}
 			
@@ -261,7 +261,7 @@
 				$lang = $v;
 			}
 				
-			$userAgent = $this->safe_string($userAgent);
+			$userAgent = $this->safeString($userAgent);
 			
 			$fields = array(
 					'username'     => $username,
@@ -287,7 +287,7 @@
 					return $this->log(TYPE_ERROR, __CLASS__.'::'.__FUNCTION__, 'Edit error', 'Invalid username');
 			}
 			
-			$username = $this->safe_string($username);
+			$username = $this->safeString($username);
 
 			$val = -1;
 			if (!is_bool($permissions)) {
@@ -336,7 +336,7 @@
 			unset($tmp[sizeof($tmp) - 1]);
 			$add = implode('/', $tmp);
 
-			$token = $this->generate_random_chars(100);
+			$token = $this->generateRandomChars(100);
 			$fields = array(
 					'awaiting_recovery_token' => $token.'-'.(time() + 86400)
 					);
@@ -384,7 +384,7 @@
 			if ($tmp[0] != $renew_hash)
 				return false;
 
-			$pwd = $this->generate_random_chars(16);
+			$pwd = $this->generateRandomChars(16);
 			$msg = "Hi,\nyour new password for php-virt-control instance is \"$pwd\".\n\nFor security reasons please change your password after login.\n\n".
 				"System Administrator";
 			if (!mail($email, 'php-virt-control new password', $msg, 'Content-Type: text/plain; charset="utf-8"'))

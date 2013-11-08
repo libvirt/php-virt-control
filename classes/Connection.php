@@ -129,7 +129,7 @@
 		}
 
 		function add($name, $hv, $method, $host, $username, $password, $uri_override = false, $log_file = false) {
-			$name = $this->safe_string($name);
+			$name = $this->safeString($name);
 			
 			$fields = array(
 					'id'
@@ -162,7 +162,7 @@
 					
 			if (!$this->insert($this->tab, $fields))
 				return 'connection-add-failed';
-			$id = $this->last_insert_id();
+			$id = $this->lastInsertID();
 			$fields = array(
 					'idUser' => $idUser,
 					'idConnection' => $id,
@@ -218,7 +218,7 @@
 
 		function edit($id, $name, $hv, $method, $host, $username, $password, $uri_override = false, $log_file = false) {
 			$id = (int)$id;
-			$name = $this->safe_string($name);
+			$name = $this->safeString($name);
 
 			$fields = array(
 					'id'

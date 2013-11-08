@@ -73,7 +73,7 @@
 	}
 
 	if ((!$apikey) || (array_key_exists('renew', $_GET))) {
-		$apikey = $user->generate_random_chars(128);
+		$apikey = $user->generateRandomChars(128);
 
 		if ($id)
 			$user->setAPIKey($id, $apikey);

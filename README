@@ -1,0 +1,30 @@
+php-virt-control
+----------------
+
+The php-virt-control tool is the virtual machine control tool for PHP.
+It depends on libvirt PHP bindings as the module for PHP. You can use
+the tool to manage your virtual guests you're having available on your
+libvirt connection(s).
+
+LANGUAGE LOCALIZATIONS
+----------------------
+If you're a developer and you're adding a new functionality with new
+strings you should use $lang->get($ident) functions instead of coding
+in strings directly. The $ident argument is being used as a key of
+the array available in the classes/language.php, method initlang(),
+which is the default if language cannot match the ACCEPT_LANGUAGE
+HTTP header or $trans array in files of lang directory.
+
+The automatic language is being determined from the HTTP_ACCEPT_LANGUAGE
+variable - the first entry from there before the dash ('-') is being
+used. The system is looking for a file named as $thisPart.php in the
+lang directory and uses the default from Languages class if it cannot
+be found. E.g. for English browser settings the first token is usually
+en-US, so the part before dash character is 'en' so this is looking for
+lang/en.php etc.
+
+The language can be changed using the Settings link after you log in.
+
+LICENSES
+--------
+Icons used are from http://www.icojoy.com/articles/49/ (license free)

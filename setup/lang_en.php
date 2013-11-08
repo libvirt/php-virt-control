@@ -33,6 +33,7 @@
 				'incorrect-permissions' => 'The data directory and config_db.php file still does <i>not</i> have correct permissions. Here is the guide how to set them. ',
 				'incorrect-permissions-help' => 'Log on server using SSH with user than can access this project directory and run following commands',
 				'db-cannot-connect' => 'Cannot connect to database. Please check your settings in <i>data/config_db.php</i> file. ',
-				'login-prompt' => 'Setup is complete. You can now %LINKlogin#LINK.'
+				'login-prompt' => 'Setup is complete. You can now %LINKlogin#LINK.',
+				'setup-config-dir-missing' => 'Configuration directory is missing. Configuration directory can be located in one of these directories'
 				);
 ?>

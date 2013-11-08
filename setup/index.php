@@ -1,6 +1,8 @@
 <?php
 	include('../init.php');
 
+	$configDir = User::getConfigDir();
+
 	$tmp = explode(';', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
 	$lng = $tmp[0];
 	unset($tmp);
@@ -15,6 +17,33 @@
 
 	//$lang = 'cs';
 	include('lang.php');
+
+	if (!$configDir):
+?>
+<html>
+<head>
+ <title>php-virt-control - <?php echo getString('setup-title') ?></title>
+ <link rel="STYLESHEET" type="text/css" href="../manager.css" />
+</head>
+<body>
+  <div id="header">
+    <div id="headerLogo"></div>
+  </div>
+
+  <div id="conn-detail">
+    <div style="float:right;text-align: right; width:220px;font-size:11px;font-style:italic">
+  </div>
+
+<h1><?php echo getString('setup-title') ?></h1>
+
+<div id="content">
+	<div id="msg-error"><?php echo getString('setup-config-dir-missing').': '.User::getConfigDir(false, true) ?></div>
+</div>
+</body>
+</html>
+<?php
+	exit;
+	endif;
 
 	function getPOSTData($ident) {
 		return array_key_exists($ident, $_POST) ? $_POST[$ident] : '';

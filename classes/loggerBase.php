@@ -27,11 +27,43 @@
 			);
 		}
 		
-		function safe_string($str) {
+		function safeString($str) {
 			return addslashes($str);
 		}
 
-		function generate_random_chars($len = 8) {
+		function getConfigDir($filename = false, $all = false) {
+			$dirs = array( '/etc/php-virt-control', '../data', 'data' );
+
+			if ($all) {
+				$ret = '';
+				for ($i = 0; $i < sizeof($dirs); $i++) {
+						if (strpos('.'.$dirs[$i], '../')) {
+						$tmp2 = str_replace('../' ,'/', $dirs[$i]);
+						$tmp = explode('/', getcwd());
+						unset($tmp[sizeof($tmp) - 1]);
+						$ret .= implode('/', $tmp).$tmp2.', ';
+					}
+					else
+						$ret .= $dirs[$i].', ';
+				}
+
+				$ret[strlen($ret) - 2] = ' ';
+				return $ret;
+			}
+
+			for ($i = 0; $i < sizeof($dirs); $i++) {
+				if (is_dir($dirs[$i])) {
+					if (!$filename)
+						return $dirs[$i];
+					if (file_exists($dirs[$i].'/'.$filename))
+						return $dirs[$i].'/'.$filename;
+				}
+			}
+
+			return false;
+		}
+
+		function generateRandomChars($len = 8) {
 			$chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 
 			$ret = '';
@@ -41,11 +73,11 @@
 			return $ret;
 		}
 		
-		function get_data($data, $name) {
+		function getData($data, $name) {
 			return array_key_exists($name, $data['data']) ? $data['data'][$name] : false;
 		}
 
-		function set_data($data, $name, $value) {
+		function setData($data, $name, $value) {
 			if ((is_bool($value)) && ($value == false))
 				return $data;
 
@@ -54,17 +86,17 @@
 			return $data;
 		}
 
-		function set_log($log_obj) {
+		function setLog($log_obj) {
 			if (!$this->debug) return;
 
 			$this->_log = $log_obj;
 		}
 
-		function get_log() {
+		function getLog() {
 			return $this->_log;
 		}
 
-		function type_fmt($type) {
+		function _type_fmt($type) {
 			if ($type == TYPE_INFO)
 				return 'Information';
 			else
@@ -80,8 +112,8 @@
 			return false;
 		}
 
-		function log_print($data) {
-			$type = $this->type_fmt($data['type']);
+		function _log_print($data) {
+			$type = $this->_type_fmt($data['type']);
 
 			if ($type == false)
 				return false;
@@ -101,14 +133,14 @@
 				."<td>{$data['lib']}</td><td>{$data['msg']}</td><td>{$data['data']}</td></tr>";
 		}
 
-		function log_dump($filename = false, $showFooter = false) {
+		function logDump($filename = false, $showFooter = false) {
 			if (!$this->debug) return;
 
 			if ($filename) {
 				$fp = fopen($filename, 'w');
 				for ($i = 0; $i < sizeof($this->_log); $i++) {
 					$data = $this->_log[$i];
-					$type = $this->type_fmt($data['type']);
+					$type = $this->_type_fmt($data['type']);
 					
 					switch ($data['type']) {
 						case TYPE_INFO: $t = ' INFO';
@@ -133,7 +165,7 @@
 			echo "<tr><th class=\"log_head_th\">Type</th><th class=\"log_head_th\">Origin</th><th class=\"log_head_th\">";
 			echo "Source</th><th class=\"log_head_th\">Message</th><th class=\"log_head_th\">Additional data</th></tr>";
 			for ($i = 0; $i < sizeof($this->_log); $i++) {
-				$tmp = $this->log_print($this->_log[$i]);
+				$tmp = $this->_log_print($this->_log[$i]);
 
 				if (is_string($tmp)) {
 					echo $tmp;
@@ -149,7 +181,7 @@
 				echo '<br /><center>Number of displayed log entries: '.$entries.'</center>';
 		}
 		
-		function log_append($log, $origin) {
+		function _logAppend($log, $origin) {
 			for ($i = 0; $i < sizeof($this->_log); $i++) {
 				$log_entry = $this->_log[$i];
 				$log_entry['origin'] = $origin;
@@ -159,7 +191,7 @@
 			return $log;
 		}
 
-		function has_error() {
+		function hasError() {
 			for ($i = 0; $i < sizeof($this->_log); $i++) {
 				if ($this->log[$i]['type'] == TYPE_ERROR)
 					return true;
@@ -168,7 +200,7 @@
 			return false;
                 }
 
-		function has_error_fatal() {
+		function hasErrorFatal() {
 			for ($i = 0; $i < sizeof($this->_log); $i++) {
 				if ($this->log[$i]['type'] == TYPE_FATAL)
 					return true;
