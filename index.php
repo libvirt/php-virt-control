@@ -294,6 +294,8 @@
 
 	for ($i = 0; $i < sizeof($lvObjects); $i++)
 		unset($lvObjects[$i]['obj']);
+
+	$user->close();
 ?>
 
 </body>

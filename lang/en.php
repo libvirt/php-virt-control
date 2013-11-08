@@ -1,7 +1,11 @@
 <?php
 		$info = array(
-						'code' => 'en',
-						'name' => 'English'
+				'code' => 'en',
+				'name' => 'English',
+				'translator' => array(
+							'name' => 'Michal Novotný',
+							'email' => 'minovotn@redhat.com'
+				)
 			);
 
 		$strings = array(
@@ -307,6 +311,6 @@
 			'project-information' => 'This is the virtual machine controller tool written in PHP language.You can manage virtual machines (guests) on your machines using this web-based controlling interface. For the navigation please use the upper menu and select the domain from the <i>Domain list</i> link to see the virtual machines available on the current machine. You can also see the information about the hypervisor connection, host machine and libvirt PHP module (used by this system) on the <i>Information</i> page.</p> <p>The hypervisor on the machine running Apache with PHP is being probed automatically if applicable however you can override the definition to connect to any other hypervisor on remote machine. To achieve this you need to select a connection and change the host using the form below. If you experience any issues (e.g. not working connectivity to SSH-based remote host) please make sure you\'re having all the prerequisites met. For more reference please check <a href="http://libvirt.org/auth.html" target="_blank">libvirt authentication documentation.</a>',
 			'delete-question' => 'You are about to delete %T named <i>%N</i>. Please remember this operation cannot be undone. Are you sure you want to delete this %T ?',
 			'dump' => 'You are watching dump for <i>%N</i>:',
-			'info-apache-key-copy' => 'There\'s an utility called <b>apache-key-copy</b> included to this web-application (can be found in tools subdir) that is useful to setup SSH keys for password-less SSH connection. The SSH connection transport <b>does not</b> support passing credentials to the SSH process and that\'s why password-less SSH connection settings is necessary. <b>Apache-key-copy</b> utility have to be run from shell by the system administrator (root account). This application find the home directory for the apache user (you will most likely need to change it if you are using a different user name to run Apache/php) and creates the hidden SSH settings directory. Then a SSH key is being generated (if it doesn\'t exist yet) and copied to the destination machine.'
+			'info-apache-key-copy' => 'There\'s an utility called <b>apache-key-copy</b> included to this web-application (can be found in tools subdir) that is useful to setup SSH keys for password-less SSH connection. The SSH connection transport <b>does not</b> support passing credentials to the SSH process and that\'s why password-less SSH connection settings is necessary. For password-based authentication you need to use <i>libssh2</i> library however this library may not be supported by your version of libvirt and that is why the  <b>Apache-key-copy</b> utility is included with the project. This utility have to be run from shell by the system administrator (root account) and it will automatically find the home directory for the apache user (you will most likely need to change it if you are using a different user name to run Apache/PHP) and create the hidden SSH settings directory. Then a SSH key will be generated (if it doesn\'t exist yet) and copied to the destination machine.'
 			);
 ?>

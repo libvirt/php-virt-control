@@ -1,7 +1,11 @@
 <?php
 		$info = array(
 				'code' => 'cs',
-				'name' => 'Čeština (Czech)'
+				'name' => 'Čeština (Czech)',
+				'translator' => array(
+							'name' => 'Michal Novotný',
+							'email' => 'minovotn@redhat.com'
+				)
 		);
 
 		$strings = array(
@@ -308,6 +312,6 @@
 			'project-information' => 'Tento projekt je správce virtuálních strojů napsaný v jazyce PHP za použití knihovny libvirt-php. Přes tento manažer můžete spravovat své virtuální stroje na všech vých uzlech. Pro navigaci můžete použít levého horního menu a zvolit spojení se <i>Seznamu spojení</i> a poté zvolit doménu ze <i>Seznamu domén</i>. Též si můžete zobrazit informace o aktuálním připojeném uzlu, pokud máte dostačující oprávnění či zobrazovat a měnit nastavení virtuálních strojů či virtuálních sítí. (TBD)',
 			'delete-question' => 'Skutečně si přejete smazat objekt <i>%N</i>? Prosím mějte na vědomí, že tuto operaci není možné vrátit. Přejete si pokračovat?',
 			'dump' => 'Právě se díváte na výpis pro <i>%N</i>:',
-			'info-apache-key-copy' => 'K projektu php-virt-control je přibalena utilita <b>apache-key-copy</b> (možno nalézt v podadresáři tools), která umožňuje nastavení SSH klíčů pro použití serverem Apache a jazykem PHP. Toto je užitečné především pro nastavení SSH authentizace bez hesla (password-less authentization), protože SSH transport nepodporuje předávání přihlašovacích informací SSH procesu a tedy je nezbytné použít tento typ authentizace pro SSH transport. Utilita <b>apache-key-copy</b> musí být spuštěna v kontextu superuživatele root, aby byla schopná přepnutí do uživatele apache i v případě, že uživatel nemá přiřazený žádný shell. Zde bude aplikace přistupovat domovský adresář uživatele apache, kde vytvoří SSH klíč (pokud neexistuje) a zkopíruje veřejný klíč na vzdálený systém, který chcete spravovat.'
+			'info-apache-key-copy' => 'K projektu php-virt-control je přibalena utilita <b>apache-key-copy</b> (možno nalézt v podadresáři tools), která umožňuje nastavení SSH klíčů pro použití serverem Apache a jazykem PHP. Toto je užitečné především pro nastavení SSH authentizace bez hesla (password-less authentization), protože SSH transport nepodporuje předávání přihlašovacích informací SSH procesu a tedy je nezbytné použít tento typ authentizace pro SSH transport. Výjimkou je leda užití autorizace pomocí <i>libssh2</i> knihovny, které však nemusí být vždy dostupné. Z tohoto důvodu je zde dostupná utilita <b>apache-key-copy</b>, která musí být spuštěna v kontextu superuživatele root, aby byla schopná přepnutí do uživatele apache i v případě, že uživatel nemá přiřazený žádný shell. Zde bude aplikace přistupovat domovský adresář uživatele apache, kde vytvoří SSH klíč (pokud neexistuje) a zkopíruje veřejný klíč na vzdálený systém, který chcete spravovat.'
 			);
 ?>

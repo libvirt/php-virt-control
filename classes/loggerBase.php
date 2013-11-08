@@ -63,6 +63,26 @@
 			return false;
 		}
 
+		function sortArrayBy($arr, $key) {
+			$ak = array_keys($arr);
+
+			$tmp = array();
+			for ($i = 0; $i < sizeof($ak); $i++) {
+				$item = $arr[$ak[$i]];
+
+				$tmp[$item[$key]] = $item;
+			}
+
+			ksort($tmp);
+
+			$res = array();
+			$ak = array_keys($tmp);
+			for ($i = 0; $i < sizeof($ak); $i++)
+				$res[] = $tmp[$ak[$i]];
+
+			return $res;
+		}
+
 		function generateRandomChars($len = 8) {
 			$chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 

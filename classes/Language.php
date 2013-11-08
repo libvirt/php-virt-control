@@ -32,7 +32,8 @@
 
 					$langs[] = array(
 								'name' => $info['name'],
-								'code' => $info['code']
+								'code' => $info['code'],
+								'translator' => $info['translator']
 							);
 				}
 			}
@@ -47,19 +48,20 @@
 		}
 
 		function setCode($lang) {
-			$this->_lang = $lang;
+			if ($lang != '')
+				$this->_lang = $lang;
 		}
 
 		function loadAll() {
-			if (!empty($this->_str))
+			if ((!empty($this->_str)) && (!empty($this->_str['strings'])))
 				return;
 
-			if (!File_Exists('lang/'.$this->_lang.'.php')) {
+			$fn = 'lang/'.$this->_lang.'.php';
+			if (!File_Exists($fn)) {
 				$this->_str = array('strings' => array(), 'texts' => array());
 				return;
 			}
-			
-			include('lang/'.$this->_lang.'.php');
+			include($fn);
 			
 			$this->_str = array(
 					'strings' => $strings,
@@ -69,7 +71,7 @@
 		
 		function get($ident, $lang = false) {
 			$this->loadAll();
-			
+
 			$strings = $this->_str['strings'];
 			if (isset($strings) && (array_key_exists($ident, $strings)))
 				return $strings[$ident];
@@ -124,7 +126,11 @@
 			echo "   */\n\n";
 			echo "  \$info = array(\n";
 			echo "          'code' => '$code',\n";
-			echo "          'name' => '$name'\n";
+			echo "          'name' => '$name',\n";
+			echo "          'translator' => array(\n";
+			echo "                                'name' => '$translator',\n";
+			echo "                                'email' => '$translator_mail'\n";
+			echo "                               )\n";
 			echo "          );\n\n";
 			echo "  \$strings = array(\n";
 

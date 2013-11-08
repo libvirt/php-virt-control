@@ -53,97 +53,50 @@
          Click on the thumbnail to see the full screenshot.
         </p>
         <p>
-          <table cellspacing="10">
-
-            <tr>
-              <td><a href="graphics/avmc10.png" target="blank"><img src="graphics/avmc10_tn.png" /></a>
-              <td>
-                 This is the login dialog if the user is not logged-in yet. If you're using the MySQL database connection to store the connection and user data then the initialization automatically adds the user 'admin' with the password 'admin'. It's recommended to change the password after database initialization. Database initialization is done on the first access to the pages/login dialog after setting up the valid MySQL connection.
-              </td>
-            </tr>
-
-            <tr>
-              <td><a href="graphics/avmc1.png" target="blank"><img src="graphics/avmc1_tn.png" /></a>
-              <td>
-                 Click to the image to see Virtual Machine Controller main page where you can see the information related to the php-virt-control project as well as you can define the connection to the hypervisor with option to save the option and enable debug logging. When you enter a new connection information leave the log file field empty to disable logging and/or leave the connection name field empty not to save the connection. The connection is being saved the the storage defined in the init script called <i>init.php</i>.
-              </td>
-            </tr>
-            <tr>
-              <td><a href="graphics/avmc2.png" target="blank"><img src="graphics/avmc2_tn.png" /></a>
-              <td>
-                 Click to the image to see Virtual Machine Controller domain list page. This is the list of the virtual domains (guests) available on the connection. You can start/stop/destroy domains using this page and also dump the XML configuration for the domain as well as edit the XML configuration of the domain.
-              </td>
-            </tr>
-            <tr>
-              <td><a href="graphics/avmc3.png" target="blank"><img src="graphics/avmc3_tn.png" /></a>
-              <td>
-                 Click to the image to see Virtual Machine Controller interface to create a new virtual machine. You can select the install image, domain name domain features, domain memory, clock offset and/or setup the domain network as well as primary disk for the domain to start the installation.
-              </td>
-            </tr>
-            <tr>
-              <td><a href="graphics/avmc4.png" target="blank"><img src="graphics/avmc4_tn.png" /></a>
-              <td>
-                 Click to the image to see Virtual Machine Controller network list page. This list contains the virtual networks that are available on the libvirt connection and that can be associated with any domain on the connection. You can edit the network information directly using the XML code.
-              </td>
-            </tr>
-            <tr>
-              <td><a href="graphics/avmc5.png" target="blank"><img src="graphics/avmc5_tn.png" /></a>
-              <td>
-                 Click to the image to see Virtual Machine Controller interface to create/define a new network using the name, CIDR definition or direct IP address and subnet mask definition with option to enable or disable DHCP server on the connection and/or to set the forwarding to any device of the physical host.<br />
-              </td>
-            </tr>
-            <tr>
-              <td><a href="graphics/avmc6.png" target="blank"><img src="graphics/avmc6_tn.png" /></a>
-              <td>
-                 Click to the image to see Virtual Machine Controller interface for user administration.
-              </td>
-            </tr>
-            <tr>
-              <td><a href="graphics/avmc7.png" target="blank"><img src="graphics/avmc7_tn.png" /></a>
-              <td>
-                 Click to the image to see Virtual Machine Controller interface to add a new user or edit the existing user.
-              </td>
-            </tr>
-
-            <tr>
-              <td><a href="graphics/avmc8.png" target="blank"><img src="graphics/avmc8_tn.png" /></a>
-              <td>
-                 Click to the image to see Virtual Machine Controller interface to change the language in the Settings dialog.
-              </td>
-            </tr>
-
-            <tr>
-              <td><a href="graphics/avmc9.png" target="blank"><img src="graphics/avmc9_tn.png" /></a>
-              <td>
-                 Click to the image to see Virtual Machine Controller interface to show the information about libvirt-php and Virtual Machine Controller tool.
-              </td>
-            </tr>
-
-            <tr>
-              <td><a href="graphics/vmc3.png" target="blank"><img src="graphics/vmc3_tn.png" /></a>
-              <td>
-                 Click to the image to see Virtual Machine Controller machine details overview page. You can change the information there and click <b>Apply changes</b> button to change the information about features like APIC, ACPI, PAE and HAP as well as description of the domain and clock offset. Clock offset can be either localtime (usually for Windows guests) or UTC (for Linux guest).
-              </td>
-            </tr>
-            <tr>
-              <td><a href="graphics/vmc4.png" target="blank"><img src="graphics/vmc4_tn.png" /></a>
-              <td>
-                 Click to the image to see Virtual Machine Controller domain network information page. On the screenshot you can see both form for adding the network interface card as well as information about the currently existing card set up for the guest.
-              </td>
-            </tr>
-            <tr>
-              <td><a href="graphics/vmc5.png" target="blank"><img src="graphics/vmc5_tn.png" /></a>
-              <td>
-                 Click to the image to see Virtual Machine Controller domain host devices page. This page is currently read-only so you can only see the PCI and USB devices on this page with no modifications possible there.
-              </td>
-            </tr>
-            <tr>
-              <td><a href="graphics/vmc6.png" target="blank"><img src="graphics/vmc6_tn.png" /></a>
-              <td>
-                 Click to the image to see Virtual Machine Controller domain screenshot page. This page is currently read-only with experimental support for VNC  protocol (when enabled in the init script called <i>init.php</i>). You can see the domain screenshot there if your libvirt-php supports screenshots. Screenshot support is being managed by the external utility called the <b>gvnccapture</b> which is the part of <a href="http://live.gnome.org/gtk-vnc" target="_blank">gtk-vnc</a> widget/package.
-              </td>
-            </tr>
-          </table>
+		There was no time to get screenshots of new design yet. This will be coming soon.
+		<br />
+		<table>
+			<tr>
+				<td>
+					<a target="_blank" href="graphics/screenshot-connections.png"><img src="graphics/screenshot-connections.png" width=200></a>
+				</td>
+				<td>
+					This is screenshot of connection list using the <i>php-virt-control</i> version-0.1.
+				</td>
+			</tr>
+                        <tr>
+                                <td>
+                                        <a target="_blank" href="graphics/screenshot-add-connection.png"><img src="graphics/screenshot-add-connection.png" width=200></a>
+                                </td>
+                                <td>
+                                        Screenshot of adding a connection to php-virt-control.
+                                </td>
+                        </tr>
+                        <tr>
+                                <td>
+                                        <a target="_blank" href="graphics/screenshot-domain.png"><img src="graphics/screenshot-domain.png" width=200></a>
+                                </td>
+                                <td>
+                                        Project <i>php-virt-control</i> showing a domain information for the domain (virtual machine).
+                                </td>
+                        </tr>
+                        <tr>
+                                <td>
+                                        <a target="_blank" href="graphics/screenshot-add-domain.png"><img src="graphics/screenshot-add-domain.png" width=200></a>
+                                </td>
+                                <td>
+					Domain addition dialog in the php-virt-control rewritten to version-0.1.
+                                </td>
+                        </tr>
+                        <tr>
+                                <td>
+                                        <a target="_blank" href="graphics/screenshot-edit-user.png"><img src="graphics/screenshot-edit-user.png" width=200></a>
+                                </td>
+                                <td>
+					User editing form in the php-virt-control showing off the QR Code along with API key to be used for automation.
+                                </td>
+                        </tr>
+		</table>
         </p>
       </div>
     </div>

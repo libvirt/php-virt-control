@@ -25,6 +25,30 @@
 	</div>
         <div class="nl">
 </div>
+<div class="item">
+	<div class="label"><?php echo $lang->get('translator-name') ?>: </div>
+	<div class="value">
+<?php
+	for ($i = 0; $i < sizeof($langs); $i++) {
+		if ($code == $langs[$i]['code'])
+			echo $langs[$i]['translator']['name'];
+	}
+?>
+	</div>
+	<div class="nl">
+</div>
+<div class="item">
+        <div class="label"><?php echo $lang->get('translator-email') ?>: </div>
+        <div class="value">
+<?php
+        for ($i = 0; $i < sizeof($langs); $i++) {
+                if ($code == $langs[$i]['code'])
+                        echo $langs[$i]['translator']['email'];
+        }
+?>
+        </div>
+        <div class="nl">
+</div>
 
 <div class="section"><?php echo $lang->get('using-ssh-auth') ?></div>
 

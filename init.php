@@ -14,6 +14,7 @@
 	require('classes/loggerBase.php');
 	require('classes/Security.php');
 	require('classes/database.php');
+	require('classes/layers/mysql.php');
 	require('classes/graphics.php');
 	require('classes/libvirt.php');
 	require('classes/session.php');
