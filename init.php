@@ -14,7 +14,18 @@
 	require('classes/loggerBase.php');
 	require('classes/Security.php');
 	require('classes/database.php');
-	require('classes/layers/mysql.php');
+
+	$dh = opendir('./classes/layers');
+	if ($dh) {
+		while (($file = readdir($dh)) !== false) {
+			if ($file[0] != '.') {
+				$fn = './classes/layers/'.$file;
+				include($fn);
+			}
+		}
+		closedir($dh);
+	}
+
 	require('classes/graphics.php');
 	require('classes/libvirt.php');
 	require('classes/session.php');

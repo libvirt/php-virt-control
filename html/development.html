@@ -90,8 +90,10 @@
         </h2>
         <p>
 		If you would like to implement a new database layer to be used in the <i>php-virt-control</i> project you can create a new
-		database file in the <b>classes</b> subdirectory.<br />However, there are several functions that have to be public as they are
-		being called from other, application, classes. <br />
+		database file in the <b>classes/layers</b> subdirectory.<br />The naming should be either the way that filename will be the
+		name of the database system the handler is for or the class name inside in form of <b>Database$HANDLERNAME</b>, e.g.
+		<b>DatabaseMySQL</b>.<br />The case of the letters doesn't matter as it's converted and compared as lowercase.<br />However,
+		there are several functions that have to be public as they are being called from other, application, classes. <br />
 		<br />
 		The necessary functions are as follows:
 		<br />
